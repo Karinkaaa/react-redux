@@ -1,0 +1,7 @@
+export const ADD_RESOURCE = "ADD_RESOURCE"
+export const DELETE_RESOURCE = "DELETE_RESOURCE"
+
+export const UPDATE_URL = "UPDATE_URL"
+export const CLEAR_URL_FORM = "CLEAR_URL_FORM"
+export const IS_OPEN_MODAL = "IS_OPEN_MODAL"
+
