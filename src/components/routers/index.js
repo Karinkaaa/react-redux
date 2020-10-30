@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Switch} from 'react-router-dom';
-import MainPage from "../main/MainPage";
-import ImagesPage from "../../containers/ImagesPage";
+import MainPage from "../mainPage";
+import ImagesPage from "../../containers/images/ImagesPage";
 import {IMAGES, MAIN_PAGE} from "../../links";
 
 export default () => {
