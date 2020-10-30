@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import resources from "./reducers/Images";
+import resources from "./reducers/ImagesPage";
 import createForm from "./reducers/CreateResourceForm";
 
 const reducers = combineReducers({
