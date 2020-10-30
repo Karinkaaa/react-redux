@@ -1,5 +1,5 @@
 import uuid from 'react-uuid'
-import {ADD_RESOURCE, DELETE_RESOURCE} from "../constants";
+import {ADD_RESOURCE, DELETE_RESOURCE} from "../../constants";
 
 const initialState = [
     {
