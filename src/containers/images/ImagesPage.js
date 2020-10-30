@@ -1,16 +1,16 @@
 import {connect} from "react-redux";
 import ImagesPage from "../../components/images";
-import {deleteResource} from "../../actions/ImagesPage";
+import {deleteImageResource} from "../../actions/ImagesPage";
 
 const mapStateToProps = (state) => {
     return {
-        images: state.images
+        images: state.images.imageList
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDelete: (id) => dispatch(deleteResource(id)),
+        onDelete: (id) => dispatch(deleteImageResource(id)),
     }
 }
 
