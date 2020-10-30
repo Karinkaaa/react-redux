@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
-import ImagesPage from "../components/images/ImagesPage";
-import {deleteResource} from "../actions/ImagesPage";
+import ImagesPage from "../../components/images";
+import {deleteResource} from "../../actions/ImagesPage";
 
 const mapStateToProps = (state) => {
     return {
-        resources: state.resources
+        images: state.images
     }
 }
 
