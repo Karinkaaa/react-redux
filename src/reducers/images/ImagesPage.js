@@ -40,7 +40,12 @@ export default (state = initialState, action) => {
             }
         }
         case DELETE_IMAGE_RESOURCE: {
-            return state.imageList.filter(({id}) => id !== action.id);
+            const {imageList} = state;
+
+            return {
+                ...state,
+                imageList: imageList.filter(({id}) => id !== action.id)
+            };
         }
         default:
             return state;
