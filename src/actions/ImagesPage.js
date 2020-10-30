@@ -1,12 +1,12 @@
-import {ADD_RESOURCE, DELETE_RESOURCE} from "../constants";
+import {ADD_IMAGE_RESOURCE, DELETE_IMAGE_RESOURCE} from "../constants";
 
-export const addResource = ({name, url}) => ({
-    type: ADD_RESOURCE,
+export const addImageResource = ({name, url}) => ({
+    type: ADD_IMAGE_RESOURCE,
     name,
     url
 });
 
-export const deleteResource = (id) => ({
-    type: DELETE_RESOURCE,
+export const deleteImageResource = (id) => ({
+    type: DELETE_IMAGE_RESOURCE,
     id
 });
