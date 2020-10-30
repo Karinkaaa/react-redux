@@ -1,7 +1,8 @@
 import {ADD_RESOURCE, DELETE_RESOURCE} from "../constants";
 
-export const addResource = (url) => ({
+export const addResource = ({name, url}) => ({
     type: ADD_RESOURCE,
+    name,
     url
 });
 
