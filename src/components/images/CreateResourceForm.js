@@ -68,7 +68,19 @@ export default ({
                             />
                         </Grid>
 
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
+                            <Button
+                                className={classes.button}
+                                fullWidth
+                                onClick={handleClose}
+                                color="secondary"
+                                variant="contained"
+                            >
+                                Cancel
+                            </Button>
+                        </Grid>
+
+                        <Grid item xs={6}>
                             <Button
                                 className={classes.button}
                                 fullWidth
@@ -80,7 +92,7 @@ export default ({
                                 color="primary"
                                 variant="contained"
                             >
-                                Save resource
+                                Save
                             </Button>
                         </Grid>
                     </Grid>
