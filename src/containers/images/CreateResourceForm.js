@@ -1,15 +1,15 @@
 import {connect} from "react-redux";
 import CreateResourceForm from "../../components/images/CreateResourceForm";
 import {isOpenModal, updateName, updateUrl} from "../../actions/CreateResourceForm";
-import {addResource} from "../../actions/ImagesPage";
+import {addImageResource} from "../../actions/ImagesPage";
 
 const mapStateToProps = (state) => {
     return {
-        name: state.createForm.name,
-        isValidName: state.createForm.isValidName,
-        url: state.createForm.url,
-        isValidUrl: state.createForm.isValidUrl,
-        isOpen: state.createForm.isOpen
+        name: state.createImageForm.name,
+        isValidName: state.createImageForm.isValidName,
+        url: state.createImageForm.url,
+        isValidUrl: state.createImageForm.isValidUrl,
+        isOpen: state.createImageForm.isOpen
     }
 }
 
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onChangeName: (name) => dispatch(updateName(name)),
         onChangeUrl: (url) => dispatch(updateUrl(url)),
-        onSave: (props) => dispatch(addResource(props)),
+        onSave: (props) => dispatch(addImageResource(props)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenModal(isOpen))
     }
 }
