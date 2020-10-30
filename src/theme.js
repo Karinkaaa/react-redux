@@ -29,9 +29,13 @@ const themeObj = {
         "blueGrey2Color": "#3a536c",
         "blueGrey3Color": "#79abba",
 
-        "orange1Color": "#441a07",
-        "orange2Color": "#ff6702",
-        "orange3Color": "#ce7856",
+        "update1Color": "#f39207",
+        "update2Color": "#d9984d",
+        "update3Color": "#f1e673",
+
+        "delete1Color": "#ac0408",
+        "delete2Color": "#d23c3c",
+        "delete3Color": "#f36b6b",
 
         "textColor": "rgba(255,255,255,0.87)",
         "secondaryTextColor": "#303030",
