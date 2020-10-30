@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import CreateResourceForm from "../components/images/CreateResourceForm";
-import {isOpenModal, updateName, updateUrl} from "../actions/CreateResourceForm";
-import {addResource} from "../actions/ImagesPage";
+import CreateResourceForm from "../../components/images/CreateResourceForm";
+import {isOpenModal, updateName, updateUrl} from "../../actions/CreateResourceForm";
+import {addResource} from "../../actions/ImagesPage";
 
 const mapStateToProps = (state) => {
     return {
