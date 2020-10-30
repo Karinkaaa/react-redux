@@ -30,7 +30,7 @@ export default ({
                     startIcon={<Add/>}
                     onClick={handleOpen}
             >
-                Add resource
+                Add image resource
             </Button>
             <Modal
                 className={classes.modal}
@@ -46,7 +46,7 @@ export default ({
                     <Grid container spacing={3} className={classes.paper}>
                         <Grid item xs={12}>
                             <TextField
-                                label="Enter the name of resource"
+                                label="Enter the name of image resource"
                                 variant="outlined"
                                 value={name}
                                 required
@@ -58,7 +58,7 @@ export default ({
 
                         <Grid item xs={12}>
                             <TextField
-                                label="Enter the URL of resource"
+                                label="Enter the URL of image resource"
                                 variant="outlined"
                                 value={url}
                                 required
