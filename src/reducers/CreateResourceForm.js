@@ -1,5 +1,5 @@
-import {IS_OPEN_MODAL, UPDATE_URL} from "../constants";
-import {isValidImageUrl} from "../validation";
+import {IS_OPEN_MODAL, UPDATE_NAME, UPDATE_URL} from "../constants";
+import {isValidImageUrl, isValidName} from "../validation";
 
 const initialState = {
     url: '',
@@ -16,6 +16,15 @@ export default (state = initialState, action) => {
                 url: '',
                 isValidUrl: false,
                 isOpen: action.isOpen
+            }
+        }
+        case UPDATE_NAME: {
+            const {name} = action;
+
+            return {
+                ...state,
+                name: name,
+                isValidName: isValidName(name)
             }
         }
         case UPDATE_URL: {
