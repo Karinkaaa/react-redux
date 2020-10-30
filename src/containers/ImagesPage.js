@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import Resources from "../components/Images";
-import {deleteResource} from "../actions/Images";
+import ImagesPage from "../components/images/ImagesPage";
+import {deleteResource} from "../actions/ImagesPage";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resources);
+export default connect(mapStateToProps, mapDispatchToProps)(ImagesPage);
