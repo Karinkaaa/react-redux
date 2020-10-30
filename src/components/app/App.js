@@ -3,7 +3,7 @@ import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import PermanentHeader from "../appBar/PermanentHeader";
 import MenuInLeft, {useStyles} from "../appBar/MenuInLeft";
-import Routers from "../router/Routers";
+import Routers from "../routers";
 
 function App() {
 
