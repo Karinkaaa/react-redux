@@ -80,31 +80,31 @@ export default ({images, onDelete}) => {
             </TableHead>
 
             <TableBody>
-                {images.map(image =>
-                    <TableRow key={image.id}>
-                        <TableCell className={classes.cell}><Avatar src={image.url}/></TableCell>
-                        <TableCell className={classes.cell}>{image.id}</TableCell>
-                        <TableCell className={classes.cell}>{image.name}</TableCell>
-                        <TableCell className={classes.urlCell}>{image.url}</TableCell>
+                {
+                    images
+                        .map(image =>
+                            <TableRow key={image.id}>
+                                <TableCell className={classes.cell}><Avatar src={image.url}/></TableCell>
+                                <TableCell className={classes.cell}>{image.id}</TableCell>
+                                <TableCell className={classes.cell}>{image.name}</TableCell>
+                                <TableCell className={classes.urlCell}>{image.url}</TableCell>
 
-                        <TableCell className={classes.urlCell}>
-                            <IconButton
-                                data-id={image.id}
-                            >
-                                <Update className={classes.updateIcon}/>
-                            </IconButton>
-                        </TableCell>
+                                <TableCell className={classes.urlCell}>
+                                    <IconButton data-id={image.id}>
+                                        <Update className={classes.updateIcon}/>
+                                    </IconButton>
+                                </TableCell>
 
-                        <TableCell className={classes.urlCell}>
-                            <IconButton
-                                data-id={image.id}
-                                onClick={handleToggle}
-                            >
-                                <Delete className={classes.deleteIcon}/>
-                            </IconButton>
-                        </TableCell>
-                    </TableRow>
-                )}
+                                <TableCell className={classes.urlCell}>
+                                    <IconButton
+                                        data-id={image.id}
+                                        onClick={handleToggle}
+                                    >
+                                        <Delete className={classes.deleteIcon}/>
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        )}
             </TableBody>
 
             <ConfirmMenu
