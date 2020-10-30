@@ -3,7 +3,7 @@ import {Avatar, Table, TableBody, TableHead} from "@material-ui/core";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import IconButton from "@material-ui/core/IconButton";
-import {Delete} from "@material-ui/icons";
+import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
 
@@ -45,12 +45,15 @@ export const useStyles = makeStyles(theme => ({
         padding: theme.spacing(4, 8),
         borderRadius: "3px",
     },
-    icon: {
-        color: theme.palette.success3Color
+    updateIcon: {
+        color: theme.palette.update3Color
+    },
+    deleteIcon: {
+        color: theme.palette.delete3Color
     }
 }));
 
-export default ({resources, onDelete}) => {
+export default ({images, onDelete}) => {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(false);
@@ -71,23 +74,33 @@ export default ({resources, onDelete}) => {
                     <TableCell className={classes.headCell}>ID</TableCell>
                     <TableCell className={classes.headCell}>Name</TableCell>
                     <TableCell align="center" className={classes.headCell}>URL</TableCell>
+                    <TableCell align="center" className={classes.headCell}>UPDATE</TableCell>
                     <TableCell align="center" className={classes.headCell}>DELETE</TableCell>
                 </TableRow>
             </TableHead>
 
             <TableBody>
-                {resources.map(resource =>
-                    <TableRow key={resource.id}>
-                        <TableCell className={classes.cell}><Avatar src={resource.url}/></TableCell>
-                        <TableCell className={classes.cell}>{resource.id}</TableCell>
-                        <TableCell className={classes.cell}>{resource.name}</TableCell>
-                        <TableCell className={classes.urlCell}>{resource.url}</TableCell>
+                {images.map(image =>
+                    <TableRow key={image.id}>
+                        <TableCell className={classes.cell}><Avatar src={image.url}/></TableCell>
+                        <TableCell className={classes.cell}>{image.id}</TableCell>
+                        <TableCell className={classes.cell}>{image.name}</TableCell>
+                        <TableCell className={classes.urlCell}>{image.url}</TableCell>
+
                         <TableCell className={classes.urlCell}>
                             <IconButton
-                                data-id={resource.id}
+                                data-id={image.id}
+                            >
+                                <Update className={classes.updateIcon}/>
+                            </IconButton>
+                        </TableCell>
+
+                        <TableCell className={classes.urlCell}>
+                            <IconButton
+                                data-id={image.id}
                                 onClick={handleToggle}
                             >
-                                <Delete className={classes.icon}/>
+                                <Delete className={classes.deleteIcon}/>
                             </IconButton>
                         </TableCell>
                     </TableRow>
