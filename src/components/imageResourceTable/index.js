@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
+import PropTypes from "prop-types";
 
 export const useStyles = makeStyles(theme => ({
     content: {
@@ -53,7 +54,7 @@ export const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default ({images, onDelete}) => {
+const ImageResourceTable = ({images, onDelete}) => {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(false);
@@ -115,3 +116,10 @@ export default ({images, onDelete}) => {
         </Table>
     )
 }
+
+ImageResourceTable.propTypes = {
+    images: PropTypes.string.isRequired,
+    onDelete: PropTypes.func.isRequired
+}
+
+export default ImageResourceTable
