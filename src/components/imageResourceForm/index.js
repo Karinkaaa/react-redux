@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -7,17 +8,17 @@ import TextField from "@material-ui/core/TextField";
 import {Button} from "@material-ui/core";
 import {useStyles} from "../imageResourceTable";
 
-export default ({
-                    onSave,
-                    name, isValidName, onChangeName,
-                    url, isValidUrl, onChangeUrl,
-                    isOpen, onChangeIsOpen
-                }) => {
+const ImageResourceForm = ({
+                               onSave,
+                               name, isValidName, onChangeName,
+                               url, isValidUrl, onChangeUrl,
+                               isOpen, onChangeIsOpen
+                           }) => {
 
     const classes = useStyles();
 
     const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !isValidUrl && !isValidName;
+    const isDisabledButtonSave = () => !isValidUrl || !isValidName;
 
     return (
         <Modal
@@ -88,3 +89,18 @@ export default ({
         </Modal>
     )
 }
+
+ImageResourceForm.propTypes = {
+
+    onSave: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    isValidName: PropTypes.bool.isRequired,
+    onChangeName: PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired,
+    isValidUrl: PropTypes.bool.isRequired,
+    onChangeUrl: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired
+}
+
+export default ImageResourceForm
