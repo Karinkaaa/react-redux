@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Switch} from 'react-router-dom';
 import MainPage from "../mainPage";
-import ImagesPage from "../../pages/images";
+import Images from "../../pages/images";
 import {IMAGES, MAIN_PAGE} from "../../links";
 
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
         <main>
             <Switch>
                 <Route exact path={MAIN_PAGE} component={MainPage}/>
-                <Route exact path={IMAGES} component={ImagesPage}/>
+                <Route exact path={IMAGES} component={Images}/>
             </Switch>
         </main>
     )
