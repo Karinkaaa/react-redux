@@ -2,11 +2,12 @@ import React from 'react';
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import PermanentHeader from "../appBar/PermanentHeader";
-import MenuInLeft, {useStyles} from "../appBar/MenuInLeft";
 import Routers from "../routers";
+import Toolbar from "@material-ui/core/Toolbar";
+import {useStyles} from "../navigationMenu";
+import MenuComponent from "../appBar/MenuComponent";
 
-function App() {
-
+export default () => {
     const classes = useStyles();
 
     return (
@@ -14,13 +15,12 @@ function App() {
             <CssBaseline/>
 
             <PermanentHeader/>
-            <MenuInLeft/>
+            <MenuComponent/>
 
-            <main className={classes.content}>
+            <div className={classes.content}>
+                <Toolbar/>
                 <Routers/>
-            </main>
+            </div>
         </div>
     );
 }
-
-export default App;
