@@ -118,7 +118,7 @@ const ImageResourceTable = ({images, onDelete}) => {
 }
 
 ImageResourceTable.propTypes = {
-    images: PropTypes.string.isRequired,
+    images: PropTypes.array.isRequired,
     onDelete: PropTypes.func.isRequired
 }
 
