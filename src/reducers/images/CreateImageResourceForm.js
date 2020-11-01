@@ -2,6 +2,8 @@ import {IS_OPEN_MODAL, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../constant
 import {isValidImageUrl, isValidName} from "../../validation";
 
 const initialState = {
+    name: '',
+    isValidName: false,
     url: '',
     isValidUrl: false,
     isOpen: false
