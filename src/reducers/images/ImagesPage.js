@@ -1,5 +1,6 @@
 import uuid from 'react-uuid'
-import {ADD_IMAGE_RESOURCE, DELETE_IMAGE_RESOURCE} from "../../constants";
+import {ADD_IMAGE_RESOURCE, DELETE_IMAGE_RESOURCE, UPDATE_IMAGE_RESOURCE} from "../../constants";
+import {removeItemFrom, saveItemTo} from "../../methods";
 
 const initialState = {
     imageList: [
@@ -25,26 +26,37 @@ export default (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_IMAGE_RESOURCE: {
+
+            const {imageList} = state;
             const {name, url} = action;
 
             return {
                 ...state,
-                imageList: [
-                    ...state.imageList,
-                    {
-                        id: uuid(),
-                        name,
-                        url
-                    }
-                ]
+                imageList: saveItemTo(imageList, {
+                    id: uuid(),
+                    name: name,
+                    url: url
+                })
             }
         }
-        case DELETE_IMAGE_RESOURCE: {
+        case UPDATE_IMAGE_RESOURCE: {
+
             const {imageList} = state;
+            const {id, name, url} = action;
 
             return {
                 ...state,
-                imageList: imageList.filter(({id}) => id !== action.id)
+                imageList: saveItemTo(imageList, {id, name, url})
+            }
+        }
+        case DELETE_IMAGE_RESOURCE: {
+
+            const {imageList} = state;
+            const {id} = action;
+
+            return {
+                ...state,
+                imageList: removeItemFrom(imageList, id)
             };
         }
         default:

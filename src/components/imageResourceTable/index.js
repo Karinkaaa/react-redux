@@ -37,10 +37,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageResourceTable = ({images, onDelete}) => {
+const ImageResourceTable = ({images, onDelete, onChangeIsOpen, onClickPutImageResourceToForm}) => {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(false);
+    const handleOpen = () => onChangeIsOpen(true);
 
     const handleToggle = (e) => {
         setAnchorEl(e.currentTarget);
@@ -66,22 +67,28 @@ const ImageResourceTable = ({images, onDelete}) => {
             <TableBody>
                 {
                     images
-                        .map(image =>
-                            <TableRow key={image.id}>
-                                <TableCell className={classes.cell}><Avatar src={image.url}/></TableCell>
-                                <TableCell className={classes.cell}>{image.id}</TableCell>
-                                <TableCell className={classes.cell}>{image.name}</TableCell>
-                                <TableCell className={classes.urlCell}>{image.url}</TableCell>
+                        .map(({id, name, url}) =>
+                            <TableRow key={id}>
+                                <TableCell className={classes.cell}><Avatar src={url}/></TableCell>
+                                <TableCell className={classes.cell}>{id}</TableCell>
+                                <TableCell className={classes.cell}>{name}</TableCell>
+                                <TableCell className={classes.urlCell}>{url}</TableCell>
 
                                 <TableCell className={classes.urlCell}>
-                                    <IconButton data-id={image.id}>
+                                    <IconButton
+                                        data-id={id}
+                                        onClick={() => {
+                                            handleOpen();
+                                            onClickPutImageResourceToForm({id, name, url});
+                                        }}
+                                    >
                                         <Update className={classes.updateIcon}/>
                                     </IconButton>
                                 </TableCell>
 
                                 <TableCell className={classes.urlCell}>
                                     <IconButton
-                                        data-id={image.id}
+                                        data-id={id}
                                         onClick={handleToggle}
                                     >
                                         <Delete className={classes.deleteIcon}/>

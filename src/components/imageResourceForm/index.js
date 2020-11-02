@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageResourceForm = ({
-                               onSave,
+                               onSave, onUpdate, id,
                                name, isValidName, onChangeName,
                                url, isValidUrl, onChangeUrl,
                                isOpen, onChangeIsOpen
@@ -50,6 +50,22 @@ const ImageResourceForm = ({
         >
             <Fade in={isOpen}>
                 <Grid container spacing={3} className={classes.paper}>
+
+                    {
+                        id && (
+                            <Grid item xs={12}>
+                                <TextField
+                                    label="ID"
+                                    variant="outlined"
+                                    value={id}
+                                    required
+                                    fullWidth
+                                    disabled
+                                />
+                            </Grid>
+                        )
+                    }
+
                     <Grid item xs={12}>
                         <TextField
                             label="Enter the name of image resource"
@@ -89,14 +105,14 @@ const ImageResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                onSave({name, url});
+                                id ? onUpdate({id, name, url}) : onSave({id, name, url});
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}
                             color="primary"
                             variant="contained"
                         >
-                            Save
+                            {id ? "Update" : "Save"}
                         </Button>
                     </Grid>
                 </Grid>
