@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import store from "./store";
 import {ThemeProvider} from '@material-ui/core/styles';
-import {theme} from "./theme";
+import {theme} from "./utils/theme";
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,6 +1,6 @@
 import React from "react";
 import {BurstMode, Error, GroupWork, Info, PhotoLibrary, ViewCarousel, Visibility} from "@material-ui/icons";
-import {ANIMATIONS, DRUMS, IMAGES, INFO, RULES, UI} from "../../links";
+import {ANIMATIONS, DRUMS, IMAGES, INFO, RULES, UI} from "../../utils/links";
 
 export const MenuElements = [
     {

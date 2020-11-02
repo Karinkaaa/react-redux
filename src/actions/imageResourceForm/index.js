@@ -1,4 +1,4 @@
-import {IS_OPEN_MODAL, PUT_IMAGE_RESOURCE_TO_FORM, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../constants";
+import {IS_OPEN_MODAL, PUT_IMAGE_RESOURCE_TO_FORM, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../utils/constants";
 
 export const updateName = (name) => ({
     type: UPDATE_IMAGE_NAME,

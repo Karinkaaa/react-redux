@@ -1,6 +1,6 @@
 import uuid from 'react-uuid'
-import {ADD_IMAGE_RESOURCE, DELETE_IMAGE_RESOURCE, UPDATE_IMAGE_RESOURCE} from "../../constants";
-import {removeItemFrom, saveItemTo} from "../../methods";
+import {ADD_IMAGE_RESOURCE, DELETE_IMAGE_RESOURCE, UPDATE_IMAGE_RESOURCE} from "../../utils/constants";
+import {removeItemFrom, saveItemTo} from "../../utils/methods";
 
 const initialState = {
     imageList: [

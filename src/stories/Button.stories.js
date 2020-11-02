@@ -3,7 +3,7 @@ import React from 'react';
 import {muiTheme} from 'storybook-addon-material-ui';
 import { Button } from './Button';
 import {MuiThemeProvider} from "@material-ui/core";
-import {theme} from "../theme";
+import {theme} from "../utils/theme";
 
 export default {
   title: 'Example/Button',

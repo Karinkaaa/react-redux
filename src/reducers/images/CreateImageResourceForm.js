@@ -1,5 +1,5 @@
-import {IS_OPEN_MODAL, PUT_IMAGE_RESOURCE_TO_FORM, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../constants";
-import {isValidImageUrl, isValidName} from "../../validation";
+import {IS_OPEN_MODAL, PUT_IMAGE_RESOURCE_TO_FORM, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../utils/constants";
+import {isValidImageUrl, isValidName} from "../../utils/validation";
 
 const initialState = {
     id: '',

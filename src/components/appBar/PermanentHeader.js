@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import {Home} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
-import {MAIN_PAGE} from "../../links";
+import {MAIN_PAGE} from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
