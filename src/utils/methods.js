@@ -1,5 +1,5 @@
 export function removeItemFrom(list, id) {
-    return list.filter(itemId => itemId !== id)
+    return list.filter(item => item.id !== id);
 }
 
 export function saveItemTo(list, item) {
