@@ -22,6 +22,10 @@ export default ({anchorEl, handleClose, onAccept}) => {
             variant="selectedMenu"
         >
             <div className={classes.root}>
+                <MenuItem onClick={handleClose}>
+                    <Close color="secondary"/>
+                </MenuItem>
+
                 <MenuItem
                     onClick={() => {
                         onAccept(anchorEl.dataset.id);
@@ -29,10 +33,6 @@ export default ({anchorEl, handleClose, onAccept}) => {
                     }}
                 >
                     <Check color="primary"/>
-                </MenuItem>
-
-                <MenuItem onClick={handleClose}>
-                    <Close color="secondary"/>
                 </MenuItem>
             </div>
         </Menu>
