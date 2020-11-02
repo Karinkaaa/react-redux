@@ -1,12 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Modal from "@material-ui/core/Modal";
+import TextField from "@material-ui/core/TextField";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import {Button} from "@material-ui/core";
-import {useStyles} from "../imageResourceTable";
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        position: 'absolute',
+        width: 500,
+        background: "linear-gradient(rgba(218, 239, 239, 1), rgba(121, 171, 180, 1))",
+        border: '3px solid #1e88e5',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(4, 8),
+        borderRadius: "3px",
+    },
+    button: {
+        marginTop: 10,
+    },
+}));
 
 const ImageResourceForm = ({
                                onSave,

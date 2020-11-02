@@ -4,11 +4,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {Check, Close} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
     root: {
         display: 'flex',
     }
-}));
+});
 
 export default ({anchorEl, handleClose, onAccept}) => {
     const classes = useStyles();

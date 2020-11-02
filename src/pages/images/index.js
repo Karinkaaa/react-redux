@@ -1,12 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Add} from "@material-ui/icons";
-import Toolbar from '@material-ui/core/Toolbar';
 import {Button, Container} from "@material-ui/core";
+import Toolbar from '@material-ui/core/Toolbar';
+import {Add} from "@material-ui/icons";
+import {isOpenModal} from "../../actions/imageResourceForm";
 import CreateResourceForm from "../../containers/imageResourceForm";
 import ImageResourceTable from "../../containers/imageResourceTable";
-import {isOpenModal} from "../../actions/imageResourceForm";
-import {useStyles} from "../../components/imageResourceTable";
 
 const mapStateToProps = () => {
     return {}
@@ -19,8 +18,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Images = ({onChangeIsOpen}) => {
-
-    const classes = useStyles();
     const handleOpen = () => onChangeIsOpen(true);
 
     return (
@@ -30,7 +27,6 @@ const Images = ({onChangeIsOpen}) => {
                 <Button variant="contained"
                         color="primary"
                         size="large"
-                        className={classes.button}
                         startIcon={<Add/>}
                         onClick={handleOpen}
                 >

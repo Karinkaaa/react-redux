@@ -1,12 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {Avatar, Table, TableBody, TableHead} from "@material-ui/core";
-import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
-import PropTypes from "prop-types";
 
 export const useStyles = makeStyles(theme => ({
     content: {
@@ -31,20 +31,6 @@ export const useStyles = makeStyles(theme => ({
         overflow: "overlay",
         textAlign: "center",
         color: theme.palette.primary3Color
-    },
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        position: 'absolute',
-        width: 500,
-        background: "linear-gradient(rgba(218, 239, 239, 1), rgba(121, 171, 180, 1))",
-        border: '3px solid #1e88e5',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(4, 8),
-        borderRadius: "3px",
     },
     updateIcon: {
         color: theme.palette.update3Color

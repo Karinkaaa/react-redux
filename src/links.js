@@ -1,5 +1,4 @@
 export const MAIN_PAGE = "/";
-export const RESOURCES = "/resources";
 export const IMAGES = "/resources/images";
 export const ANIMATIONS = "/resources/animations";
 export const DRUMS = "/drums";

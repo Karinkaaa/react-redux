@@ -1,11 +1,26 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import Collapse from "@material-ui/core/Collapse";
-import NavigationMenu, {useStyles} from "./index";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import {ExpandLess, ExpandMore} from "@material-ui/icons";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import NavigationMenu from "./index";
+
+export const useStyles = makeStyles((theme) => ({
+    icon: {
+        color: theme.palette.update3Color,
+    },
+    link: {
+        textDecoration: "none",
+        color: theme.palette.primary3Color,
+    },
+    collapseBtn: {
+        paddingLeft: 30,
+    }
+}));
+
 
 const WrapLink = ({link, children}) => {
     const classes = useStyles();
@@ -27,18 +42,19 @@ export default ({name, Icon, link, children}) => {
 
     const handleClick = () => {
         setOpen(!open);
-
     };
 
     return (
         <>
             <WrapLink link={link}>
                 <ListItem button key={name} onClick={handleClick}>
-                    <ListItemIcon>
-                        <Icon className={classes.icon}/>
+                    <ListItemIcon className={classes.icon}>
+                        <Icon/>
                     </ListItemIcon>
                     <ListItemText primary={name}/>
-                    {children ? (open ? <ExpandLess/> : <ExpandMore/>) : null}
+                    {
+                        children ? (open ? <ExpandLess/> : <ExpandMore/>) : null
+                    }
                 </ListItem>
             </WrapLink>
             {
@@ -47,7 +63,7 @@ export default ({name, Icon, link, children}) => {
                         in={open}
                         timeout="auto"
                         unmountOnExit
-                        style={{paddingLeft: 50}}
+                        className={classes.collapseBtn}
                     >
                         <NavigationMenu items={children}/>
                     </Collapse>
