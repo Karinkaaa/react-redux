@@ -8,13 +8,10 @@ import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
 
-export const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
     content: {
         marginTop: 75,
         background: theme.palette.blueGrey1Color,
-    },
-    button: {
-        marginTop: 10,
     },
     head: {
         backgroundColor: theme.palette.primary2Color,

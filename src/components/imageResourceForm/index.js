@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(4, 8),
         borderRadius: "3px",
     },
-    button: {
-        marginTop: 10,
-    },
 }));
 
 const ImageResourceForm = ({
@@ -79,7 +76,6 @@ const ImageResourceForm = ({
 
                     <Grid item xs={6}>
                         <Button
-                            className={classes.button}
                             fullWidth
                             onClick={handleClose}
                             color="secondary"
@@ -91,7 +87,6 @@ const ImageResourceForm = ({
 
                     <Grid item xs={6}>
                         <Button
-                            className={classes.button}
                             fullWidth
                             onClick={() => {
                                 onSave({name, url});

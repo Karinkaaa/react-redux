@@ -8,7 +8,7 @@ import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import NavigationMenu from "./index";
 
-export const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     icon: {
         color: theme.palette.update3Color,
     },
