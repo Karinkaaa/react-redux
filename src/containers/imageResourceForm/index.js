@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import CreateImageResourceForm from "../../components/imageResourceForm";
 import {isOpenModal, updateName, updateUrl} from "../../actions/imageResourceForm";
-import {addImageResource, updateImageResource} from "../../actions/imageResourceTable";
+import {addImageResource, updateImageResource} from "../../actions/imageResourceComponent";
 
 const mapStateToProps = (state) => {
     return {

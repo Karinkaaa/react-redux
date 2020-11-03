@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import withRouter from "react-router-dom/es/withRouter";
+import {withRouter} from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -44,7 +44,7 @@ const WrapLink = ({link, children}) => {
         </div>;
 }
 
-export default withRouter(({name, Icon, link, children, }) => {
+export default withRouter(({name, Icon, link, children}) => {
 
         const classes = useStyles();
         const [open, setOpen] = useState(false);

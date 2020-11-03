@@ -1,4 +1,10 @@
-import {IS_OPEN_MODAL, PUT_IMAGE_RESOURCE_TO_FORM, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../utils/constants";
+import {
+    CHANGE_VIEW,
+    IS_OPEN_MODAL,
+    PUT_IMAGE_RESOURCE_TO_FORM,
+    UPDATE_IMAGE_NAME,
+    UPDATE_IMAGE_URL
+} from "../../utils/constants";
 
 export const updateName = (name) => ({
     type: UPDATE_IMAGE_NAME,
@@ -13,6 +19,11 @@ export const updateUrl = (url) => ({
 export const isOpenModal = (isOpen) => ({
     type: IS_OPEN_MODAL,
     isOpen
+});
+
+export const changeView = (view) => ({
+    type: CHANGE_VIEW,
+    view
 });
 
 export const putImageResourceToForm = ({id, name, url}) => ({

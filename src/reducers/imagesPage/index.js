@@ -1,5 +1,5 @@
 import uuid from 'react-uuid'
-import {ADD_IMAGE_RESOURCE, DELETE_IMAGE_RESOURCE, UPDATE_IMAGE_RESOURCE} from "../../utils/constants";
+import {ADD_IMAGE_RESOURCE, CHANGE_VIEW, DELETE_IMAGE_RESOURCE, UPDATE_IMAGE_RESOURCE} from "../../utils/constants";
 import {removeItemFrom, saveItemTo} from "../../utils/methods";
 
 const initialState = {
@@ -19,7 +19,8 @@ const initialState = {
             name: "Color picker",
             url: "https://www.w3schools.com/images/colorpicker.gif"
         }
-    ]
+    ],
+    view: "table"
 };
 
 export default (state = initialState, action) => {
@@ -58,6 +59,12 @@ export default (state = initialState, action) => {
                 ...state,
                 imageList: removeItemFrom(imageList, id)
             };
+        }
+        case CHANGE_VIEW: {
+            return {
+                ...state,
+                view: action.view
+            }
         }
         default:
             return state;
