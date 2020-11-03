@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import withRouter from "react-router-dom/es/withRouter";
 import Collapse from "@material-ui/core/Collapse";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import NavigationMenu from "./index";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,9 +20,16 @@ const useStyles = makeStyles((theme) => ({
     },
     collapseBtn: {
         paddingLeft: 30,
-    }
+    },
 }));
 
+const StyledListItem = withStyles({
+    root: {
+        "&.Mui-selected": {
+            background: "linear-gradient(to right, slateblue, cornflowerblue, deepskyblue)",
+        }
+    },
+})(ListItem);
 
 const WrapLink = ({link, children}) => {
     const classes = useStyles();
@@ -35,40 +44,41 @@ const WrapLink = ({link, children}) => {
         </div>;
 }
 
-export default ({name, Icon, link, children}) => {
+export default withRouter(({name, Icon, link, children, }) => {
 
-    const classes = useStyles();
-    const [open, setOpen] = useState(false);
+        const classes = useStyles();
+        const [open, setOpen] = useState(false);
 
-    const handleClick = () => {
-        setOpen(!open);
-    };
+        const handleClick = () => {
+            setOpen(!open);
+        };
 
-    return (
-        <>
-            <WrapLink link={link}>
-                <ListItem button key={name} onClick={handleClick}>
-                    <ListItemIcon className={classes.icon}>
-                        <Icon/>
-                    </ListItemIcon>
-                    <ListItemText primary={name}/>
-                    {
-                        children ? (open ? <ExpandLess/> : <ExpandMore/>) : null
-                    }
-                </ListItem>
-            </WrapLink>
-            {
-                children && (
-                    <Collapse
-                        in={open}
-                        timeout="auto"
-                        unmountOnExit
-                        className={classes.collapseBtn}
-                    >
-                        <NavigationMenu items={children}/>
-                    </Collapse>
-                )
-            }
-        </>
-    )
-}
+        return (
+            <>
+                <WrapLink link={link}>
+                    <StyledListItem button key={name} onClick={handleClick} selected={window.location.pathname === link}>
+                        <ListItemIcon className={classes.icon}>
+                            <Icon/>
+                        </ListItemIcon>
+                        <ListItemText primary={name}/>
+                        {
+                            children ? (open ? <ExpandLess/> : <ExpandMore/>) : null
+                        }
+                    </StyledListItem>
+                </WrapLink>
+                {
+                    children && (
+                        <Collapse
+                            in={open}
+                            timeout="auto"
+                            unmountOnExit
+                            className={classes.collapseBtn}
+                        >
+                            <NavigationMenu items={children}/>
+                        </Collapse>
+                    )
+                }
+            </>
+        )
+    }
+)
