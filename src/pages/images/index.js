@@ -26,6 +26,20 @@ const Images = ({view, onClickChangeView, onChangeIsOpen}) => {
     const handleOpen = () => onChangeIsOpen(true);
     const handleView = () => view === "table" ? onClickChangeView("grid") : onClickChangeView("table");
 
+    const svgComponent = (svgProps) => (
+        <svg {...svgProps}>
+            <defs>
+                <linearGradient id="gradient1">
+                    <stop offset="20%" stopColor="cornflowerblue"/>
+                    <stop offset="80%" stopColor="deepskyblue"/>
+                </linearGradient>
+            </defs>
+            {React.cloneElement(svgProps.children[0], {
+                fill: 'url(#gradient1)',
+            })}
+        </svg>
+    );
+
     return (
         <div>
             <Toolbar/>
@@ -46,18 +60,22 @@ const Images = ({view, onClickChangeView, onChangeIsOpen}) => {
                     {
                         view === "grid" ?
                             <Grid item xs>
-                                <IconButton
-                                    onClick={handleView}
-                                >
-                                    <List/>
+                                <IconButton onClick={handleView}>
+                                    <List
+                                        color="primary"
+                                        fontSize="large"
+                                        component={svgComponent}
+                                    />
                                 </IconButton>
                             </Grid>
                             :
                             <Grid item xs>
-                                <IconButton
-                                    onClick={handleView}
-                                >
-                                    <ViewModule/>
+                                <IconButton onClick={handleView}>
+                                    <ViewModule
+                                        color="primary"
+                                        fontSize="large"
+                                        component={svgComponent}
+                                    />
                                 </IconButton>
                             </Grid>
                     }

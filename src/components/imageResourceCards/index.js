@@ -10,35 +10,20 @@ import ConfirmMenu from "../confirmMenu";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: 345,
+        backgroundColor: theme.palette.blueGrey1Color,
+        color: theme.palette.primary3Color
     },
     media: {
-        height: 140,
+        height: 160,
     },
     content: {
-        marginTop: 75,
-    },
-    head: {
-        backgroundColor: theme.palette.primary2Color,
-    },
-    headCell: {
-        fontSize: 16,
-        fontWeight: 700,
-    },
-    cell: {
-        color: theme.palette.primary3Color,
-    },
-    urlCell: {
-        maxWidth: "300px",
-        overflow: "overlay",
-        textAlign: "center",
-        color: theme.palette.primary3Color
+        marginTop: 50,
     },
     updateIcon: {
         color: theme.palette.update3Color
     },
     deleteIcon: {
-        color: theme.palette.delete3Color
+        color: theme.palette.delete3Color,
     }
 }));
 
