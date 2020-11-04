@@ -1,4 +1,5 @@
 import uuid from 'react-uuid'
+import {removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_IMAGE_RESOURCE,
     CHANGE_LIMIT,
@@ -7,7 +8,6 @@ import {
     DELETE_IMAGE_RESOURCE,
     UPDATE_IMAGE_RESOURCE
 } from "../../utils/constants";
-import {removeItemFrom, saveItemTo} from "../../utils/methods";
 
 const initialState = {
     imageList: [
@@ -57,10 +57,10 @@ const initialState = {
             url: "https://www.w3schools.com/images/colorpicker.gif"
         }
     ],
-    view: "grid",
+    view: "table",
     pagination: {
         page: 0,
-        limit: 5
+        limit: 4
     }
 };
 

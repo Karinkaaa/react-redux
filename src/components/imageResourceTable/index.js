@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
 import {Avatar, Table, TableBody, TableHead} from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
-import TablePagination from "@material-ui/core/TablePagination";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -37,33 +36,19 @@ const useStyles = makeStyles(theme => ({
     deleteIcon: {
         color: theme.palette.delete3Color
     },
-    pag: {
-        color: theme.palette.common.black,
-        backgroundColor: theme.palette.primary2Color,
-    }
 }));
 
-const ImageResourceTable = ({
-                                images, count, page, onChangePage, limit, onChangeLimit,
-                                onDelete, onChangeIsOpen, onClickPutImageResourceToForm
-                            }) => {
+const ImageResourceTable = ({images, onDelete, onChangeIsOpen, onClickPutImageResourceToForm}) => {
 
     const classes = useStyles();
-
     const [anchorEl, setAnchorEl] = useState(false);
 
     const handleOpen = () => onChangeIsOpen(true);
     const handleClose = () => setAnchorEl(null);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
-    const handleChangePage = (event, newPage) => onChangePage(newPage);
-
-    const handleLimit = (event) => {
-        onChangeLimit(parseInt(event.target.value, 10));
-    };
-
     return (
-        <Paper>
+        <Grid container>
             <Table className={classes.content}>
                 <TableHead>
                     <TableRow className={classes.head}>
@@ -116,20 +101,7 @@ const ImageResourceTable = ({
                     onAccept={onDelete}
                 />
             </Table>
-
-            <TablePagination
-                className={classes.pag}
-                component="div"
-                color="primary"
-                colSpan={6}
-                page={page}
-                count={count}
-                rowsPerPage={limit}
-                rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleLimit}
-            />
-        </Paper>
+        </Grid>
     )
 }
 

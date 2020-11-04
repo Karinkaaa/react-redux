@@ -41,7 +41,6 @@ const themeObj = {
         "secondaryTextColor": "#303030",
         "alternateTextColor": "rgba(255,255,255,0.7)",
         "canvasColor": "#303030",
-        "alternateСanvasColor": "#e0e0e0",
         "alternate1Color": "rgba(0, 0, 0, 0.54)",
         "alternate2Color": "#616161",
         "borderColor": "rgba(255,255,255,0.3)",

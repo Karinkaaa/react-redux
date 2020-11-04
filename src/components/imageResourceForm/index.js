@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'absolute',
         width: 500,
-        background: "linear-gradient(rgba(218, 239, 239, 1), rgba(121, 171, 180, 1))",
+        background: "lightblue",
         border: '3px solid #1e88e5',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 8),
