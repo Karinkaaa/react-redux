@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {Avatar, Table, TableBody, TableHead} from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
+import TablePagination from "@material-ui/core/TablePagination";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -34,76 +36,100 @@ const useStyles = makeStyles(theme => ({
     },
     deleteIcon: {
         color: theme.palette.delete3Color
+    },
+    pag: {
+        color: theme.palette.common.black,
+        backgroundColor: theme.palette.primary2Color,
     }
 }));
 
-const ImageResourceTable = ({images, onDelete, onChangeIsOpen, onClickPutImageResourceToForm}) => {
+const ImageResourceTable = ({
+                                images, count, page, onChangePage, limit, onChangeLimit,
+                                onDelete, onChangeIsOpen, onClickPutImageResourceToForm
+                            }) => {
 
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(false);
+
+    const [anchorEl, setAnchorEl] = useState(false);
+
     const handleOpen = () => onChangeIsOpen(true);
+    const handleClose = () => setAnchorEl(null);
+    const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
-    const handleToggle = (e) => {
-        setAnchorEl(e.currentTarget);
-    };
+    const handleChangePage = (event, newPage) => onChangePage(newPage);
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleLimit = (event) => {
+        onChangeLimit(parseInt(event.target.value, 10));
     };
 
     return (
-        <Table className={classes.content}>
-            <TableHead>
-                <TableRow className={classes.head}>
-                    <TableCell className={classes.headCell}>Image</TableCell>
-                    <TableCell className={classes.headCell}>ID</TableCell>
-                    <TableCell className={classes.headCell}>Name</TableCell>
-                    <TableCell align="center" className={classes.headCell}>URL</TableCell>
-                    <TableCell align="center" className={classes.headCell}>UPDATE</TableCell>
-                    <TableCell align="center" className={classes.headCell}>DELETE</TableCell>
-                </TableRow>
-            </TableHead>
+        <Paper>
+            <Table className={classes.content}>
+                <TableHead>
+                    <TableRow className={classes.head}>
+                        <TableCell className={classes.headCell}>Image</TableCell>
+                        <TableCell className={classes.headCell}>ID</TableCell>
+                        <TableCell className={classes.headCell}>Name</TableCell>
+                        <TableCell align="center" className={classes.headCell}>URL</TableCell>
+                        <TableCell align="center" className={classes.headCell}>UPDATE</TableCell>
+                        <TableCell align="center" className={classes.headCell}>DELETE</TableCell>
+                    </TableRow>
+                </TableHead>
 
-            <TableBody>
-                {
-                    images
-                        .map(({id, name, url}) =>
-                            <TableRow key={id}>
-                                <TableCell className={classes.cell}><Avatar src={url}/></TableCell>
-                                <TableCell className={classes.cell}>{id}</TableCell>
-                                <TableCell className={classes.cell}>{name}</TableCell>
-                                <TableCell className={classes.urlCell}>{url}</TableCell>
+                <TableBody>
+                    {
+                        images
+                            .map(({id, name, url}) =>
+                                <TableRow key={id}>
+                                    <TableCell className={classes.cell}><Avatar src={url}/></TableCell>
+                                    <TableCell className={classes.cell}>{id}</TableCell>
+                                    <TableCell className={classes.cell}>{name}</TableCell>
+                                    <TableCell className={classes.urlCell}>{url}</TableCell>
 
-                                <TableCell className={classes.urlCell}>
-                                    <IconButton
-                                        data-id={id}
-                                        onClick={() => {
-                                            handleOpen();
-                                            onClickPutImageResourceToForm({id, name, url});
-                                        }}
-                                    >
-                                        <Update className={classes.updateIcon}/>
-                                    </IconButton>
-                                </TableCell>
+                                    <TableCell className={classes.urlCell}>
+                                        <IconButton
+                                            data-id={id}
+                                            onClick={() => {
+                                                handleOpen();
+                                                onClickPutImageResourceToForm({id, name, url});
+                                            }}
+                                        >
+                                            <Update className={classes.updateIcon}/>
+                                        </IconButton>
+                                    </TableCell>
 
-                                <TableCell className={classes.urlCell}>
-                                    <IconButton
-                                        data-id={id}
-                                        onClick={handleToggle}
-                                    >
-                                        <Delete className={classes.deleteIcon}/>
-                                    </IconButton>
-                                </TableCell>
-                            </TableRow>
-                        )}
-            </TableBody>
+                                    <TableCell className={classes.urlCell}>
+                                        <IconButton
+                                            data-id={id}
+                                            onClick={handleToggle}
+                                        >
+                                            <Delete className={classes.deleteIcon}/>
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                </TableBody>
 
-            <ConfirmMenu
-                anchorEl={anchorEl}
-                handleClose={handleClose}
-                onAccept={onDelete}
+                <ConfirmMenu
+                    anchorEl={anchorEl}
+                    handleClose={handleClose}
+                    onAccept={onDelete}
+                />
+            </Table>
+
+            <TablePagination
+                className={classes.pag}
+                component="div"
+                color="primary"
+                colSpan={6}
+                page={page}
+                count={count}
+                rowsPerPage={limit}
+                rowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleLimit}
             />
-        </Table>
+        </Paper>
     )
 }
 
@@ -115,7 +141,14 @@ ImageResourceTable.propTypes = {
             url: PropTypes.string.isRequired
         })
     ).isRequired,
-    onDelete: PropTypes.func.isRequired
+    count: PropTypes.number.isRequired,
+    page: PropTypes.number.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    limit: PropTypes.number.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired,
+    onClickPutImageResourceToForm: PropTypes.func.isRequired
 }
 
 export default ImageResourceTable

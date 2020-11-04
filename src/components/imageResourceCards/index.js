@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
+import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageResourceCards = ({images, onDelete, onChangeIsOpen, onClickPutImageResourceToForm}) => {
+const ImageResourceCards = ({images, count, onDelete, onChangeIsOpen, onClickPutImageResourceToForm}) => {
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(false);

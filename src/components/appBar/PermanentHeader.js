@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         paddingLeft: theme.spacing(2),
-        color: theme.palette.primary2Color,
+        color: theme.palette.blueGrey3Color,
         fontSize: 20,
         fontWeight: 700,
     },

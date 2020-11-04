@@ -1,4 +1,6 @@
 import {
+    CHANGE_LIMIT,
+    CHANGE_PAGE,
     CHANGE_VIEW,
     IS_OPEN_MODAL,
     PUT_IMAGE_RESOURCE_TO_FORM,
@@ -31,4 +33,14 @@ export const putImageResourceToForm = ({id, name, url}) => ({
     id,
     name,
     url
+});
+
+export const changePage = (page) => ({
+    type: CHANGE_PAGE,
+    page
+});
+
+export const changeLimit = (limit) => ({
+    type: CHANGE_LIMIT,
+    limit
 });
