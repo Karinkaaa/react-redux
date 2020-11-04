@@ -7,7 +7,7 @@ import {Add, List, ViewModule} from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
-import {deleteImageResource} from "../../actions/imageResourceComponent";
+import {changeSort, deleteImageResource} from "../../actions/imageResourceComponent";
 import CreateResourceForm from "../../containers/imageResourceForm";
 import {
     changeLimit,
@@ -17,9 +17,29 @@ import {
     putImageResourceToForm
 } from "../../actions/imageResourceForm";
 
-const filterSortPaginationArray = (arr, {pagination: {page, limit}}) => {
+const filterSortPaginationArray = (arr,
+                                   {
+                                       pagination: {
+                                           page,
+                                           limit
+                                       },
+                                       sorting: {
+                                           field,
+                                           direction
+                                       }
+                                   }) => {
 
-    const result = arr.slice(page * limit, page * limit + limit);
+    let result = [...arr];
+    const directionMultiplier = direction === "asc" ? 1 : -1;
+
+    result.sort(function (a, b) {
+        if (a[field] > b[field]) return directionMultiplier;
+        else if (a[field] < b[field]) return -directionMultiplier;
+        return 0;
+    });
+
+    result = result.slice(page * limit, page * limit + limit);
+
     return {data: result, count: arr.length};
 }
 
@@ -28,6 +48,7 @@ const mapStateToProps = (state) => {
     const {data: images, count} = filterSortPaginationArray(state.images.imageList,
         {
             pagination: state.images.pagination,
+            sorting: state.images.sorting
         }
     );
 
@@ -35,8 +56,8 @@ const mapStateToProps = (state) => {
         count,
         images,
         view: state.images.view,
-        page: state.images.pagination.page,
-        limit: state.images.pagination.limit,
+        pagination: state.images.pagination,
+        sorting: state.images.sorting
     }
 }
 
@@ -44,6 +65,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onChangePage: (page) => dispatch(changePage(page)),
         onChangeLimit: (limit) => dispatch(changeLimit(limit)),
+        onChangeSort: (field) => dispatch(changeSort(field)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenModal(isOpen)),
         onDelete: (id) => dispatch(deleteImageResource(id)),
         onClickChangeView: (isOpen) => dispatch(changeView(isOpen)),
@@ -53,8 +75,11 @@ const mapDispatchToProps = (dispatch) => {
 
 const Images = ({
                     images, count, onDelete, onChangeIsOpen, onClickPutImageResourceToForm,
-                    view, onClickChangeView, page, onChangePage, limit, onChangeLimit
+                    view, onClickChangeView, pagination, onChangePage, onChangeLimit,
+                    sorting, onChangeSort, onChangeDirection
                 }) => {
+
+    const {page, limit} = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
     const handleChangePage = (event, newPage) => onChangePage(newPage);
@@ -152,14 +177,12 @@ const Images = ({
 
                                 <ImageResourceTable
                                     images={images}
-                                    count={count}
-                                    page={page}
-                                    onChangePage={onChangePage}
-                                    limit={limit}
-                                    onChangeLimit={onChangeLimit}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
                                     onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                                    sorting={sorting}
+                                    onChangeSort={onChangeSort}
+                                    onChangeDirection={onChangeDirection}
                                 />
                             </>
                     }

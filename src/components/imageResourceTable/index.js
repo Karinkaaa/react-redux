@@ -5,6 +5,7 @@ import {Avatar, Table, TableBody, TableHead} from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
@@ -38,9 +39,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ImageResourceTable = ({images, onDelete, onChangeIsOpen, onClickPutImageResourceToForm}) => {
+const ImageResourceTable = ({
+                                images, sorting, onChangeSort,
+                                onDelete, onChangeIsOpen, onClickPutImageResourceToForm
+                            }) => {
 
     const classes = useStyles();
+    const {field, direction} = sorting;
     const [anchorEl, setAnchorEl] = useState(false);
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -53,8 +58,24 @@ const ImageResourceTable = ({images, onDelete, onChangeIsOpen, onClickPutImageRe
                 <TableHead>
                     <TableRow className={classes.head}>
                         <TableCell className={classes.headCell}>Image</TableCell>
-                        <TableCell className={classes.headCell}>ID</TableCell>
-                        <TableCell className={classes.headCell}>Name</TableCell>
+                        <TableCell className={classes.headCell}>
+                            <TableSortLabel
+                                active={field === "id"}
+                                direction={direction}
+                                onClick={() => onChangeSort("id")}
+                            >
+                                ID
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell className={classes.headCell}>
+                            <TableSortLabel
+                                active={field === "name"}
+                                direction={direction}
+                                onClick={() => onChangeSort("name")}
+                            >
+                                Name
+                            </TableSortLabel>
+                        </TableCell>
                         <TableCell align="center" className={classes.headCell}>URL</TableCell>
                         <TableCell align="center" className={classes.headCell}>UPDATE</TableCell>
                         <TableCell align="center" className={classes.headCell}>DELETE</TableCell>
@@ -113,11 +134,12 @@ ImageResourceTable.propTypes = {
             url: PropTypes.string.isRequired
         })
     ).isRequired,
-    count: PropTypes.number.isRequired,
-    page: PropTypes.number.isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    limit: PropTypes.number.isRequired,
-    onChangeLimit: PropTypes.func.isRequired,
+    sorting: PropTypes.shape({
+            field: PropTypes.string.isRequired,
+            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+        }
+    ).isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutImageResourceToForm: PropTypes.func.isRequired
