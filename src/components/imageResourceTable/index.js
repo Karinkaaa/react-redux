@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import {Avatar, Table, TableBody, TableHead} from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
+import InputBase from "@material-ui/core/InputBase";
 import TableRow from "@material-ui/core/TableRow";
 import IconButton from "@material-ui/core/IconButton";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
-import {Delete, Update} from "@material-ui/icons";
+import {Delete, FilterList, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
 
@@ -21,11 +22,9 @@ const useStyles = makeStyles(theme => ({
     headCell: {
         fontSize: 16,
         fontWeight: 700,
+        textAlign: "center",
     },
     cell: {
-        color: theme.palette.primary3Color,
-    },
-    urlCell: {
         maxWidth: "300px",
         overflow: "overlay",
         textAlign: "center",
@@ -37,14 +36,49 @@ const useStyles = makeStyles(theme => ({
     deleteIcon: {
         color: theme.palette.delete3Color
     },
+    filter: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
+    },
+    filterIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+    },
+    inputInput: {
+        padding: theme.spacing(1, 1, 1, 1),
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '80%',
+        [theme.breakpoints.up('md')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
+    },
 }));
 
 const ImageResourceTable = ({
-                                images, sorting, onChangeSort,
+                                images, sorting, onChangeSort, onChangeFilterValue,
                                 onDelete, onChangeIsOpen, onClickPutImageResourceToForm
                             }) => {
 
     const classes = useStyles();
+
     const {field, direction} = sorting;
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -58,6 +92,7 @@ const ImageResourceTable = ({
                 <TableHead>
                     <TableRow className={classes.head}>
                         <TableCell className={classes.headCell}>Image</TableCell>
+
                         <TableCell className={classes.headCell}>
                             <TableSortLabel
                                 active={field === "id"}
@@ -66,7 +101,25 @@ const ImageResourceTable = ({
                             >
                                 ID
                             </TableSortLabel>
+                            <div className={classes.filter}>
+                                <div className={classes.filterIcon}>
+                                    <FilterList/>
+                                </div>
+                                <InputBase
+                                    placeholder="Search..."
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput,
+                                    }}
+                                    inputProps={{'aria-label': 'filter'}}
+                                    onChange={(e) => onChangeFilterValue({
+                                        filterKey: "id",
+                                        filterValue: e.target.value
+                                    })}
+                                />
+                            </div>
                         </TableCell>
+
                         <TableCell className={classes.headCell}>
                             <TableSortLabel
                                 active={field === "name"}
@@ -75,10 +128,27 @@ const ImageResourceTable = ({
                             >
                                 Name
                             </TableSortLabel>
+                            <div className={classes.filter}>
+                                <div className={classes.filterIcon}>
+                                    <FilterList/>
+                                </div>
+                                <InputBase
+                                    placeholder="Search..."
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput,
+                                    }}
+                                    inputProps={{'aria-label': 'filter'}}
+                                    onChange={(e) => onChangeFilterValue({
+                                        filterKey: "name",
+                                        filterValue: e.target.value
+                                    })}
+                                />
+                            </div>
                         </TableCell>
-                        <TableCell align="center" className={classes.headCell}>URL</TableCell>
-                        <TableCell align="center" className={classes.headCell}>UPDATE</TableCell>
-                        <TableCell align="center" className={classes.headCell}>DELETE</TableCell>
+                        <TableCell className={classes.headCell}>URL</TableCell>
+                        <TableCell className={classes.headCell}>UPDATE</TableCell>
+                        <TableCell className={classes.headCell}>DELETE</TableCell>
                     </TableRow>
                 </TableHead>
 
@@ -90,9 +160,9 @@ const ImageResourceTable = ({
                                     <TableCell className={classes.cell}><Avatar src={url}/></TableCell>
                                     <TableCell className={classes.cell}>{id}</TableCell>
                                     <TableCell className={classes.cell}>{name}</TableCell>
-                                    <TableCell className={classes.urlCell}>{url}</TableCell>
+                                    <TableCell className={classes.cell}>{url}</TableCell>
 
-                                    <TableCell className={classes.urlCell}>
+                                    <TableCell className={classes.cell}>
                                         <IconButton
                                             data-id={id}
                                             onClick={() => {
@@ -104,7 +174,7 @@ const ImageResourceTable = ({
                                         </IconButton>
                                     </TableCell>
 
-                                    <TableCell className={classes.urlCell}>
+                                    <TableCell className={classes.cell}>
                                         <IconButton
                                             data-id={id}
                                             onClick={handleToggle}
@@ -142,7 +212,8 @@ ImageResourceTable.propTypes = {
     onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired
+    onClickPutImageResourceToForm: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
 }
 
 export default ImageResourceTable

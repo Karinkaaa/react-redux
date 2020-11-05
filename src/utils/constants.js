@@ -13,3 +13,4 @@ export const CHANGE_PAGE = "CHANGE_PAGE"
 export const CHANGE_LIMIT = "CHANGE_LIMIT"
 
 export const CHANGE_SORT = "CHANGE_SORT"
+export const CHANGE_FILTER_VALUE = "CHANGE_FILTER_VALUE"

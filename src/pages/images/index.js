@@ -7,48 +7,25 @@ import {Add, List, ViewModule} from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
-import {changeSort, deleteImageResource} from "../../actions/imageResourceComponent";
 import CreateResourceForm from "../../containers/imageResourceForm";
+import {filteringSortingPagingOfArray} from "../../utils/methods";
+import {isOpenModal, putImageResourceToForm} from "../../actions/imageResourceForm";
 import {
+    changeFilterValue,
     changeLimit,
     changePage,
+    changeSort,
     changeView,
-    isOpenModal,
-    putImageResourceToForm
-} from "../../actions/imageResourceForm";
-
-const filterSortPaginationArray = (arr,
-                                   {
-                                       pagination: {
-                                           page,
-                                           limit
-                                       },
-                                       sorting: {
-                                           field,
-                                           direction
-                                       }
-                                   }) => {
-
-    let result = [...arr];
-    const directionMultiplier = direction === "asc" ? 1 : -1;
-
-    result.sort(function (a, b) {
-        if (a[field] > b[field]) return directionMultiplier;
-        else if (a[field] < b[field]) return -directionMultiplier;
-        return 0;
-    });
-
-    result = result.slice(page * limit, page * limit + limit);
-
-    return {data: result, count: arr.length};
-}
+    deleteImageResource
+} from "../../actions/imageResourceComponent";
 
 const mapStateToProps = (state) => {
 
-    const {data: images, count} = filterSortPaginationArray(state.images.imageList,
+    const {data: images, count} = filteringSortingPagingOfArray(state.images.imageList,
         {
             pagination: state.images.pagination,
-            sorting: state.images.sorting
+            sorting: state.images.sorting,
+            filters: state.images.filters
         }
     );
 
@@ -57,18 +34,20 @@ const mapStateToProps = (state) => {
         images,
         view: state.images.view,
         pagination: state.images.pagination,
-        sorting: state.images.sorting
-    }
+        sorting: state.images.sorting,
+        filters: state.images.filters
+    };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onDelete: (id) => dispatch(deleteImageResource(id)),
         onChangePage: (page) => dispatch(changePage(page)),
         onChangeLimit: (limit) => dispatch(changeLimit(limit)),
         onChangeSort: (field) => dispatch(changeSort(field)),
+        onClickChangeView: (view) => dispatch(changeView(view)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenModal(isOpen)),
-        onDelete: (id) => dispatch(deleteImageResource(id)),
-        onClickChangeView: (isOpen) => dispatch(changeView(isOpen)),
+        onChangeFilterValue: (props) => dispatch(changeFilterValue(props)),
         onClickPutImageResourceToForm: (props) => dispatch(putImageResourceToForm(props)),
     }
 }
@@ -76,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
 const Images = ({
                     images, count, onDelete, onChangeIsOpen, onClickPutImageResourceToForm,
                     view, onClickChangeView, pagination, onChangePage, onChangeLimit,
-                    sorting, onChangeSort, onChangeDirection
+                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue
                 }) => {
 
     const {page, limit} = pagination;
@@ -153,10 +132,10 @@ const Images = ({
                                     images={images}
                                     count={count}
                                     page={page}
-                                    onChangePage={onChangePage}
                                     limit={limit}
-                                    onChangeLimit={onChangeLimit}
                                     onDelete={onDelete}
+                                    onChangePage={onChangePage}
+                                    onChangeLimit={onChangeLimit}
                                     onChangeIsOpen={onChangeIsOpen}
                                     onClickPutImageResourceToForm={onClickPutImageResourceToForm}
                                 />
@@ -183,6 +162,7 @@ const Images = ({
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
                                     onChangeDirection={onChangeDirection}
+                                    onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
                     }

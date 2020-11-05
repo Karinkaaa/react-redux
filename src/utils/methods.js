@@ -20,3 +20,41 @@ export function saveItemTo(list, item) {
 
     return newList;
 }
+
+export function filteringSortingPagingOfArray(arr, {
+    pagination: {
+        page,
+        limit
+    },
+    sorting: {
+        field,
+        direction
+    },
+    filters
+}) {
+
+    let result = [...arr];
+
+    // paging
+    result = result.slice(page * limit, page * limit + limit);
+
+    // sorting
+    const directionMultiplier = direction === "asc" ? 1 : -1;
+
+    result.sort(function (a, b) {
+        if (a[field] > b[field]) return directionMultiplier;
+        else if (a[field] < b[field]) return -directionMultiplier;
+        return 0;
+    });
+
+    // filtering
+    const filterKeys = Object.keys(filters);    // ["id", "name"]
+
+    result = result.filter(item =>
+        filterKeys.every(key =>
+            item[key].toLowerCase().includes(filters[key].toLowerCase())
+        )
+    );
+
+    return {data: result, count: arr.length};
+}
