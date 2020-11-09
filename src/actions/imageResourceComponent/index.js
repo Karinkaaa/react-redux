@@ -48,7 +48,7 @@ export const changeSort = (field) => ({
     field
 });
 
-export const changeFilterValue = ({filterKey, filterValue}) => console.log(filterKey, filterValue) || ({
+export const changeFilterValue = ({filterKey, filterValue}) => ({
     type: CHANGE_FILTER_VALUE,
     filterKey,
     filterValue

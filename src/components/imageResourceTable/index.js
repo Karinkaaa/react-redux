@@ -22,12 +22,16 @@ const useStyles = makeStyles(theme => ({
     headCell: {
         fontSize: 16,
         fontWeight: 700,
+        textAlign: "left",
+    },
+    headCellIcon: {
         textAlign: "center",
+        maxWidth: "50px",
     },
     cell: {
         maxWidth: "300px",
         overflow: "overlay",
-        textAlign: "center",
+        textAlign: "left",
         color: theme.palette.primary3Color
     },
     updateIcon: {
@@ -38,31 +42,22 @@ const useStyles = makeStyles(theme => ({
     },
     filter: {
         position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        marginLeft: 0,
-        width: '100%',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
+            marginLeft: theme.spacing(0),
         },
     },
     filterIcon: {
-        padding: theme.spacing(0, 2),
         height: '100%',
         position: 'absolute',
-        pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        color: theme.palette.blue2Color,
     },
-    inputRoot: {
-        color: 'inherit',
-    },
-    inputInput: {
-        padding: theme.spacing(1, 1, 1, 1),
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        transition: theme.transitions.create('width'),
-        width: '80%',
+    input: {
+        fontSize: 15,
+        color: theme.palette.primary1Color,
+        paddingLeft: theme.spacing(4),
+        width: '100%',
         [theme.breakpoints.up('md')]: {
             width: '12ch',
             '&:focus': {
@@ -101,16 +96,14 @@ const ImageResourceTable = ({
                             >
                                 ID
                             </TableSortLabel>
+
                             <div className={classes.filter}>
                                 <div className={classes.filterIcon}>
                                     <FilterList/>
                                 </div>
                                 <InputBase
                                     placeholder="Search..."
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
+                                    className={classes.input}
                                     inputProps={{'aria-label': 'filter'}}
                                     onChange={(e) => onChangeFilterValue({
                                         filterKey: "id",
@@ -128,16 +121,14 @@ const ImageResourceTable = ({
                             >
                                 Name
                             </TableSortLabel>
+
                             <div className={classes.filter}>
                                 <div className={classes.filterIcon}>
                                     <FilterList/>
                                 </div>
                                 <InputBase
                                     placeholder="Search..."
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
+                                    className={classes.input}
                                     inputProps={{'aria-label': 'filter'}}
                                     onChange={(e) => onChangeFilterValue({
                                         filterKey: "name",
@@ -147,8 +138,8 @@ const ImageResourceTable = ({
                             </div>
                         </TableCell>
                         <TableCell className={classes.headCell}>URL</TableCell>
-                        <TableCell className={classes.headCell}>UPDATE</TableCell>
-                        <TableCell className={classes.headCell}>DELETE</TableCell>
+                        <TableCell className={classes.headCellIcon}><Update/></TableCell>
+                        <TableCell className={classes.headCellIcon}><Delete/></TableCell>
                     </TableRow>
                 </TableHead>
 
@@ -162,7 +153,7 @@ const ImageResourceTable = ({
                                     <TableCell className={classes.cell}>{name}</TableCell>
                                     <TableCell className={classes.cell}>{url}</TableCell>
 
-                                    <TableCell className={classes.cell}>
+                                    <TableCell className={classes.headCellIcon}>
                                         <IconButton
                                             data-id={id}
                                             onClick={() => {
@@ -174,7 +165,7 @@ const ImageResourceTable = ({
                                         </IconButton>
                                     </TableCell>
 
-                                    <TableCell className={classes.cell}>
+                                    <TableCell className={classes.headCellIcon}>
                                         <IconButton
                                             data-id={id}
                                             onClick={handleToggle}

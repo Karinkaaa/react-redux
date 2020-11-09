@@ -31,6 +31,7 @@ export default () => {
             <div className={classes.content}>
                 <Toolbar/>
                 <Routers/>
+                <Toolbar/>
             </div>
         </div>
     );

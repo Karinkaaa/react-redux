@@ -11,16 +11,15 @@ import {MAIN_PAGE} from "../../utils/links";
 const useStyles = makeStyles((theme) => ({
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        background: theme.palette.primary1Color,
-        color: theme.palette.primary3Color,
+        background: "#105090",
     },
     homeBtn: {
         marginLeft: -20,
-        color: theme.palette.delete3Color
+        color: theme.palette.blueGrey3Color
     },
     header: {
         paddingLeft: theme.spacing(2),
-        color: theme.palette.blueGrey3Color,
+        color: theme.palette.primary3Color,
         fontSize: 20,
         fontWeight: 700,
     },
