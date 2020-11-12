@@ -2,11 +2,11 @@ import uuid from 'react-uuid'
 import {removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_IMAGE_RESOURCE,
-    CHANGE_FILTER_VALUE,
-    CHANGE_LIMIT,
-    CHANGE_PAGE,
-    CHANGE_SORT,
-    CHANGE_VIEW,
+    CHANGE_IMAGE_FILTER_VALUE,
+    CHANGE_IMAGE_LIMIT,
+    CHANGE_IMAGE_PAGE,
+    CHANGE_IMAGE_SORT,
+    CHANGE_IMAGE_VIEW,
     DELETE_IMAGE_RESOURCE,
     UPDATE_IMAGE_RESOURCE
 } from "../../utils/constants";
@@ -108,13 +108,13 @@ export default (state = initialState, action) => {
                 imageList: removeItemFrom(imageList, id)
             };
         }
-        case CHANGE_VIEW: {
+        case CHANGE_IMAGE_VIEW: {
             return {
                 ...state,
                 view: action.view
             }
         }
-        case CHANGE_PAGE: {
+        case CHANGE_IMAGE_PAGE: {
             return {
                 ...state,
                 pagination: {
@@ -123,7 +123,7 @@ export default (state = initialState, action) => {
                 }
             }
         }
-        case CHANGE_LIMIT: {
+        case CHANGE_IMAGE_LIMIT: {
             return {
                 ...state,
                 pagination: {
@@ -133,7 +133,7 @@ export default (state = initialState, action) => {
                 }
             }
         }
-        case CHANGE_SORT: {
+        case CHANGE_IMAGE_SORT: {
             return {
                 ...state,
                 sorting: {
@@ -143,7 +143,7 @@ export default (state = initialState, action) => {
                 }
             }
         }
-        case CHANGE_FILTER_VALUE: {
+        case CHANGE_IMAGE_FILTER_VALUE: {
 
             const {filterKey, filterValue} = action;
 

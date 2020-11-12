@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ImageResourceTable = ({
-                                images, sorting, onChangeSort, onChangeFilterValue,
+                                images, sorting, onChangeImageSort, onChangeImageFilterValue,
                                 onDelete, onChangeIsOpen, onClickPutImageResourceToForm
                             }) => {
 
@@ -92,7 +92,7 @@ const ImageResourceTable = ({
                             <TableSortLabel
                                 active={field === "id"}
                                 direction={direction}
-                                onClick={() => onChangeSort("id")}
+                                onClick={() => onChangeImageSort("id")}
                             >
                                 ID
                             </TableSortLabel>
@@ -105,7 +105,7 @@ const ImageResourceTable = ({
                                     placeholder="Search..."
                                     className={classes.input}
                                     inputProps={{'aria-label': 'filter'}}
-                                    onChange={(e) => onChangeFilterValue({
+                                    onChange={(e) => onChangeImageFilterValue({
                                         filterKey: "id",
                                         filterValue: e.target.value
                                     })}
@@ -117,7 +117,7 @@ const ImageResourceTable = ({
                             <TableSortLabel
                                 active={field === "name"}
                                 direction={direction}
-                                onClick={() => onChangeSort("name")}
+                                onClick={() => onChangeImageSort("name")}
                             >
                                 Name
                             </TableSortLabel>
@@ -130,7 +130,7 @@ const ImageResourceTable = ({
                                     placeholder="Search..."
                                     className={classes.input}
                                     inputProps={{'aria-label': 'filter'}}
-                                    onChange={(e) => onChangeFilterValue({
+                                    onChange={(e) => onChangeImageFilterValue({
                                         filterKey: "name",
                                         filterValue: e.target.value
                                     })}
@@ -200,11 +200,11 @@ ImageResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeSort: PropTypes.func.isRequired,
+    onChangeImageSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutImageResourceToForm: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeImageFilterValue: PropTypes.func.isRequired,
 }
 
 export default ImageResourceTable

@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import {ANIMATIONS, IMAGES, MAIN_PAGE} from "../../utils/links";
 import MainPage from "../mainPage";
 import Images from "../../pages/images";
-import Animations from "../../components/animations";
+import Animations from "../../pages/animations";
 
 export default () => {
     return (

@@ -2,68 +2,68 @@ import React from 'react';
 import {connect} from "react-redux";
 import {Button, Container, Grid} from "@material-ui/core";
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from "@material-ui/core/IconButton";
 import {Add, List, ViewModule} from "@material-ui/icons";
+import IconButton from "@material-ui/core/IconButton";
 import TablePagination from "@material-ui/core/TablePagination";
-import ImageResourceCards from "../../components/imageResourceCards";
-import ImageResourceTable from "../../components/imageResourceTable";
-import CreateResourceForm from "../../containers/imageResourceForm";
+import CreateResourceForm from "../../containers/animationResourceForm";
+import AnimationResourceTable from "../../components/animationResourceTable";
+import AnimationResourceCards from "../../components/animationResourceCards";
 import {filteringSortingPagingOfArray} from "../../utils/methods";
-import {isOpenImageModal, putImageResourceToForm} from "../../actions/imageResourceForm";
+import {isOpenAnimationModal, putAnimationResourceToForm} from "../../actions/animationResourceForm";
 import {
-    changeImageFilterValue,
-    changeImageLimit,
-    changeImagePage,
-    changeImageSort,
-    changeImageView,
-    deleteImageResource
-} from "../../actions/imageResourceComponent";
+    changeAnimationFilterValue,
+    changeAnimationLimit,
+    changeAnimationPage,
+    changeAnimationSort,
+    changeAnimationView,
+    deleteAnimationResource
+} from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
 
-    const {data: images, count} = filteringSortingPagingOfArray(state.images.imageList,
+    const {data: animations, count} = filteringSortingPagingOfArray(state.animations.animationList,
         {
-            pagination: state.images.pagination,
-            sorting: state.images.sorting,
-            filters: state.images.filters
+            pagination: state.animations.pagination,
+            sorting: state.animations.sorting,
+            filters: state.animations.filters
         }
     );
 
     return {
         count,
-        images,
-        view: state.images.view,
-        pagination: state.images.pagination,
-        sorting: state.images.sorting,
-        filters: state.images.filters
+        animations,
+        view: state.animations.view,
+        pagination: state.animations.pagination,
+        sorting: state.animations.sorting,
+        filters: state.animations.filters
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDelete: (id) => dispatch(deleteImageResource(id)),
-        onChangeImagePage: (page) => dispatch(changeImagePage(page)),
-        onChangeImageLimit: (limit) => dispatch(changeImageLimit(limit)),
-        onChangeImageSort: (field) => dispatch(changeImageSort(field)),
-        onClickChangeImageView: (view) => dispatch(changeImageView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenImageModal(isOpen)),
-        onChangeImageFilterValue: (props) => dispatch(changeImageFilterValue(props)),
-        onClickPutImageResourceToForm: (props) => dispatch(putImageResourceToForm(props)),
+        onDelete: (id) => dispatch(deleteAnimationResource(id)),
+        onChangeAnimationPage: (page) => dispatch(changeAnimationPage(page)),
+        onChangeAnimationLimit: (limit) => dispatch(changeAnimationLimit(limit)),
+        onChangeAnimationSort: (field) => dispatch(changeAnimationSort(field)),
+        onClickChangeAnimationView: (view) => dispatch(changeAnimationView(view)),
+        onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
+        onChangeAnimationFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
+        onClickPutAnimationResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
     }
 }
 
-const Images = ({
-                    images, count, onDelete, onChangeIsOpen, onClickPutImageResourceToForm,
-                    view, onClickChangeImageView, pagination, onChangeImagePage, onChangeImageLimit,
-                    sorting, onChangeImageSort, onChangeDirection, onChangeImageFilterValue
-                }) => {
+const Animations = ({
+                        animations, count, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
+                        view, onClickChangeAnimationView, pagination, onChangeAnimationPage, onChangeAnimationLimit,
+                        sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue
+                    }) => {
 
     const {page, limit} = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
-    const handleChangeImagePage = (event, newPage) => onChangeImagePage(newPage);
-    const handleLimit = (event) => onChangeImageLimit(parseInt(event.target.value, 10));
-    const handleView = () => view === "table" ? onClickChangeImageView("grid") : onClickChangeImageView("table");
+    const handleChangeAnimationPage = (event, newPage) => onChangeAnimationPage(newPage);
+    const handleLimit = (event) => onChangeAnimationLimit(parseInt(event.target.value, 10));
+    const handleView = () => view === "table" ? onClickChangeAnimationView("grid") : onClickChangeAnimationView("table");
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -92,7 +92,7 @@ const Images = ({
                             startIcon={<Add/>}
                             onClick={handleOpen}
                         >
-                            Add image resource
+                            Add animation resource
                         </Button>
                     </Grid>
 
@@ -106,7 +106,7 @@ const Images = ({
                             count={count}
                             rowsPerPage={limit}
                             rowsPerPageOptions={[4, 8, 12, 16, 20, 40, 60, 80, 100]}
-                            onChangePage={handleChangeImagePage}
+                            onChangePage={handleChangeAnimationPage}
                             onChangeRowsPerPage={handleLimit}
                         />
                     </Grid>
@@ -128,16 +128,16 @@ const Images = ({
 
                                 <CreateResourceForm/>
 
-                                <ImageResourceCards
-                                    images={images}
+                                <AnimationResourceCards
+                                    animations={animations}
                                     count={count}
                                     page={page}
                                     limit={limit}
                                     onDelete={onDelete}
-                                    onChangeImagePage={onChangeImagePage}
-                                    onChangeImageLimit={onChangeImageLimit}
+                                    onChangeAnimationPage={handleChangeAnimationPage}
+                                    onChangeAnimationLimit={onChangeAnimationLimit}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                                    onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
                                 />
                             </>
                             :
@@ -154,15 +154,15 @@ const Images = ({
 
                                 <CreateResourceForm/>
 
-                                <ImageResourceTable
-                                    images={images}
+                                <AnimationResourceTable
+                                    animations={animations}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                                    onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
                                     sorting={sorting}
-                                    onChangeImageSort={onChangeImageSort}
+                                    onChangeAnimationSort={onChangeAnimationSort}
                                     onChangeDirection={onChangeDirection}
-                                    onChangeImageFilterValue={onChangeImageFilterValue}
+                                    onChangeAnimationFilterValue={onChangeAnimationFilterValue}
                                 />
                             </>
                     }
@@ -172,4 +172,4 @@ const Images = ({
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Images);
+export default connect(mapStateToProps, mapDispatchToProps)(Animations);

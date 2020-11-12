@@ -1,19 +1,24 @@
-import {IS_OPEN_IMAGE_MODAL, PUT_IMAGE_RESOURCE_TO_FORM, UPDATE_IMAGE_NAME, UPDATE_IMAGE_URL} from "../../utils/constants";
-import {isValidImageUrl, isValidName} from "../../utils/validation";
+import {
+    IS_OPEN_ANIMATION_MODAL,
+    PUT_ANIMATION_RESOURCE_TO_FORM,
+    UPDATE_ANIMATION_NAME,
+    UPDATE_ANIMATION_URLS
+} from "../../utils/constants";
+import {isValidName, isValidUrls} from "../../utils/validation";
 
 const initialState = {
     id: '',
     name: '',
     isValidName: false,
-    url: '',
-    isValidUrl: false,
+    urls: [],
+    isValidUrls: false,
     isOpen: false
 };
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
-        case IS_OPEN_IMAGE_MODAL: {
+        case IS_OPEN_ANIMATION_MODAL: {
             const {isOpen} = action;
 
             return {
@@ -21,39 +26,39 @@ export default (state = initialState, action) => {
                 id: '',
                 name: '',
                 isValidName: false,
-                url: '',
-                isValidUrl: false,
+                urls: [],
+                isValidUrls: false,
                 isOpen: isOpen
             }
         }
-        case UPDATE_IMAGE_NAME: {
+        case UPDATE_ANIMATION_NAME: {
             const {name} = action;
 
             return {
                 ...state,
-                name: name,
+                name,
                 isValidName: isValidName(name)
             }
         }
-        case UPDATE_IMAGE_URL: {
-            const {url} = action;
+        case UPDATE_ANIMATION_URLS: {
+            const {urls} = action;
 
             return {
                 ...state,
-                url: url,
-                isValidUrl: isValidImageUrl(url)
+                urls,
+                isValidUrls: isValidUrls(urls)
             }
         }
-        case PUT_IMAGE_RESOURCE_TO_FORM: {
-            const {id, name, url} = action;
+        case PUT_ANIMATION_RESOURCE_TO_FORM: {
+            const {id, name, urls} = action;
 
             return {
                 ...state,
-                id: id,
-                name: name,
+                id,
+                name,
                 isValidName: isValidName(name),
-                url: url,
-                isValidUrl: isValidImageUrl(url)
+                urls,
+                isValidUrls: isValidUrls(urls)
             }
         }
         default:

@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import CreateImageResourceForm from "../../components/imageResourceForm";
-import {isOpenModal, updateName, updateUrl} from "../../actions/imageResourceForm";
+import ImageResourceForm from "../../components/imageResourceForm";
+import {isOpenImageModal, updateImageName, updateImageUrl} from "../../actions/imageResourceForm";
 import {addImageResource, updateImageResource} from "../../actions/imageResourceComponent";
 
 const mapStateToProps = (state) => {
@@ -16,12 +16,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onChangeName: (name) => dispatch(updateName(name)),
-        onChangeUrl: (url) => dispatch(updateUrl(url)),
+        onChangeName: (name) => dispatch(updateImageName(name)),
+        onChangeUrl: (url) => dispatch(updateImageUrl(url)),
         onSave: (props) => dispatch(addImageResource(props)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenModal(isOpen)),
+        onChangeIsOpen: (isOpen) => dispatch(isOpenImageModal(isOpen)),
         onUpdate: (props) => dispatch(updateImageResource(props))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateImageResourceForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ImageResourceForm);

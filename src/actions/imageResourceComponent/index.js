@@ -1,10 +1,10 @@
 import {
     ADD_IMAGE_RESOURCE,
-    CHANGE_FILTER_VALUE,
-    CHANGE_LIMIT,
-    CHANGE_PAGE,
-    CHANGE_SORT,
-    CHANGE_VIEW,
+    CHANGE_IMAGE_FILTER_VALUE,
+    CHANGE_IMAGE_LIMIT,
+    CHANGE_IMAGE_PAGE,
+    CHANGE_IMAGE_SORT,
+    CHANGE_IMAGE_VIEW,
     DELETE_IMAGE_RESOURCE,
     UPDATE_IMAGE_RESOURCE
 } from "../../utils/constants";
@@ -28,28 +28,28 @@ export const updateImageResource = ({id, name, url}) => ({
     url
 });
 
-export const changeView = (view) => ({
-    type: CHANGE_VIEW,
+export const changeImageView = (view) => ({
+    type: CHANGE_IMAGE_VIEW,
     view
 });
 
-export const changePage = (page) => ({
-    type: CHANGE_PAGE,
+export const changeImagePage = (page) => ({
+    type: CHANGE_IMAGE_PAGE,
     page
 });
 
-export const changeLimit = (limit) => ({
-    type: CHANGE_LIMIT,
+export const changeImageLimit = (limit) => ({
+    type: CHANGE_IMAGE_LIMIT,
     limit
 });
 
-export const changeSort = (field) => ({
-    type: CHANGE_SORT,
+export const changeImageSort = (field) => ({
+    type: CHANGE_IMAGE_SORT,
     field
 });
 
-export const changeFilterValue = ({filterKey, filterValue}) => ({
-    type: CHANGE_FILTER_VALUE,
+export const changeImageFilterValue = ({filterKey, filterValue}) => ({
+    type: CHANGE_IMAGE_FILTER_VALUE,
     filterKey,
     filterValue
 });
