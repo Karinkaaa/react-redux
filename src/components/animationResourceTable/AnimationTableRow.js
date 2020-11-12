@@ -5,7 +5,7 @@ import {Avatar} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import {Delete, ExpandLess, ExpandMore, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
-import NestedRows from "./NestedRows";
+import NestedTable from "./NestedTable";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const AnimationComponent = ({id, name, urls, handleOpen, handleToggle, onClickPutAnimationResourceToForm}) => {
+const AnimationTableRow = ({id, name, urls, handleOpen, handleToggle, onClickPutAnimationResourceToForm}) => {
 
     const classes = useStyles();
 
@@ -77,17 +77,14 @@ const AnimationComponent = ({id, name, urls, handleOpen, handleToggle, onClickPu
                 </IconButton>
             </Grid>
 
-            <NestedRows
+            <NestedTable
                 id={id}
-                name={name}
                 urls={urls}
                 open={open}
-                handleOpen={handleOpen}
                 handleToggle={handleToggle}
-                onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
             />
         </Grid>
     )
 }
 
-export default AnimationComponent
+export default AnimationTableRow

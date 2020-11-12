@@ -1,6 +1,6 @@
 import React from "react";
 import {Grid} from "@material-ui/core";
-import AnimationComponent from "./AnimationComponent";
+import AnimationTableRow from "./AnimationTableRow";
 
 const AnimationTableBody = ({animations, onChangeIsOpen, setAnchorEl, onClickPutAnimationResourceToForm}) => {
 
@@ -12,7 +12,7 @@ const AnimationTableBody = ({animations, onChangeIsOpen, setAnchorEl, onClickPut
             {
                 animations.map(({id, name, urls}) => {
                         return (
-                            <AnimationComponent
+                            <AnimationTableRow
                                 id={id}
                                 name={name}
                                 urls={urls}

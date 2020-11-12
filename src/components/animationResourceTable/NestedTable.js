@@ -2,11 +2,11 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import {Avatar, Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import {Delete, Update} from "@material-ui/icons";
+import {Delete} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    nested: {
+    typo: {
         maxWidth: 600,
         maxHeight: 25,
         overflow: "overlay",
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const NestedRows = ({id, name, urls, open, handleOpen, handleToggle, onClickPutAnimationResourceToForm}) => {
+const NestedTable = ({id, urls, open, handleToggle}) => {
 
     const classes = useStyles();
     return (
@@ -41,7 +41,7 @@ const NestedRows = ({id, name, urls, open, handleOpen, handleToggle, onClickPutA
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <Typography className={classes.nested}>
+                                        <Typography className={classes.typo}>
                                             {url}
                                         </Typography>
                                     </Grid>
@@ -66,4 +66,4 @@ const NestedRows = ({id, name, urls, open, handleOpen, handleToggle, onClickPutA
     )
 }
 
-export default NestedRows
+export default NestedTable
