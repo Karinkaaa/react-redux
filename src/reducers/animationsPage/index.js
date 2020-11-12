@@ -1,4 +1,5 @@
 import uuid from "react-uuid";
+import {arrayMove} from "react-sortable-hoc";
 import {removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_ANIMATION_RESOURCE,
@@ -8,6 +9,7 @@ import {
     CHANGE_ANIMATION_SORT,
     CHANGE_ANIMATION_VIEW,
     DELETE_ANIMATION_RESOURCE,
+    DRAG_AND_DROP,
     UPDATE_ANIMATION_RESOURCE
 } from "../../utils/constants";
 
@@ -165,6 +167,19 @@ export default (state = initialState, action) => {
                 filters: {
                     ...state.filters
                 }
+            }
+        }
+        case DRAG_AND_DROP: {
+
+            const {oldIndex, newIndex, id} = action;
+            const newAnimationList = [...state.animationList];
+
+            let animationItem = newAnimationList.find(item => item.id === id);
+            animationItem.urls = arrayMove(animationItem.urls, oldIndex, newIndex);
+
+            return {
+                ...state,
+                animationList: newAnimationList
             }
         }
         default:

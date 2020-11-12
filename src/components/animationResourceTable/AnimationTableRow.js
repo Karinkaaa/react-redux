@@ -14,10 +14,10 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
     },
     gridItem: {
-        padding: "15px 25px",
         overflow: "overlay",
         textAlign: "left",
         color: theme.palette.primary3Color,
+        padding: "20px 25px",
     },
     updateIcon: {
         color: theme.palette.update3Color,
@@ -27,21 +27,24 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const AnimationTableRow = ({id, name, urls, handleOpen, handleToggle, onClickPutAnimationResourceToForm}) => {
+const AnimationTableRow = ({
+                               id, name, urls, handleOpen, handleToggle,
+                               onClickPutAnimationResourceToForm, onChangeItemIndexes
+                           }) => {
 
     const classes = useStyles();
-
     const [open, setOpen] = useState(false);
+
     const handleClick = () => setOpen(!open);
 
     return (
-        <Grid container key={id} className={classes.grid}>
-            <Grid container item xs={2} className={classes.gridItem} onClick={handleClick}>
-                <Grid item xs={9}>
+        <Grid container className={classes.grid}>
+            <Grid container item xs={3} className={classes.gridItem} onClick={handleClick}>
+                <Grid item xs={6}>
                     <AvatarGroup max={3}>
                         {
                             urls.map(url =>
-                                <Avatar src={url}/>
+                                <Avatar key={url} src={url}/>
                             )
                         }
                     </AvatarGroup>
@@ -54,9 +57,9 @@ const AnimationTableRow = ({id, name, urls, handleOpen, handleToggle, onClickPut
 
             <Grid item xs={2} className={classes.gridItem}>{id}</Grid>
 
-            <Grid item xs={6} className={classes.gridItem}>{name}</Grid>
+            <Grid item xs={5} className={classes.gridItem}>{name}</Grid>
 
-            <Grid item xs={1} className={classes.gridItem}>
+            <Grid item xs={1}>
                 <IconButton
                     data-id={id}
                     onClick={() => {
@@ -68,7 +71,7 @@ const AnimationTableRow = ({id, name, urls, handleOpen, handleToggle, onClickPut
                 </IconButton>
             </Grid>
 
-            <Grid item xs={1} className={classes.gridItem}>
+            <Grid item xs={1}>
                 <IconButton
                     data-id={id}
                     onClick={handleToggle}
@@ -82,6 +85,7 @@ const AnimationTableRow = ({id, name, urls, handleOpen, handleToggle, onClickPut
                 urls={urls}
                 open={open}
                 handleToggle={handleToggle}
+                onSortEnd={(e) => onChangeItemIndexes(e, id)}
             />
         </Grid>
     )

@@ -2,22 +2,18 @@ import React from "react";
 import {Grid} from "@material-ui/core";
 import InputBase from "@material-ui/core/InputBase";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
-import {Delete, FilterList, Update} from "@material-ui/icons";
+import {FilterList} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
     head: {
         backgroundColor: theme.palette.primary2Color,
-        padding: "15px 25px",
+        padding: "20px 25px",
     },
     headCell: {
         fontSize: 16,
         fontWeight: 700,
         textAlign: "left",
-    },
-    headCellIcon: {
-        textAlign: "right",
-        padding: "15px 20px",
     },
     filter: {
         position: 'relative',
@@ -44,6 +40,9 @@ const useStyles = makeStyles(theme => ({
             },
         },
     },
+    sortLabel: {
+        paddingLeft: 5,
+    },
 }));
 
 const AnimationTableHead = ({sorting, onChangeAnimationSort, onChangeAnimationFilterValue}) => {
@@ -53,15 +52,16 @@ const AnimationTableHead = ({sorting, onChangeAnimationSort, onChangeAnimationFi
 
     return (
         <Grid container className={classes.head}>
-            <Grid item xs={2} className={classes.headCell}>
-                Image
+            <Grid item xs={3} className={classes.headCell}>
+                Images
             </Grid>
 
-            <Grid item xs={2} className={classes.headCell}>
+            <Grid item xs={2} className={classes.headCell} style={{paddingLeft: 6}}>
                 <TableSortLabel
                     active={field === "id"}
                     direction={direction}
                     onClick={() => onChangeAnimationSort("id")}
+                    className={classes.sortLabel}
                 >
                     ID
                 </TableSortLabel>
@@ -82,11 +82,12 @@ const AnimationTableHead = ({sorting, onChangeAnimationSort, onChangeAnimationFi
                 </div>
             </Grid>
 
-            <Grid item xs={6} className={classes.headCell}>
+            <Grid item className={classes.headCell} style={{paddingLeft: 15}}>
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
                     onClick={() => onChangeAnimationSort("name")}
+                    className={classes.sortLabel}
                 >
                     Name
                 </TableSortLabel>
@@ -106,9 +107,6 @@ const AnimationTableHead = ({sorting, onChangeAnimationSort, onChangeAnimationFi
                     />
                 </div>
             </Grid>
-
-            <Grid item xs={1} className={classes.headCellIcon}><Update/></Grid>
-            <Grid item xs={1} className={classes.headCellIcon}><Delete/></Grid>
         </Grid>
     )
 }

@@ -16,6 +16,7 @@ import {
     changeAnimationPage,
     changeAnimationSort,
     changeAnimationView,
+    changeItemIndexes,
     deleteAnimationResource
 } from "../../actions/animationResourceComponent";
 
@@ -49,13 +50,14 @@ const mapDispatchToProps = (dispatch) => {
         onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
         onChangeAnimationFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
         onClickPutAnimationResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
+        onChangeItemIndexes: (props, id) => dispatch(changeItemIndexes(props, id)),
     }
 }
 
 const Animations = ({
                         animations, count, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
                         view, onClickChangeAnimationView, pagination, onChangeAnimationPage, onChangeAnimationLimit,
-                        sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue
+                        sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue, onChangeItemIndexes
                     }) => {
 
     const {page, limit} = pagination;
@@ -163,6 +165,7 @@ const Animations = ({
                                     onChangeAnimationSort={onChangeAnimationSort}
                                     onChangeDirection={onChangeDirection}
                                     onChangeAnimationFilterValue={onChangeAnimationFilterValue}
+                                    onChangeItemIndexes={onChangeItemIndexes}
                                 />
                             </>
                     }
