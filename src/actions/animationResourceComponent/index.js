@@ -5,7 +5,7 @@ import {
     CHANGE_ANIMATION_PAGE,
     CHANGE_ANIMATION_SORT,
     CHANGE_ANIMATION_VIEW,
-    DELETE_ANIMATION_RESOURCE, DRAG_AND_DROP,
+    DELETE_ANIMATION_RESOURCE, DELETE_NESTED_IMAGE_RESOURCE, DRAG_AND_DROP,
     UPDATE_ANIMATION_RESOURCE
 } from "../../utils/constants";
 
@@ -59,4 +59,10 @@ export const changeItemIndexes = ({oldIndex, newIndex}, id) => ({
     oldIndex,
     newIndex,
     id
-})
+});
+
+export const deleteNestedImageResource = (id, url) => ({
+    type: DELETE_NESTED_IMAGE_RESOURCE,
+    id,
+    url
+});

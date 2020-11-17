@@ -29,11 +29,11 @@ const useStyles = makeStyles(theme => ({
 
 const AnimationTableRow = ({
                                id, name, urls, handleOpen, handleToggle,
-                               onClickPutAnimationResourceToForm, onChangeItemIndexes
+                               onClickPutAnimationResourceToForm, onChangeItemIndexes, onDeleteNestedImage
                            }) => {
 
     const classes = useStyles();
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     const handleClick = () => setOpen(!open);
 
@@ -84,8 +84,8 @@ const AnimationTableRow = ({
                 id={id}
                 urls={urls}
                 open={open}
-                handleToggle={handleToggle}
                 onSortEnd={(e) => onChangeItemIndexes(e, id)}
+                onDeleteNestedImage={onDeleteNestedImage}
             />
         </Grid>
     )

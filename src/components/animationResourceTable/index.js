@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
-import AnimationTableBody from "./AnimationTableBody";
 import AnimationTableHead from "./AnimationTableHead";
+import AnimationTableBody from "./AnimationTableBody";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
 
 const AnimationResourceTable = ({
                                     animations, sorting, onChangeAnimationSort, onChangeAnimationFilterValue,
-                                    onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm, onChangeItemIndexes
+                                    onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm, onChangeItemIndexes,
+                                    onDeleteNestedImage
                                 }) => {
 
     const classes = useStyles();
@@ -37,6 +38,7 @@ const AnimationResourceTable = ({
                 setAnchorEl={setAnchorEl}
                 onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
                 onChangeItemIndexes={onChangeItemIndexes}
+                onDeleteNestedImage={onDeleteNestedImage}
             />
 
             <ConfirmMenu

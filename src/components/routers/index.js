@@ -1,9 +1,10 @@
 import React from "react";
 import {Route, Switch} from 'react-router-dom';
-import {ANIMATIONS, IMAGES, MAIN_PAGE} from "../../utils/links";
+import {ANIMATIONS, DRUMS, IMAGES, MAIN_PAGE} from "../../utils/links";
 import MainPage from "../mainPage";
 import Images from "../../pages/images";
 import Animations from "../../pages/animations";
+import Drums from "../../pages/drums";
 
 export default () => {
     return (
@@ -12,6 +13,7 @@ export default () => {
                 <Route exact path={MAIN_PAGE} component={MainPage}/>
                 <Route exact path={IMAGES} component={Images}/>
                 <Route exact path={ANIMATIONS} component={Animations}/>
+                <Route exact path={DRUMS} component={Drums}/>
             </Switch>
         </main>
     )

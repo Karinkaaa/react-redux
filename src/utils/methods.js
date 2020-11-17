@@ -1,3 +1,7 @@
+export function getItemById(list, id) {
+    return list.find(item => item.id === id);
+}
+
 export function removeItemFrom(list, id) {
     return list.filter(item => item.id !== id);
 }
@@ -6,7 +10,7 @@ export function saveItemTo(list, item) {
 
     const index = list.findIndex((el) => el.id === item.id);
 
-    let newList = [];
+    let newList;
 
     if (index === -1) {
         newList = [...list, item];

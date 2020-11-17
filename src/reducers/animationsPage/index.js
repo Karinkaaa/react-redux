@@ -1,6 +1,6 @@
 import uuid from "react-uuid";
 import {arrayMove} from "react-sortable-hoc";
-import {removeItemFrom, saveItemTo} from "../../utils/methods";
+import {getItemById, removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_ANIMATION_RESOURCE,
     CHANGE_ANIMATION_FILTER_VALUE,
@@ -9,6 +9,7 @@ import {
     CHANGE_ANIMATION_SORT,
     CHANGE_ANIMATION_VIEW,
     DELETE_ANIMATION_RESOURCE,
+    DELETE_NESTED_IMAGE_RESOURCE,
     DRAG_AND_DROP,
     UPDATE_ANIMATION_RESOURCE
 } from "../../utils/constants";
@@ -181,6 +182,19 @@ export default (state = initialState, action) => {
                 ...state,
                 animationList: newAnimationList
             }
+        }
+        case DELETE_NESTED_IMAGE_RESOURCE: {
+
+            const {id, url} = action;
+            const newAnimationList = [...state.animationList];
+
+            let animationItem = getItemById(newAnimationList, id);
+            animationItem.urls = animationItem.urls.filter((item) => item !== url);
+
+            return {
+                ...state,
+                animationList: newAnimationList
+            };
         }
         default:
             return state;

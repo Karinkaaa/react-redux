@@ -4,7 +4,7 @@ import AnimationTableRow from "./AnimationTableRow";
 
 const AnimationTableBody = ({
                                 animations, onChangeIsOpen, setAnchorEl,
-                                onClickPutAnimationResourceToForm, onChangeItemIndexes
+                                onClickPutAnimationResourceToForm, onChangeItemIndexes, onDeleteNestedImage
                             }) => {
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -24,6 +24,7 @@ const AnimationTableBody = ({
                                 handleToggle={handleToggle}
                                 onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
                                 onChangeItemIndexes={onChangeItemIndexes}
+                                onDeleteNestedImage={onDeleteNestedImage}
                             />
                         )
                     }

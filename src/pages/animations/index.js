@@ -17,7 +17,7 @@ import {
     changeAnimationSort,
     changeAnimationView,
     changeItemIndexes,
-    deleteAnimationResource
+    deleteAnimationResource, deleteNestedImageResource
 } from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
@@ -51,13 +51,15 @@ const mapDispatchToProps = (dispatch) => {
         onChangeAnimationFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
         onClickPutAnimationResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
         onChangeItemIndexes: (props, id) => dispatch(changeItemIndexes(props, id)),
+        onDeleteNestedImage: (id, url) => dispatch(deleteNestedImageResource(id, url)),
     }
 }
 
 const Animations = ({
                         animations, count, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
                         view, onClickChangeAnimationView, pagination, onChangeAnimationPage, onChangeAnimationLimit,
-                        sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue, onChangeItemIndexes
+                        sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue,
+                        onChangeItemIndexes, onDeleteNestedImage
                     }) => {
 
     const {page, limit} = pagination;
@@ -166,6 +168,7 @@ const Animations = ({
                                     onChangeDirection={onChangeDirection}
                                     onChangeAnimationFilterValue={onChangeAnimationFilterValue}
                                     onChangeItemIndexes={onChangeItemIndexes}
+                                    onDeleteNestedImage={onDeleteNestedImage}
                                 />
                             </>
                     }

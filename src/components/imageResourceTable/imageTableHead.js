@@ -3,7 +3,7 @@ import {TableHead} from "@material-ui/core";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
-import {Delete, FilterList, Update} from "@material-ui/icons";
+import {FilterList} from "@material-ui/icons";
 import InputBase from "@material-ui/core/InputBase";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -15,10 +15,6 @@ const useStyles = makeStyles(theme => ({
         fontSize: 16,
         fontWeight: 700,
         textAlign: "left",
-    },
-    headCellIcon: {
-        textAlign: "center",
-        maxWidth: "50px",
     },
     filter: {
         position: 'relative',
@@ -106,9 +102,8 @@ const ImageTableHead = ({sorting, onChangeImageSort, onChangeImageFilterValue}) 
                         />
                     </div>
                 </TableCell>
-                <TableCell className={classes.headCell}>URL</TableCell>
-                <TableCell className={classes.headCellIcon}><Update/></TableCell>
-                <TableCell className={classes.headCellIcon}><Delete/></TableCell>
+
+                <TableCell colSpan={3} className={classes.headCell}>URL</TableCell>
             </TableRow>
         </TableHead>
     )

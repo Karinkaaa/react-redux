@@ -10,5 +10,5 @@ export function isValidImageUrl(url) {
 }
 
 export function isValidUrls(urls) {
-    return urls.map(url => isValidImageUrl(url));
+    return urls.every(url => isValidImageUrl(url));
 }

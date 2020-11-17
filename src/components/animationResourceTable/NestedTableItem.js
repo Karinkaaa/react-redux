@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
         wordBreak: "break-all",
         paddingRight: 15,
     },
-    iconBtn: {
-        paddingLeft: 30,
-    },
     updateIcon: {
         color: theme.palette.update3Color
     },
@@ -34,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const NestedTableItem = SortableElement(({url, id, handleToggle}) => {
+const NestedTableItem = SortableElement(({url, handleToggle}) => {
 
         const classes = useStyles();
 
@@ -54,9 +51,8 @@ const NestedTableItem = SortableElement(({url, id, handleToggle}) => {
 
                 <Grid item xs={1}>
                     <IconButton
-                        data-id={id}
                         onClick={handleToggle}
-                        className={classes.iconBtn}
+                        data-id={url}
                     >
                         <Delete className={classes.deleteIcon}/>
                     </IconButton>

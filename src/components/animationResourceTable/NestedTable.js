@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import {SortableContainer} from 'react-sortable-hoc';
-import NestedTableItem from "./NestedTableItem";
 import Grid from "@material-ui/core/Grid";
+import NestedTableItem from "./NestedTableItem";
+import ConfirmMenu from "../confirmMenu";
 
-const NestedTable = SortableContainer(({id, urls, open, handleToggle}) => {
+const NestedTable = SortableContainer(({id, urls, open, onDeleteNestedImage}) => {
+
+        const [anchorEl, setAnchorEl] = useState(false);
+
+        const handleClose = () => setAnchorEl(null);
+        const handleToggle = (e) => setAnchorEl(e.currentTarget);
+
         return (
             <Grid container style={{background: "#335068"}}>
                 {
@@ -13,12 +20,16 @@ const NestedTable = SortableContainer(({id, urls, open, handleToggle}) => {
                                 key={url}
                                 index={index}
                                 url={url}
-                                id={id}
                                 handleToggle={handleToggle}
                             />
                         )
                     )
                 }
+                <ConfirmMenu
+                    anchorEl={anchorEl}
+                    handleClose={handleClose}
+                    onAccept={(url) => onDeleteNestedImage(id, url)}
+                />
             </Grid>
         )
     }
