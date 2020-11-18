@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
 
 const AnimationResourceTable = ({
                                     animations, sorting, onChangeAnimationSort, onChangeAnimationFilterValue,
-                                    onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm, onChangeItemIndexes,
-                                    onDeleteNestedImage
+                                    onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
+                                    onDeleteNestedImage, onDragAndDrop
                                 }) => {
 
     const classes = useStyles();
@@ -37,8 +37,8 @@ const AnimationResourceTable = ({
                 onChangeIsOpen={onChangeIsOpen}
                 setAnchorEl={setAnchorEl}
                 onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
-                onChangeItemIndexes={onChangeItemIndexes}
                 onDeleteNestedImage={onDeleteNestedImage}
+                onDragAndDrop={onDragAndDrop}
             />
 
             <ConfirmMenu

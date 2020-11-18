@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {SortableContainer} from 'react-sortable-hoc';
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import NestedTableItem from "./NestedTableItem";
 import ConfirmMenu from "../confirmMenu";
+import DragDropComponent from "../dragDrop/DragDropComponent";
 
-const NestedTable = SortableContainer(({id, urls, open, onDeleteNestedImage}) => {
+const NestedTable = (({id, urls, open, onDeleteNestedImage, onDragAndDrop}) => {
 
         const [anchorEl, setAnchorEl] = useState(false);
 
@@ -15,14 +16,18 @@ const NestedTable = SortableContainer(({id, urls, open, onDeleteNestedImage}) =>
             <Grid container style={{background: "#335068"}}>
                 {
                     open && (
-                        urls.map((url, index) =>
-                            <NestedTableItem
-                                key={url}
-                                index={index}
-                                url={url}
-                                handleToggle={handleToggle}
-                            />
-                        )
+                        <DragDropComponent
+                            items={urls.map(url => ({url}))}
+                            renderItem={({url}) => (
+                                <NestedTableItem
+                                    key={url}
+                                    url={url}
+                                    handleToggle={handleToggle}
+                                />
+                            )}
+                            onDragAndDrop={(e) => onDragAndDrop(e.map(item => item.url), id)}
+                        />
+
                     )
                 }
                 <ConfirmMenu
@@ -34,5 +39,13 @@ const NestedTable = SortableContainer(({id, urls, open, onDeleteNestedImage}) =>
         )
     }
 )
+
+NestedTable.propTypes = {
+    id: PropTypes.string.isRequired,
+    urls: PropTypes.array.isRequired,
+    open: PropTypes.bool.isRequired,
+    onDeleteNestedImage: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired
+}
 
 export default NestedTable

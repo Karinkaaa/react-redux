@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 import {Avatar} from "@material-ui/core";
@@ -28,8 +29,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AnimationTableRow = ({
-                               id, name, urls, handleOpen, handleToggle,
-                               onClickPutAnimationResourceToForm, onChangeItemIndexes, onDeleteNestedImage
+                               id, name, urls, handleOpen, handleToggle, onDragAndDrop,
+                               onClickPutAnimationResourceToForm, onDeleteNestedImage
                            }) => {
 
     const classes = useStyles();
@@ -84,11 +85,22 @@ const AnimationTableRow = ({
                 id={id}
                 urls={urls}
                 open={open}
-                onSortEnd={(e) => onChangeItemIndexes(e, id)}
                 onDeleteNestedImage={onDeleteNestedImage}
+                onDragAndDrop={onDragAndDrop}
             />
         </Grid>
     )
+}
+
+AnimationTableRow.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    urls: PropTypes.array.isRequired,
+    handleOpen: PropTypes.func.isRequired,
+    handleToggle: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired,
+    onDeleteNestedImage: PropTypes.func.isRequired,
+    onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
 }
 
 export default AnimationTableRow

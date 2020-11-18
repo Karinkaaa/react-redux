@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {Grid} from "@material-ui/core";
 import AnimationTableRow from "./AnimationTableRow";
 
 const AnimationTableBody = ({
-                                animations, onChangeIsOpen, setAnchorEl,
-                                onClickPutAnimationResourceToForm, onChangeItemIndexes, onDeleteNestedImage
+                                animations, onChangeIsOpen, setAnchorEl, onDragAndDrop,
+                                onClickPutAnimationResourceToForm, onDeleteNestedImage
                             }) => {
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -23,8 +24,8 @@ const AnimationTableBody = ({
                                 handleOpen={handleOpen}
                                 handleToggle={handleToggle}
                                 onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
-                                onChangeItemIndexes={onChangeItemIndexes}
                                 onDeleteNestedImage={onDeleteNestedImage}
+                                onDragAndDrop={onDragAndDrop}
                             />
                         )
                     }
@@ -32,6 +33,21 @@ const AnimationTableBody = ({
             }
         </Grid>
     )
+}
+
+AnimationTableBody.propTypes = {
+    animations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            urls: PropTypes.array.isRequired
+        })
+    ).isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired,
+    setAnchorEl: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired,
+    onDeleteNestedImage: PropTypes.func.isRequired,
+    onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
 }
 
 export default AnimationTableBody

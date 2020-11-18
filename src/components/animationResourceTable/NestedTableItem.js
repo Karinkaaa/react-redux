@@ -1,5 +1,5 @@
 import React from "react";
-import {SortableElement} from 'react-sortable-hoc';
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import {Avatar, Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const NestedTableItem = SortableElement(({url, handleToggle}) => {
-
+const NestedTableItem = (({url, handleToggle}) => {
         const classes = useStyles();
 
         return (
@@ -63,5 +62,10 @@ const NestedTableItem = SortableElement(({url, handleToggle}) => {
         )
     }
 )
+
+NestedTableItem.propTypes = {
+    url: PropTypes.string.isRequired,
+    handleToggle: PropTypes.func.isRequired
+}
 
 export default NestedTableItem

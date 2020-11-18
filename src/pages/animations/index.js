@@ -16,8 +16,9 @@ import {
     changeAnimationPage,
     changeAnimationSort,
     changeAnimationView,
-    changeItemIndexes,
-    deleteAnimationResource, deleteNestedImageResource
+    deleteAnimationResource,
+    deleteNestedImageResource,
+    dragAndDrop
 } from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
@@ -50,8 +51,8 @@ const mapDispatchToProps = (dispatch) => {
         onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
         onChangeAnimationFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
         onClickPutAnimationResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
-        onChangeItemIndexes: (props, id) => dispatch(changeItemIndexes(props, id)),
         onDeleteNestedImage: (id, url) => dispatch(deleteNestedImageResource(id, url)),
+        onDragAndDrop: (result, id) => dispatch(dragAndDrop(result, id)),
     }
 }
 
@@ -59,7 +60,7 @@ const Animations = ({
                         animations, count, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
                         view, onClickChangeAnimationView, pagination, onChangeAnimationPage, onChangeAnimationLimit,
                         sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue,
-                        onChangeItemIndexes, onDeleteNestedImage
+                        onDeleteNestedImage, onDragAndDrop
                     }) => {
 
     const {page, limit} = pagination;
@@ -167,8 +168,8 @@ const Animations = ({
                                     onChangeAnimationSort={onChangeAnimationSort}
                                     onChangeDirection={onChangeDirection}
                                     onChangeAnimationFilterValue={onChangeAnimationFilterValue}
-                                    onChangeItemIndexes={onChangeItemIndexes}
                                     onDeleteNestedImage={onDeleteNestedImage}
+                                    onDragAndDrop={onDragAndDrop}
                                 />
                             </>
                     }

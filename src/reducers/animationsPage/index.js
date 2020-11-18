@@ -1,5 +1,4 @@
 import uuid from "react-uuid";
-import {arrayMove} from "react-sortable-hoc";
 import {getItemById, removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_ANIMATION_RESOURCE,
@@ -170,19 +169,6 @@ export default (state = initialState, action) => {
                 }
             }
         }
-        case DRAG_AND_DROP: {
-
-            const {oldIndex, newIndex, id} = action;
-            const newAnimationList = [...state.animationList];
-
-            let animationItem = newAnimationList.find(item => item.id === id);
-            animationItem.urls = arrayMove(animationItem.urls, oldIndex, newIndex);
-
-            return {
-                ...state,
-                animationList: newAnimationList
-            }
-        }
         case DELETE_NESTED_IMAGE_RESOURCE: {
 
             const {id, url} = action;
@@ -195,6 +181,19 @@ export default (state = initialState, action) => {
                 ...state,
                 animationList: newAnimationList
             };
+        }
+        case DRAG_AND_DROP: {
+
+            const {id, result} = action;
+            const newAnimationList = [...state.animationList];
+
+            const animationItem = getItemById(newAnimationList, id);
+            animationItem.urls = result;
+
+            return {
+                ...state,
+                animationList: newAnimationList
+            }
         }
         default:
             return state;
