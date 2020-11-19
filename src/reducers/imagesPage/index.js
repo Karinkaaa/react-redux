@@ -1,5 +1,5 @@
 import uuid from 'react-uuid'
-import {removeItemFrom, saveItemTo} from "../../utils/methods";
+import {getPageNumber, removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_IMAGE_RESOURCE,
     CHANGE_IMAGE_FILTER_VALUE,
@@ -57,6 +57,11 @@ const initialState = {
             id: "19",
             name: "Color picker",
             url: "https://www.w3schools.com/images/colorpicker.gif"
+        },
+        {
+            id: "22",
+            name: "Colors",
+            url: "https://www.w3schools.com/images/colorpicker.gif"
         }
     ],
     view: "table",
@@ -100,12 +105,20 @@ export default (state = initialState, action) => {
         }
         case DELETE_IMAGE_RESOURCE: {
 
-            const {imageList} = state;
+            const {imageList, pagination} = state;
+            const {page, limit} = pagination;
             const {id} = action;
+
+            const result = removeItemFrom(imageList, id);
+            const pageNumber = getPageNumber(result, page, limit);
 
             return {
                 ...state,
-                imageList: removeItemFrom(imageList, id)
+                imageList: result,
+                pagination: {
+                    ...pagination,
+                    page: pageNumber
+                }
             };
         }
         case CHANGE_IMAGE_VIEW: {

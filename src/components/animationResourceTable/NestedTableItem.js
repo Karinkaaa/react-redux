@@ -22,9 +22,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 14,
         wordBreak: "break-all",
         paddingRight: 15,
-    },
-    updateIcon: {
-        color: theme.palette.update3Color
+        marginRight: 30,
     },
     deleteIcon: {
         color: theme.palette.delete3Color,

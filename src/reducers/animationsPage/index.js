@@ -1,5 +1,5 @@
 import uuid from "react-uuid";
-import {getItemById, removeItemFrom, saveItemTo} from "../../utils/methods";
+import {getItemById, getPageNumber, removeItemFrom, saveItemTo} from "../../utils/methods";
 import {
     ADD_ANIMATION_RESOURCE,
     CHANGE_ANIMATION_FILTER_VALUE,
@@ -106,12 +106,20 @@ export default (state = initialState, action) => {
         }
         case DELETE_ANIMATION_RESOURCE: {
 
-            const {animationList} = state;
+            const {animationList, pagination} = state;
+            const {page, limit} = pagination;
             const {id} = action;
+
+            const result = removeItemFrom(animationList, id);
+            const pageNumber = getPageNumber(result, page, limit);
 
             return {
                 ...state,
-                animationList: removeItemFrom(animationList, id)
+                animationList: result,
+                pagination: {
+                    ...pagination,
+                    page: pageNumber
+                }
             };
         }
         case CHANGE_ANIMATION_VIEW: {

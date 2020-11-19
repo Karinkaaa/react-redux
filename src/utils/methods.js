@@ -8,6 +8,16 @@ export const reorder = (list, startIndex, endIndex) => {
     return result;
 };
 
+export function getPageNumber(array, page, limit) {
+    let pageNumber;
+
+    if (array.length === 0) pageNumber = 0;
+    else if (array.length % limit === 0) pageNumber = page - 1;
+    else pageNumber = page;
+
+    return pageNumber;
+}
+
 export function getItemById(list, id) {
     return list.find(item => item.id === id);
 }
