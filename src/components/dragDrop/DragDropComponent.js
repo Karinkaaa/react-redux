@@ -6,17 +6,18 @@ import {reorder} from "../../utils/methods";
 
 const DragDropComponent = ({items, onDragAndDrop, renderItem}) => {
     return (
-        <DragDropContext onDragAndDrop={(result) => {
-            // dropped outside the list
-            if (!result.destination) {
-                return;
-            }
-            onDragAndDrop(reorder(
-                items,
-                result.source.index,
-                result.destination.index
-            ));
-        }}>
+        <DragDropContext
+            onDragEnd={(result) => {
+                if (!result.destination) {
+                    return;
+                }
+                onDragAndDrop(reorder(
+                    items,
+                    result.source.index,
+                    result.destination.index
+                ));
+            }}
+        >
             <Droppable droppableId="droppable">
                 {
                     (provided) => (
