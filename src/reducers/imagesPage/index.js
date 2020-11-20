@@ -1,5 +1,5 @@
 import uuid from 'react-uuid'
-import {getPageNumber, removeItemFrom, saveItemTo} from "../../utils/methods";
+import {getPageNumber, removeItemById, saveItemTo} from "../../utils/methods";
 import {
     ADD_IMAGE_RESOURCE,
     CHANGE_IMAGE_FILTER_VALUE,
@@ -109,7 +109,7 @@ export default (state = initialState, action) => {
             const {page, limit} = pagination;
             const {id} = action;
 
-            const result = removeItemFrom(imageList, id);
+            const result = removeItemById(imageList, id);
             const pageNumber = getPageNumber(result, page, limit);
 
             return {

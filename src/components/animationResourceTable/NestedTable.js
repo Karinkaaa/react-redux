@@ -1,28 +1,21 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import NestedTableItem from "./NestedTableItem";
-import ConfirmMenu from "../confirmMenu";
 import DragDropComponent from "../dragDrop/DragDropComponent";
 
 const NestedTable = (({id, urls, open, onDeleteNestedImage, onDragAndDrop}) => {
-
-        const [anchorEl, setAnchorEl] = useState(false);
-
-        const handleClose = () => setAnchorEl(null);
-        const handleToggle = (e) => setAnchorEl(e.currentTarget);
-
         return (
             <Grid container style={{background: "#335068"}}>
                 {
                     open && (
                         <DragDropComponent
-                            items={urls.map(url => ({url}))}
+                            items={urls.map(url => ({id: url, url}))}
                             renderItem={({url}) => (
                                 <NestedTableItem
                                     key={url}
                                     url={url}
-                                    handleToggle={handleToggle}
+                                    onDeleteNestedImage={() => onDeleteNestedImage(id, url)}
                                 />
                             )}
                             onDragAndDrop={(e) => onDragAndDrop(e.map(item => item.url), id)}
@@ -30,11 +23,6 @@ const NestedTable = (({id, urls, open, onDeleteNestedImage, onDragAndDrop}) => {
 
                     )
                 }
-                <ConfirmMenu
-                    anchorEl={anchorEl}
-                    handleClose={handleClose}
-                    onAccept={(url) => onDeleteNestedImage(id, url)}
-                />
             </Grid>
         )
     }

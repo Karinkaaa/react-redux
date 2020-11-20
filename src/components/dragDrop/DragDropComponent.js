@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import weakKey from "weak-key";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
-import {reorder} from "../../utils/methods";
+import {reorderItems} from "../../utils/methods";
 
 const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? "darkcyan" : "#335068",
@@ -27,7 +26,7 @@ const DragDropComponent = ({items, onDragAndDrop, renderItem}) => {
                 if (!result.destination) {
                     return;
                 }
-                onDragAndDrop(reorder(
+                onDragAndDrop(reorderItems(
                     items,
                     result.source.index,
                     result.destination.index
@@ -44,7 +43,7 @@ const DragDropComponent = ({items, onDragAndDrop, renderItem}) => {
                         >
                             {
                                 items.map((item, index) => (
-                                    <Draggable key={weakKey(item)} draggableId={weakKey(item)} index={index}>
+                                    <Draggable key={item.id} draggableId={item.id} index={index}>
                                         {
                                             (provided, snapshot) => (
                                                 <div
@@ -73,7 +72,11 @@ const DragDropComponent = ({items, onDragAndDrop, renderItem}) => {
 }
 
 DragDropComponent.propTypes = {
-    items: PropTypes.array.isRequired,
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired
+        })
+    ).isRequired,
     onDragAndDrop: PropTypes.func.isRequired,
     renderItem: PropTypes.func.isRequired,
 }

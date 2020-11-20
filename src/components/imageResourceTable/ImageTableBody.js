@@ -5,6 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import IconButton from "@material-ui/core/IconButton";
 import {Delete, Update} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
     cell: {
@@ -66,6 +67,19 @@ const ImageTableBody = ({images, onChangeIsOpen, setAnchorEl, onClickPutImageRes
                     )}
         </TableBody>
     )
+}
+
+ImageTableBody.propTypes = {
+    images: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired,
+    setAnchorEl: PropTypes.func.isRequired,
+    onClickPutImageResourceToForm: PropTypes.func.isRequired,
 }
 
 export default ImageTableBody

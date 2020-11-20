@@ -68,7 +68,8 @@ const ImageResourceForm = ({
 
                     <Grid item xs={12}>
                         <TextField
-                            label="Enter the name of image resource"
+                            label="Name"
+                            placeholder="Enter the name of image resource"
                             variant="outlined"
                             value={name}
                             required
@@ -80,7 +81,8 @@ const ImageResourceForm = ({
 
                     <Grid item xs={12}>
                         <TextField
-                            label="Enter the URL of image resource"
+                            label="URL"
+                            placeholder="Enter the URL of image resource"
                             variant="outlined"
                             value={url}
                             required

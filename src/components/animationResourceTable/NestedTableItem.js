@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import {Avatar, Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import {Delete} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
+import ConfirmMenu from "../confirmMenu";
 
 const useStyles = makeStyles((theme) => ({
     grid: {
@@ -29,8 +30,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const NestedTableItem = (({url, handleToggle}) => {
+const NestedTableItem = (({url, onDeleteNestedImage}) => {
+
         const classes = useStyles();
+        const [anchorEl, setAnchorEl] = useState(false);
+
+        const handleClose = () => setAnchorEl(null);
+        const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
         return (
             <Grid container item spacing={1} className={classes.grid}>
@@ -56,6 +62,12 @@ const NestedTableItem = (({url, handleToggle}) => {
                 </Grid>
 
                 <Grid item xs={2}/>
+
+                <ConfirmMenu
+                    anchorEl={anchorEl}
+                    handleClose={handleClose}
+                    onAccept={onDeleteNestedImage}
+                />
             </Grid>
         )
     }
@@ -63,7 +75,7 @@ const NestedTableItem = (({url, handleToggle}) => {
 
 NestedTableItem.propTypes = {
     url: PropTypes.string.isRequired,
-    handleToggle: PropTypes.func.isRequired
+    onDeleteNestedImage: PropTypes.func.isRequired
 }
 
 export default NestedTableItem

@@ -6,6 +6,7 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import {FilterList} from "@material-ui/icons";
 import InputBase from "@material-ui/core/InputBase";
 import {makeStyles} from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -107,6 +108,16 @@ const ImageTableHead = ({sorting, onChangeImageSort, onChangeImageFilterValue}) 
             </TableRow>
         </TableHead>
     )
+}
+
+ImageTableHead.propTypes = {
+    sorting: PropTypes.shape({
+            field: PropTypes.string.isRequired,
+            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+        }
+    ).isRequired,
+    onChangeImageSort: PropTypes.func.isRequired,
+    onChangeImageFilterValue: PropTypes.func.isRequired,
 }
 
 export default ImageTableHead

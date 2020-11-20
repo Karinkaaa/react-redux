@@ -2,16 +2,16 @@ import {
     IS_OPEN_ANIMATION_MODAL,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
-    UPDATE_ANIMATION_URLS
+    UPDATE_ANIMATION_URL
 } from "../../utils/constants";
-import {isValidName, isValidUrls} from "../../utils/validation";
+import {isValidImageUrl, isValidName} from "../../utils/validation";
 
 const initialState = {
     id: '',
     name: '',
     isValidName: false,
     urls: [],
-    isValidUrls: false,
+    isValidUrls: [],
     isOpen: false
 };
 
@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
                 name: '',
                 isValidName: false,
                 urls: [],
-                isValidUrls: false,
+                isValidUrls: [],
                 isOpen: isOpen
             }
         }
@@ -40,13 +40,21 @@ export default (state = initialState, action) => {
                 isValidName: isValidName(name)
             }
         }
-        case UPDATE_ANIMATION_URLS: {
-            const {urls} = action;
+        case UPDATE_ANIMATION_URL: {
+
+            const {urls, isValidUrls} = state;
+            const {index, url} = action;
+
+            const newUrls = [...urls];
+            newUrls[index] = url;
+
+            const newIsValidUrls = [...isValidUrls];
+            newIsValidUrls[index] = isValidImageUrl(url);
 
             return {
                 ...state,
-                urls,
-                isValidUrls: isValidUrls(urls)
+                urls: newUrls,
+                isValidUrls: newIsValidUrls
             }
         }
         case PUT_ANIMATION_RESOURCE_TO_FORM: {
@@ -58,7 +66,7 @@ export default (state = initialState, action) => {
                 name,
                 isValidName: isValidName(name),
                 urls,
-                isValidUrls: isValidUrls(urls)
+                isValidUrls: urls.map(url => isValidImageUrl(url))
             }
         }
         default:

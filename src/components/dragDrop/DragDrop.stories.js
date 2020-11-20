@@ -6,7 +6,7 @@ import {theme} from "../../utils/theme";
 import DragDropComponent from "./DragDropComponent";
 
 export default {
-    title: 'Example/DragDrop',
+    title: 'DragDrop/DragDropComponent',
     component: DragDropComponent,
 };
 

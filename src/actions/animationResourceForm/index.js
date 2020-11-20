@@ -2,7 +2,7 @@ import {
     IS_OPEN_ANIMATION_MODAL,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
-    UPDATE_ANIMATION_URLS
+    UPDATE_ANIMATION_URL
 } from "../../utils/constants";
 
 export const updateAnimationName = (name) => ({
@@ -10,9 +10,10 @@ export const updateAnimationName = (name) => ({
     name
 });
 
-export const updateAnimationUrls = (urls) => ({
-    type: UPDATE_ANIMATION_URLS,
-    urls
+export const updateAnimationUrl = (index, url) => ({
+    type: UPDATE_ANIMATION_URL,
+    index,
+    url
 });
 
 export const isOpenAnimationModal = (isOpen) => ({

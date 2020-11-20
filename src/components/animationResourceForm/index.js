@@ -28,14 +28,15 @@ const useStyles = makeStyles((theme) => ({
 const AnimationResourceForm = ({
                                    onSave, onUpdate, id,
                                    name, isValidName, onChangeName,
-                                   urls, isValidUrls, onChangeUrls,
+                                   urls, isValidUrls, onChangeUrl,
                                    isOpen, onChangeIsOpen
                                }) => {
 
     const classes = useStyles();
+    const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
 
     const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !isValidUrls || !isValidName;
+    const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName;
 
     return (
         <Modal
@@ -68,7 +69,8 @@ const AnimationResourceForm = ({
 
                     <Grid item xs={12}>
                         <TextField
-                            label="Enter the name of animation resource"
+                            label="Name"
+                            placeholder="Enter the name of animation resource"
                             variant="outlined"
                             value={name}
                             required
@@ -78,16 +80,23 @@ const AnimationResourceForm = ({
                         />
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <TextField
-                            label="Enter the URLs of animation resource"
-                            variant="outlined"
-                            value={urls}
-                            required
-                            fullWidth
-                            error={!isValidUrls}
-                            onChange={e => onChangeUrls(e.target.value)}
-                        />
+                    <Grid container item xs={12} spacing={2}>
+                        {
+                            urls.map((url, index) =>
+                                <Grid item xs={12} key={url}>
+                                    <TextField
+                                        label="URL"
+                                        placeholder="Enter the URL of animation resource"
+                                        variant="outlined"
+                                        value={url}
+                                        required
+                                        fullWidth
+                                        error={!isValidUrls[index]}
+                                        onChange={e => onChangeUrl(index, e.target.value)}
+                                    />
+                                </Grid>
+                            )
+                        }
                     </Grid>
 
                     <Grid item xs={6}>
@@ -128,8 +137,8 @@ AnimationResourceForm.propTypes = {
     isValidName: PropTypes.bool.isRequired,
     onChangeName: PropTypes.func.isRequired,
     urls: PropTypes.array.isRequired,
-    isValidUrls: PropTypes.bool.isRequired,
-    onChangeUrls: PropTypes.func.isRequired,
+    isValidUrls: PropTypes.array.isRequired,
+    onChangeUrl: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired
 }

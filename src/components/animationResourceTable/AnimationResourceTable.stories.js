@@ -1,20 +1,27 @@
-import uuid from "react-uuid";
-import {getItemById, getPageNumber, removeItemById, saveItemTo} from "../../utils/methods";
-import {
-    ADD_ANIMATION_RESOURCE,
-    CHANGE_ANIMATION_FILTER_VALUE,
-    CHANGE_ANIMATION_LIMIT,
-    CHANGE_ANIMATION_PAGE,
-    CHANGE_ANIMATION_SORT,
-    CHANGE_ANIMATION_VIEW,
-    DELETE_ANIMATION_RESOURCE,
-    DELETE_NESTED_IMAGE_RESOURCE,
-    DRAG_AND_DROP,
-    UPDATE_ANIMATION_RESOURCE
-} from "../../utils/constants";
+import React from "react";
+import {ThemeProvider} from "@material-ui/core/styles";
+import {theme} from "../../utils/theme";
+import AnimationResourceTable from "./index";
 
-const initialState = {
-    animationList: [
+export default {
+    title: "Animations/AnimationResourceTable",
+    component: AnimationResourceTable
+}
+
+const Template = (args) =>
+    <ThemeProvider theme={theme}>
+        <AnimationResourceTable {...args}/>
+    </ThemeProvider>
+
+export const Default = Template.bind({})
+Default.args = {
+    animations: [],
+    sorting: {}
+}
+
+export const WithData = Template.bind({})
+WithData.args = {
+    animations: [
         {
             id: "3",
             name: "Black cats",
@@ -64,146 +71,5 @@ const initialState = {
             ]
         }
     ],
-    view: "table",
-    pagination: {
-        page: 0,
-        limit: 4
-    },
-    sorting: {
-        field: "",
-        direction: "desc"
-    },
-    filters: {},
-}
-
-export default (state = initialState, action) => {
-
-    switch (action.type) {
-
-        case ADD_ANIMATION_RESOURCE: {
-
-            const {animationList} = state;
-            const {name, urls} = action;
-
-            return {
-                ...state,
-                animationList: saveItemTo(animationList, {
-                    id: uuid(),
-                    name,
-                    urls
-                })
-            }
-        }
-        case UPDATE_ANIMATION_RESOURCE: {
-
-            const {animationList} = state;
-            const {id, name, urls} = action;
-
-            return {
-                ...state,
-                animationList: saveItemTo(animationList, {id, name, urls})
-            }
-        }
-        case DELETE_ANIMATION_RESOURCE: {
-
-            const {animationList, pagination} = state;
-            const {page, limit} = pagination;
-            const {id} = action;
-
-            const result = removeItemById(animationList, id);
-            const pageNumber = getPageNumber(result, page, limit);
-
-            return {
-                ...state,
-                animationList: result,
-                pagination: {
-                    ...pagination,
-                    page: pageNumber
-                }
-            };
-        }
-        case CHANGE_ANIMATION_VIEW: {
-            return {
-                ...state,
-                view: action.view
-            }
-        }
-        case CHANGE_ANIMATION_PAGE: {
-            return {
-                ...state,
-                pagination: {
-                    ...state.pagination,
-                    page: action.page
-                }
-            }
-        }
-        case CHANGE_ANIMATION_LIMIT: {
-            return {
-                ...state,
-                pagination: {
-                    ...state.pagination,
-                    page: 0,
-                    limit: action.limit
-                }
-            }
-        }
-        case CHANGE_ANIMATION_SORT: {
-            return {
-                ...state,
-                sorting: {
-                    ...state.sorting,
-                    field: action.field,
-                    direction: (state.sorting.direction === "asc") ? "desc" : "asc"
-                }
-            }
-        }
-        case CHANGE_ANIMATION_FILTER_VALUE: {
-            const {filterKey, filterValue} = action;
-
-            if (filterValue !== null) {
-                return {
-                    ...state,
-                    filters: {
-                        ...state.filters,
-                        [filterKey]: filterValue
-                    }
-                }
-            }
-
-            return {
-                ...state,
-                filters: {
-                    ...state.filters
-                }
-            }
-        }
-        case DELETE_NESTED_IMAGE_RESOURCE: {
-
-            const {id, url} = action;
-            const newAnimationList = [...state.animationList];
-
-            let animationItem = getItemById(newAnimationList, id);
-            animationItem.urls = animationItem.urls.filter((item) => item !== url);
-
-            return {
-                ...state,
-                animationList: newAnimationList
-            };
-        }
-        case DRAG_AND_DROP: {
-
-            const {id, result} = action;
-            const newAnimationList = [...state.animationList];
-
-            const animationItem = getItemById(newAnimationList, id);
-            animationItem.urls = result;
-
-            return {
-                ...state,
-                animationList: newAnimationList
-            }
-        }
-        default:
-            return state;
-    }
+    sorting: {}
 }

@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import AnimationResourceForm from "../../components/animationResourceForm";
-import {isOpenAnimationModal, updateAnimationName, updateAnimationUrls} from "../../actions/animationResourceForm";
+import {isOpenAnimationModal, updateAnimationName, updateAnimationUrl} from "../../actions/animationResourceForm";
 import {addAnimationResource, updateAnimationResource} from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onChangeName: (name) => dispatch(updateAnimationName(name)),
-        onChangeUrls: (urls) => dispatch(updateAnimationUrls(urls)),
+        onChangeUrl: (index, url) => dispatch(updateAnimationUrl(index, url)),
         onSave: (props) => dispatch(addAnimationResource(props)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
         onUpdate: (props) => dispatch(updateAnimationResource(props))
