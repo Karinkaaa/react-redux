@@ -1,3 +1,5 @@
+import {isValidImageUrl, isValidName} from "../../utils/validation";
+import {removeItemByIndex} from "../../utils/methods";
 import {
     ADD_IMAGE_RESOURCE_TO_ANIMATION,
     DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
@@ -6,8 +8,6 @@ import {
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_URL
 } from "../../utils/constants";
-import {isValidImageUrl, isValidName} from "../../utils/validation";
-import {removeItemByIndex, saveItemTo} from "../../utils/methods";
 
 const initialState = {
     id: '',

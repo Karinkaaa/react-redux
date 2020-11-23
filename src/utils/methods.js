@@ -9,13 +9,8 @@ export const reorderItems = (list, startIndex, endIndex) => {
 };
 
 export function getPageNumber(array, page, limit) {
-    let pageNumber;
-
-    if (array.length === 0) pageNumber = 0;
-    else if (array.length % limit === 0) pageNumber = page - 1;
-    else pageNumber = page;
-
-    return pageNumber;
+    if (array.length % limit === 0 && page > 0) return page - 1;
+    return page;
 }
 
 export function getItemById(list, id) {
