@@ -26,6 +26,10 @@ export function removeItemById(list, id) {
     return list.filter(item => item.id !== id);
 }
 
+export function removeItemByIndex(list, index) {
+    return list.splice(index, 1);
+}
+
 export function saveItemTo(list, item) {
 
     const index = list.findIndex((el) => el.id === item.id);

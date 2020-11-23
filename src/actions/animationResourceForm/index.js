@@ -1,4 +1,6 @@
 import {
+    ADD_IMAGE_RESOURCE_TO_ANIMATION,
+    DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
     IS_OPEN_ANIMATION_MODAL,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
@@ -26,4 +28,14 @@ export const putAnimationResourceToForm = ({id, name, urls}) => ({
     id,
     name,
     urls
+});
+
+export const deleteImageFromAnimationForm = (index) => ({
+    type: DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
+    index
+});
+
+export const addImageResourceToAnimation = (url) => ({
+    type: ADD_IMAGE_RESOURCE_TO_ANIMATION,
+    url
 });

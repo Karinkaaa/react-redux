@@ -1,10 +1,13 @@
 import {
+    ADD_IMAGE_RESOURCE_TO_ANIMATION,
+    DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
     IS_OPEN_ANIMATION_MODAL,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_URL
 } from "../../utils/constants";
 import {isValidImageUrl, isValidName} from "../../utils/validation";
+import {removeItemByIndex, saveItemTo} from "../../utils/methods";
 
 const initialState = {
     id: '',
@@ -67,6 +70,36 @@ export default (state = initialState, action) => {
                 isValidName: isValidName(name),
                 urls,
                 isValidUrls: urls.map(url => isValidImageUrl(url))
+            }
+        }
+        case DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM: {
+
+            const {index} = action;
+            const newUrls = [...state.urls];
+            const newIsValidUrls = [...state.isValidUrls];
+
+            removeItemByIndex(newUrls, index);
+            removeItemByIndex(newIsValidUrls, index);
+
+            return {
+                ...state,
+                urls: newUrls,
+                isValidUrls: newIsValidUrls
+            };
+        }
+        case ADD_IMAGE_RESOURCE_TO_ANIMATION: {
+
+            const {url} = action;
+            let newUrls = [...state.urls];
+            let newIsValidUrls = [...state.isValidUrls];
+
+            newUrls.push(url);
+            newIsValidUrls.push(isValidImageUrl(url));
+
+            return {
+                ...state,
+                urls: newUrls,
+                isValidUrls: newIsValidUrls
             }
         }
         default:

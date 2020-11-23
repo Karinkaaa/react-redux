@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -6,6 +6,8 @@ import Fade from "@material-ui/core/Fade";
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import {Button} from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import {Add, Remove} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,10 +25,19 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(4, 8),
         borderRadius: "3px",
     },
+    grid: {
+        whiteSpace: "noWrap"
+    },
+    iconBtnAdd: {
+        marginLeft: 10
+    },
+    iconBtnRemove: {
+        marginLeft: 10
+    }
 }));
 
 const AnimationResourceForm = ({
-                                   onSave, onUpdate, id,
+                                   onSave, onDeleteImage, onAddImage, onUpdate, id,
                                    name, isValidName, onChangeName,
                                    urls, isValidUrls, onChangeUrl,
                                    isOpen, onChangeIsOpen
@@ -37,6 +48,20 @@ const AnimationResourceForm = ({
 
     const handleClose = () => onChangeIsOpen(false);
     const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName;
+
+    const [url, setUrl] = useState("");
+
+    const handleChange = (e) => {
+        setUrl(e.target.value);
+        console.log("handleChange: ", url);
+    }
+
+    const handleClick = () => {
+        console.log("handleClickAdd: ", url);
+        onAddImage(url);
+        setUrl("");
+        console.log("url after adding: ", url);
+    }
 
     return (
         <Modal
@@ -51,7 +76,6 @@ const AnimationResourceForm = ({
         >
             <Fade in={isOpen}>
                 <Grid container spacing={3} className={classes.paper}>
-
                     {
                         id && (
                             <Grid item xs={12}>
@@ -70,7 +94,7 @@ const AnimationResourceForm = ({
                     <Grid item xs={12}>
                         <TextField
                             label="Name"
-                            placeholder="Enter the name of animation resource"
+                            placeholder="Enter the name of image resource"
                             variant="outlined"
                             value={name}
                             required
@@ -80,23 +104,49 @@ const AnimationResourceForm = ({
                         />
                     </Grid>
 
-                    <Grid container item xs={12} spacing={2}>
+                    <Grid container item xs={12} spacing={2} className={classes.grid}>
                         {
                             urls.map((url, index) =>
-                                <Grid item xs={12} key={url}>
+                                <Grid item xs={11} key={url}>
                                     <TextField
                                         label="URL"
-                                        placeholder="Enter the URL of animation resource"
+                                        placeholder="Enter the URL of image resource"
                                         variant="outlined"
                                         value={url}
                                         required
                                         fullWidth
                                         error={!isValidUrls[index]}
-                                        onChange={e => onChangeUrl(index, e.target.value)}
+                                        onChange={e => onChangeUrl(e.target.value)}
                                     />
+                                    <IconButton
+                                        className={classes.iconBtnRemove}
+                                        onClick={() => onDeleteImage(index)}
+                                    >
+                                        <Remove color="secondary"/>
+                                    </IconButton>
                                 </Grid>
                             )
                         }
+                    </Grid>
+
+                    <Grid container item xs={12} spacing={2} className={classes.grid}>
+                        <Grid item xs={11}>
+                            <TextField
+                                label="URL"
+                                placeholder="Enter the new URL of image resource"
+                                variant="outlined"
+                                value={url}
+                                fullWidth
+                                onChange={handleChange}
+                            />
+                            <IconButton
+                                className={classes.iconBtnAdd}
+                                disabled={url === ""}
+                                onClick={handleClick}
+                            >
+                                <Add color="primary"/>
+                            </IconButton>
+                        </Grid>
                     </Grid>
 
                     <Grid item xs={6}>

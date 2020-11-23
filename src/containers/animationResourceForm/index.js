@@ -1,6 +1,12 @@
 import {connect} from "react-redux";
 import AnimationResourceForm from "../../components/animationResourceForm";
-import {isOpenAnimationModal, updateAnimationName, updateAnimationUrl} from "../../actions/animationResourceForm";
+import {
+    addImageResourceToAnimation,
+    deleteImageFromAnimationForm,
+    isOpenAnimationModal,
+    updateAnimationName,
+    updateAnimationUrl
+} from "../../actions/animationResourceForm";
 import {addAnimationResource, updateAnimationResource} from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
@@ -20,7 +26,9 @@ const mapDispatchToProps = (dispatch) => {
         onChangeUrl: (index, url) => dispatch(updateAnimationUrl(index, url)),
         onSave: (props) => dispatch(addAnimationResource(props)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
-        onUpdate: (props) => dispatch(updateAnimationResource(props))
+        onUpdate: (props) => dispatch(updateAnimationResource(props)),
+        onDeleteImage: (index) => dispatch(deleteImageFromAnimationForm(index)),
+        onAddImage: (url) => dispatch(addImageResourceToAnimation(url)),
     }
 }
 
