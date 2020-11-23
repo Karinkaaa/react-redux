@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import {Table} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import ImageTableHead from "./imageTableHead";
 import ImageTableBody from "./ImageTableBody";
@@ -25,27 +24,25 @@ const ImageResourceTable = ({
     const handleClose = () => setAnchorEl(null);
 
     return (
-        <Grid container>
-            <Table className={classes.content}>
-                <ImageTableHead
-                    sorting={sorting}
-                    onChangeImageSort={onChangeImageSort}
-                    onChangeImageFilterValue={onChangeImageFilterValue}
-                />
+        <Grid container className={classes.content}>
+            <ImageTableHead
+                sorting={sorting}
+                onChangeImageSort={onChangeImageSort}
+                onChangeImageFilterValue={onChangeImageFilterValue}
+            />
 
-                <ImageTableBody
-                    images={images}
-                    setAnchorEl={setAnchorEl}
-                    onChangeIsOpen={onChangeIsOpen}
-                    onClickPutImageResourceToForm={onClickPutImageResourceToForm}
-                />
+            <ImageTableBody
+                images={images}
+                setAnchorEl={setAnchorEl}
+                onChangeIsOpen={onChangeIsOpen}
+                onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+            />
 
-                <ConfirmMenu
-                    anchorEl={anchorEl}
-                    handleClose={handleClose}
-                    onAccept={onDelete}
-                />
-            </Table>
+            <ConfirmMenu
+                anchorEl={anchorEl}
+                handleClose={handleClose}
+                onAccept={onDelete}
+            />
         </Grid>
     )
 }

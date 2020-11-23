@@ -1,7 +1,5 @@
 import React from "react";
-import {TableHead} from "@material-ui/core";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
+import {Grid} from "@material-ui/core";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import {FilterList} from "@material-ui/icons";
 import InputBase from "@material-ui/core/InputBase";
@@ -11,6 +9,7 @@ import PropTypes from "prop-types";
 const useStyles = makeStyles(theme => ({
     head: {
         backgroundColor: theme.palette.primary2Color,
+        padding: "20px 25px",
     },
     headCell: {
         fontSize: 16,
@@ -42,6 +41,9 @@ const useStyles = makeStyles(theme => ({
             },
         },
     },
+    sortLabel: {
+        paddingLeft: 5,
+    },
 }));
 
 const ImageTableHead = ({sorting, onChangeImageSort, onChangeImageFilterValue}) => {
@@ -50,63 +52,65 @@ const ImageTableHead = ({sorting, onChangeImageSort, onChangeImageFilterValue}) 
     const {field, direction} = sorting;
 
     return (
-        <TableHead>
-            <TableRow className={classes.head}>
-                <TableCell className={classes.headCell}>Image</TableCell>
+        <Grid container className={classes.head}>
+            <Grid item xs={1} className={classes.headCell}>
+                Image
+            </Grid>
 
-                <TableCell className={classes.headCell}>
-                    <TableSortLabel
-                        active={field === "id"}
-                        direction={direction}
-                        onClick={() => onChangeImageSort("id")}
-                    >
-                        ID
-                    </TableSortLabel>
+            <Grid item xs={2} className={classes.headCell}>
+                <TableSortLabel
+                    active={field === "id"}
+                    direction={direction}
+                    onClick={() => onChangeImageSort("id")}
+                    className={classes.sortLabel}
+                >
+                    ID
+                </TableSortLabel>
 
-                    <div className={classes.filter}>
-                        <div className={classes.filterIcon}>
-                            <FilterList/>
-                        </div>
-                        <InputBase
-                            placeholder="Search..."
-                            className={classes.input}
-                            inputProps={{'aria-label': 'filter'}}
-                            onChange={(e) => onChangeImageFilterValue({
-                                filterKey: "id",
-                                filterValue: e.target.value
-                            })}
-                        />
+                <div className={classes.filter}>
+                    <div className={classes.filterIcon}>
+                        <FilterList/>
                     </div>
-                </TableCell>
+                    <InputBase
+                        placeholder="Search..."
+                        className={classes.input}
+                        inputProps={{'aria-label': 'filter'}}
+                        onChange={(e) => onChangeImageFilterValue({
+                            filterKey: "id",
+                            filterValue: e.target.value
+                        })}
+                    />
+                </div>
+            </Grid>
 
-                <TableCell className={classes.headCell}>
-                    <TableSortLabel
-                        active={field === "name"}
-                        direction={direction}
-                        onClick={() => onChangeImageSort("name")}
-                    >
-                        Name
-                    </TableSortLabel>
+            <Grid item xs={2} className={classes.headCell}>
+                <TableSortLabel
+                    active={field === "name"}
+                    direction={direction}
+                    onClick={() => onChangeImageSort("name")}
+                    className={classes.sortLabel}
+                >
+                    Name
+                </TableSortLabel>
 
-                    <div className={classes.filter}>
-                        <div className={classes.filterIcon}>
-                            <FilterList/>
-                        </div>
-                        <InputBase
-                            placeholder="Search..."
-                            className={classes.input}
-                            inputProps={{'aria-label': 'filter'}}
-                            onChange={(e) => onChangeImageFilterValue({
-                                filterKey: "name",
-                                filterValue: e.target.value
-                            })}
-                        />
+                <div className={classes.filter}>
+                    <div className={classes.filterIcon}>
+                        <FilterList/>
                     </div>
-                </TableCell>
+                    <InputBase
+                        placeholder="Search..."
+                        className={classes.input}
+                        inputProps={{'aria-label': 'filter'}}
+                        onChange={(e) => onChangeImageFilterValue({
+                            filterKey: "name",
+                            filterValue: e.target.value
+                        })}
+                    />
+                </div>
+            </Grid>
 
-                <TableCell colSpan={3} className={classes.headCell}>URL</TableCell>
-            </TableRow>
-        </TableHead>
+            <Grid item className={classes.headCell} style={{paddingLeft: 20}}>URL</Grid>
+        </Grid>
     )
 }
 

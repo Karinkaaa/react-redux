@@ -14,21 +14,18 @@ const AnimationTableBody = ({
     return (
         <Grid item xs={12}>
             {
-                animations.map(({id, name, urls}) => {
-                        return (
-                            <AnimationTableRow
-                                key={id}
-                                id={id}
-                                name={name}
-                                urls={urls}
-                                handleOpen={handleOpen}
-                                handleToggle={handleToggle}
-                                onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
-                                onDeleteNestedImage={onDeleteNestedImage}
-                                onDragAndDrop={onDragAndDrop}
-                            />
-                        )
-                    }
+                animations.map(({id, name, urls}) =>
+                    <AnimationTableRow
+                        key={id}
+                        id={id}
+                        name={name}
+                        urls={urls}
+                        handleOpen={handleOpen}
+                        handleToggle={handleToggle}
+                        onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
+                        onDeleteNestedImage={onDeleteNestedImage}
+                        onDragAndDrop={onDragAndDrop}
+                    />
                 )
             }
         </Grid>
