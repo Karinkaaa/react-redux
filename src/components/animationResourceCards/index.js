@@ -6,10 +6,7 @@ import AnimationCard from "./AnimationCard";
 
 const AnimationResourceCards = ({ animations, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm }) => {
     const [anchorEl, setAnchorEl] = React.useState(false);
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const handleClose = () => setAnchorEl(null);
 
     return (
         <Grid container spacing={5} style={{ marginTop: 50 }}>
@@ -43,7 +40,7 @@ AnimationResourceCards.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            urls: PropTypes.array.isRequired
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
         })
     ).isRequired,
     onDelete: PropTypes.func.isRequired,

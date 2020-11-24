@@ -29,7 +29,7 @@ const NestedTable = ({ id, urls, open, onDeleteNestedImage, onDragAndDrop }) => 
 
 NestedTable.propTypes = {
     id: PropTypes.string.isRequired,
-    urls: PropTypes.array.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     open: PropTypes.bool.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired

@@ -37,10 +37,7 @@ const AnimationCard = ({
     const maxSteps = animations.length;
 
     const handleOpen = () => onChangeIsOpen(true);
-
-    const handleToggle = (e) => {
-        setAnchorEl(e.currentTarget);
-    };
+    const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
         <Card className={classes.root}>
@@ -80,12 +77,12 @@ const AnimationCard = ({
 AnimationCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    urls: PropTypes.array.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     animations: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
-            urls: PropTypes.array.isRequired
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
         })
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,

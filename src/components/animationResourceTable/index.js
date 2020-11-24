@@ -54,7 +54,7 @@ AnimationResourceTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            urls: PropTypes.array.isRequired
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
         })
     ).isRequired,
     sorting: PropTypes.shape({

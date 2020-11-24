@@ -94,7 +94,7 @@ const AnimationTableRow = ({
 AnimationTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    urls: PropTypes.array.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired,

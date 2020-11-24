@@ -9,6 +9,8 @@ import { Button } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { Add, Remove } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import { isValidImageUrl } from "../../utils/validation";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         position: "absolute",
-        width: 500,
+        width: 800,
         background: "lightblue",
         border: "3px solid #1e88e5",
         boxShadow: theme.shadows[5],
@@ -26,7 +28,12 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "3px"
     },
     grid: {
-        whiteSpace: "noWrap"
+        whiteSpace: "noWrap",
+        marginTop: 10
+    },
+    media: {
+        padding: 12,
+        marginRight: 25
     },
     iconBtnAdd: {
         marginLeft: 10
@@ -46,15 +53,12 @@ const AnimationResourceForm = ({
     const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
 
     const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName;
+    const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName || urls.length === 0;
 
     const [url, setUrl] = useState("");
+    const isValidUrl = isValidImageUrl(url);
 
-    const handleChange = (e) => {
-        setUrl(e.target.value);
-    };
-
-    const handleClick = () => {
+    const handleClickAdd = () => {
         onAddImage(url);
         setUrl("");
     };
@@ -100,45 +104,64 @@ const AnimationResourceForm = ({
                         />
                     </Grid>
 
-                    <Grid container item xs={12} spacing={2} className={classes.grid}>
+                    <Grid container spacing={2} className={classes.grid}>
                         {
                             urls.map((url, index) =>
-                                <Grid item xs={11} key={url}>
-                                    <TextField
-                                        label="URL"
-                                        placeholder="Enter the URL of image resource"
-                                        variant="outlined"
-                                        value={url}
-                                        required
-                                        fullWidth
-                                        error={!isValidUrls[index]}
-                                        onChange={e => onChangeUrl(e.target.value)}
-                                    />
-                                    <IconButton
-                                        className={classes.iconBtnRemove}
-                                        onClick={() => onDeleteImage(index)}
-                                    >
-                                        <Remove color="secondary"/>
-                                    </IconButton>
+                                <Grid container item xs={12} key={url}>
+                                    <Grid item xs={1} className={classes.media}>
+                                        <Avatar src={url}/>
+                                    </Grid>
+
+                                    <Grid item xs={9}>
+                                        <TextField
+                                            label="URL"
+                                            placeholder="Enter the URL of image resource"
+                                            variant="outlined"
+                                            value={url}
+                                            required
+                                            fullWidth
+                                            error={!isValidUrls[index]}
+                                            onChange={e => onChangeUrl(e.target.value)}
+                                        />
+                                    </Grid>
+
+                                    <Grid item xs={1}>
+                                        <IconButton
+                                            className={classes.iconBtnRemove}
+                                            onClick={() => onDeleteImage(index)}
+                                        >
+                                            <Remove color="secondary"/>
+                                        </IconButton>
+                                    </Grid>
+
                                 </Grid>
                             )
                         }
                     </Grid>
 
                     <Grid container item xs={12} spacing={2} className={classes.grid}>
-                        <Grid item xs={11}>
+                        <Grid item xs={1} className={classes.media}>
+                            <Avatar src={url}/>
+                        </Grid>
+
+                        <Grid item xs={9}>
                             <TextField
                                 label="URL"
                                 placeholder="Enter the new URL of image resource"
                                 variant="outlined"
                                 value={url}
+                                required
                                 fullWidth
-                                onChange={handleChange}
+                                error={!isValidUrl}
+                                onChange={(e) => setUrl(e.target.value)}
                             />
+                        </Grid>
+
+                        <Grid item xs={1}>
                             <IconButton
                                 className={classes.iconBtnAdd}
-                                disabled={url === ""}
-                                onClick={handleClick}
+                                disabled={!isValidUrl}
+                                onClick={handleClickAdd}
                             >
                                 <Add color="primary"/>
                             </IconButton>
@@ -185,8 +208,8 @@ AnimationResourceForm.propTypes = {
     name: PropTypes.string.isRequired,
     isValidName: PropTypes.bool.isRequired,
     onChangeName: PropTypes.func.isRequired,
-    urls: PropTypes.array.isRequired,
-    isValidUrls: PropTypes.array.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isValidUrls: PropTypes.arrayOf(PropTypes.bool).isRequired,
     onChangeUrl: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired

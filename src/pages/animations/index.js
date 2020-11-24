@@ -138,7 +138,7 @@ Animations.propTypes = {
         PropTypes.shape({
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
-            urls: PropTypes.array.isRequired
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
         })
     ).isRequired,
     count: PropTypes.number.isRequired,

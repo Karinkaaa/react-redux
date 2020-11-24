@@ -82,16 +82,17 @@ export default (state = initialState, action) => {
         }
         case ADD_IMAGE_RESOURCE_TO_ANIMATION: {
             const { url } = action;
-            const newUrls = [...state.urls];
-            const newIsValidUrls = [...state.isValidUrls];
-
-            newUrls.push(url);
-            newIsValidUrls.push(isValidImageUrl(url));
 
             return {
                 ...state,
-                urls: [...state.urls].push(url),
-                isValidUrls: newIsValidUrls
+                urls: [
+                    ...state.urls,
+                    url
+                ],
+                isValidUrls: [
+                    ...state.isValidUrls,
+                    isValidImageUrl(url)
+                ]
             };
         }
         default:

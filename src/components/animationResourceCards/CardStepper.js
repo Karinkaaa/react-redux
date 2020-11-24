@@ -30,18 +30,10 @@ const CardStepper = ({ urls, maxSteps }) => {
     const theme = useTheme();
 
     const [activeStep, setActiveStep] = React.useState(0);
+    const handleStepChange = (step) => setActiveStep(step);
 
-    const handleStepChange = (step) => {
-        setActiveStep(step);
-    };
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
     return (
         <CardActionArea>
@@ -85,7 +77,7 @@ const CardStepper = ({ urls, maxSteps }) => {
 };
 
 CardStepper.propTypes = {
-    urls: PropTypes.array.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     maxSteps: PropTypes.number.isRequired
 };
 
