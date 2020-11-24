@@ -1,6 +1,5 @@
 // a little function to help us with reordering the result
 export const reorderItems = (list, startIndex, endIndex) => {
-
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
 
@@ -8,7 +7,7 @@ export const reorderItems = (list, startIndex, endIndex) => {
     return result;
 };
 
-export function getPageNumber(array, page, limit) {
+export function getAvailableCurrentPage(array, page, limit) {
     if (array.length % limit === 0 && page > 0) return page - 1;
     return page;
 }
@@ -22,13 +21,14 @@ export function removeItemById(list, id) {
 }
 
 export function removeItemByIndex(list, index) {
-    return list.splice(index, 1);
+    const newList = [...list];
+    newList.splice(index, 1);
+
+    return newList;
 }
 
 export function saveItemTo(list, item) {
-
     const index = list.findIndex((el) => el.id === item.id);
-
     let newList;
 
     if (index === -1) {
@@ -55,7 +55,6 @@ export function filteringSortingPagingOfArray(arr, {
     },
     filters
 }) {
-
     let result = [...arr];
 
     // paging
@@ -79,5 +78,5 @@ export function filteringSortingPagingOfArray(arr, {
         )
     );
 
-    return {data: result, count: arr.length};
+    return { data: result, count: arr.length };
 }

@@ -1,60 +1,14 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {Button, Container, Grid} from "@material-ui/core";
-import Toolbar from '@material-ui/core/Toolbar';
-import {Add, List, ViewModule} from "@material-ui/icons";
+import React from "react";
+import PropTypes from "prop-types";
+import { Button, Container, Grid } from "@material-ui/core";
+import Toolbar from "@material-ui/core/Toolbar";
+import { Add, List, ViewModule } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import TablePagination from "@material-ui/core/TablePagination";
 import CreateResourceForm from "../../containers/animationResourceForm";
 import AnimationResourceTable from "../../components/animationResourceTable";
 import AnimationResourceCards from "../../components/animationResourceCards";
-import {filteringSortingPagingOfArray} from "../../utils/methods";
-import {isOpenAnimationModal, putAnimationResourceToForm} from "../../actions/animationResourceForm";
-import {
-    changeAnimationFilterValue,
-    changeAnimationLimit,
-    changeAnimationPage,
-    changeAnimationSort,
-    changeAnimationView,
-    deleteAnimationResource,
-    deleteNestedImageResource,
-    dragAndDrop
-} from "../../actions/animationResourceComponent";
-
-const mapStateToProps = (state) => {
-
-    const {data: animations, count} = filteringSortingPagingOfArray(state.animations.animationList,
-        {
-            pagination: state.animations.pagination,
-            sorting: state.animations.sorting,
-            filters: state.animations.filters
-        }
-    );
-
-    return {
-        count,
-        animations,
-        view: state.animations.view,
-        pagination: state.animations.pagination,
-        sorting: state.animations.sorting,
-        filters: state.animations.filters
-    };
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onDelete: (id) => dispatch(deleteAnimationResource(id)),
-        onChangeAnimationPage: (page) => dispatch(changeAnimationPage(page)),
-        onChangeAnimationLimit: (limit) => dispatch(changeAnimationLimit(limit)),
-        onChangeAnimationSort: (field) => dispatch(changeAnimationSort(field)),
-        onClickChangeAnimationView: (view) => dispatch(changeAnimationView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
-        onChangeAnimationFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
-        onClickPutAnimationResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
-        onDeleteNestedImage: (id, url) => dispatch(deleteNestedImageResource(id, url)),
-        onDragAndDrop: (result, id) => dispatch(dragAndDrop(result, id)),
-    }
-}
+import { GRID, TABLE } from "../../utils/constants";
 
 const Animations = ({
                         animations, count, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
@@ -62,13 +16,13 @@ const Animations = ({
                         sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue,
                         onDeleteNestedImage, onDragAndDrop
                     }) => {
-
-    const {page, limit} = pagination;
+    const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
+    const handleView = () => view === TABLE ? onClickChangeAnimationView(GRID) : onClickChangeAnimationView(TABLE);
+
     const handleChangeAnimationPage = (event, newPage) => onChangeAnimationPage(newPage);
-    const handleLimit = (event) => onChangeAnimationLimit(parseInt(event.target.value, 10));
-    const handleView = () => view === "table" ? onClickChangeAnimationView("grid") : onClickChangeAnimationView("table");
+    const handleChangeAnimationLimit = (event) => onChangeAnimationLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -79,7 +33,7 @@ const Animations = ({
                 </linearGradient>
             </defs>
             {React.cloneElement(svgProps.children[0], {
-                fill: 'url(#gradient1)',
+                fill: "url(#gradient1)"
             })}
         </svg>
     );
@@ -103,7 +57,7 @@ const Animations = ({
 
                     <Grid item xs={4}>
                         <TablePagination
-                            style={{color: "#cfeaff"}}
+                            style={{ color: "#cfeaff" }}
                             component="div"
                             color="primary"
                             colSpan={6}
@@ -112,14 +66,14 @@ const Animations = ({
                             rowsPerPage={limit}
                             rowsPerPageOptions={[4, 8, 12, 16, 20, 40, 60, 80, 100]}
                             onChangePage={handleChangeAnimationPage}
-                            onChangeRowsPerPage={handleLimit}
+                            onChangeRowsPerPage={handleChangeAnimationLimit}
                         />
                     </Grid>
 
                     <Grid item xs={1}/>
 
                     {
-                        view === "grid" ?
+                        view === GRID ?
                             <>
                                 <Grid item xs={1}>
                                     <IconButton onClick={handleView}>
@@ -177,6 +131,39 @@ const Animations = ({
             </Container>
         </div>
     );
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Animations);
+Animations.propTypes = {
+    animations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            urls: PropTypes.array.isRequired
+        })
+    ).isRequired,
+    count: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired,
+    onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired,
+    onClickChangeAnimationView: PropTypes.func.isRequired,
+    pagination: PropTypes.shape({
+            page: PropTypes.number.isRequired,
+            limit: PropTypes.number.isRequired
+        }
+    ).isRequired,
+    onChangeAnimationPage: PropTypes.func.isRequired,
+    onChangeAnimationLimit: PropTypes.func.isRequired,
+    sorting: PropTypes.shape({
+            field: PropTypes.string.isRequired,
+            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+        }
+    ).isRequired,
+    onChangeAnimationSort: PropTypes.func.isRequired,
+    onChangeDirection: PropTypes.func,
+    onChangeAnimationFilterValue: PropTypes.func.isRequired,
+    onDeleteNestedImage: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired
+};
+
+export default Animations;

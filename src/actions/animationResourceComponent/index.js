@@ -11,7 +11,7 @@ import {
     UPDATE_ANIMATION_RESOURCE
 } from "../../utils/constants";
 
-export const addAnimationResource = ({id, name, urls}) => ({
+export const addAnimationResource = ({ id, name, urls }) => ({
     type: ADD_ANIMATION_RESOURCE,
     id,
     name,
@@ -23,7 +23,7 @@ export const deleteAnimationResource = (id) => ({
     id
 });
 
-export const updateAnimationResource = ({id, name, urls}) => ({
+export const updateAnimationResource = ({ id, name, urls }) => ({
     type: UPDATE_ANIMATION_RESOURCE,
     id,
     name,
@@ -50,7 +50,7 @@ export const changeAnimationSort = (field) => ({
     field
 });
 
-export const changeAnimationFilterValue = ({filterKey, filterValue}) => ({
+export const changeAnimationFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_ANIMATION_FILTER_VALUE,
     filterKey,
     filterValue

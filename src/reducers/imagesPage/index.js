@@ -1,5 +1,5 @@
-import uuid from 'react-uuid'
-import {getPageNumber, removeItemById, saveItemTo} from "../../utils/methods";
+import uuid from "react-uuid";
+import { getAvailableCurrentPage, removeItemById, saveItemTo } from "../../utils/methods";
 import {
     ADD_IMAGE_RESOURCE,
     CHANGE_IMAGE_FILTER_VALUE,
@@ -8,6 +8,7 @@ import {
     CHANGE_IMAGE_SORT,
     CHANGE_IMAGE_VIEW,
     DELETE_IMAGE_RESOURCE,
+    TABLE,
     UPDATE_IMAGE_RESOURCE
 } from "../../utils/constants";
 
@@ -64,7 +65,7 @@ const initialState = {
             url: "https://www.w3schools.com/images/colorpicker.gif"
         }
     ],
-    view: "table",
+    view: TABLE,
     pagination: {
         page: 0,
         limit: 4
@@ -73,44 +74,40 @@ const initialState = {
         field: "",
         direction: "desc"
     },
-    filters: {},
+    filters: {}
 };
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_IMAGE_RESOURCE: {
-
-            const {imageList} = state;
-            const {name, url} = action;
+            const { imageList } = state;
+            const { name, url } = action;
 
             return {
                 ...state,
                 imageList: saveItemTo(imageList, {
                     id: uuid(),
-                    name: name,
-                    url: url
+                    name,
+                    url
                 })
-            }
+            };
         }
         case UPDATE_IMAGE_RESOURCE: {
-
-            const {imageList} = state;
-            const {id, name, url} = action;
+            const { imageList } = state;
+            const { id, name, url } = action;
 
             return {
                 ...state,
-                imageList: saveItemTo(imageList, {id, name, url})
-            }
+                imageList: saveItemTo(imageList, { id, name, url })
+            };
         }
         case DELETE_IMAGE_RESOURCE: {
+            const { imageList, pagination } = state;
+            const { page, limit } = pagination;
 
-            const {imageList, pagination} = state;
-            const {page, limit} = pagination;
-            const {id} = action;
-
-            const result = removeItemById(imageList, id);
-            const pageNumber = getPageNumber(result, page, limit);
+            const result = removeItemById(imageList, action.id);
+            const pageNumber = getAvailableCurrentPage(result, page, limit);
 
             return {
                 ...state,
@@ -125,7 +122,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 view: action.view
-            }
+            };
         }
         case CHANGE_IMAGE_PAGE: {
             return {
@@ -134,7 +131,7 @@ export default (state = initialState, action) => {
                     ...state.pagination,
                     page: action.page
                 }
-            }
+            };
         }
         case CHANGE_IMAGE_LIMIT: {
             return {
@@ -144,7 +141,7 @@ export default (state = initialState, action) => {
                     page: 0,
                     limit: action.limit
                 }
-            }
+            };
         }
         case CHANGE_IMAGE_SORT: {
             return {
@@ -154,11 +151,10 @@ export default (state = initialState, action) => {
                     field: action.field,
                     direction: (state.sorting.direction === "asc") ? "desc" : "asc"
                 }
-            }
+            };
         }
         case CHANGE_IMAGE_FILTER_VALUE: {
-
-            const {filterKey, filterValue} = action;
+            const { filterKey, filterValue } = action;
 
             if (filterValue !== null) {
                 return {
@@ -167,15 +163,9 @@ export default (state = initialState, action) => {
                         ...state.filters,
                         [filterKey]: filterValue
                     }
-                }
+                };
             }
-
-            return {
-                ...state,
-                filters: {
-                    ...state.filters
-                }
-            }
+            return state;
         }
         default:
             return state;

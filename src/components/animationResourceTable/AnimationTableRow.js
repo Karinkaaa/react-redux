@@ -1,38 +1,37 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
-import {Avatar} from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import {Delete, ExpandLess, ExpandMore, Update} from "@material-ui/icons";
-import {makeStyles} from "@material-ui/core/styles";
+import { Delete, ExpandLess, ExpandMore, Update } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
 import NestedTable from "./NestedTable";
 
 const useStyles = makeStyles(theme => ({
     grid: {
         borderBottom: "outset",
         borderBottomWidth: "thin",
-        alignItems: "center",
+        alignItems: "center"
     },
     gridItem: {
         overflow: "overlay",
         textAlign: "left",
         color: theme.palette.primary3Color,
-        padding: "20px 25px",
+        padding: "20px 25px"
     },
     updateIcon: {
-        color: theme.palette.update3Color,
+        color: theme.palette.update3Color
     },
     deleteIcon: {
         color: theme.palette.delete3Color
-    },
+    }
 }));
 
 const AnimationTableRow = ({
                                id, name, urls, handleOpen, handleToggle, onDragAndDrop,
                                onClickPutAnimationResourceToForm, onDeleteNestedImage
                            }) => {
-
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
@@ -65,7 +64,7 @@ const AnimationTableRow = ({
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutAnimationResourceToForm({id, name, urls});
+                        onClickPutAnimationResourceToForm({ id, name, urls });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -89,8 +88,8 @@ const AnimationTableRow = ({
                 onDragAndDrop={onDragAndDrop}
             />
         </Grid>
-    )
-}
+    );
+};
 
 AnimationTableRow.propTypes = {
     id: PropTypes.string.isRequired,
@@ -100,7 +99,7 @@ AnimationTableRow.propTypes = {
     handleToggle: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,
-    onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
-}
+    onClickPutAnimationResourceToForm: PropTypes.func.isRequired
+};
 
-export default AnimationTableRow
+export default AnimationTableRow;

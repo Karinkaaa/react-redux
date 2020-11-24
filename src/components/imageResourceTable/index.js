@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import ImageTableHead from "./imageTableHead";
 import ImageTableBody from "./ImageTableBody";
 import ConfirmMenu from "../confirmMenu";
@@ -9,15 +9,14 @@ import ConfirmMenu from "../confirmMenu";
 const useStyles = makeStyles(theme => ({
     content: {
         marginTop: 75,
-        background: theme.palette.blueGrey1Color,
-    },
+        background: theme.palette.blueGrey1Color
+    }
 }));
 
 const ImageResourceTable = ({
                                 images, sorting, onChangeImageSort, onChangeImageFilterValue,
                                 onDelete, onChangeIsOpen, onClickPutImageResourceToForm
                             }) => {
-
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -44,13 +43,13 @@ const ImageResourceTable = ({
                 onAccept={onDelete}
             />
         </Grid>
-    )
-}
+    );
+};
 
 ImageResourceTable.propTypes = {
     images: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.string,
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
         })
@@ -61,10 +60,10 @@ ImageResourceTable.propTypes = {
         }
     ).isRequired,
     onChangeImageSort: PropTypes.func.isRequired,
+    onChangeImageFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired,
-    onChangeImageFilterValue: PropTypes.func.isRequired,
-}
+    onClickPutImageResourceToForm: PropTypes.func.isRequired
+};
 
-export default ImageResourceTable
+export default ImageResourceTable;

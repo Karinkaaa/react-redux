@@ -1,29 +1,30 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import NavigationMenu from "../navigationMenu";
-import {MenuElements} from "../navigationMenu/MenuElements";
+import { MenuElements } from "../navigationMenu/MenuElements";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
-        flexShrink: 0,
+        flexShrink: 0
     },
     drawerPaper: {
-        width: drawerWidth,
+        width: drawerWidth
     },
     drawerContainer: {
-        overflow: 'auto',
-        minHeight: '100%',
+        overflow: "auto",
+        minHeight: "100%",
         background: "linear-gradient(rgba(0, 40, 68, 0.9), rgba(0, 43, 80, 0.5))",
         color: theme.palette.primary3Color
-    },
+    }
 }));
 
-const MenuComponent = ({items}) => {
+const MenuComponent = ({ items }) => {
     const classes = useStyles();
 
     return (
@@ -31,7 +32,7 @@ const MenuComponent = ({items}) => {
             className={classes.drawer}
             variant="permanent"
             classes={{
-                paper: classes.drawerPaper,
+                paper: classes.drawerPaper
             }}
         >
             <div className={classes.drawerContainer}>
@@ -39,11 +40,15 @@ const MenuComponent = ({items}) => {
                 <NavigationMenu items={items}/>
             </div>
         </Drawer>
-    )
-}
+    );
+};
 
 MenuComponent.defaultProps = {
     items: MenuElements
-}
+};
 
-export default MenuComponent
+MenuComponent.propTypes = {
+    items: PropTypes.array.isRequired
+};
+
+export default MenuComponent;

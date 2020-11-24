@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app';
-import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/app";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/core/styles";
 import store from "./store";
-import {ThemeProvider} from '@material-ui/core/styles';
-import {theme} from "./utils/theme";
+import { theme } from "./utils/theme";
 
 ReactDOM.render(
     <Provider store={store}>
@@ -15,6 +15,6 @@ ReactDOM.render(
             </ThemeProvider>
         </BrowserRouter>
     </Provider>,
-    document.getElementById('root')
+    document.getElementById("root")
 );
 

@@ -1,69 +1,27 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {Button, Container, Grid} from "@material-ui/core";
-import Toolbar from '@material-ui/core/Toolbar';
+import React from "react";
+import PropTypes from "prop-types";
+import { Button, Container, Grid } from "@material-ui/core";
+import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import {Add, List, ViewModule} from "@material-ui/icons";
+import { Add, List, ViewModule } from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
 import CreateResourceForm from "../../containers/imageResourceForm";
-import {filteringSortingPagingOfArray} from "../../utils/methods";
-import {isOpenImageModal, putImageResourceToForm} from "../../actions/imageResourceForm";
-import {
-    changeImageFilterValue,
-    changeImageLimit,
-    changeImagePage,
-    changeImageSort,
-    changeImageView,
-    deleteImageResource
-} from "../../actions/imageResourceComponent";
-
-const mapStateToProps = (state) => {
-
-    const {data: images, count} = filteringSortingPagingOfArray(state.images.imageList,
-        {
-            pagination: state.images.pagination,
-            sorting: state.images.sorting,
-            filters: state.images.filters
-        }
-    );
-
-    return {
-        count,
-        images,
-        view: state.images.view,
-        pagination: state.images.pagination,
-        sorting: state.images.sorting,
-        filters: state.images.filters
-    };
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onDelete: (id) => dispatch(deleteImageResource(id)),
-        onChangeImagePage: (page) => dispatch(changeImagePage(page)),
-        onChangeImageLimit: (limit) => dispatch(changeImageLimit(limit)),
-        onChangeImageSort: (field) => dispatch(changeImageSort(field)),
-        onClickChangeImageView: (view) => dispatch(changeImageView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenImageModal(isOpen)),
-        onChangeImageFilterValue: (props) => dispatch(changeImageFilterValue(props)),
-        onClickPutImageResourceToForm: (props) => dispatch(putImageResourceToForm(props)),
-    }
-}
+import { GRID, TABLE } from "../../utils/constants";
 
 const Images = ({
                     images, count, onDelete, onChangeIsOpen, onClickPutImageResourceToForm,
                     view, onClickChangeImageView, pagination, onChangeImagePage, onChangeImageLimit,
                     sorting, onChangeImageSort, onChangeDirection, onChangeImageFilterValue
                 }) => {
-
-    const {page, limit} = pagination;
+    const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
+    const handleView = () => view === TABLE ? onClickChangeImageView(GRID) : onClickChangeImageView(TABLE);
+
     const handleChangeImagePage = (event, newPage) => onChangeImagePage(newPage);
-    const handleLimit = (event) => onChangeImageLimit(parseInt(event.target.value, 10));
-    const handleView = () => view === "table" ? onClickChangeImageView("grid") : onClickChangeImageView("table");
+    const handleChangeImageLimit = (event) => onChangeImageLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -74,7 +32,7 @@ const Images = ({
                 </linearGradient>
             </defs>
             {React.cloneElement(svgProps.children[0], {
-                fill: 'url(#gradient1)',
+                fill: "url(#gradient1)"
             })}
         </svg>
     );
@@ -98,7 +56,7 @@ const Images = ({
 
                     <Grid item xs={4}>
                         <TablePagination
-                            style={{color: "#cfeaff"}}
+                            style={{ color: "#cfeaff" }}
                             component="div"
                             color="primary"
                             colSpan={6}
@@ -107,14 +65,14 @@ const Images = ({
                             rowsPerPage={limit}
                             rowsPerPageOptions={[4, 8, 12, 16, 20, 40, 60, 80, 100]}
                             onChangePage={handleChangeImagePage}
-                            onChangeRowsPerPage={handleLimit}
+                            onChangeRowsPerPage={handleChangeImageLimit}
                         />
                     </Grid>
 
                     <Grid item xs={1}/>
 
                     {
-                        view === "grid" ?
+                        view === GRID ?
                             <>
                                 <Grid item xs={1}>
                                     <IconButton onClick={handleView}>
@@ -170,6 +128,37 @@ const Images = ({
             </Container>
         </div>
     );
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Images);
+Images.propTypes = {
+    images: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    count: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired,
+    onClickPutImageResourceToForm: PropTypes.func.isRequired,
+    view: PropTypes.string.isRequired,
+    onClickChangeImageView: PropTypes.func.isRequired,
+    pagination: PropTypes.shape({
+            page: PropTypes.number.isRequired,
+            limit: PropTypes.number.isRequired
+        }
+    ).isRequired,
+    onChangeImagePage: PropTypes.func.isRequired,
+    onChangeImageLimit: PropTypes.func.isRequired,
+    sorting: PropTypes.shape({
+            field: PropTypes.string.isRequired,
+            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+        }
+    ).isRequired,
+    onChangeImageSort: PropTypes.func.isRequired,
+    onChangeDirection: PropTypes.func,
+    onChangeImageFilterValue: PropTypes.func.isRequired
+};
+
+export default Images;

@@ -1,7 +1,7 @@
 import React from "react";
 import ImageResourceTable from "./index";
-import {ThemeProvider} from "@material-ui/core/styles";
-import {theme} from "../../utils/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "../../utils/theme";
 
 export default {
     title: "Images/ImageResourceTable",

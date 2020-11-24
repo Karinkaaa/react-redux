@@ -23,7 +23,7 @@ export const isOpenAnimationModal = (isOpen) => ({
     isOpen
 });
 
-export const putAnimationResourceToForm = ({id, name, urls}) => ({
+export const putAnimationResourceToForm = ({ id, name, urls }) => ({
     type: PUT_ANIMATION_RESOURCE_TO_FORM,
     id,
     name,

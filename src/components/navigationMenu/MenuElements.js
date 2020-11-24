@@ -1,6 +1,6 @@
 import React from "react";
-import {BurstMode, Error, GroupWork, Info, PhotoLibrary, ViewCarousel, Visibility} from "@material-ui/icons";
-import {ANIMATIONS, DRUMS, IMAGES, INFO, RULES, UI} from "../../utils/links";
+import { BurstMode, Error, GroupWork, Info, PhotoLibrary, ViewCarousel, Visibility } from "@material-ui/icons";
+import { ANIMATIONS, DRUMS, IMAGES, INFO, RULES, UI } from "../../utils/links";
 
 export const MenuElements = [
     {
@@ -22,21 +22,21 @@ export const MenuElements = [
     {
         name: "Drums",
         Icon: () => <GroupWork/>,
-        link: DRUMS,
+        link: DRUMS
     },
     {
         name: "Rules",
         Icon: () => <Error/>,
-        link: RULES,
+        link: RULES
     },
     {
         name: "UI",
         Icon: () => <Visibility/>,
-        link: UI,
+        link: UI
     },
     {
         name: "Info",
         Icon: () => <Info/>,
-        link: INFO,
+        link: INFO
     }
 ];

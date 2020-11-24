@@ -1,10 +1,10 @@
 import React from "react";
 import NavigationMenu from "./";
-import {CloudDownload} from "@material-ui/icons";
-import {BrowserRouter} from "react-router-dom";
-import {Container} from "@material-ui/core";
-import {MuiThemeProvider} from "material-ui";
-import {theme} from "../../utils/theme";
+import { CloudDownload } from "@material-ui/icons";
+import { BrowserRouter } from "react-router-dom";
+import { Container } from "@material-ui/core";
+import { MuiThemeProvider } from "material-ui";
+import { theme } from "../../utils/theme";
 
 export default {
     title: 'Example/NavigationMenu',

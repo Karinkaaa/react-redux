@@ -5,8 +5,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
-import {Button} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -107,7 +107,7 @@ const ImageResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                id ? onUpdate({id, name, url}) : onSave({id, name, url});
+                                id ? onUpdate({ id, name, url }) : onSave({ id, name, url });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}

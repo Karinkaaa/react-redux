@@ -48,6 +48,6 @@ const themeObj = {
         "pickerHeaderColor": "rgba(255,255,255,0.12)",
         "clockCircleColor": "rgba(255,255,255,0.12)"
     }
-}
+};
 
 export const theme = createMuiTheme(themeObj);

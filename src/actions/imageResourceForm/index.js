@@ -20,7 +20,7 @@ export const isOpenImageModal = (isOpen) => ({
     isOpen
 });
 
-export const putImageResourceToForm = ({id, name, url}) => ({
+export const putImageResourceToForm = ({ id, name, url }) => ({
     type: PUT_IMAGE_RESOURCE_TO_FORM,
     id,
     name,

@@ -1,7 +1,7 @@
 import React from "react";
 import ImageResourceForm from "../imageResourceForm";
-import {MuiThemeProvider} from "material-ui";
-import {theme} from "../../utils/theme";
+import { MuiThemeProvider } from "material-ui";
+import { theme } from "../../utils/theme";
 
 export default {
     title: 'Images/imageResourceForm',

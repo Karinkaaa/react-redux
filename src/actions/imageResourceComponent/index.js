@@ -9,7 +9,7 @@ import {
     UPDATE_IMAGE_RESOURCE
 } from "../../utils/constants";
 
-export const addImageResource = ({id, name, url}) => ({
+export const addImageResource = ({ id, name, url }) => ({
     type: ADD_IMAGE_RESOURCE,
     id,
     name,
@@ -21,7 +21,7 @@ export const deleteImageResource = (id) => ({
     id
 });
 
-export const updateImageResource = ({id, name, url}) => ({
+export const updateImageResource = ({ id, name, url }) => ({
     type: UPDATE_IMAGE_RESOURCE,
     id,
     name,
@@ -48,7 +48,7 @@ export const changeImageSort = (field) => ({
     field
 });
 
-export const changeImageFilterValue = ({filterKey, filterValue}) => ({
+export const changeImageFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_IMAGE_FILTER_VALUE,
     filterKey,
     filterValue

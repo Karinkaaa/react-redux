@@ -1,37 +1,37 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {withRouter} from "react-router-dom";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Link, withRouter } from "react-router-dom";
 import Collapse from "@material-ui/core/Collapse";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import {ExpandLess, ExpandMore} from "@material-ui/icons";
+import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import NavigationMenu from "./index";
 
 const useStyles = makeStyles((theme) => ({
     icon: {
-        color: theme.palette.update3Color,
+        color: theme.palette.update3Color
     },
     link: {
         textDecoration: "none",
-        color: theme.palette.primary3Color,
+        color: theme.palette.primary3Color
     },
     collapseBtn: {
-        paddingLeft: 30,
-    },
+        paddingLeft: 30
+    }
 }));
 
 const StyledListItem = withStyles({
     root: {
         "&.Mui-selected": {
-            background: "linear-gradient(to right, slateblue, cornflowerblue, deepskyblue)",
+            background: "linear-gradient(to right, slateblue, cornflowerblue, deepskyblue)"
         }
-    },
+    }
 })(ListItem);
 
-const WrapLink = ({link, children}) => {
+const WrapLink = ({ link, children }) => {
     const classes = useStyles();
 
     return link ?
@@ -42,16 +42,13 @@ const WrapLink = ({link, children}) => {
         <div>
             {children}
         </div>;
-}
+};
 
-export default withRouter(({name, Icon, link, children}) => {
-
+const NavigationMenuElement = withRouter(({ name, Icon, link, children }) => {
         const classes = useStyles();
         const [open, setOpen] = useState(false);
 
-        const handleClick = () => {
-            setOpen(!open);
-        };
+        const handleClick = () => setOpen(!open);
 
         return (
             <>
@@ -79,6 +76,21 @@ export default withRouter(({name, Icon, link, children}) => {
                     )
                 }
             </>
-        )
+        );
     }
-)
+);
+
+NavigationMenuElement.propTypes = {
+    name: PropTypes.string.isRequired,
+    Icon: PropTypes.func.isRequired,
+    link: PropTypes.string,
+    children: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            Icon: PropTypes.func.isRequired,
+            link: PropTypes.string
+        })
+    )
+};
+
+export default NavigationMenuElement;

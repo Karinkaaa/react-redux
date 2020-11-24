@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import ConfirmMenu from "../confirmMenu";
 import AnimationTableHead from "./AnimationTableHead";
 import AnimationTableBody from "./AnimationTableBody";
@@ -9,8 +9,8 @@ import AnimationTableBody from "./AnimationTableBody";
 const useStyles = makeStyles(theme => ({
     content: {
         marginTop: 75,
-        background: theme.palette.blueGrey1Color,
-    },
+        background: theme.palette.blueGrey1Color
+    }
 }));
 
 const AnimationResourceTable = ({
@@ -18,7 +18,6 @@ const AnimationResourceTable = ({
                                     onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
                                     onDeleteNestedImage, onDragAndDrop
                                 }) => {
-
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -47,13 +46,13 @@ const AnimationResourceTable = ({
                 onAccept={onDelete}
             />
         </Grid>
-    )
-}
+    );
+};
 
 AnimationResourceTable.propTypes = {
     animations: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.string,
+            id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.array.isRequired
         })
@@ -68,6 +67,8 @@ AnimationResourceTable.propTypes = {
     onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
     onChangeAnimationFilterValue: PropTypes.func.isRequired,
-}
+    onDeleteNestedImage: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired
+};
 
-export default AnimationResourceTable
+export default AnimationResourceTable;

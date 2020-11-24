@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import {BrowserRouter} from "react-router-dom";
-import {Container} from "@material-ui/core";
-import {MuiThemeProvider} from "material-ui";
-import {theme} from "../../utils/theme";
+import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Container } from "@material-ui/core";
+import { MuiThemeProvider } from "material-ui";
+import { theme } from "../../utils/theme";
 import DragDropComponent from "./DragDropComponent";
 
 export default {
@@ -71,11 +71,11 @@ Primary3.args = {
         {item}
         <button onClick={() => console.log("onClickBtn", item)}>btn</button>
     </div>,
-    items: [ "1Boos", "2Boos", "3Boos", "4Boos" ]
+    items: ["1Boos", "2Boos", "3Boos", "4Boos"]
 };
 
 export const Demo = (args) => {
-    const [items, setItems]=useState([
+    const [items, setItems] = useState([
         {
             id: "1",
             name: "Boos",
@@ -103,7 +103,8 @@ export const Demo = (args) => {
         <MuiThemeProvider theme={theme}>
             <BrowserRouter>
                 <Container maxWidth="xs">
-                    <DragDropComponent items={items} renderItem={renderItem} onDragAndDrop={(newItems) => setItems(newItems)} />
+                    <DragDropComponent items={items} renderItem={renderItem}
+                                       onDragAndDrop={(newItems) => setItems(newItems)}/>
                 </Container>
             </BrowserRouter>
         </MuiThemeProvider>

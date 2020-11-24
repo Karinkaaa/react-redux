@@ -1,40 +1,38 @@
 import React from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {Check, Close} from "@material-ui/icons";
-import {makeStyles} from "@material-ui/core/styles";
+import { Check, Close } from "@material-ui/icons";
+import PropTypes from "prop-types";
 
-const useStyles = makeStyles({
-    root: {
-        display: 'flex',
-    }
-});
+const ConfirmMenu = ({ anchorEl, handleClose, onAccept }) => (
+    <Menu
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        id="menu-list-grow"
+        onClose={handleClose}
+        variant="selectedMenu"
+    >
+        <div style={{ display: "flex" }}>
+            <MenuItem onClick={handleClose}>
+                <Close color="secondary"/>
+            </MenuItem>
 
-export default ({anchorEl, handleClose, onAccept}) => {
-    const classes = useStyles();
+            <MenuItem
+                onClick={() => {
+                    onAccept(anchorEl.dataset.id);
+                    handleClose();
+                }}
+            >
+                <Check color="primary"/>
+            </MenuItem>
+        </div>
+    </Menu>
+);
 
-    return (
-        <Menu
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-            id="menu-list-grow"
-            onClose={handleClose}
-            variant="selectedMenu"
-        >
-            <div className={classes.root}>
-                <MenuItem onClick={handleClose}>
-                    <Close color="secondary"/>
-                </MenuItem>
+ConfirmMenu.propTypes = {
+    anchorEl: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    onAccept: PropTypes.func.isRequired
+};
 
-                <MenuItem
-                    onClick={() => {
-                        onAccept(anchorEl.dataset.id);
-                        handleClose();
-                    }}
-                >
-                    <Check color="primary"/>
-                </MenuItem>
-            </div>
-        </Menu>
-    )
-}
+export default ConfirmMenu;

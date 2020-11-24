@@ -1,5 +1,6 @@
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import AnimationResourceForm from "../../components/animationResourceForm";
+import { addAnimationResource, updateAnimationResource } from "../../actions/animationResourceComponent";
 import {
     addImageResourceToAnimation,
     deleteImageFromAnimationForm,
@@ -7,7 +8,6 @@ import {
     updateAnimationName,
     updateAnimationUrl
 } from "../../actions/animationResourceForm";
-import {addAnimationResource, updateAnimationResource} from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
         urls: state.createAnimationForm.urls,
         isValidUrls: state.createAnimationForm.isValidUrls,
         isOpen: state.createAnimationForm.isOpen
-    }
-}
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -28,8 +28,8 @@ const mapDispatchToProps = (dispatch) => {
         onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
         onUpdate: (props) => dispatch(updateAnimationResource(props)),
         onDeleteImage: (index) => dispatch(deleteImageFromAnimationForm(index)),
-        onAddImage: (url) => dispatch(addImageResourceToAnimation(url)),
-    }
-}
+        onAddImage: (url) => dispatch(addImageResourceToAnimation(url))
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnimationResourceForm);

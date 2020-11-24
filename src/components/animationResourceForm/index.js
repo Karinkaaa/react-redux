@@ -1,29 +1,29 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
-import {Button} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import {Add, Remove} from "@material-ui/icons";
-import {makeStyles} from "@material-ui/core/styles";
+import { Add, Remove } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     },
     paper: {
-        position: 'absolute',
+        position: "absolute",
         width: 500,
         background: "lightblue",
-        border: '3px solid #1e88e5',
+        border: "3px solid #1e88e5",
         boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 8),
-        borderRadius: "3px",
+        borderRadius: "3px"
     },
     grid: {
         whiteSpace: "noWrap"
@@ -42,7 +42,6 @@ const AnimationResourceForm = ({
                                    urls, isValidUrls, onChangeUrl,
                                    isOpen, onChangeIsOpen
                                }) => {
-
     const classes = useStyles();
     const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
 
@@ -53,15 +52,12 @@ const AnimationResourceForm = ({
 
     const handleChange = (e) => {
         setUrl(e.target.value);
-        console.log("handleChange: ", url);
-    }
+    };
 
     const handleClick = () => {
-        console.log("handleClickAdd: ", url);
         onAddImage(url);
         setUrl("");
-        console.log("url after adding: ", url);
-    }
+    };
 
     return (
         <Modal
@@ -71,7 +67,7 @@ const AnimationResourceForm = ({
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
-                timeout: 500,
+                timeout: 500
             }}
         >
             <Fade in={isOpen}>
@@ -164,7 +160,7 @@ const AnimationResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                id ? onUpdate({id, name, urls}) : onSave({id, name, urls});
+                                id ? onUpdate({ id, name, urls }) : onSave({ id, name, urls });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}
@@ -177,12 +173,15 @@ const AnimationResourceForm = ({
                 </Grid>
             </Fade>
         </Modal>
-    )
-}
+    );
+};
 
 AnimationResourceForm.propTypes = {
-
     onSave: PropTypes.func.isRequired,
+    onDeleteImage: PropTypes.func.isRequired,
+    onAddImage: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     isValidName: PropTypes.bool.isRequired,
     onChangeName: PropTypes.func.isRequired,
@@ -191,6 +190,6 @@ AnimationResourceForm.propTypes = {
     onChangeUrl: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired
-}
+};
 
-export default AnimationResourceForm
+export default AnimationResourceForm;

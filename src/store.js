@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import { combineReducers, createStore } from "redux";
 import images from "./reducers/imagesPage";
 import createImageForm from "./reducers/imageResourceForm";
 import animations from "./reducers/animationsPage";

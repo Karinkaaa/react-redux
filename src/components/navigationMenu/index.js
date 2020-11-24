@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import List from "@material-ui/core/List";
 import NavigationMenuElement from "./NavigationMenuElement";
 
-const NavigationMenu = ({items}) => (
+const NavigationMenu = ({ items }) => (
     <List>
         {
             items
@@ -15,10 +15,14 @@ const NavigationMenu = ({items}) => (
                 )
         }
     </List>
-)
+);
 
 NavigationMenu.propTypes = {
-    items: PropTypes.array.isRequired
-}
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired
+        })
+    ).isRequired
+};
 
-export default NavigationMenu
+export default NavigationMenu;
