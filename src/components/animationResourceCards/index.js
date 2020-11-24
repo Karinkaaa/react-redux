@@ -18,7 +18,6 @@ const AnimationResourceCards = ({ animations, onDelete, onChangeIsOpen, onClickP
                                 id={id}
                                 name={name}
                                 urls={urls}
-                                animations={animations}
                                 setAnchorEl={setAnchorEl}
                                 onChangeIsOpen={onChangeIsOpen}
                                 onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}

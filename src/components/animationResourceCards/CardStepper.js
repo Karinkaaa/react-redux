@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import MobileStepper from "@material-ui/core/MobileStepper";
-import { CardActionArea } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import useTheme from "@material-ui/core/styles/useTheme";
@@ -25,9 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const CardStepper = ({ urls, maxSteps }) => {
+const CardStepper = ({ urls }) => {
     const classes = useStyles();
     const theme = useTheme();
+
+    const maxSteps = urls.length;
 
     const [activeStep, setActiveStep] = React.useState(0);
     const handleStepChange = (step) => setActiveStep(step);
@@ -36,7 +37,7 @@ const CardStepper = ({ urls, maxSteps }) => {
     const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
     return (
-        <CardActionArea>
+        <>
             <AutoPlaySwipeableViews
                 axis={theme.direction === "rtl" ? "x-reverse" : "x"}
                 index={activeStep}
@@ -61,8 +62,7 @@ const CardStepper = ({ urls, maxSteps }) => {
                 variant="text"
                 activeStep={activeStep}
                 nextButton={
-                    <IconButton size="small" onClick={handleNext}
-                                disabled={activeStep === maxSteps - 1}>
+                    <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
                         <ArrowForwardIos/>
                     </IconButton>
                 }
@@ -72,13 +72,12 @@ const CardStepper = ({ urls, maxSteps }) => {
                     </IconButton>
                 }
             />
-        </CardActionArea>
+        </>
     );
 };
 
 CardStepper.propTypes = {
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    maxSteps: PropTypes.number.isRequired
+    urls: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default CardStepper;

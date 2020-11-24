@@ -43,7 +43,7 @@ const Animations = ({
             <Toolbar/>
             <Container>
                 <Grid container>
-                    <Grid item xs={6}>
+                    <Grid item xs={5}>
                         <Button
                             variant="contained"
                             color="primary"
@@ -55,7 +55,7 @@ const Animations = ({
                         </Button>
                     </Grid>
 
-                    <Grid item xs={4}>
+                    <Grid item xs={5}>
                         <TablePagination
                             style={{ color: "#cfeaff" }}
                             component="div"

@@ -30,11 +30,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AnimationCard = ({
-                           id, name, urls, animations, setAnchorEl,
+                           id, name, urls, setAnchorEl,
                            onChangeIsOpen, onClickPutAnimationResourceToForm
                        }) => {
     const classes = useStyles();
-    const maxSteps = animations.length;
 
     const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
@@ -43,7 +42,6 @@ const AnimationCard = ({
         <Card className={classes.root}>
             <CardStepper
                 urls={urls}
-                maxSteps={maxSteps}
             />
 
             <CardContent>
@@ -78,13 +76,6 @@ AnimationCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    animations: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
-    ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutAnimationResourceToForm: PropTypes.func.isRequired
