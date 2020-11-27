@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AnimationTableRow = ({
-                               id, name, urls, handleOpen, handleToggle, onDragAndDrop,
+                               id, name, urls, speed, handleOpen, handleToggle, onDragAndDrop,
                                onClickPutAnimationResourceToForm, onDeleteNestedImage
                            }) => {
     const classes = useStyles();
@@ -56,15 +56,15 @@ const AnimationTableRow = ({
             </Grid>
 
             <Grid item xs={2} className={classes.gridItem}>{id}</Grid>
-
-            <Grid item xs={5} className={classes.gridItem}>{name}</Grid>
+            <Grid item xs={3} className={classes.gridItem}>{name}</Grid>
+            <Grid item xs={2} className={classes.gridItem}>{speed}</Grid>
 
             <Grid item xs={1}>
                 <IconButton
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutAnimationResourceToForm({ id, name, urls });
+                        onClickPutAnimationResourceToForm({ id, name, urls, speed });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -95,6 +95,7 @@ AnimationTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    speed: PropTypes.number.isRequired,
     handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired,

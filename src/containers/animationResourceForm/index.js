@@ -6,12 +6,14 @@ import {
     deleteImageFromAnimationForm,
     isOpenAnimationModal,
     updateAnimationName,
+    updateAnimationSpeed,
     updateAnimationUrl
 } from "../../actions/animationResourceForm";
 
 const mapStateToProps = (state) => {
     return {
         id: state.createAnimationForm.id,
+        speed: state.createAnimationForm.speed,
         name: state.createAnimationForm.name,
         isValidName: state.createAnimationForm.isValidName,
         urls: state.createAnimationForm.urls,
@@ -22,6 +24,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onChangeSpeed: (speed) => dispatch(updateAnimationSpeed(speed)),
         onChangeName: (name) => dispatch(updateAnimationName(name)),
         onChangeUrl: (index, url) => dispatch(updateAnimationUrl(index, url)),
         onSave: (props) => dispatch(addAnimationResource(props)),

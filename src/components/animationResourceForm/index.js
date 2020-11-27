@@ -11,6 +11,7 @@ import { Add, Remove } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { isValidImageUrl } from "../../utils/validation";
+import AnimationSpeed from "./AnimationSpeed";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -45,19 +46,20 @@ const useStyles = makeStyles((theme) => ({
 
 const AnimationResourceForm = ({
                                    onSave, onDeleteImage, onAddImage, onUpdate, id,
+                                   speed, onChangeSpeed,
                                    name, isValidName, onChangeName,
                                    urls, isValidUrls, onChangeUrl,
                                    isOpen, onChangeIsOpen
                                }) => {
     const classes = useStyles();
+
     const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
-
     const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName || urls.length === 0;
 
+    const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName || urls.length === 0 || speed === 0;
     const [url, setUrl] = useState("");
-    const isValidUrl = isValidImageUrl(url);
 
+    const isValidUrl = isValidImageUrl(url);
     const handleClickAdd = () => {
         onAddImage(url);
         setUrl("");
@@ -76,6 +78,24 @@ const AnimationResourceForm = ({
         >
             <Fade in={isOpen}>
                 <Grid container spacing={3} className={classes.paper}>
+                    <Grid item xs={12}>
+                        <AnimationSpeed
+                            speed={speed}
+                            onChangeSpeed={onChangeSpeed}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Speed"
+                            variant="outlined"
+                            value={speed}
+                            required
+                            fullWidth
+                            disabled
+                        />
+                    </Grid>
+
                     {
                         id && (
                             <Grid item xs={12}>
@@ -183,7 +203,7 @@ const AnimationResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                id ? onUpdate({ id, name, urls }) : onSave({ id, name, urls });
+                                id ? onUpdate({ id, name, urls, speed }) : onSave({ id, name, urls, speed });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}
@@ -205,6 +225,8 @@ AnimationResourceForm.propTypes = {
     onAddImage: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
+    speed: PropTypes.number.isRequired,
+    onChangeSpeed: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     isValidName: PropTypes.bool.isRequired,
     onChangeName: PropTypes.func.isRequired,

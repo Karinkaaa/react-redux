@@ -4,12 +4,18 @@ import {
     IS_OPEN_ANIMATION_MODAL,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
+    UPDATE_ANIMATION_SPEED,
     UPDATE_ANIMATION_URL
-} from "../../utils/constants";
+} from "../../utils/actionConstants";
 
 export const updateAnimationName = (name) => ({
     type: UPDATE_ANIMATION_NAME,
     name
+});
+
+export const updateAnimationSpeed = (speed) => ({
+    type: UPDATE_ANIMATION_SPEED,
+    speed
 });
 
 export const updateAnimationUrl = (index, url) => ({
@@ -23,11 +29,12 @@ export const isOpenAnimationModal = (isOpen) => ({
     isOpen
 });
 
-export const putAnimationResourceToForm = ({ id, name, urls }) => ({
+export const putAnimationResourceToForm = ({ id, name, urls, speed }) => ({
     type: PUT_ANIMATION_RESOURCE_TO_FORM,
     id,
     name,
-    urls
+    urls,
+    speed
 });
 
 export const deleteImageFromAnimationForm = (index) => ({

@@ -1,13 +1,15 @@
 import { isValidImageUrl, isValidName } from "../../utils/validation";
 import { removeItemByIndex } from "../../utils/methods";
+import { INITIAL_SPEED } from "../../utils/constants";
 import {
     ADD_IMAGE_RESOURCE_TO_ANIMATION,
     DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
     IS_OPEN_ANIMATION_MODAL,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
+    UPDATE_ANIMATION_SPEED,
     UPDATE_ANIMATION_URL
-} from "../../utils/constants";
+} from "../../utils/actionConstants";
 
 const initialState = {
     id: "",
@@ -15,6 +17,7 @@ const initialState = {
     isValidName: false,
     urls: [],
     isValidUrls: [],
+    speed: INITIAL_SPEED,
     isOpen: false
 };
 
@@ -31,6 +34,7 @@ export default (state = initialState, action) => {
                 isValidName: false,
                 urls: [],
                 isValidUrls: [],
+                speed: INITIAL_SPEED,
                 isOpen: isOpen
             };
         }
@@ -41,6 +45,12 @@ export default (state = initialState, action) => {
                 ...state,
                 name,
                 isValidName: isValidName(name)
+            };
+        }
+        case UPDATE_ANIMATION_SPEED: {
+            return {
+                ...state,
+                speed: action.speed
             };
         }
         case UPDATE_ANIMATION_URL: {
@@ -60,7 +70,7 @@ export default (state = initialState, action) => {
             };
         }
         case PUT_ANIMATION_RESOURCE_TO_FORM: {
-            const { id, name, urls } = action;
+            const { id, name, urls, speed } = action;
 
             return {
                 ...state,
@@ -68,7 +78,8 @@ export default (state = initialState, action) => {
                 name,
                 isValidName: isValidName(name),
                 urls,
-                isValidUrls: urls.map(url => isValidImageUrl(url))
+                isValidUrls: urls.map(url => isValidImageUrl(url)),
+                speed
             };
         }
         case DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM: {

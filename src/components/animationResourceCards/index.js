@@ -12,12 +12,13 @@ const AnimationResourceCards = ({ animations, onDelete, onChangeIsOpen, onClickP
         <Grid container spacing={5} style={{ marginTop: 50 }}>
             {
                 animations
-                    .map(({ id, name, urls }) =>
+                    .map(({ id, name, urls, speed }) =>
                         <Grid key={id} item sm={3}>
                             <AnimationCard
                                 id={id}
                                 name={name}
                                 urls={urls}
+                                speed={speed}
                                 setAnchorEl={setAnchorEl}
                                 onChangeIsOpen={onChangeIsOpen}
                                 onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}

@@ -82,7 +82,7 @@ const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationF
                 </div>
             </Grid>
 
-            <Grid item className={classes.headCell} style={{ paddingLeft: 15 }}>
+            <Grid item xs={3} className={classes.headCell} style={{ paddingLeft: 15 }}>
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
@@ -106,6 +106,10 @@ const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationF
                         })}
                     />
                 </div>
+            </Grid>
+
+            <Grid item className={classes.headCell} style={{ paddingLeft: 30 }}>
+                Speed
             </Grid>
         </Grid>
     );

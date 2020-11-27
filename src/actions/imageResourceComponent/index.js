@@ -7,7 +7,7 @@ import {
     CHANGE_IMAGE_VIEW,
     DELETE_IMAGE_RESOURCE,
     UPDATE_IMAGE_RESOURCE
-} from "../../utils/constants";
+} from "../../utils/actionConstants";
 
 export const addImageResource = ({ id, name, url }) => ({
     type: ADD_IMAGE_RESOURCE,

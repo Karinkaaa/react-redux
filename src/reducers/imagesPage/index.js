@@ -1,5 +1,6 @@
 import uuid from "react-uuid";
 import { getAvailableCurrentPage, removeItemById, saveItemTo } from "../../utils/methods";
+import { TABLE } from "../../utils/constants";
 import {
     ADD_IMAGE_RESOURCE,
     CHANGE_IMAGE_FILTER_VALUE,
@@ -8,9 +9,8 @@ import {
     CHANGE_IMAGE_SORT,
     CHANGE_IMAGE_VIEW,
     DELETE_IMAGE_RESOURCE,
-    TABLE,
     UPDATE_IMAGE_RESOURCE
-} from "../../utils/constants";
+} from "../../utils/actionConstants";
 
 const initialState = {
     imageList: [

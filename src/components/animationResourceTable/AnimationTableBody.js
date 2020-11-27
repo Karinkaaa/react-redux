@@ -13,12 +13,13 @@ const AnimationTableBody = ({
     return (
         <Grid item xs={12}>
             {
-                animations.map(({ id, name, urls }) =>
+                animations.map(({ id, name, urls, speed }) =>
                     <AnimationTableRow
                         key={id}
                         id={id}
                         name={name}
                         urls={urls}
+                        speed={speed}
                         handleOpen={handleOpen}
                         handleToggle={handleToggle}
                         onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}

@@ -3,7 +3,7 @@ import {
     PUT_IMAGE_RESOURCE_TO_FORM,
     UPDATE_IMAGE_NAME,
     UPDATE_IMAGE_URL
-} from "../../utils/constants";
+} from "../../utils/actionConstants";
 
 export const updateImageName = (name) => ({
     type: UPDATE_IMAGE_NAME,

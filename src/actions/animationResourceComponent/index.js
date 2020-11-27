@@ -9,13 +9,14 @@ import {
     DELETE_NESTED_IMAGE_RESOURCE,
     DRAG_AND_DROP,
     UPDATE_ANIMATION_RESOURCE
-} from "../../utils/constants";
+} from "../../utils/actionConstants";
 
-export const addAnimationResource = ({ id, name, urls }) => ({
+export const addAnimationResource = ({ id, name, urls, speed }) => ({
     type: ADD_ANIMATION_RESOURCE,
     id,
     name,
-    urls
+    urls,
+    speed
 });
 
 export const deleteAnimationResource = (id) => ({
@@ -23,11 +24,12 @@ export const deleteAnimationResource = (id) => ({
     id
 });
 
-export const updateAnimationResource = ({ id, name, urls }) => ({
+export const updateAnimationResource = ({ id, name, urls, speed }) => ({
     type: UPDATE_ANIMATION_RESOURCE,
     id,
     name,
-    urls
+    urls,
+    speed
 });
 
 export const changeAnimationView = (view) => ({
