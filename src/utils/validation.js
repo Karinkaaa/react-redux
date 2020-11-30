@@ -8,3 +8,8 @@ export function isValidImageUrl(url) {
     const patternURL = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/;
     return patternBase64.test(url) || patternURL.test(url);
 }
+
+export function isValidJsonUrl(url) {
+    const patternJson = /\b((http|https):\/\/?)[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/?).json)/;
+    return patternJson.test(url);
+}

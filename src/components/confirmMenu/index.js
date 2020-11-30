@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Check, Close } from "@material-ui/icons";
-import PropTypes from "prop-types";
 
 const ConfirmMenu = ({ anchorEl, handleClose, onAccept }) => (
     <Menu
@@ -30,7 +30,7 @@ const ConfirmMenu = ({ anchorEl, handleClose, onAccept }) => (
 );
 
 ConfirmMenu.propTypes = {
-    anchorEl: PropTypes.bool.isRequired,
+    anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     handleClose: PropTypes.func.isRequired,
     onAccept: PropTypes.func.isRequired
 };

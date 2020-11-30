@@ -25,16 +25,19 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ImageResourceForm = ({
-                               onSave, onUpdate, id,
-                               name, isValidName, onChangeName,
-                               url, isValidUrl, onChangeUrl,
-                               isOpen, onChangeIsOpen
-                           }) => {
+const DragonBonesResourceForm = ({
+                                     onSave, onUpdate, id,
+                                     name, isValidName, onChangeName,
+                                     texture, isValidTexture, onChangeTexture,
+                                     textureJson, isValidTextureJson, onChangeTextureJson,
+                                     skeleton, isValidSkeleton, onChangeSkeleton,
+                                     isOpen, onChangeIsOpen
+                                 }) => {
+
     const classes = useStyles();
 
     const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !isValidUrl || !isValidName;
+    const isDisabledButtonSave = () => !isValidTexture || !isValidName;
 
     return (
         <Modal
@@ -68,7 +71,7 @@ const ImageResourceForm = ({
                     <Grid item xs={12}>
                         <TextField
                             label="Name"
-                            placeholder="Enter the name of image resource"
+                            placeholder="Enter the name of dragon bones resource"
                             variant="outlined"
                             value={name}
                             required
@@ -80,14 +83,40 @@ const ImageResourceForm = ({
 
                     <Grid item xs={12}>
                         <TextField
-                            label="URL"
-                            placeholder="Enter the URL of image resource"
+                            label="Texture URL"
+                            placeholder="Enter the texture URL of dragon bones resource"
                             variant="outlined"
-                            value={url}
+                            value={texture}
                             required
                             fullWidth
-                            error={!isValidUrl}
-                            onChange={e => onChangeUrl(e.target.value)}
+                            error={!isValidTexture}
+                            onChange={e => onChangeTexture(e.target.value)}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Texture JSON"
+                            placeholder="Enter the texture data of dragon bones resource"
+                            variant="outlined"
+                            value={textureJson}
+                            required
+                            fullWidth
+                            error={!isValidTextureJson}
+                            onChange={e => onChangeTextureJson(e.target.value)}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Skeleton JSON"
+                            placeholder="Enter the skeleton JSON of dragon bones resource"
+                            variant="outlined"
+                            value={skeleton}
+                            required
+                            fullWidth
+                            error={!isValidSkeleton}
+                            onChange={e => onChangeSkeleton(e.target.value)}
                         />
                     </Grid>
 
@@ -106,7 +135,9 @@ const ImageResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                id ? onUpdate({ id, name, url }) : onSave({ id, name, url });
+                                id
+                                    ? onUpdate({ id, name, texture, textureJson, skeleton })
+                                    : onSave({ id, name, texture, textureJson, skeleton });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}
@@ -122,16 +153,22 @@ const ImageResourceForm = ({
     );
 };
 
-ImageResourceForm.propTypes = {
+DragonBonesResourceForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     isValidName: PropTypes.bool.isRequired,
     onChangeName: PropTypes.func.isRequired,
-    url: PropTypes.string.isRequired,
-    isValidUrl: PropTypes.bool.isRequired,
-    onChangeUrl: PropTypes.func.isRequired,
+    texture: PropTypes.string.isRequired,
+    isValidTexture: PropTypes.bool.isRequired,
+    onChangeTexture: PropTypes.func.isRequired,
+    textureJson: PropTypes.string.isRequired,
+    isValidTextureJson: PropTypes.bool.isRequired,
+    onChangeTextureJson: PropTypes.func.isRequired,
+    skeleton: PropTypes.string.isRequired,
+    isValidSkeleton: PropTypes.bool.isRequired,
+    onChangeSkeleton: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired
 };
 
-export default ImageResourceForm;
+export default DragonBonesResourceForm;

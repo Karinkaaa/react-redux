@@ -1,6 +1,15 @@
 import React from "react";
-import { BurstMode, Error, GroupWork, Info, PhotoLibrary, ViewCarousel, Visibility } from "@material-ui/icons";
-import { ANIMATIONS, DRUMS, IMAGES, INFO, RULES, UI } from "../../utils/links";
+import { ANIMATIONS, DRAGON_BONES, DRUMS, IMAGES, INFO, RULES, UI } from "../../utils/links";
+import {
+    AccessibilityNew,
+    BurstMode,
+    Error,
+    GroupWork,
+    Info,
+    PhotoLibrary,
+    ViewCarousel,
+    Visibility
+} from "@material-ui/icons";
 
 export const MenuElements = [
     {
@@ -16,6 +25,11 @@ export const MenuElements = [
                 name: "Animations",
                 Icon: () => <BurstMode/>,
                 link: ANIMATIONS
+            },
+            {
+                name: "Dragon Bones",
+                Icon: () => <AccessibilityNew/>,
+                link: DRAGON_BONES
             }
         ]
     },
