@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import { Avatar, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import { Delete, Update } from "@material-ui/icons";
+import { Delete, Pause, PlayArrow, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +14,10 @@ const useStyles = makeStyles(theme => ({
     },
     gridItem: {
         overflow: "overlay",
-        padding: "20px 25px"
+        padding: 20
+    },
+    playIcon: {
+        color: theme.palette.primary2Color
     },
     updateIcon: {
         color: theme.palette.success3Color
@@ -35,16 +38,21 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const DragonBonesTableRow = ({
-                                 id, name, texture, textureJson, skeleton,
-                                 handleOpen, handleToggle, onClickPutDragonBonesResourceToForm
-                             }) => {
+const MusicTableRow = ({
+                           id, name, url, currentUrl,
+                           handleOpen, handleToggle, handleClick, onClickPutMusicResourceToForm
+                       }) => {
     const classes = useStyles();
 
     return (
         <Grid container className={classes.grid}>
             <Grid item xs={1} className={classes.gridItem}>
-                <Avatar src={texture}/>
+                <IconButton
+                    className={classes.playIcon}
+                    onClick={handleClick}
+                >
+                    {currentUrl === url ? <Pause/> : <PlayArrow/>}
+                </IconButton>
             </Grid>
 
             <Grid item xs={2} className={classes.gridItem}>
@@ -53,21 +61,15 @@ const DragonBonesTableRow = ({
                 </Typography>
             </Grid>
 
-            <Grid item xs={2} className={classes.gridItem}>
+            <Grid item xs={3} className={classes.gridItem}>
                 <Typography className={classes.typo}>
                     {name}
                 </Typography>
             </Grid>
 
-            <Grid item xs={3} className={classes.gridItem}>
+            <Grid item xs={4} className={classes.gridItem}>
                 <Typography className={classes.typo}>
-                    {textureJson}
-                </Typography>
-            </Grid>
-
-            <Grid item xs={2} className={classes.gridItem}>
-                <Typography className={classes.typo}>
-                    {skeleton}
+                    {url}
                 </Typography>
             </Grid>
 
@@ -76,7 +78,7 @@ const DragonBonesTableRow = ({
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutDragonBonesResourceToForm({ id, name, texture, textureJson, skeleton });
+                        onClickPutMusicResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -95,15 +97,15 @@ const DragonBonesTableRow = ({
     );
 };
 
-DragonBonesTableRow.propTypes = {
+MusicTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    texture: PropTypes.string.isRequired,
-    textureJson: PropTypes.string.isRequired,
-    skeleton: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    currentUrl: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onClickPutDragonBonesResourceToForm: PropTypes.func.isRequired
+    handleClick: PropTypes.func.isRequired,
+    onClickPutMusicResourceToForm: PropTypes.func.isRequired
 };
 
-export default DragonBonesTableRow;
+export default MusicTableRow;

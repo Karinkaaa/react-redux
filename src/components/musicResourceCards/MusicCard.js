@@ -1,25 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardActions, CardContent } from "@material-ui/core";
+import { Card, CardActionArea, CardActions, CardContent, CardMedia } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import CardStepper from "./CardStepper";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: 400,
-        flexGrow: 1,
         backgroundColor: theme.palette.blueGrey1Color,
         color: theme.palette.primary3Color
     },
-    header: {
-        display: "flex",
-        alignItems: "center",
-        height: 50,
-        paddingLeft: theme.spacing(4),
-        backgroundColor: theme.palette.background.default
+    media: {
+        height: 160
     },
     updateIcon: {
         color: theme.palette.success3Color
@@ -29,10 +22,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AnimationCard = ({
-                           id, name, urls, speed, setAnchorEl,
-                           onChangeIsOpen, onClickPutAnimationResourceToForm
-                       }) => {
+const MusicCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutMusicResourceToForm }) => {
     const classes = useStyles();
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -40,22 +30,20 @@ const AnimationCard = ({
 
     return (
         <Card className={classes.root}>
-            <CardStepper
-                urls={urls}
-            />
-
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {name}
-                </Typography>
-            </CardContent>
+            <CardActionArea>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {name}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
 
             <CardActions>
                 <IconButton
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutAnimationResourceToForm({ id, name, urls, speed });
+                        onClickPutMusicResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -72,14 +60,13 @@ const AnimationCard = ({
     );
 };
 
-AnimationCard.propTypes = {
+MusicCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    speed: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAnimationResourceToForm: PropTypes.func.isRequired
+    onClickPutMusicResourceToForm: PropTypes.func.isRequired
 };
 
-export default AnimationCard;
+export default MusicCard;

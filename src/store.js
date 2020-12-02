@@ -5,6 +5,8 @@ import animations from "./reducers/animationsPage";
 import createAnimationForm from "./reducers/animationResourceForm";
 import dragonBones from "./reducers/dragonBonesPage";
 import createDragonBonesForm from "./reducers/dragonBonesResourceForm";
+import music from "./reducers/musicPage";
+import createMusicForm from "./reducers/musicResourceForm";
 
 const reducers = combineReducers({
     images,
@@ -12,7 +14,9 @@ const reducers = combineReducers({
     animations,
     createAnimationForm,
     dragonBones,
-    createDragonBonesForm
+    createDragonBonesForm,
+    music,
+    createMusicForm
 });
 
 const store = createStore(

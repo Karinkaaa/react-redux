@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         padding: "20px 25px"
     },
     updateIcon: {
-        color: theme.palette.update3Color
+        color: theme.palette.success3Color
     },
     deleteIcon: {
         color: theme.palette.delete3Color

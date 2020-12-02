@@ -1,108 +1,82 @@
-import React, { Component } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import React, { useState } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import { Pause, PlayArrow } from "@material-ui/icons";
+import { isPlayed, pause, play, stop } from "../../utils/audioMethods";
 
-// fake data generator
-const getItems = count =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k}`,
-        content: `item ${k}`
-    }));
+const music = [
+    {
+        id: 1,
+        name: "My-Life-Is-Going-On",
+        url: "https://static.muzlo.cc/download/24036/Burak-Yeter-Cecilia-Krull_-_My-Life-Is-Going-On-Burak-Yeter-Remix.mp3"
+    },
+    {
+        id: 7,
+        name: "Tuesday",
+        url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
+    },
+    {
+        id: 3,
+        name: "Gorit",
+        url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
+    }
+];
 
-// a little function to help us with reordering the result
-const reorderItems = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
+const Drums = () => {
+    const [oldUrl, setOldUrl] = useState();
+    const [currentUrl, setCurrentUrl] = useState();
 
-    return result;
+    const handleClick = (url) => {
+        if (oldUrl && oldUrl !== url) {
+            stop(oldUrl);
+            play(url);
+            setCurrentUrl(url);
+        } else if (isPlayed(url)) {
+            pause(url);
+            setCurrentUrl("");
+        } else {
+            play(url);
+            setCurrentUrl(url);
+        }
+        setOldUrl(url);
+
+        // if (audio.currentSrc === url && !audio.paused) {
+        //     audio.pause();
+        //     // setisPlayed({
+        //     //     ...isPlayed,
+        //     //     [url]: true
+        //     // });
+        // } else if (audio.currentSrc === url && audio.paused) {
+        //     audio.play();
+        //     // setisPlayed({
+        //     //     ...isPlayed,
+        //     //     [url]: false
+        //     // });
+        // } else {
+        //     audio.pause();
+        //     audio = new Audio(url);
+        //     audio.play();
+        //     // setisPlayed({
+        //     //     ...isPlayed,
+        //     //     [url]: false
+        //     // });
+        // }
+    };
+
+    return (
+        <div>
+            {
+                music.map(n => (
+                    <IconButton
+                        key={n.id}
+                        onClick={() => handleClick(n.url)}
+                    >
+                        {
+                            currentUrl === n.url ? <Pause/> : <PlayArrow/>
+                        }
+                    </IconButton>
+                ))}
+        </div>
+    );
 };
 
-const grid = 8;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-    // some basic styles to make the items look a bit nicer
-    userSelect: "none",
-    padding: grid * 2,
-    margin: 1,
-
-    // change background colour if dragging
-    background: isDragging ? "darkcyan" : "#335068",
-
-    // styles we need to apply on draggables
-    ...draggableStyle
-});
-
-const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "lightblue" : "lightgrey",
-    padding: 2,
-    width: 500
-});
-
-class Drums extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: getItems(10)
-        };
-        this.onDragAndDrop = this.onDragAndDrop.bind(this);
-    }
-
-    onDragAndDrop(result) {
-        // dropped outside the list
-        if (!result.destination) {
-            return;
-        }
-
-        const items = reorderItems(
-            this.state.items,
-            result.source.index,
-            result.destination.index
-        );
-
-        this.setState({
-            items
-        });
-    }
-
-    // Normally you would want to split things out into separate components.
-    // But in this example everything is just done in one place for simplicity
-    render() {
-        return (
-            <DragDropContext onDragEnd={this.onDragAndDrop}>
-                <Droppable droppableId="droppable">
-                    {(provided, snapshot) => (
-                        <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}
-                        >
-                            {this.state.items.map((item, index) => (
-                                <Draggable key={item.id} draggableId={item.id} index={index}>
-                                    {(provided, snapshot) => (
-                                        <div
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                            style={getItemStyle(
-                                                snapshot.isDragging,
-                                                provided.draggableProps.style
-                                            )}
-                                        >
-                                            {item.content}
-                                            <button onClick={() => console.log("onClickBtn", item.content)}>
-                                                click me
-                                            </button>
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
-        );
-    }
-}
-
-export default Drums
+export default Drums;

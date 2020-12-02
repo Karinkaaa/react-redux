@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         height: 160
     },
     updateIcon: {
-        color: theme.palette.update3Color
+        color: theme.palette.success3Color
     },
     deleteIcon: {
         color: theme.palette.delete3Color
