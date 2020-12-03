@@ -5,23 +5,23 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import { Add, List, ViewModule } from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
-import MusicResourceCards from "../../components/musicResourceCards";
-import MusicResourceTable from "../../components/musicResourceTable";
-import CreateResourceForm from "../../containers/musicResourceForm";
+import AudioResourceCards from "../../components/audioResourceCards";
+import AudioResourceTable from "../../components/audioResourceTable";
+import CreateResourceForm from "../../containers/audioResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
-const Music = ({
-                    music, count, onDelete, onChangeIsOpen, onClickPutMusicResourceToForm,
-                    view, onClickChangeMusicView, pagination, onChangeMusicPage, onChangeMusicLimit,
-                    sorting, onChangeMusicSort, onChangeDirection, onChangeMusicFilterValue
+const Audios = ({
+                    audios, count, onDelete, onChangeIsOpen, onClickPutAudioResourceToForm,
+                    view, onClickChangeAudioView, pagination, onChangeAudioPage, onChangeAudioLimit,
+                    sorting, onChangeAudioSort, onChangeDirection, onChangeAudioFilterValue
                 }) => {
     const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
-    const handleView = () => view === TABLE ? onClickChangeMusicView(GRID) : onClickChangeMusicView(TABLE);
+    const handleView = () => view === TABLE ? onClickChangeAudioView(GRID) : onClickChangeAudioView(TABLE);
 
-    const handleChangeMusicPage = (event, newPage) => onChangeMusicPage(newPage);
-    const handleChangeMusicLimit = (event) => onChangeMusicLimit(parseInt(event.target.value, 10));
+    const handleChangeAudioPage = (event, newPage) => onChangeAudioPage(newPage);
+    const handleChangeAudioLimit = (event) => onChangeAudioLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -50,7 +50,7 @@ const Music = ({
                             startIcon={<Add/>}
                             onClick={handleOpen}
                         >
-                            Add music resource
+                            Add audio resource
                         </Button>
                     </Grid>
 
@@ -64,8 +64,8 @@ const Music = ({
                             count={count}
                             rowsPerPage={limit}
                             rowsPerPageOptions={[4, 8, 12, 16, 20, 40, 60, 80, 100]}
-                            onChangePage={handleChangeMusicPage}
-                            onChangeRowsPerPage={handleChangeMusicLimit}
+                            onChangePage={handleChangeAudioPage}
+                            onChangeRowsPerPage={handleChangeAudioLimit}
                         />
                     </Grid>
 
@@ -86,16 +86,16 @@ const Music = ({
 
                                 <CreateResourceForm/>
 
-                                <MusicResourceCards
-                                    music={music}
+                                <AudioResourceCards
+                                    audios={audios}
                                     count={count}
                                     page={page}
                                     limit={limit}
                                     onDelete={onDelete}
-                                    onChangeMusicPage={onChangeMusicPage}
-                                    onChangeMusicLimit={onChangeMusicLimit}
+                                    onChangeAudioPage={onChangeAudioPage}
+                                    onChangeAudioLimit={onChangeAudioLimit}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutMusicResourceToForm={onClickPutMusicResourceToForm}
+                                    onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
                                 />
                             </>
                             :
@@ -112,15 +112,15 @@ const Music = ({
 
                                 <CreateResourceForm/>
 
-                                <MusicResourceTable
-                                    music={music}
+                                <AudioResourceTable
+                                    audios={audios}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutMusicResourceToForm={onClickPutMusicResourceToForm}
+                                    onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
                                     sorting={sorting}
-                                    onChangeMusicSort={onChangeMusicSort}
+                                    onChangeAudioSort={onChangeAudioSort}
                                     onChangeDirection={onChangeDirection}
-                                    onChangeMusicFilterValue={onChangeMusicFilterValue}
+                                    onChangeAudioFilterValue={onChangeAudioFilterValue}
                                 />
                             </>
                     }
@@ -130,8 +130,8 @@ const Music = ({
     );
 };
 
-Music.propTypes = {
-    music: PropTypes.arrayOf(
+Audio.propTypes = {
+    audios: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
@@ -141,24 +141,24 @@ Music.propTypes = {
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutMusicResourceToForm: PropTypes.func.isRequired,
+    onClickPutAudioResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onClickChangeMusicView: PropTypes.func.isRequired,
+    onClickChangeAudioView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangeMusicPage: PropTypes.func.isRequired,
-    onChangeMusicLimit: PropTypes.func.isRequired,
+    onChangeAudioPage: PropTypes.func.isRequired,
+    onChangeAudioLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeMusicSort: PropTypes.func.isRequired,
+    onChangeAudioSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
-    onChangeMusicFilterValue: PropTypes.func.isRequired
+    onChangeAudioFilterValue: PropTypes.func.isRequired
 };
 
-export default Music;
+export default Audios;

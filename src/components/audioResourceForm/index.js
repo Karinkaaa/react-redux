@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const MusicResourceForm = ({
+const AudioResourceForm = ({
                                onSave, onUpdate, id,
                                name, isValidName, onChangeName,
                                url, isValidUrl, onChangeUrl,
@@ -68,7 +68,7 @@ const MusicResourceForm = ({
                     <Grid item xs={12}>
                         <TextField
                             label="Name"
-                            placeholder="Enter the name of music resource"
+                            placeholder="Enter the name of audio resource"
                             variant="outlined"
                             value={name}
                             required
@@ -81,7 +81,7 @@ const MusicResourceForm = ({
                     <Grid item xs={12}>
                         <TextField
                             label="URL"
-                            placeholder="Enter the URL of music resource"
+                            placeholder="Enter the URL of audio resource"
                             variant="outlined"
                             value={url}
                             required
@@ -122,7 +122,7 @@ const MusicResourceForm = ({
     );
 };
 
-MusicResourceForm.propTypes = {
+AudioResourceForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     isValidName: PropTypes.bool.isRequired,
@@ -134,4 +134,4 @@ MusicResourceForm.propTypes = {
     onChangeIsOpen: PropTypes.func.isRequired
 };
 
-export default MusicResourceForm;
+export default AudioResourceForm;

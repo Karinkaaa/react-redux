@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MusicTableHead = ({ sorting, onChangeMusicSort, onChangeMusicFilterValue }) => {
+const AudioTableHead = ({ sorting, onChangeAudioSort, onChangeAudioFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -58,7 +58,7 @@ const MusicTableHead = ({ sorting, onChangeMusicSort, onChangeMusicFilterValue }
                 <TableSortLabel
                     active={field === "id"}
                     direction={direction}
-                    onClick={() => onChangeMusicSort("id")}
+                    onClick={() => onChangeAudioSort("id")}
                     className={classes.sortLabel}
                 >
                     ID
@@ -72,7 +72,7 @@ const MusicTableHead = ({ sorting, onChangeMusicSort, onChangeMusicFilterValue }
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeMusicFilterValue({
+                        onChange={(e) => onChangeAudioFilterValue({
                             filterKey: "id",
                             filterValue: e.target.value
                         })}
@@ -84,7 +84,7 @@ const MusicTableHead = ({ sorting, onChangeMusicSort, onChangeMusicFilterValue }
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
-                    onClick={() => onChangeMusicSort("name")}
+                    onClick={() => onChangeAudioSort("name")}
                     className={classes.sortLabel}
                 >
                     Name
@@ -98,7 +98,7 @@ const MusicTableHead = ({ sorting, onChangeMusicSort, onChangeMusicFilterValue }
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeMusicFilterValue({
+                        onChange={(e) => onChangeAudioFilterValue({
                             filterKey: "name",
                             filterValue: e.target.value
                         })}
@@ -111,14 +111,14 @@ const MusicTableHead = ({ sorting, onChangeMusicSort, onChangeMusicFilterValue }
     );
 };
 
-MusicTableHead.propTypes = {
+AudioTableHead.propTypes = {
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeMusicSort: PropTypes.func.isRequired,
-    onChangeMusicFilterValue: PropTypes.func.isRequired
+    onChangeAudioSort: PropTypes.func.isRequired,
+    onChangeAudioFilterValue: PropTypes.func.isRequired
 };
 
-export default MusicTableHead;
+export default AudioTableHead;

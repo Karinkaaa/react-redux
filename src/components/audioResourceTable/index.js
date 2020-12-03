@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import MusicTableHead from "./MusicTableHead";
-import MusicTableBody from "./MusicTableBody";
+import AudioTableHead from "./AudioTableHead";
+import AudioTableBody from "./AudioTableBody";
 import ConfirmMenu from "../confirmMenu";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     content: {
         marginTop: 75,
         background: theme.palette.blueGrey1Color
     }
 }));
 
-const MusicResourceTable = ({
-                                music, sorting, onChangeMusicSort, onChangeMusicFilterValue,
-                                onDelete, onChangeIsOpen, onClickPutMusicResourceToForm
+const AudioResourceTable = ({
+                                audios, sorting, onChangeAudioSort, onChangeAudioFilterValue,
+                                onDelete, onChangeIsOpen, onClickPutAudioResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -24,17 +24,17 @@ const MusicResourceTable = ({
 
     return (
         <Grid container className={classes.content}>
-            <MusicTableHead
+            <AudioTableHead
                 sorting={sorting}
-                onChangeMusicSort={onChangeMusicSort}
-                onChangeMusicFilterValue={onChangeMusicFilterValue}
+                onChangeAudioSort={onChangeAudioSort}
+                onChangeAudioFilterValue={onChangeAudioFilterValue}
             />
 
-            <MusicTableBody
-                music={music}
+            <AudioTableBody
+                audios={audios}
                 setAnchorEl={setAnchorEl}
                 onChangeIsOpen={onChangeIsOpen}
-                onClickPutMusicResourceToForm={onClickPutMusicResourceToForm}
+                onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
             />
 
             <ConfirmMenu
@@ -46,8 +46,8 @@ const MusicResourceTable = ({
     );
 };
 
-MusicResourceTable.propTypes = {
-    music: PropTypes.arrayOf(
+AudioResourceTable.propTypes = {
+    audios: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
@@ -59,11 +59,11 @@ MusicResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeMusicSort: PropTypes.func.isRequired,
-    onChangeMusicFilterValue: PropTypes.func.isRequired,
+    onChangeAudioSort: PropTypes.func.isRequired,
+    onChangeAudioFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutMusicResourceToForm: PropTypes.func.isRequired
+    onClickPutAudioResourceToForm: PropTypes.func.isRequired
 };
 
-export default MusicResourceTable;
+export default AudioResourceTable;

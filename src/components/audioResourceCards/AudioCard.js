@@ -1,18 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardActionArea, CardActions, CardContent, CardMedia } from "@material-ui/core";
+import { Card, CardActionArea, CardActions, CardContent } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import AudioPlayButton from "../audioPlayer";
 
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: theme.palette.blueGrey1Color,
         color: theme.palette.primary3Color
     },
-    media: {
-        height: 160
+    action: {
+        justifyContent: "space-around"
     },
     updateIcon: {
         color: theme.palette.success3Color
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MusicCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutMusicResourceToForm }) => {
+const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutAudioResourceToForm }) => {
     const classes = useStyles();
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -32,18 +33,20 @@ const MusicCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutMusic
         <Card className={classes.root}>
             <CardActionArea>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h6">
                         {name}
                     </Typography>
                 </CardContent>
             </CardActionArea>
 
-            <CardActions>
+            <CardActions className={classes.action}>
+                <AudioPlayButton url={url}/>
+
                 <IconButton
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutMusicResourceToForm({ id, name, url });
+                        onClickPutAudioResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -60,13 +63,13 @@ const MusicCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutMusic
     );
 };
 
-MusicCard.propTypes = {
+AudioCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutMusicResourceToForm: PropTypes.func.isRequired
+    onClickPutAudioResourceToForm: PropTypes.func.isRequired
 };
 
-export default MusicCard;
+export default AudioCard;

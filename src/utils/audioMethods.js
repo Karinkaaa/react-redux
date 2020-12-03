@@ -10,15 +10,15 @@ const getAudio = (url) => {
     return audio;
 };
 
-export const play = (url) => {
+export const playAudio = (url) => {
     return getAudio(url).play();
 };
 
-export const pause = (url) => {
+export const pauseAudio = (url) => {
     return getAudio(url).pause();
 };
 
-export const stop = (url) => {
+export const stopAudio = (url) => {
     const sound = getAudio(url);
     sound.pause();
     sound.currentTime = 0;

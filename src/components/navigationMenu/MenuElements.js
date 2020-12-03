@@ -1,5 +1,5 @@
 import React from "react";
-import { ANIMATIONS, DRAGON_BONES, DRUMS, IMAGES, INFO, MUSIC, RULES, UI } from "../../utils/links";
+import { ANIMATIONS, AUDIO, DRAGON_BONES, DRUMS, IMAGES, INFO, RULES, UI } from "../../utils/links";
 import {
     AccessibilityNew,
     BurstMode,
@@ -33,9 +33,9 @@ export const MenuElements = [
                 link: DRAGON_BONES
             },
             {
-                name: "Music",
+                name: "Audio",
                 Icon: () => <QueueMusic/>,
-                link: MUSIC
+                link: AUDIO
             }
         ]
     },

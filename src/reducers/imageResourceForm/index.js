@@ -16,7 +16,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
         case IS_OPEN_IMAGE_MODAL: {
             return {

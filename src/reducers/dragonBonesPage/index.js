@@ -91,7 +91,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
         case ADD_DRAGON_BONES_RESOURCE: {
             const { dragonBonesList } = state;

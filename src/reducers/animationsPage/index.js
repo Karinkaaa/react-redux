@@ -83,9 +83,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
-
         case ADD_ANIMATION_RESOURCE: {
             const { animationList } = state;
             const { name, urls, speed } = action;

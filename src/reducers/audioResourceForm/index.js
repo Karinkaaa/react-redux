@@ -1,9 +1,9 @@
 import { isValidImageUrl, isValidName } from "../../utils/validation";
 import {
-    IS_OPEN_MUSIC_MODAL,
-    PUT_MUSIC_RESOURCE_TO_FORM,
-    UPDATE_MUSIC_NAME,
-    UPDATE_MUSIC_URL
+    IS_OPEN_AUDIO_MODAL,
+    PUT_AUDIO_RESOURCE_TO_FORM,
+    UPDATE_AUDIO_NAME,
+    UPDATE_AUDIO_URL
 } from "../../utils/actionConstants";
 
 const initialState = {
@@ -16,9 +16,8 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
-        case IS_OPEN_MUSIC_MODAL: {
+        case IS_OPEN_AUDIO_MODAL: {
             return {
                 ...state,
                 id: "",
@@ -29,7 +28,7 @@ export default (state = initialState, action) => {
                 isOpen: action.isOpen
             };
         }
-        case UPDATE_MUSIC_NAME: {
+        case UPDATE_AUDIO_NAME: {
             const { name } = action;
 
             return {
@@ -38,7 +37,7 @@ export default (state = initialState, action) => {
                 isValidName: isValidName(name)
             };
         }
-        case UPDATE_MUSIC_URL: {
+        case UPDATE_AUDIO_URL: {
             const { url } = action;
 
             return {
@@ -47,7 +46,7 @@ export default (state = initialState, action) => {
                 isValidUrl: isValidImageUrl(url)
             };
         }
-        case PUT_MUSIC_RESOURCE_TO_FORM: {
+        case PUT_AUDIO_RESOURCE_TO_FORM: {
             const { id, name, url } = action;
 
             return {

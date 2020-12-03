@@ -1,27 +1,27 @@
 import React from "react";
 import { theme } from "../../utils/theme";
 import { ThemeProvider } from "@material-ui/core/styles";
-import MusicResourceTable from "./index";
+import AudioResourceTable from "./index";
 
 export default {
-    title: "Music/MusicResourceTable",
-    component: MusicResourceTable
+    title: "Audio/AudioResourceTable",
+    component: AudioResourceTable
 };
 
 const Template = (args) =>
     <ThemeProvider theme={theme}>
-        <MusicResourceTable {...args}/>
+        <AudioResourceTable {...args}/>
     </ThemeProvider>;
 
 export const Default = Template.bind({});
 Default.args = {
-    music: [],
+    audios: [],
     sorting: {}
 };
 
 export const WithData = Template.bind({});
 WithData.args = {
-    music: [
+    audios: [
         {
             id: "1",
             name: "Boos",

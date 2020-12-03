@@ -2,26 +2,26 @@ import uuid from "react-uuid";
 import { getAvailableCurrentPage, removeItemById, saveItemTo } from "../../utils/methods";
 import { TABLE } from "../../utils/constants";
 import {
-    ADD_MUSIC_RESOURCE,
-    CHANGE_MUSIC_FILTER_VALUE,
-    CHANGE_MUSIC_LIMIT,
-    CHANGE_MUSIC_PAGE,
-    CHANGE_MUSIC_SORT,
-    CHANGE_MUSIC_VIEW,
-    DELETE_MUSIC_RESOURCE,
-    UPDATE_MUSIC_RESOURCE
+    ADD_AUDIO_RESOURCE,
+    CHANGE_AUDIO_FILTER_VALUE,
+    CHANGE_AUDIO_LIMIT,
+    CHANGE_AUDIO_PAGE,
+    CHANGE_AUDIO_SORT,
+    CHANGE_AUDIO_VIEW,
+    DELETE_AUDIO_RESOURCE,
+    UPDATE_AUDIO_RESOURCE
 } from "../../utils/actionConstants";
 
 const initialState = {
     playlist: [
         {
             id: "10",
-            name: "My Life Is Going On",
+            name: "Tuesday",
             url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
         },
         {
             id: "2",
-            name: "Tuesday",
+            name: "My-Life-Is-Going-On",
             url: "https://static.muzlo.cc/download/24036/Burak-Yeter-Cecilia-Krull_-_My-Life-Is-Going-On-Burak-Yeter-Remix.mp3"
         },
         {
@@ -43,9 +43,8 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
-        case ADD_MUSIC_RESOURCE: {
+        case ADD_AUDIO_RESOURCE: {
             const { playlist } = state;
             const { name, url } = action;
 
@@ -58,7 +57,7 @@ export default (state = initialState, action) => {
                 })
             };
         }
-        case UPDATE_MUSIC_RESOURCE: {
+        case UPDATE_AUDIO_RESOURCE: {
             const { playlist } = state;
             const { id, name, url } = action;
 
@@ -67,7 +66,7 @@ export default (state = initialState, action) => {
                 playlist: saveItemTo(playlist, { id, name, url })
             };
         }
-        case DELETE_MUSIC_RESOURCE: {
+        case DELETE_AUDIO_RESOURCE: {
             const { playlist, pagination } = state;
             const { page, limit } = pagination;
 
@@ -83,13 +82,13 @@ export default (state = initialState, action) => {
                 }
             };
         }
-        case CHANGE_MUSIC_VIEW: {
+        case CHANGE_AUDIO_VIEW: {
             return {
                 ...state,
                 view: action.view
             };
         }
-        case CHANGE_MUSIC_PAGE: {
+        case CHANGE_AUDIO_PAGE: {
             return {
                 ...state,
                 pagination: {
@@ -98,7 +97,7 @@ export default (state = initialState, action) => {
                 }
             };
         }
-        case CHANGE_MUSIC_LIMIT: {
+        case CHANGE_AUDIO_LIMIT: {
             return {
                 ...state,
                 pagination: {
@@ -108,7 +107,7 @@ export default (state = initialState, action) => {
                 }
             };
         }
-        case CHANGE_MUSIC_SORT: {
+        case CHANGE_AUDIO_SORT: {
             return {
                 ...state,
                 sorting: {
@@ -118,7 +117,7 @@ export default (state = initialState, action) => {
                 }
             };
         }
-        case CHANGE_MUSIC_FILTER_VALUE: {
+        case CHANGE_AUDIO_FILTER_VALUE: {
             const { filterKey, filterValue } = action;
 
             if (filterValue !== null) {

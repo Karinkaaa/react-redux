@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import { Delete, Pause, PlayArrow, Update } from "@material-ui/icons";
+import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import AudioPlayButton from "../audioPlayer";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -15,9 +16,6 @@ const useStyles = makeStyles(theme => ({
     gridItem: {
         overflow: "overlay",
         padding: 20
-    },
-    playIcon: {
-        color: theme.palette.primary2Color
     },
     updateIcon: {
         color: theme.palette.success3Color
@@ -38,21 +36,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MusicTableRow = ({
-                           id, name, url, currentUrl,
-                           handleOpen, handleToggle, handleClick, onClickPutMusicResourceToForm
-                       }) => {
+const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutAudioResourceToForm }) => {
     const classes = useStyles();
 
     return (
         <Grid container className={classes.grid}>
             <Grid item xs={1} className={classes.gridItem}>
-                <IconButton
-                    className={classes.playIcon}
-                    onClick={handleClick}
-                >
-                    {currentUrl === url ? <Pause/> : <PlayArrow/>}
-                </IconButton>
+                <AudioPlayButton url={url}/>
             </Grid>
 
             <Grid item xs={2} className={classes.gridItem}>
@@ -78,7 +68,7 @@ const MusicTableRow = ({
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutMusicResourceToForm({ id, name, url });
+                        onClickPutAudioResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -97,15 +87,13 @@ const MusicTableRow = ({
     );
 };
 
-MusicTableRow.propTypes = {
+AudioTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    currentUrl: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    handleClick: PropTypes.func.isRequired,
-    onClickPutMusicResourceToForm: PropTypes.func.isRequired
+    onClickPutAudioResourceToForm: PropTypes.func.isRequired
 };
 
-export default MusicTableRow;
+export default AudioTableRow;

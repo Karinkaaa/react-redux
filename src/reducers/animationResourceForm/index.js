@@ -22,7 +22,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
         case IS_OPEN_ANIMATION_MODAL: {
             const { isOpen } = action;

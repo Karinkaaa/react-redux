@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import { Pause, PlayArrow } from "@material-ui/icons";
-import { isPlayed, pause, play, stop } from "../../utils/audioMethods";
+import { isPlayed, pauseAudio, playAudio, stopAudio } from "../../utils/audioMethods";
 
-const music = [
+const audios = [
     {
         id: 1,
         name: "My-Life-Is-Going-On",
@@ -22,39 +22,39 @@ const music = [
 ];
 
 const Drums = () => {
-    const [oldUrl, setOldUrl] = useState();
+    const [prevUrl, setPrevUrl] = useState();
     const [currentUrl, setCurrentUrl] = useState();
 
     const handleClick = (url) => {
-        if (oldUrl && oldUrl !== url) {
-            stop(oldUrl);
-            play(url);
+        if (prevUrl && prevUrl !== url) {
+            stopAudio(prevUrl);
+            playAudio(url);
             setCurrentUrl(url);
         } else if (isPlayed(url)) {
-            pause(url);
+            pauseAudio(url);
             setCurrentUrl("");
         } else {
-            play(url);
+            playAudio(url);
             setCurrentUrl(url);
         }
-        setOldUrl(url);
+        setPrevUrl(url);
 
-        // if (audio.currentSrc === url && !audio.paused) {
-        //     audio.pause();
+        // if (audioPlayer.currentSrc === url && !audioPlayer.paused) {
+        //     audioPlayer.pauseAudio();
         //     // setisPlayed({
         //     //     ...isPlayed,
         //     //     [url]: true
         //     // });
-        // } else if (audio.currentSrc === url && audio.paused) {
-        //     audio.play();
+        // } else if (audioPlayer.currentSrc === url && audioPlayer.paused) {
+        //     audioPlayer.playAudio();
         //     // setisPlayed({
         //     //     ...isPlayed,
         //     //     [url]: false
         //     // });
         // } else {
-        //     audio.pause();
-        //     audio = new Audio(url);
-        //     audio.play();
+        //     audioPlayer.pauseAudio();
+        //     audioPlayer = new Audio(url);
+        //     audioPlayer.playAudio();
         //     // setisPlayed({
         //     //     ...isPlayed,
         //     //     [url]: false
@@ -65,7 +65,7 @@ const Drums = () => {
     return (
         <div>
             {
-                music.map(n => (
+                audios.map(n => (
                     <IconButton
                         key={n.id}
                         onClick={() => handleClick(n.url)}
