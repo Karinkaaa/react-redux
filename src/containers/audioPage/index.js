@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDelete: (id) => dispatch(deleteAudioResource(id)),
+        onDelete: (props) => dispatch(deleteAudioResource(props)),
         onChangeAudioPage: (page) => dispatch(changeAudioPage(page)),
         onChangeAudioLimit: (limit) => dispatch(changeAudioLimit(limit)),
         onChangeAudioSort: (field) => dispatch(changeAudioSort(field)),

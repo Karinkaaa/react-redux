@@ -12,7 +12,6 @@ import {
     deleteNestedImageResource,
     dragAndDrop
 } from "../../actions/animationResourceComponent";
-import { useEffect } from "react";
 
 const mapStateToProps = (state) => {
     const { data: animations, count } = filteringSortingPagingOfArray(state.animations.animationList,

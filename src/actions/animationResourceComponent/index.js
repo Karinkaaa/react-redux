@@ -19,7 +19,7 @@ export const addAnimationResource = ({ id, name, urls, speed }) => ({
     speed
 });
 
-export const deleteAnimationResource = (id) => ({
+export const deleteAnimationResource = ({ id }) => ({
     type: DELETE_ANIMATION_RESOURCE,
     id
 });

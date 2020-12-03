@@ -1,5 +1,5 @@
 export function isValidName(name) {
-    const pattern = /^[A-Za-z]+[\s]?[A-Za-z]+[\s]?[A-Za-z]+[\s]?[A-Za-z]+[\s]?[A-Za-z]$/;
+    const pattern = /^[A-Za-z]+[\s]?[A-Za-z]+[\s]?[A-Za-z]+[\s]?[A-Za-z]+[\s]?[A-Za-z]+$/;
     return pattern.test(name) && name.length > 1;
 }
 

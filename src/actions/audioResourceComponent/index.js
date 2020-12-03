@@ -16,9 +16,10 @@ export const addAudioResource = ({ id, name, url }) => ({
     url
 });
 
-export const deleteAudioResource = (id) => ({
+export const deleteAudioResource = ({ id, url }) => ({
     type: DELETE_AUDIO_RESOURCE,
-    id
+    id,
+    url
 });
 
 export const updateAudioResource = ({ id, name, url }) => ({

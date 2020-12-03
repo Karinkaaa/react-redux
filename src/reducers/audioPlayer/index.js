@@ -1,4 +1,4 @@
-import { CLICK_PLAY_OR_PAUSE } from "../../utils/actionConstants";
+import { CLICK_PLAY_OR_PAUSE, DELETE_AUDIO_RESOURCE } from "../../utils/actionConstants";
 import { isPlayed, pauseAudio, playAudio, stopAudio } from "../../utils/audioMethods";
 
 const initialState = {
@@ -29,6 +29,15 @@ export default (state = initialState, action) => {
                 ...state,
                 currentUrl,
                 prevUrl: url
+            };
+        }
+        case DELETE_AUDIO_RESOURCE: {
+            stopAudio(action.url);
+
+            return {
+                ...state,
+                currentUrl: "",
+                prevUrl: ""
             };
         }
         default:

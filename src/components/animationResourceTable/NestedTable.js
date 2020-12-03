@@ -20,7 +20,6 @@ const NestedTable = ({ id, urls, open, onDeleteNestedImage, onDragAndDrop }) => 
                         )}
                         onDragAndDrop={(e) => onDragAndDrop(e.map(item => item.url), id)}
                     />
-
                 )
             }
         </Grid>

@@ -21,7 +21,7 @@ const initialState = {
         },
         {
             id: "2",
-            name: "My-Life-Is-Going-On",
+            name: "My Life Is Going On",
             url: "https://static.muzlo.cc/download/24036/Burak-Yeter-Cecilia-Krull_-_My-Life-Is-Going-On-Burak-Yeter-Remix.mp3"
         },
         {

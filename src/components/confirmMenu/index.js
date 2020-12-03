@@ -19,7 +19,7 @@ const ConfirmMenu = ({ anchorEl, handleClose, onAccept }) => (
 
             <MenuItem
                 onClick={() => {
-                    onAccept(anchorEl.dataset.id);
+                    onAccept(anchorEl.dataset);
                     handleClose();
                 }}
             >

@@ -16,7 +16,7 @@ export const addImageResource = ({ id, name, url }) => ({
     url
 });
 
-export const deleteImageResource = (id) => ({
+export const deleteImageResource = ({ id }) => ({
     type: DELETE_IMAGE_RESOURCE,
     id
 });

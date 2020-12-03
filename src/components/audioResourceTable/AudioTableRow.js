@@ -78,6 +78,7 @@ const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutAudi
             <Grid item xs={1}>
                 <IconButton
                     data-id={id}
+                    data-url={url}
                     onClick={handleToggle}
                 >
                     <Delete className={classes.deleteIcon}/>

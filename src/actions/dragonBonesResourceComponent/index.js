@@ -18,7 +18,7 @@ export const addDragonBonesResource = ({ id, name, texture, textureJson, skeleto
     skeleton
 });
 
-export const deleteDragonBonesResource = (id) => ({
+export const deleteDragonBonesResource = ({ id }) => ({
     type: DELETE_DRAGON_BONES_RESOURCE,
     id
 });
