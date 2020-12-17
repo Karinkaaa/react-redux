@@ -94,3 +94,11 @@ export function readFile(file) {
         reader.readAsDataURL(file);
     });
 }
+
+export async function createFileFromUrl(url) {
+    const response = await fetch(url);
+    const data = await response.blob();
+    const metadata = { type: data.type };
+    const filename = url.replace(/\?.+/, "").split("/").pop();
+    return new File([data], filename, metadata);
+}

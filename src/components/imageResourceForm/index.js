@@ -7,6 +7,8 @@ import Modal from "@material-ui/core/Modal";
 import Grid from "@material-ui/core/Grid";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { readFile } from "../../utils/methods";
+import DropzoneArea from "../dropzoneArea";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -22,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 8),
         borderRadius: "3px"
+    },
+    dropZone: {
+        zoom: 0.6,
+        mixBlendMode: "multiply"
     }
 }));
 
@@ -35,6 +41,14 @@ const ImageResourceForm = ({
 
     const handleClose = () => onChangeIsOpen(false);
     const isDisabledButtonSave = () => !isValidUrl || !isValidName;
+
+    const handleClickOnDropZone = async (e) => {
+        if (e[0]) {
+            onChangeUrl(await readFile(e[0]));
+        } else {
+            onChangeUrl("");
+        }
+    };
 
     return (
         <Modal
@@ -78,16 +92,13 @@ const ImageResourceForm = ({
                         />
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <TextField
-                            label="URL"
-                            placeholder="Enter the URL of image resource"
-                            variant="outlined"
-                            value={url}
-                            required
-                            fullWidth
-                            error={!isValidUrl}
-                            onChange={e => onChangeUrl(e.target.value)}
+                    <Grid item xs={12} className={classes.dropZone}>
+                        <DropzoneArea
+                            acceptedFiles={["image/*"]}
+                            filesLimit={1}
+                            dropzoneText={"Drag and drop an image here or click"}
+                            initialFiles={url ? [url] : []}
+                            onChange={e => handleClickOnDropZone(e)}
                         />
                     </Grid>
 
