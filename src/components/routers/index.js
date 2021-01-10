@@ -1,12 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { ANIMATIONS, DRAGON_BONES, DRUMS, IMAGES, MAIN_PAGE, AUDIO } from "../../utils/links";
+import { ANIMATIONS, DRAGON_BONES, DRUMS, IMAGES, MAIN_PAGE, AUDIO, RULES } from "../../utils/links";
 import MainPage from "../mainPage";
 import Images from "../../containers/imagePage";
 import Animations from "../../containers/animationPage";
 import DragonBones from "../../containers/dragonBonesPage";
 import Audio from "../../containers/audioPage";
 import Drums from "../../pages/drums";
+import Rules from "../../containers/rulesPage";
 
 export default () => (
     <main>
@@ -17,6 +18,7 @@ export default () => (
             <Route exact path={DRAGON_BONES} component={DragonBones}/>
             <Route exact path={AUDIO} component={Audio}/>
             <Route exact path={DRUMS} component={Drums}/>
+            <Route exact path={RULES} component={Rules}/>
         </Switch>
     </main>
 );

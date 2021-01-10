@@ -1,81 +1,77 @@
-import React, { useState } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import { Pause, PlayArrow } from "@material-ui/icons";
-import { isPlayed, pauseAudio, playAudio, stopAudio } from "../../utils/audioMethods";
+import React from "react";
+import { Button } from "@material-ui/core";
+import DrumsForRules from "../../components/drumsForRules";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
 
-const audios = [
-    {
-        id: 1,
-        name: "My-Life-Is-Going-On",
-        url: "https://static.muzlo.cc/download/24036/Burak-Yeter-Cecilia-Krull_-_My-Life-Is-Going-On-Burak-Yeter-Remix.mp3"
-    },
-    {
-        id: 7,
-        name: "Tuesday",
-        url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
-    },
-    {
-        id: 3,
-        name: "Gorit",
-        url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        margin: 100,
+        position: "absolute",
+        width: 600,
+        background: "lightblue",
+        border: "3px solid #1e88e5",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(4, 8),
+        borderRadius: "3px"
     }
-];
+}));
 
 const Drums = () => {
-    const [prevUrl, setPrevUrl] = useState();
-    const [currentUrl, setCurrentUrl] = useState();
-
-    const handleClick = (url) => {
-        if (prevUrl && prevUrl !== url) {
-            stopAudio(prevUrl);
-            playAudio(url);
-            setCurrentUrl(url);
-        } else if (isPlayed(url)) {
-            pauseAudio(url);
-            setCurrentUrl("");
-        } else {
-            playAudio(url);
-            setCurrentUrl(url);
-        }
-        setPrevUrl(url);
-
-        // if (audioPlayer.currentSrc === url && !audioPlayer.paused) {
-        //     audioPlayer.pauseAudio();
-        //     // setisPlayed({
-        //     //     ...isPlayed,
-        //     //     [url]: true
-        //     // });
-        // } else if (audioPlayer.currentSrc === url && audioPlayer.paused) {
-        //     audioPlayer.playAudio();
-        //     // setisPlayed({
-        //     //     ...isPlayed,
-        //     //     [url]: false
-        //     // });
-        // } else {
-        //     audioPlayer.pauseAudio();
-        //     audioPlayer = new Audio(url);
-        //     audioPlayer.playAudio();
-        //     // setisPlayed({
-        //     //     ...isPlayed,
-        //     //     [url]: false
-        //     // });
-        // }
-    };
+    const classes = useStyles();
 
     return (
-        <div>
-            {
-                audios.map(n => (
-                    <IconButton
-                        key={n.id}
-                        onClick={() => handleClick(n.url)}
-                    >
-                        {
-                            currentUrl === n.url ? <Pause/> : <PlayArrow/>
-                        }
-                    </IconButton>
-                ))}
-        </div>
+        <Grid container spacing={3} className={classes.paper}>
+            <Grid item xs={12}>
+                <TextField
+                    label="Name"
+                    placeholder="Enter the name of rule"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    error={true}
+                />
+            </Grid>
+
+            <Grid item xs={12}>
+                <TextField
+                    label="Cost"
+                    placeholder="Enter the cost of rule"
+                    variant="outlined"
+                    type={"number"}
+                    required
+                    fullWidth
+                    error={true}
+                />
+            </Grid>
+
+            <Grid container item xs={12}>
+                <Grid item xs={12}>
+                    <DrumsForRules/>
+                </Grid>
+            </Grid>
+
+            <Grid item xs={6}>
+                <Button
+                    fullWidth
+                    color="secondary"
+                    variant="contained"
+                >
+                    Cancel
+                </Button>
+            </Grid>
+
+            <Grid item xs={6}>
+                <Button
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                >
+                    Save
+                </Button>
+            </Grid>
+        </Grid>
     );
 };
 

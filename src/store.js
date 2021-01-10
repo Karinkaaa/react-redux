@@ -8,6 +8,8 @@ import createDragonBonesForm from "./reducers/dragonBonesResourceForm";
 import audios from "./reducers/audioPage";
 import createAudioForm from "./reducers/audioResourceForm";
 import audioPlayer from "./reducers/audioPlayer";
+import rules from "./reducers/rulesPage";
+import createRuleForm from "./reducers/createRuleForm";
 
 const reducers = combineReducers({
     images,
@@ -18,7 +20,9 @@ const reducers = combineReducers({
     createDragonBonesForm,
     audios,
     createAudioForm,
-    audioPlayer
+    audioPlayer,
+    rules,
+    createRuleForm
 });
 
 const store = createStore(

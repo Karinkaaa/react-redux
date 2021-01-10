@@ -4,6 +4,6 @@ export const ANIMATIONS = "/resources/animation";
 export const DRAGON_BONES = "/resources/dragon_bones";
 export const AUDIO = "/resources/audioPlayer";
 export const DRUMS = "/drums";
-export const RULES = "/rules";
+export const RULES = "/rulesPage";
 export const UI = "/ui";
 export const INFO = "/info";

@@ -3,6 +3,10 @@ export function isValidName(name) {
     return pattern.test(name) && name.length > 1;
 }
 
+export function isValidCost(cost) {
+    return cost > 0 && cost < 100;
+}
+
 export function isValidImageUrl(url) {
     const patternBase64 = /^data:image\/jpeg;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
     const patternURL = /(http(s?):)|([/|.|\w|\s])*\.(?:jpg|jpeg|gif|png)/;

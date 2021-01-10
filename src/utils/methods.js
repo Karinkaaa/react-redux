@@ -27,6 +27,21 @@ export function removeItemByIndex(list, index) {
     return newList;
 }
 
+export function isExistCondition(list, condition) {
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].x === condition.x && list[i].y === condition.y)
+            return true;
+    }
+    return false;
+}
+
+export function removeCondition(list, condition) {
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].x === condition.x && list[i].y === condition.y)
+            removeItemByIndex(list, i);
+    }
+}
+
 export function saveItemTo(list, item) {
     const index = list.findIndex((el) => el.id === item.id);
     let newList;
