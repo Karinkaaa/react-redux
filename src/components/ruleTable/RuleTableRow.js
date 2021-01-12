@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import RulesGrid from "./RulesGrid";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -30,9 +31,13 @@ const RuleTableRow = ({ id, name, cost, conditions, handleOpen, handleToggle, on
 
     return (
         <Grid container className={classes.grid}>
-            <Grid item xs={3} className={classes.gridItem}>{id}</Grid>
-            <Grid item xs={4} className={classes.gridItem}>{name}</Grid>
-            <Grid item xs={3} className={classes.gridItem}>{cost}</Grid>
+            <Grid item xs={3} className={classes.gridItem}>
+                <RulesGrid conditions={conditions}/>
+            </Grid>
+
+            <Grid item xs={2} className={classes.gridItem}>{id}</Grid>
+            <Grid item xs={3} className={classes.gridItem}>{name}</Grid>
+            <Grid item xs={2} className={classes.gridItem}>{cost}</Grid>
 
             <Grid item xs={1}>
                 <IconButton

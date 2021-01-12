@@ -52,7 +52,11 @@ const RuleTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
 
     return (
         <Grid container className={classes.head}>
-            <Grid item xs={3} className={classes.headCell}>
+            <Grid item xs={3} className={classes.headCell} style={{ paddingLeft: 30 }}>
+                Rule
+            </Grid>
+
+            <Grid item xs={2} className={classes.headCell} style={{ paddingLeft: 5 }}>
                 <TableSortLabel
                     active={field === "id"}
                     direction={direction}
@@ -78,7 +82,7 @@ const RuleTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                 </div>
             </Grid>
 
-            <Grid item xs={4} className={classes.headCell}>
+            <Grid item xs={3} className={classes.headCell} style={{ paddingLeft: 15 }}>
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
