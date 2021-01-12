@@ -35,11 +35,12 @@ export function isExistCondition(list, condition) {
     return false;
 }
 
-export function removeCondition(list, condition) {
+export function getIndexOfCondition(list, condition) {
     for (let i = 0; i < list.length; i++) {
         if (list[i].x === condition.x && list[i].y === condition.y)
-            removeItemByIndex(list, i);
+            return i;
     }
+    return -1;
 }
 
 export function saveItemTo(list, item) {
