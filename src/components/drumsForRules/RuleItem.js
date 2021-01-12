@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import { isExistCondition } from "../../utils/methods";
 
 const useStyles = makeStyles((theme) => ({
     buttonTrue: {
@@ -23,17 +24,23 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RuleItem = ({ ruleItem, x, y, onChangeCondition }) => {
+const RuleItem = ({ ruleItem, x, y, conditions, onChangeCondition }) => {
     const classes = useStyles();
+    const { Icon, id } = ruleItem;
 
-    const { Icon, id} = ruleItem;
-    const [isActiveButton, setIsActiveButton] = useState(true);
+    const isExistCurrentCondition = isExistCondition(conditions, { x, y });
+    const [isActiveButton, setIsActiveButton] = useState(isExistCurrentCondition);
+
+    const handleClick = () => {
+        onChangeCondition({ x, y });
+        setIsActiveButton(!isActiveButton);
+    };
 
     return (
         <Grid item key={id}>
             <IconButton
-                className={isActiveButton ? classes.buttonTrue : classes.buttonFalse}
-                onClick={() => onChangeCondition({x, y})}
+                className={isActiveButton ? classes.buttonFalse : classes.buttonTrue}
+                onClick={() => handleClick()}
             >
                 <Icon/>
             </IconButton>
@@ -45,6 +52,11 @@ RuleItem.propTypes = {
     ruleItem: PropTypes.object.isRequired,
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
+    conditions: PropTypes.arrayOf(PropTypes.shape({
+            x: PropTypes.number.isRequired,
+            y: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
     onChangeCondition: PropTypes.func.isRequired
 };
 

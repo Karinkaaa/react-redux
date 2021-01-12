@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const RuleItemElement = ({ ruleItems, y, onChangeCondition }) => {
+const RuleItemElement = ({ ruleItems, y, conditions, onChangeCondition }) => {
     const classes = useStyles();
 
     return (
@@ -24,6 +24,7 @@ const RuleItemElement = ({ ruleItems, y, onChangeCondition }) => {
                             ruleItem={ruleItem}
                             x={x}
                             y={y}
+                            conditions={conditions}
                             onChangeCondition={onChangeCondition}
                         />
                     )
@@ -35,6 +36,11 @@ const RuleItemElement = ({ ruleItems, y, onChangeCondition }) => {
 RuleItemElement.propTypes = {
     ruleItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     y: PropTypes.number.isRequired,
+    conditions: PropTypes.arrayOf(PropTypes.shape({
+            x: PropTypes.number.isRequired,
+            y: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
     onChangeCondition: PropTypes.func.isRequired
 };
 

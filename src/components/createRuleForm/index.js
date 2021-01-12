@@ -95,7 +95,10 @@ const RuleForm = ({
 
                     <Grid container item xs={12}>
                         <Grid item xs={12}>
-                            <DrumsForRules onChangeCondition={onChangeCondition}/>
+                            <DrumsForRules
+                                conditions={conditions}
+                                onChangeCondition={onChangeCondition}
+                            />
                         </Grid>
                     </Grid>
 

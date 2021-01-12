@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const DrumsForRules = ({ ruleItems, onChangeCondition }) => {
+const DrumsForRules = ({ ruleItems, conditions, onChangeCondition }) => {
     const classes = useStyles();
 
     return (
@@ -32,6 +32,7 @@ const DrumsForRules = ({ ruleItems, onChangeCondition }) => {
                                 key={uuid()}
                                 ruleItems={ruleItem}
                                 y={y}
+                                conditions={conditions}
                                 onChangeCondition={onChangeCondition}
                             />
                         )
@@ -47,6 +48,11 @@ DrumsForRules.defaultProps = {
 
 DrumsForRules.propTypes = {
     ruleItems: PropTypes.arrayOf(PropTypes.array),
+    conditions: PropTypes.arrayOf(PropTypes.shape({
+            x: PropTypes.number.isRequired,
+            y: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
     onChangeCondition: PropTypes.func.isRequired
 };
 
