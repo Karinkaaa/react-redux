@@ -1,4 +1,5 @@
 import { isValidCost, isValidName } from "../../utils/validation";
+import { getIndexOfCondition, isExistCondition, removeItemByIndex } from "../../utils/methods";
 import {
     IS_OPEN_RULE_MODAL,
     PUT_RULE_TO_FORM,
@@ -6,7 +7,6 @@ import {
     UPDATE_RULE_COST,
     UPDATE_RULE_NAME
 } from "../../utils/actionConstants";
-import { isExistCondition, removeItemById, removeItemByIndex, saveItemTo } from "../../utils/methods";
 
 const initialState = {
     id: "",
@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
                 id: "",
                 name: "",
                 isValidName: false,
-                cost: "",
+                cost: 0,
                 isValidCost: false,
                 conditions: [],
                 isOpen: isOpen
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
 
             return {
                 ...state,
-                cost,
+                cost: parseInt(cost),
                 isValidCost: isValidCost(cost)
             };
         }
@@ -56,28 +56,19 @@ export default (state = initialState, action) => {
             const { conditions } = state;
             const { condition } = action;
 
-            console.log("action.condition = ", condition);
-
             const isExistsCurrentCondition = isExistCondition(conditions, condition);
-            console.log("isExistsCurrentCondition = ", isExistsCurrentCondition);
-
             let newConditions = [...conditions];
 
             if (isExistsCurrentCondition) {
-
-                newConditions = removeItemByIndex(conditions, condition.id);
-                console.log("AFTER REMOVE newConditions = ", newConditions);
-
+                const index = getIndexOfCondition(conditions, condition);
+                newConditions = removeItemByIndex(conditions, index);
             } else {
                 newConditions = [...conditions, condition];
-                console.log("AFTER ADD newConditions = ", newConditions);
-
             }
 
             return {
                 ...state,
-                conditions: newConditions,
-                // isActiveConditions: newIsActiveConditions
+                conditions: newConditions
             };
         }
         case PUT_RULE_TO_FORM: {
