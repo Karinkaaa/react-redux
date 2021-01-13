@@ -2,11 +2,11 @@ import React from "react";
 import uuid from "react-uuid";
 import PropTypes from "prop-types";
 import { Container, Grid } from "@material-ui/core";
+import { RadioButtonChecked, RadioButtonUnchecked } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { RuleItems } from "../drumsForRules/RuleItems";
-import { RadioButtonChecked, RadioButtonUnchecked } from "@material-ui/icons";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     container: {
         maxWidth: 150,
         marginLeft: 0
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     gridContainer: {
         margin: 0
     }
-}));
+});
 
 const RulesGrid = ({ ruleItems, conditions }) => {
     const classes = useStyles();
@@ -52,7 +52,7 @@ RulesGrid.defaultProps = {
 };
 
 RulesGrid.propTypes = {
-    conditions: PropTypes.array.isRequired
+    conditions: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default RulesGrid;
