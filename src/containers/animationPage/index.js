@@ -35,13 +35,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onDelete: (id) => dispatch(deleteAnimationResource(id)),
-        onChangeAnimationPage: (page) => dispatch(changeAnimationPage(page)),
-        onChangeAnimationLimit: (limit) => dispatch(changeAnimationLimit(limit)),
-        onChangeAnimationSort: (field) => dispatch(changeAnimationSort(field)),
-        onClickChangeAnimationView: (view) => dispatch(changeAnimationView(view)),
+        onChangePage: (page) => dispatch(changeAnimationPage(page)),
+        onChangeLimit: (limit) => dispatch(changeAnimationLimit(limit)),
+        onChangeSort: (field) => dispatch(changeAnimationSort(field)),
+        onChangeView: (view) => dispatch(changeAnimationView(view)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
-        onChangeAnimationFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
-        onClickPutAnimationResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
+        onChangeFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
+        onClickPutResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
         onDeleteNestedImage: (id, url) => dispatch(deleteNestedImageResource(id, url)),
         onDragAndDrop: (result, id) => dispatch(dragAndDrop(result, id))
     };

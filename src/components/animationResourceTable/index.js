@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AnimationResourceTable = ({
-                                    animations, sorting, onChangeAnimationSort, onChangeAnimationFilterValue,
-                                    onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
+                                    animations, sorting, onChangeSort, onChangeFilterValue,
+                                    onDelete, onChangeIsOpen, onClickPutResourceToForm,
                                     onDeleteNestedImage, onDragAndDrop
                                 }) => {
     const classes = useStyles();
@@ -27,15 +27,15 @@ const AnimationResourceTable = ({
         <Grid container className={classes.content}>
             <AnimationTableHead
                 sorting={sorting}
-                onChangeAnimationSort={onChangeAnimationSort}
-                onChangeAnimationFilterValue={onChangeAnimationFilterValue}
+                onChangeSort={onChangeSort}
+                onChangeFilterValue={onChangeFilterValue}
             />
 
             <AnimationTableBody
                 animations={animations}
                 onChangeIsOpen={onChangeIsOpen}
                 setAnchorEl={setAnchorEl}
-                onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
+                onClickPutResourceToForm={onClickPutResourceToForm}
                 onDeleteNestedImage={onDeleteNestedImage}
                 onDragAndDrop={onDragAndDrop}
             />
@@ -62,11 +62,11 @@ AnimationResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeAnimationSort: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
-    onChangeAnimationFilterValue: PropTypes.func.isRequired,
+    onClickPutResourceToForm: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired
 };

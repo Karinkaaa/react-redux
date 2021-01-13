@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import AudioTableRow from "./AudioTableRow";
 
-const AudioTableBody = ({ audios, onChangeIsOpen, setAnchorEl, onClickPutAudioResourceToForm }) => {
+const AudioTableBody = ({ audios, onChangeIsOpen, setAnchorEl, onClickPutResourceToForm }) => {
     const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
@@ -19,7 +19,7 @@ const AudioTableBody = ({ audios, onChangeIsOpen, setAnchorEl, onClickPutAudioRe
                             url={url}
                             handleOpen={handleOpen}
                             handleToggle={handleToggle}
-                            onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
+                            onClickPutResourceToForm={onClickPutResourceToForm}
                         />
                     )}
         </Grid>
@@ -36,7 +36,7 @@ AudioTableBody.propTypes = {
     ).isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutAudioResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AudioTableBody;

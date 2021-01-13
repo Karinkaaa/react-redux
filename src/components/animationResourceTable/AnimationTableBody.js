@@ -5,7 +5,7 @@ import AnimationTableRow from "./AnimationTableRow";
 
 const AnimationTableBody = ({
                                 animations, onChangeIsOpen, setAnchorEl, onDragAndDrop,
-                                onClickPutAnimationResourceToForm, onDeleteNestedImage
+                                onClickPutResourceToForm, onDeleteNestedImage
                             }) => {
     const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
@@ -22,7 +22,7 @@ const AnimationTableBody = ({
                         speed={speed}
                         handleOpen={handleOpen}
                         handleToggle={handleToggle}
-                        onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
+                        onClickPutResourceToForm={onClickPutResourceToForm}
                         onDeleteNestedImage={onDeleteNestedImage}
                         onDragAndDrop={onDragAndDrop}
                     />
@@ -44,7 +44,7 @@ AnimationTableBody.propTypes = {
     setAnchorEl: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,
-    onClickPutAnimationResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AnimationTableBody;

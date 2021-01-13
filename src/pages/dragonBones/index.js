@@ -11,19 +11,19 @@ import CreateResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
-                         dragonBones, count, onDelete, onChangeIsOpen, onClickPutDragonBonesResourceToForm,
-                         view, onClickChangeDragonBonesView,
-                         pagination, onChangeDragonBonesPage, onChangeDragonBonesLimit,
-                         sorting, onChangeDragonBonesSort,
-                         onChangeDirection, onChangeDragonBonesFilterValue
+                         dragonBones, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
+                         view, onChangeView,
+                         pagination, onChangePage, onChangeLimit,
+                         sorting, onChangeSort,
+                         onChangeDirection, onChangeFilterValue
                      }) => {
     const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
-    const handleView = () => view === TABLE ? onClickChangeDragonBonesView(GRID) : onClickChangeDragonBonesView(TABLE);
+    const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
 
-    const handleChangeDragonBonesPage = (event, newPage) => onChangeDragonBonesPage(newPage);
-    const handleChangeDragonBonesLimit = (event) => onChangeDragonBonesLimit(parseInt(event.target.value, 10));
+    const handleChangeDragonBonesPage = (event, newPage) => onChangePage(newPage);
+    const handleChangeDragonBonesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -96,11 +96,11 @@ const DragonBones = ({
                                     sorting={sorting}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onChangeDragonBonesPage={onChangeDragonBonesPage}
-                                    onChangeDragonBonesLimit={onChangeDragonBonesLimit}
-                                    onChangeDragonBonesSort={onChangeDragonBonesSort}
-                                    onClickPutDragonBonesResourceToForm={onClickPutDragonBonesResourceToForm}
-                                    onChangeDragonBonesFilterValue={onChangeDragonBonesFilterValue}
+                                    onChangePage={onChangePage}
+                                    onChangeLimit={onChangeLimit}
+                                    onChangeSort={onChangeSort}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
+                                    onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
                             :
@@ -121,11 +121,11 @@ const DragonBones = ({
                                     dragonBones={dragonBones}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutDragonBonesResourceToForm={onClickPutDragonBonesResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
-                                    onChangeDragonBonesSort={onChangeDragonBonesSort}
+                                    onChangeSort={onChangeSort}
                                     onChangeDirection={onChangeDirection}
-                                    onChangeDragonBonesFilterValue={onChangeDragonBonesFilterValue}
+                                    onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
                     }
@@ -148,24 +148,24 @@ DragonBones.propTypes = {
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutDragonBonesResourceToForm: PropTypes.func.isRequired,
+    onClickPutResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onClickChangeDragonBonesView: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangeDragonBonesPage: PropTypes.func.isRequired,
-    onChangeDragonBonesLimit: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeDragonBonesSort: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
-    onChangeDragonBonesFilterValue: PropTypes.func.isRequired
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default DragonBones;

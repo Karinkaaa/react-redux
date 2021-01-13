@@ -33,13 +33,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onDelete: (props) => dispatch(deleteAudioResource(props)),
-        onChangeAudioPage: (page) => dispatch(changeAudioPage(page)),
-        onChangeAudioLimit: (limit) => dispatch(changeAudioLimit(limit)),
-        onChangeAudioSort: (field) => dispatch(changeAudioSort(field)),
-        onClickChangeAudioView: (view) => dispatch(changeAudioView(view)),
+        onChangePage: (page) => dispatch(changeAudioPage(page)),
+        onChangeLimit: (limit) => dispatch(changeAudioLimit(limit)),
+        onChangeSort: (field) => dispatch(changeAudioSort(field)),
+        onChangeView: (view) => dispatch(changeAudioView(view)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen)),
-        onChangeAudioFilterValue: (props) => dispatch(changeAudioFilterValue(props)),
-        onClickPutAudioResourceToForm: (props) => dispatch(putAudioResourceToForm(props))
+        onChangeFilterValue: (props) => dispatch(changeAudioFilterValue(props)),
+        onClickPutResourceToForm: (props) => dispatch(putAudioResourceToForm(props))
     };
 };
 

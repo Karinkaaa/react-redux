@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DragonBonesResourceTable = ({
-                                      dragonBones, sorting, onChangeDragonBonesSort, onChangeDragonBonesFilterValue,
-                                      onDelete, onChangeIsOpen, onClickPutDragonBonesResourceToForm
+                                      dragonBones, sorting, onChangeSort, onChangeFilterValue,
+                                      onDelete, onChangeIsOpen, onClickPutResourceToForm
                                   }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -26,15 +26,15 @@ const DragonBonesResourceTable = ({
         <Grid container className={classes.content}>
             <DragonBonesTableHead
                 sorting={sorting}
-                onChangeDragonBonesSort={onChangeDragonBonesSort}
-                onChangeDragonBonesFilterValue={onChangeDragonBonesFilterValue}
+                onChangeSort={onChangeSort}
+                onChangeFilterValue={onChangeFilterValue}
             />
 
             <DragonBonesTableBody
                 dragonBones={dragonBones}
                 setAnchorEl={setAnchorEl}
                 onChangeIsOpen={onChangeIsOpen}
-                onClickPutDragonBonesResourceToForm={onClickPutDragonBonesResourceToForm}
+                onClickPutResourceToForm={onClickPutResourceToForm}
             />
 
             <ConfirmMenu
@@ -61,11 +61,11 @@ DragonBonesResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeDragonBonesSort: PropTypes.func.isRequired,
-    onChangeDragonBonesFilterValue: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutDragonBonesResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default DragonBonesResourceTable;

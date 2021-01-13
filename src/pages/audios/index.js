@@ -11,17 +11,17 @@ import CreateResourceForm from "../../containers/audioResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
-                    audios, count, onDelete, onChangeIsOpen, onClickPutAudioResourceToForm,
-                    view, onClickChangeAudioView, pagination, onChangeAudioPage, onChangeAudioLimit,
-                    sorting, onChangeAudioSort, onChangeDirection, onChangeAudioFilterValue
+                    audios, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
+                    view, onChangeView, pagination, onChangePage, onChangeLimit,
+                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
-    const handleView = () => view === TABLE ? onClickChangeAudioView(GRID) : onClickChangeAudioView(TABLE);
+    const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
 
-    const handleChangeAudioPage = (event, newPage) => onChangeAudioPage(newPage);
-    const handleChangeAudioLimit = (event) => onChangeAudioLimit(parseInt(event.target.value, 10));
+    const handleChangeAudioPage = (event, newPage) => onChangePage(newPage);
+    const handleChangeAudioLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -92,10 +92,10 @@ const Audios = ({
                                     page={page}
                                     limit={limit}
                                     onDelete={onDelete}
-                                    onChangeAudioPage={onChangeAudioPage}
-                                    onChangeAudioLimit={onChangeAudioLimit}
+                                    onChangePage={onChangePage}
+                                    onChangeLimit={onChangeLimit}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                 />
                             </>
                             :
@@ -116,11 +116,11 @@ const Audios = ({
                                     audios={audios}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
-                                    onChangeAudioSort={onChangeAudioSort}
+                                    onChangeSort={onChangeSort}
                                     onChangeDirection={onChangeDirection}
-                                    onChangeAudioFilterValue={onChangeAudioFilterValue}
+                                    onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
                     }
@@ -141,24 +141,24 @@ Audio.propTypes = {
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAudioResourceToForm: PropTypes.func.isRequired,
+    onClickPutResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onClickChangeAudioView: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangeAudioPage: PropTypes.func.isRequired,
-    onChangeAudioLimit: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeAudioSort: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
-    onChangeAudioFilterValue: PropTypes.func.isRequired
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default Audios;

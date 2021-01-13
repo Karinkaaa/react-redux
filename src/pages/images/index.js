@@ -11,17 +11,17 @@ import CreateResourceForm from "../../containers/imageResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Images = ({
-                    images, count, onDelete, onChangeIsOpen, onClickPutImageResourceToForm,
-                    view, onClickChangeImageView, pagination, onChangeImagePage, onChangeImageLimit,
-                    sorting, onChangeImageSort, onChangeDirection, onChangeImageFilterValue
+                    images, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
+                    view, onChangeView, pagination, onChangePage, onChangeLimit,
+                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
-    const handleView = () => view === TABLE ? onClickChangeImageView(GRID) : onClickChangeImageView(TABLE);
+    const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
 
-    const handleChangeImagePage = (event, newPage) => onChangeImagePage(newPage);
-    const handleChangeImageLimit = (event) => onChangeImageLimit(parseInt(event.target.value, 10));
+    const handleChangeImagePage = (event, newPage) => onChangePage(newPage);
+    const handleChangeImageLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -92,10 +92,10 @@ const Images = ({
                                     page={page}
                                     limit={limit}
                                     onDelete={onDelete}
-                                    onChangeImagePage={onChangeImagePage}
-                                    onChangeImageLimit={onChangeImageLimit}
+                                    onChangePage={onChangePage}
+                                    onChangeLimit={onChangeLimit}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                 />
                             </>
                             :
@@ -116,11 +116,11 @@ const Images = ({
                                     images={images}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
-                                    onChangeImageSort={onChangeImageSort}
+                                    onChangeSort={onChangeSort}
                                     onChangeDirection={onChangeDirection}
-                                    onChangeImageFilterValue={onChangeImageFilterValue}
+                                    onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
                     }
@@ -141,24 +141,24 @@ Images.propTypes = {
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired,
+    onClickPutResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onClickChangeImageView: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangeImagePage: PropTypes.func.isRequired,
-    onChangeImageLimit: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeImageSort: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
-    onChangeImageFilterValue: PropTypes.func.isRequired
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default Images;

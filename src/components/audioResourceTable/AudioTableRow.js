@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutAudioResourceToForm }) => {
+const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutResourceToForm }) => {
     const classes = useStyles();
 
     return (
@@ -68,7 +68,7 @@ const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutAudi
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutAudioResourceToForm({ id, name, url });
+                        onClickPutResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -94,7 +94,7 @@ AudioTableRow.propTypes = {
     url: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onClickPutAudioResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AudioTableRow;

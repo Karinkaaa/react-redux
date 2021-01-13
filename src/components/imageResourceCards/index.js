@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ConfirmMenu from "../confirmMenu";
 import ImageCard from "./ImageCard";
 
-const ImageResourceCards = ({ images, onDelete, onChangeIsOpen, onClickPutImageResourceToForm }) => {
+const ImageResourceCards = ({ images, onDelete, onChangeIsOpen, onClickPutResourceToForm }) => {
     const [anchorEl, setAnchorEl] = React.useState(false);
     const handleClose = () => setAnchorEl(null);
 
@@ -20,7 +20,7 @@ const ImageResourceCards = ({ images, onDelete, onChangeIsOpen, onClickPutImageR
                                 url={url}
                                 setAnchorEl={setAnchorEl}
                                 onChangeIsOpen={onChangeIsOpen}
-                                onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                                onClickPutResourceToForm={onClickPutResourceToForm}
                             />
                         </Grid>
                     )
@@ -44,7 +44,7 @@ ImageResourceCards.propTypes = {
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default ImageResourceCards;

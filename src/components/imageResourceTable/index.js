@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ImageResourceTable = ({
-                                images, sorting, onChangeImageSort, onChangeImageFilterValue,
-                                onDelete, onChangeIsOpen, onClickPutImageResourceToForm
+                                images, sorting, onChangeSort, onChangeFilterValue,
+                                onDelete, onChangeIsOpen, onClickPutResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -26,15 +26,15 @@ const ImageResourceTable = ({
         <Grid container className={classes.content}>
             <ImageTableHead
                 sorting={sorting}
-                onChangeImageSort={onChangeImageSort}
-                onChangeImageFilterValue={onChangeImageFilterValue}
+                onChangeSort={onChangeSort}
+                onChangeFilterValue={onChangeFilterValue}
             />
 
             <ImageTableBody
                 images={images}
                 setAnchorEl={setAnchorEl}
                 onChangeIsOpen={onChangeIsOpen}
-                onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                onClickPutResourceToForm={onClickPutResourceToForm}
             />
 
             <ConfirmMenu
@@ -59,11 +59,11 @@ ImageResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeImageSort: PropTypes.func.isRequired,
-    onChangeImageFilterValue: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default ImageResourceTable;

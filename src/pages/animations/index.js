@@ -11,18 +11,18 @@ import AnimationResourceCards from "../../components/animationResourceCards";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Animations = ({
-                        animations, count, onDelete, onChangeIsOpen, onClickPutAnimationResourceToForm,
-                        view, onClickChangeAnimationView, pagination, onChangeAnimationPage, onChangeAnimationLimit,
-                        sorting, onChangeAnimationSort, onChangeDirection, onChangeAnimationFilterValue,
+                        animations, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
+                        view, onChangeView, pagination, onChangePage, onChangeLimit,
+                        sorting, onChangeSort, onChangeDirection, onChangeFilterValue,
                         onDeleteNestedImage, onDragAndDrop
                     }) => {
     const { page, limit } = pagination;
 
     const handleOpen = () => onChangeIsOpen(true);
-    const handleView = () => view === TABLE ? onClickChangeAnimationView(GRID) : onClickChangeAnimationView(TABLE);
+    const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
 
-    const handleChangeAnimationPage = (event, newPage) => onChangeAnimationPage(newPage);
-    const handleChangeAnimationLimit = (event) => onChangeAnimationLimit(parseInt(event.target.value, 10));
+    const handleChangeAnimationPage = (event, newPage) => onChangePage(newPage);
+    const handleChangeAnimationLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -93,10 +93,10 @@ const Animations = ({
                                     page={page}
                                     limit={limit}
                                     onDelete={onDelete}
-                                    onChangeAnimationPage={handleChangeAnimationPage}
-                                    onChangeAnimationLimit={onChangeAnimationLimit}
+                                    onChangePage={handleChangeAnimationPage}
+                                    onChangeLimit={onChangeLimit}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                 />
                             </>
                             :
@@ -117,11 +117,11 @@ const Animations = ({
                                     animations={animations}
                                     onDelete={onDelete}
                                     onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutAnimationResourceToForm={onClickPutAnimationResourceToForm}
+                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
-                                    onChangeAnimationSort={onChangeAnimationSort}
+                                    onChangeSort={onChangeSort}
                                     onChangeDirection={onChangeDirection}
-                                    onChangeAnimationFilterValue={onChangeAnimationFilterValue}
+                                    onChangeFilterValue={onChangeFilterValue}
                                     onDeleteNestedImage={onDeleteNestedImage}
                                     onDragAndDrop={onDragAndDrop}
                                 />
@@ -144,24 +144,24 @@ Animations.propTypes = {
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAnimationResourceToForm: PropTypes.func.isRequired,
+    onClickPutResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onClickChangeAnimationView: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangeAnimationPage: PropTypes.func.isRequired,
-    onChangeAnimationLimit: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeAnimationSort: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
-    onChangeAnimationFilterValue: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired
 };

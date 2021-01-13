@@ -33,13 +33,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onDelete: (id) => dispatch(deleteImageResource(id)),
-        onChangeImagePage: (page) => dispatch(changeImagePage(page)),
-        onChangeImageLimit: (limit) => dispatch(changeImageLimit(limit)),
-        onChangeImageSort: (field) => dispatch(changeImageSort(field)),
-        onClickChangeImageView: (view) => dispatch(changeImageView(view)),
+        onChangePage: (page) => dispatch(changeImagePage(page)),
+        onChangeLimit: (limit) => dispatch(changeImageLimit(limit)),
+        onChangeSort: (field) => dispatch(changeImageSort(field)),
+        onChangeView: (view) => dispatch(changeImageView(view)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenImageModal(isOpen)),
-        onChangeImageFilterValue: (props) => dispatch(changeImageFilterValue(props)),
-        onClickPutImageResourceToForm: (props) => dispatch(putImageResourceToForm(props))
+        onChangeFilterValue: (props) => dispatch(changeImageFilterValue(props)),
+        onClickPutResourceToForm: (props) => dispatch(putImageResourceToForm(props))
     };
 };
 

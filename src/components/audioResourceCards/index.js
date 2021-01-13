@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ConfirmMenu from "../confirmMenu";
 import AudioCard from "./AudioCard";
 
-const AudioResourceCards = ({ audios, onDelete, onChangeIsOpen, onClickPutAudioResourceToForm }) => {
+const AudioResourceCards = ({ audios, onDelete, onChangeIsOpen, onClickPutResourceToForm }) => {
     const [anchorEl, setAnchorEl] = useState(false);
     const handleClose = () => setAnchorEl(null);
 
@@ -20,7 +20,7 @@ const AudioResourceCards = ({ audios, onDelete, onChangeIsOpen, onClickPutAudioR
                                 url={url}
                                 setAnchorEl={setAnchorEl}
                                 onChangeIsOpen={onChangeIsOpen}
-                                onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
+                                onClickPutResourceToForm={onClickPutResourceToForm}
                             />
                         </Grid>
                     )
@@ -44,7 +44,7 @@ AudioResourceCards.propTypes = {
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAudioResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AudioResourceCards;

@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageTableHead = ({ sorting, onChangeImageSort, onChangeImageFilterValue }) => {
+const ImageTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -60,7 +60,7 @@ const ImageTableHead = ({ sorting, onChangeImageSort, onChangeImageFilterValue }
                 <TableSortLabel
                     active={field === "id"}
                     direction={direction}
-                    onClick={() => onChangeImageSort("id")}
+                    onClick={() => onChangeSort("id")}
                     className={classes.sortLabel}
                 >
                     ID
@@ -74,7 +74,7 @@ const ImageTableHead = ({ sorting, onChangeImageSort, onChangeImageFilterValue }
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeImageFilterValue({
+                        onChange={(e) => onChangeFilterValue({
                             filterKey: "id",
                             filterValue: e.target.value
                         })}
@@ -86,7 +86,7 @@ const ImageTableHead = ({ sorting, onChangeImageSort, onChangeImageFilterValue }
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
-                    onClick={() => onChangeImageSort("name")}
+                    onClick={() => onChangeSort("name")}
                     className={classes.sortLabel}
                 >
                     Name
@@ -100,7 +100,7 @@ const ImageTableHead = ({ sorting, onChangeImageSort, onChangeImageFilterValue }
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeImageFilterValue({
+                        onChange={(e) => onChangeFilterValue({
                             filterKey: "name",
                             filterValue: e.target.value
                         })}
@@ -119,8 +119,8 @@ ImageTableHead.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeImageSort: PropTypes.func.isRequired,
-    onChangeImageFilterValue: PropTypes.func.isRequired
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default ImageTableHead;

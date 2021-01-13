@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const DragonBonesTableHead = ({ sorting, onChangeDragonBonesSort, onChangeDragonBonesFilterValue }) => {
+const DragonBonesTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -60,7 +60,7 @@ const DragonBonesTableHead = ({ sorting, onChangeDragonBonesSort, onChangeDragon
                 <TableSortLabel
                     active={field === "id"}
                     direction={direction}
-                    onClick={() => onChangeDragonBonesSort("id")}
+                    onClick={() => onChangeSort("id")}
                     className={classes.sortLabel}
                 >
                     ID
@@ -74,7 +74,7 @@ const DragonBonesTableHead = ({ sorting, onChangeDragonBonesSort, onChangeDragon
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeDragonBonesFilterValue({
+                        onChange={(e) => onChangeFilterValue({
                             filterKey: "id",
                             filterValue: e.target.value
                         })}
@@ -86,7 +86,7 @@ const DragonBonesTableHead = ({ sorting, onChangeDragonBonesSort, onChangeDragon
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
-                    onClick={() => onChangeDragonBonesSort("name")}
+                    onClick={() => onChangeSort("name")}
                     className={classes.sortLabel}
                 >
                     Name
@@ -100,7 +100,7 @@ const DragonBonesTableHead = ({ sorting, onChangeDragonBonesSort, onChangeDragon
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeDragonBonesFilterValue({
+                        onChange={(e) => onChangeFilterValue({
                             filterKey: "name",
                             filterValue: e.target.value
                         })}
@@ -120,8 +120,8 @@ DragonBonesTableHead.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeDragonBonesSort: PropTypes.func.isRequired,
-    onChangeDragonBonesFilterValue: PropTypes.func.isRequired
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default DragonBonesTableHead;

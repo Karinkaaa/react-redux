@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationFilterValue }) => {
+const AnimationTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -60,7 +60,7 @@ const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationF
                 <TableSortLabel
                     active={field === "id"}
                     direction={direction}
-                    onClick={() => onChangeAnimationSort("id")}
+                    onClick={() => onChangeSort("id")}
                     className={classes.sortLabel}
                 >
                     ID
@@ -74,7 +74,7 @@ const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationF
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeAnimationFilterValue({
+                        onChange={(e) => onChangeFilterValue({
                             filterKey: "id",
                             filterValue: e.target.value
                         })}
@@ -86,7 +86,7 @@ const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationF
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
-                    onClick={() => onChangeAnimationSort("name")}
+                    onClick={() => onChangeSort("name")}
                     className={classes.sortLabel}
                 >
                     Name
@@ -100,7 +100,7 @@ const AnimationTableHead = ({ sorting, onChangeAnimationSort, onChangeAnimationF
                         placeholder="Search..."
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeAnimationFilterValue({
+                        onChange={(e) => onChangeFilterValue({
                             filterKey: "name",
                             filterValue: e.target.value
                         })}
@@ -121,8 +121,8 @@ AnimationTableHead.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeAnimationSort: PropTypes.func,
-    onChangeAnimationFilterValue: PropTypes.func
+    onChangeSort: PropTypes.func,
+    onChangeFilterValue: PropTypes.func
 };
 
 export default AnimationTableHead;

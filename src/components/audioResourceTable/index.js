@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AudioResourceTable = ({
-                                audios, sorting, onChangeAudioSort, onChangeAudioFilterValue,
-                                onDelete, onChangeIsOpen, onClickPutAudioResourceToForm
+                                audios, sorting, onChangeSort, onChangeFilterValue,
+                                onDelete, onChangeIsOpen, onClickPutResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -26,15 +26,15 @@ const AudioResourceTable = ({
         <Grid container className={classes.content}>
             <AudioTableHead
                 sorting={sorting}
-                onChangeAudioSort={onChangeAudioSort}
-                onChangeAudioFilterValue={onChangeAudioFilterValue}
+                onChangeSort={onChangeSort}
+                onChangeFilterValue={onChangeFilterValue}
             />
 
             <AudioTableBody
                 audios={audios}
                 setAnchorEl={setAnchorEl}
                 onChangeIsOpen={onChangeIsOpen}
-                onClickPutAudioResourceToForm={onClickPutAudioResourceToForm}
+                onClickPutResourceToForm={onClickPutResourceToForm}
             />
 
             <ConfirmMenu
@@ -59,11 +59,11 @@ AudioResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeAudioSort: PropTypes.func.isRequired,
-    onChangeAudioFilterValue: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAudioResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AudioResourceTable;

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AnimationCard = ({
                            id, name, urls, speed, setAnchorEl,
-                           onChangeIsOpen, onClickPutAnimationResourceToForm
+                           onChangeIsOpen, onClickPutResourceToForm
                        }) => {
     const classes = useStyles();
 
@@ -55,7 +55,7 @@ const AnimationCard = ({
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutAnimationResourceToForm({ id, name, urls, speed });
+                        onClickPutResourceToForm({ id, name, urls, speed });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -79,7 +79,7 @@ AnimationCard.propTypes = {
     speed: PropTypes.number.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAnimationResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AnimationCard;

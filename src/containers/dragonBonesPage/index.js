@@ -33,13 +33,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onDelete: (id) => dispatch(deleteDragonBonesResource(id)),
-        onChangeDragonBonesPage: (page) => dispatch(changeDragonBonesPage(page)),
-        onChangeDragonBonesLimit: (limit) => dispatch(changeDragonBonesLimit(limit)),
-        onChangeDragonBonesSort: (field) => dispatch(changeDragonBonesSort(field)),
-        onClickChangeDragonBonesView: (view) => dispatch(changeDragonBonesView(view)),
+        onChangePage: (page) => dispatch(changeDragonBonesPage(page)),
+        onChangeLimit: (limit) => dispatch(changeDragonBonesLimit(limit)),
+        onChangeSort: (field) => dispatch(changeDragonBonesSort(field)),
+        onChangeView: (view) => dispatch(changeDragonBonesView(view)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenDragonBonesModal(isOpen)),
-        onChangeDragonBonesFilterValue: (props) => dispatch(changeDragonBonesFilterValue(props)),
-        onClickPutDragonBonesResourceToForm: (props) => dispatch(putDragonBonesResourceToForm(props))
+        onChangeFilterValue: (props) => dispatch(changeDragonBonesFilterValue(props)),
+        onClickPutResourceToForm: (props) => dispatch(putDragonBonesResourceToForm(props))
     };
 };
 

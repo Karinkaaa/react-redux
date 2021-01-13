@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutImageResourceToForm }) => {
+const ImageTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutResourceToForm }) => {
     const classes = useStyles();
 
     return (
@@ -67,7 +67,7 @@ const ImageTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutImag
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutImageResourceToForm({ id, name, url });
+                        onClickPutResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -92,7 +92,7 @@ ImageTableRow.propTypes = {
     url: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default ImageTableRow;

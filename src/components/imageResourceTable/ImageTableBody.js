@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import ImageTableRow from "./ImageTableRow";
 
-const ImageTableBody = ({ images, onChangeIsOpen, setAnchorEl, onClickPutImageResourceToForm }) => {
+const ImageTableBody = ({ images, onChangeIsOpen, setAnchorEl, onClickPutResourceToForm }) => {
     const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
@@ -19,7 +19,7 @@ const ImageTableBody = ({ images, onChangeIsOpen, setAnchorEl, onClickPutImageRe
                             url={url}
                             handleOpen={handleOpen}
                             handleToggle={handleToggle}
-                            onClickPutImageResourceToForm={onClickPutImageResourceToForm}
+                            onClickPutResourceToForm={onClickPutResourceToForm}
                         />
                     )}
         </Grid>
@@ -36,7 +36,7 @@ ImageTableBody.propTypes = {
     ).isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default ImageTableBody;

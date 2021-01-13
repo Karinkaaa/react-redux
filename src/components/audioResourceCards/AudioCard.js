@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutAudioResourceToForm }) => {
+const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutResourceToForm }) => {
     const classes = useStyles();
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -46,7 +46,7 @@ const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutAudio
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutAudioResourceToForm({ id, name, url });
+                        onClickPutResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -69,7 +69,7 @@ AudioCard.propTypes = {
     url: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutAudioResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default AudioCard;

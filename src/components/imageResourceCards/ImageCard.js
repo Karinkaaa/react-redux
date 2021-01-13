@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutImageResourceToForm }) => {
+const ImageCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutResourceToForm }) => {
     const classes = useStyles();
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -47,7 +47,7 @@ const ImageCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutImage
                     data-id={id}
                     onClick={() => {
                         handleOpen();
-                        onClickPutImageResourceToForm({ id, name, url });
+                        onClickPutResourceToForm({ id, name, url });
                     }}
                 >
                     <Update className={classes.updateIcon}/>
@@ -70,7 +70,7 @@ ImageCard.propTypes = {
     url: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutImageResourceToForm: PropTypes.func.isRequired
+    onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
 export default ImageCard;
