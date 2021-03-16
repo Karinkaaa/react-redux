@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import RulesGrid from "../ruleTable/RulesGrid";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     },
     deleteIcon: {
         color: theme.palette.delete3Color
+    },
+    gridContainer: {
+        maxWidth: 350,
+        color: theme.palette.primary2Color,
+        marginLeft: 45
     }
 }));
 
@@ -45,6 +51,9 @@ const RuleCard = ({
                 <Typography gutterBottom variant="h5" component="h2" color={"secondary"}>
                     {cost}
                 </Typography>
+                <div className={classes.gridContainer}>
+                    <RulesGrid conditions={conditions}/>
+                </div>
             </CardContent>
 
             <CardActions>
