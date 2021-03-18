@@ -1,11 +1,13 @@
 import React from "react";
-import { ANIMATIONS, AUDIO, DRAGON_BONES, DRUMS, IMAGES, INFO, RULES, UI } from "../../utils/links";
+import { ADD_LAYER, ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, INFO, LAYERS, RULES } from "../../utils/links";
 import {
     AccessibilityNew,
     BurstMode,
     Error,
     GroupWork,
     Info,
+    Layers,
+    LibraryAdd,
     PhotoLibrary,
     QueueMusic,
     ViewCarousel,
@@ -33,9 +35,9 @@ export const MenuElements = [
                 link: DRAGON_BONES
             },
             {
-                name: "Audio",
+                name: "Audios",
                 Icon: () => <QueueMusic/>,
-                link: AUDIO
+                link: AUDIOS
             }
         ]
     },
@@ -52,7 +54,18 @@ export const MenuElements = [
     {
         name: "UI",
         Icon: () => <Visibility/>,
-        link: UI
+        children: [
+            {
+                name: "Layers",
+                Icon: () => <Layers/>,
+                link: LAYERS
+            },
+            {
+                name: "Add Layer",
+                Icon: () => <LibraryAdd/>,
+                link: ADD_LAYER
+            }
+        ]
     },
     {
         name: "Info",
