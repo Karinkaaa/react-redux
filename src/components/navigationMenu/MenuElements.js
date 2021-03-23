@@ -1,5 +1,5 @@
 import React from "react";
-import { ADD_LAYER, ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, INFO, LAYERS, RULES } from "../../utils/links";
+import { ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, INFO, LAYER_FORM, LAYERS, RULES } from "../../utils/links";
 import {
     AccessibilityNew,
     BurstMode,
@@ -63,7 +63,7 @@ export const MenuElements = [
             {
                 name: "Layer Form",
                 Icon: () => <LibraryAdd/>,
-                link: ADD_LAYER
+                link: LAYER_FORM
             }
         ]
     },
