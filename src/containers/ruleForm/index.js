@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import CreateRuleForm from "../../components/createRuleForm";
+import CreateRuleForm from "../../components/ruleForm";
 import { addRule, updateRule } from "../../actions/ruleComponent";
 import {
     updateRuleCondition,
     isOpenRuleModal,
     updateRuleCost,
     updateRuleName
-} from "../../actions/createRuleForm";
+} from "../../actions/ruleForm";
 
 const mapStateToProps = (state) => {
     return {

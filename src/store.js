@@ -9,7 +9,7 @@ import audios from "./reducers/audioPage";
 import createAudioForm from "./reducers/audioResourceForm";
 import audioPlayer from "./reducers/audioPlayer";
 import rules from "./reducers/rulesPage";
-import createRuleForm from "./reducers/createRuleForm";
+import createRuleForm from "./reducers/ruleForm";
 
 const reducers = combineReducers({
     images,

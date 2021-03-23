@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import {
-    ADD_LAYER,
     ANIMATIONS,
     AUDIOS,
     DRAGON_BONES,
     DRUMS,
     IMAGES,
+    LAYER_FORM,
     LAYERS,
     MAIN_PAGE,
     RULES
@@ -17,9 +17,9 @@ import Animations from "../../containers/animationPage";
 import DragonBones from "../../containers/dragonBonesPage";
 import Audio from "../../containers/audioPage";
 import Drums from "../../pages/drums";
-import Rules from "../../containers/rulesPage";
+import Rules from "../../containers/layerForm";
 import Layers from "../../pages/layers";
-import AddLayer from "../../pages/addLayer";
+import LayerForm from "../layerForm";
 
 export default () => (
     <main>
@@ -32,7 +32,7 @@ export default () => (
             <Route exact path={DRUMS} component={Drums}/>
             <Route exact path={RULES} component={Rules}/>
             <Route exact path={LAYERS} component={Layers}/>
-            <Route exact path={ADD_LAYER} component={AddLayer}/>
+            <Route exact path={LAYER_FORM} component={LayerForm}/>
         </Switch>
     </main>
 );

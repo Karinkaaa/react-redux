@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { Add, List, ViewModule } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import TablePagination from "@material-ui/core/TablePagination";
-import CreateRuleForm from "../../containers/createRuleForm";
+import CreateRuleForm from "../../containers/ruleForm";
 import RuleTable from "../../components/ruleTable";
 import RuleCards from "../../components/ruleCards";
 import { GRID, TABLE } from "../../utils/constants";

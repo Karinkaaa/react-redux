@@ -61,7 +61,7 @@ export const MenuElements = [
                 link: LAYERS
             },
             {
-                name: "Add Layer",
+                name: "Layer Form",
                 Icon: () => <LibraryAdd/>,
                 link: ADD_LAYER
             }
