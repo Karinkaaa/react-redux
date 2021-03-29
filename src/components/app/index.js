@@ -1,11 +1,11 @@
 import React from "react";
-import "./App.css";
 import Toolbar from "@material-ui/core/Toolbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuComponent from "../appBar/MenuComponent";
 import PermanentHeader from "../appBar/PermanentHeader";
 import Routers from "../routers";
+import "./App.css";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export default () => {
+const App = () => {
     const classes = useStyles();
 
     return (
@@ -35,4 +35,6 @@ export default () => {
             </div>
         </div>
     );
-}
+};
+
+export default App;

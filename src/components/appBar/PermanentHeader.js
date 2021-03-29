@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default () => {
+const PermanentHeader = () => {
     const classes = useStyles();
 
     return (
@@ -48,3 +48,5 @@ export default () => {
         </AppBar>
     );
 };
+
+export default PermanentHeader;

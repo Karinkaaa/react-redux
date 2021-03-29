@@ -6,6 +6,7 @@ import {
     DRAGON_BONES,
     DRUMS,
     IMAGES,
+    INFO,
     LAYER_FORM,
     LAYERS,
     MAIN_PAGE,
@@ -18,10 +19,11 @@ import DragonBones from "../../containers/dragonBonesPage";
 import Audio from "../../containers/audioPage";
 import Drums from "../../pages/drums";
 import Rules from "../../containers/layerForm";
+import LayerForm from "../../containers/layerForm";
 import Layers from "../../pages/layers";
-import LayerForm from "../layerForm";
+import Info from "../../pages/info";
 
-export default () => (
+const Routers = () => (
     <main>
         <Switch>
             <Route exact path={MAIN_PAGE} component={MainPage}/>
@@ -33,6 +35,9 @@ export default () => (
             <Route exact path={RULES} component={Rules}/>
             <Route exact path={LAYERS} component={Layers}/>
             <Route exact path={LAYER_FORM} component={LayerForm}/>
+            <Route exact path={INFO} component={Info}/>
         </Switch>
     </main>
 );
+
+export default Routers;
