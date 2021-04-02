@@ -21,8 +21,6 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case IS_OPEN_RULE_MODAL: {
-            const { isOpen } = action;
-
             return {
                 ...state,
                 id: "",
@@ -31,7 +29,7 @@ export default (state = initialState, action) => {
                 cost: 0,
                 isValidCost: false,
                 conditions: [],
-                isOpen: isOpen
+                isOpen: action.isOpen
             };
         }
         case UPDATE_RULE_NAME: {

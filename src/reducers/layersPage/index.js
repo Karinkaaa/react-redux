@@ -1,6 +1,6 @@
 import uuid from "react-uuid";
 import { removeItemById, saveItemTo } from "../../utils/methods";
-import { ADD_LAYER, DELETE_LAYER_ELEMENT } from "../../utils/actionConstants";
+import { ADD_LAYER, DELETE_LAYER_ELEMENT, UPDATE_LAYER_ELEMENT } from "../../utils/actionConstants";
 
 const initialState = {
     layerList: [
@@ -78,12 +78,22 @@ export default (state = initialState, action) => {
                 })
             };
         }
-        case DELETE_LAYER_ELEMENT: {
+        case UPDATE_LAYER_ELEMENT: {
             const { layerList } = state;
+            const { layer } = action;
 
             return {
                 ...state,
-                layerList: removeItemById(layerList, action.id)
+                layerList: saveItemTo(layerList, layer)
+            };
+        }
+        case DELETE_LAYER_ELEMENT: {
+            const { layerList } = state;
+            const { id } = action;
+
+            return {
+                ...state,
+                layerList: removeItemById(layerList, id)
             };
         }
         default:

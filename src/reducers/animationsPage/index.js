@@ -192,7 +192,6 @@ export default (state = initialState, action) => {
         case DRAG_AND_DROP: {
             const { id, result } = action;
             const { animationList } = state;
-
             const animationItem = getItemById(animationList, id);
 
             return {

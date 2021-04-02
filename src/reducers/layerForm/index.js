@@ -42,11 +42,9 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_LAYER_ELEMENT: {
-            const { elements } = state;
-
             return {
                 ...state,
-                elements: saveItemTo(elements, {
+                elements: saveItemTo(state.elements, {
                     id: uuid()
                 })
             };
@@ -59,18 +57,20 @@ export default (state = initialState, action) => {
         }
         case UPDATE_LAYER_ELEMENT: {
             const { elements } = state;
+            const { element } = action;
 
             return {
                 ...state,
-                elements: saveItemTo(elements, action.element)
+                elements: saveItemTo(elements, element)
             };
         }
         case DELETE_LAYER_ELEMENT: {
             const { elements } = state;
+            const { id } = action;
 
             return {
                 ...state,
-                elements: removeItemById(elements, action.id)
+                elements: removeItemById(elements, id)
             };
         }
         case SET_SELECTED_ID: {

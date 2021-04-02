@@ -24,8 +24,6 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case IS_OPEN_ANIMATION_MODAL: {
-            const { isOpen } = action;
-
             return {
                 ...state,
                 id: "",
@@ -34,7 +32,7 @@ export default (state = initialState, action) => {
                 urls: [],
                 isValidUrls: [],
                 speed: INITIAL_SPEED,
-                isOpen: isOpen
+                isOpen: action.isOpen
             };
         }
         case UPDATE_ANIMATION_NAME: {
