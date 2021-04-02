@@ -1,28 +1,32 @@
 import { combineReducers, createStore } from "redux";
 import images from "./reducers/imagesPage";
-import createImageForm from "./reducers/imageResourceForm";
+import imageForm from "./reducers/imageResourceForm";
 import animations from "./reducers/animationsPage";
-import createAnimationForm from "./reducers/animationResourceForm";
+import animationForm from "./reducers/animationResourceForm";
 import dragonBones from "./reducers/dragonBonesPage";
-import createDragonBonesForm from "./reducers/dragonBonesResourceForm";
+import dragonBonesForm from "./reducers/dragonBonesResourceForm";
 import audios from "./reducers/audioPage";
-import createAudioForm from "./reducers/audioResourceForm";
+import audioForm from "./reducers/audioResourceForm";
 import audioPlayer from "./reducers/audioPlayer";
 import rules from "./reducers/rulesPage";
-import createRuleForm from "./reducers/ruleForm";
+import ruleForm from "./reducers/ruleForm";
+import layers from "./reducers/layersPage";
+import layerForm from "./reducers/layerForm";
 
 const reducers = combineReducers({
     images,
-    createImageForm,
+    imageForm,
     animations,
-    createAnimationForm,
+    animationForm,
     dragonBones,
-    createDragonBonesForm,
+    dragonBonesForm,
     audios,
-    createAudioForm,
+    audioForm,
     audioPlayer,
     rules,
-    createRuleForm
+    ruleForm,
+    layers,
+    layerForm
 });
 
 const store = createStore(
