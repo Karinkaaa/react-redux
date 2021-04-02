@@ -5,12 +5,12 @@ import { isOpenImageModal, updateImageName, updateImageUrl } from "../../actions
 
 const mapStateToProps = (state) => {
     return {
-        id: state.createImageForm.id,
-        name: state.createImageForm.name,
-        isValidName: state.createImageForm.isValidName,
-        url: state.createImageForm.url,
-        isValidUrl: state.createImageForm.isValidUrl,
-        isOpen: state.createImageForm.isOpen
+        id: state.imageForm.id,
+        name: state.imageForm.name,
+        isValidName: state.imageForm.isValidName,
+        url: state.imageForm.url,
+        isValidUrl: state.imageForm.isValidUrl,
+        isOpen: state.imageForm.isOpen
     };
 };
 

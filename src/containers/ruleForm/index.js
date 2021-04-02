@@ -10,13 +10,13 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.createRuleForm.id,
-        name: state.createRuleForm.name,
-        isValidName: state.createRuleForm.isValidName,
-        cost: state.createRuleForm.cost,
-        isValidCost: state.createRuleForm.isValidCost,
-        conditions: state.createRuleForm.conditions,
-        isOpen: state.createRuleForm.isOpen
+        id: state.ruleForm.id,
+        name: state.ruleForm.name,
+        isValidName: state.ruleForm.isValidName,
+        cost: state.ruleForm.cost,
+        isValidCost: state.ruleForm.isValidCost,
+        conditions: state.ruleForm.conditions,
+        isOpen: state.ruleForm.isOpen
     };
 };
 

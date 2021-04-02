@@ -11,16 +11,16 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.createDragonBonesForm.id,
-        name: state.createDragonBonesForm.name,
-        isValidName: state.createDragonBonesForm.isValidName,
-        texture: state.createDragonBonesForm.texture,
-        isValidTexture: state.createDragonBonesForm.isValidTexture,
-        textureJson: state.createDragonBonesForm.textureJson,
-        isValidTextureJson: state.createDragonBonesForm.isValidTextureJson,
-        skeleton: state.createDragonBonesForm.skeleton,
-        isValidSkeleton: state.createDragonBonesForm.isValidSkeleton,
-        isOpen: state.createDragonBonesForm.isOpen
+        id: state.dragonBonesForm.id,
+        name: state.dragonBonesForm.name,
+        isValidName: state.dragonBonesForm.isValidName,
+        texture: state.dragonBonesForm.texture,
+        isValidTexture: state.dragonBonesForm.isValidTexture,
+        textureJson: state.dragonBonesForm.textureJson,
+        isValidTextureJson: state.dragonBonesForm.isValidTextureJson,
+        skeleton: state.dragonBonesForm.skeleton,
+        isValidSkeleton: state.dragonBonesForm.isValidSkeleton,
+        isOpen: state.dragonBonesForm.isOpen
     };
 };
 

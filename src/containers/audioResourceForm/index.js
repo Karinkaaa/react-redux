@@ -5,12 +5,12 @@ import { isOpenAudioModal, updateAudioName, updateAudioUrl } from "../../actions
 
 const mapStateToProps = (state) => {
     return {
-        id: state.createAudioForm.id,
-        name: state.createAudioForm.name,
-        isValidName: state.createAudioForm.isValidName,
-        url: state.createAudioForm.url,
-        isValidUrl: state.createAudioForm.isValidUrl,
-        isOpen: state.createAudioForm.isOpen
+        id: state.audioForm.id,
+        name: state.audioForm.name,
+        isValidName: state.audioForm.isValidName,
+        url: state.audioForm.url,
+        isValidUrl: state.audioForm.isValidUrl,
+        isOpen: state.audioForm.isOpen
     };
 };
 

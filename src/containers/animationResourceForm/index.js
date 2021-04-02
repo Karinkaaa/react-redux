@@ -12,13 +12,13 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.createAnimationForm.id,
-        speed: state.createAnimationForm.speed,
-        name: state.createAnimationForm.name,
-        isValidName: state.createAnimationForm.isValidName,
-        urls: state.createAnimationForm.urls,
-        isValidUrls: state.createAnimationForm.isValidUrls,
-        isOpen: state.createAnimationForm.isOpen
+        id: state.animationForm.id,
+        speed: state.animationForm.speed,
+        name: state.animationForm.name,
+        isValidName: state.animationForm.isValidName,
+        urls: state.animationForm.urls,
+        isValidUrls: state.animationForm.isValidUrls,
+        isOpen: state.animationForm.isOpen
     };
 };
 
