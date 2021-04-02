@@ -56,6 +56,7 @@
     "babel-loader": "~8.1.0",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.0",
+    "react-rnd": "^10.2.4",
     "react-sortable-hoc": "^1.11.0",
     "react-swipeable-views": "^0.13.9",
     "react-swipeable-views-utils": "^0.14.0-alpha.0",
