@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LayerForm = ({
-                       id, name, elements, selectedId, selectedElement, setSelectedId, onChangeLayerName,
-                       onAddElement, onDeleteElement, onChangeElement, onClickPutLayerToForm
+                       id, name, isValidName, elements, selectedId, selectedElement, setSelectedId,
+                       onChangeLayerName, onAddElement, onDeleteElement, onChangeElement
                    }) => {
     const classes = useStyles();
 
@@ -32,7 +32,7 @@ const LayerForm = ({
                     <Grid item xs={3}>
                         <Button
                             color="primary"
-                            size="medium"
+                            size="large"
                             variant="contained"
                             startIcon={<Add/>}
                             onClick={onAddElement}
@@ -53,6 +53,7 @@ const LayerForm = ({
                         <TextField
                             fullWidth
                             value={name}
+                            error={!isValidName}
                             InputProps={{ startAdornment: <InputAdornment position="start">Name: </InputAdornment> }}
                             onChange={e => onChangeLayerName(e.target.value)}
                         />
@@ -60,9 +61,10 @@ const LayerForm = ({
 
                     <Grid item xs={2} className={classes.buttonSave}>
                         <Button
-                            size="medium"
+                            size="large"
                             color={"primary"}
                             variant={"contained"}
+                            disabled={!isValidName}
                             startIcon={<Save/>}
                             onClick={() => console.log("Save layer")}
                         >
@@ -102,7 +104,9 @@ const LayerForm = ({
 LayerForm.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    elements: PropTypes.arrayOf(PropTypes.shape({
+    isValidName: PropTypes.bool.isRequired,
+    elements: PropTypes.arrayOf(
+        PropTypes.shape({
             id: PropTypes.string.isRequired,
             position: PropTypes.shape({
                 x: PropTypes.number.isRequired,
@@ -130,8 +134,7 @@ LayerForm.propTypes = {
     onChangeLayerName: PropTypes.func.isRequired,
     onAddElement: PropTypes.func.isRequired,
     onDeleteElement: PropTypes.func.isRequired,
-    onChangeElement: PropTypes.func.isRequired,
-    onClickPutLayerToForm: PropTypes.func.isRequired
+    onChangeElement: PropTypes.func.isRequired
 };
 
 export default LayerForm;
