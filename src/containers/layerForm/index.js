@@ -3,7 +3,6 @@ import LayerForm from "../../components/layerForm";
 import {
     addLayerElement,
     deleteLayerElement,
-    putLayerToForm,
     setSelectedId,
     updateLayerElement,
     updateLayerName
@@ -13,6 +12,7 @@ const mapStateToProps = (state) => {
     return {
         id: state.layerForm.id,
         name: state.layerForm.name,
+        isValidName: state.layerForm.isValidName,
         elements: state.layerForm.elements,
         selectedElement: state.layerForm.elements.find(el => el.id === state.layerForm.selectedId),
         selectedId: state.layerForm.selectedId
@@ -28,8 +28,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         onChangeElement: (element) => dispatch(updateLayerElement(element)),
         setSelectedId: (id) => dispatch(setSelectedId(id)),
-        onChangeLayerName: (name) => dispatch(updateLayerName(name)),
-        onClickPutLayerToForm: (layer) => dispatch(putLayerToForm(layer))
+        onChangeLayerName: (name) => dispatch(updateLayerName(name))
     };
 };
 
