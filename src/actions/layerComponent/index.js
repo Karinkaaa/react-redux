@@ -1,4 +1,14 @@
-import { ADD_LAYER, DELETE_LAYER, UPDATE_LAYER } from "../../utils/actionConstants";
+import {
+    ADD_LAYER,
+    CHANGE_LAYER_FILTER_VALUE,
+    CHANGE_LAYER_LIMIT,
+    CHANGE_LAYER_PAGE,
+    CHANGE_LAYER_SORT,
+    DELETE_LAYER,
+    DELETE_NESTED_LAYER_ELEMENT,
+    DRAG_AND_DROP,
+    UPDATE_LAYER
+} from "../../utils/actionConstants";
 
 export const addLayer = (layer) => ({
     type: ADD_LAYER,
@@ -12,5 +22,38 @@ export const updateLayer = (layer) => ({
 
 export const deleteLayer = (id) => ({
     type: DELETE_LAYER,
+    id
+});
+
+export const changeLayerPage = (page) => ({
+    type: CHANGE_LAYER_PAGE,
+    page
+});
+
+export const changeLayerLimit = (limit) => ({
+    type: CHANGE_LAYER_LIMIT,
+    limit
+});
+
+export const changeLayerSort = (field) => ({
+    type: CHANGE_LAYER_SORT,
+    field
+});
+
+export const changeLayerFilterValue = ({ filterKey, filterValue }) => ({
+    type: CHANGE_LAYER_FILTER_VALUE,
+    filterKey,
+    filterValue
+});
+
+export const deleteNestedLayerElement = (id, nestedId) => ({
+    type: DELETE_NESTED_LAYER_ELEMENT,
+    id,
+    nestedId
+});
+
+export const dragAndDrop = (result, id) => ({
+    type: DRAG_AND_DROP,
+    result,
     id
 });
