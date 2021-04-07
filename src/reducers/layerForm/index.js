@@ -1,5 +1,6 @@
 import uuid from "react-uuid";
 import { removeItemById, saveItemTo } from "../../utils/methods";
+import { isValidName } from "../../utils/validation";
 import {
     ADD_LAYER_ELEMENT,
     DELETE_LAYER_ELEMENT,
@@ -11,7 +12,8 @@ import {
 
 const initialState = {
     id: "123",
-    name: "Layer 1",
+    name: "",
+    isValidName: false,
     elements: [
         {
             id: "1",
@@ -50,9 +52,12 @@ export default (state = initialState, action) => {
             };
         }
         case UPDATE_LAYER_NAME: {
+            const { name } = action;
+
             return {
                 ...state,
-                name: action.name
+                name,
+                isValidName: isValidName(name)
             };
         }
         case UPDATE_LAYER_ELEMENT: {
