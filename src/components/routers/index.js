@@ -1,5 +1,15 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import MainPage from "../mainPage";
+import Images from "../../containers/imagePage";
+import Animations from "../../containers/animationPage";
+import DragonBones from "../../containers/dragonBonesPage";
+import Audio from "../../containers/audioPage";
+import Drums from "../../pages/drums";
+import Rules from "../../containers/layerForm";
+import LayerForm from "../../containers/layerForm";
+import Layers from "../../containers/layerPage";
+import Info from "../../pages/info";
 import {
     ANIMATIONS,
     AUDIOS,
@@ -12,16 +22,6 @@ import {
     MAIN_PAGE,
     RULES
 } from "../../utils/links";
-import MainPage from "../mainPage";
-import Images from "../../containers/imagePage";
-import Animations from "../../containers/animationPage";
-import DragonBones from "../../containers/dragonBonesPage";
-import Audio from "../../containers/audioPage";
-import Drums from "../../pages/drums";
-import Rules from "../../containers/layerForm";
-import LayerForm from "../../containers/layerForm";
-import Layers from "../../pages/layers";
-import Info from "../../pages/info";
 
 const Routers = () => (
     <main>

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
+import Animations from "../../pages/animations";
 import { filteringSortingPagingOfArray } from "../../utils/methods";
 import { isOpenAnimationModal, putAnimationResourceToForm } from "../../actions/animationResourceForm";
-import Animations from "../../pages/animations";
 import {
     changeAnimationFilterValue,
     changeAnimationLimit,

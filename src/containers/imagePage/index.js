@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
+import Images from "../../pages/images";
 import { filteringSortingPagingOfArray } from "../../utils/methods";
 import { isOpenImageModal, putImageResourceToForm } from "../../actions/imageResourceForm";
-import Images from "../../pages/images";
 import {
     changeImageFilterValue,
     changeImageLimit,

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
+import Audios from "../../pages/audios";
 import { filteringSortingPagingOfArray } from "../../utils/methods";
 import { isOpenAudioModal, putAudioResourceToForm } from "../../actions/audioResourceForm";
-import Audios from "../../pages/audios";
 import {
     changeAudioFilterValue,
     changeAudioLimit,
