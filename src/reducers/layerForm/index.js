@@ -3,6 +3,7 @@ import { removeItemById, saveItemTo } from "../../utils/methods";
 import { isValidName } from "../../utils/validation";
 import {
     ADD_LAYER_ELEMENT,
+    CLEAR_LAYER_FORM,
     DELETE_LAYER_ELEMENT,
     PUT_LAYER_TO_FORM,
     SET_SELECTED_ID,
@@ -11,37 +12,14 @@ import {
 } from "../../utils/actionConstants";
 
 const initialState = {
-    id: "123",
+    id: "",
     name: "",
     isValidName: false,
-    elements: [
-        {
-            id: "1",
-            position: {
-                x: 0,
-                y: 0
-            },
-            size: {
-                height: 100,
-                width: 100
-            }
-        },
-        {
-            id: "2",
-            position: {
-                x: 10,
-                y: 20
-            },
-            size: {
-                height: 120,
-                width: 150
-            }
-        }
-    ],
-    selectedId: "1"
+    elements: [],
+    selectedId: null
 };
 
-export default (state = initialState, action) => {
+const LayerForm = (state = initialState, action) => {
     switch (action.type) {
         case ADD_LAYER_ELEMENT: {
             return {
@@ -91,10 +69,18 @@ export default (state = initialState, action) => {
                 ...state,
                 id,
                 name,
+                isValidName: isValidName(name),
                 elements
+            };
+        }
+        case CLEAR_LAYER_FORM: {
+            return {
+                ...initialState
             };
         }
         default:
             return state;
     }
-}
+};
+
+export default LayerForm;

@@ -7,8 +7,7 @@ import {
     CHANGE_LAYER_LIMIT,
     CHANGE_LAYER_PAGE,
     CHANGE_LAYER_SORT,
-    DELETE_LAYER_ELEMENT,
-    DELETE_NESTED_LAYER_ELEMENT,
+    DELETE_LAYER,
     DRAG_AND_DROP,
     UPDATE_LAYER
 } from "../../utils/actionConstants";
@@ -29,7 +28,8 @@ const initialState = {
                     size: {
                         width: 100,
                         height: 100
-                    }
+                    },
+                    ref: ""
                 },
                 {
                     id: "2",
@@ -40,7 +40,8 @@ const initialState = {
                     size: {
                         width: 100,
                         height: 100
-                    }
+                    },
+                    ref: ""
                 }
             ]
         },
@@ -58,7 +59,8 @@ const initialState = {
                     size: {
                         width: 100,
                         height: 100
-                    }
+                    },
+                    ref: ""
                 },
                 {
                     id: "8",
@@ -69,7 +71,8 @@ const initialState = {
                     size: {
                         width: 100,
                         height: 100
-                    }
+                    },
+                    ref: ""
                 }
             ]
         }
@@ -85,7 +88,7 @@ const initialState = {
     filters: {}
 };
 
-export default (state = initialState, action) => {
+const LayerPage = (state = initialState, action) => {
     switch (action.type) {
         case ADD_LAYER: {
             const { layerList } = state;
@@ -103,11 +106,11 @@ export default (state = initialState, action) => {
         }
         case UPDATE_LAYER: {
             const { layerList } = state;
-            const { layer } = action;
+            const { id, name, elements } = action;
 
             return {
                 ...state,
-                layerList: saveItemTo(layerList, layer)
+                layerList: saveItemTo(layerList, { id, name, elements })
             };
         }
         case CHANGE_LAYER_PAGE: {
@@ -119,7 +122,7 @@ export default (state = initialState, action) => {
                 }
             };
         }
-        case DELETE_LAYER_ELEMENT: {
+        case DELETE_LAYER: {
             const { layerList } = state;
             const { id } = action;
 
@@ -162,21 +165,6 @@ export default (state = initialState, action) => {
             }
             return state;
         }
-        case DELETE_NESTED_LAYER_ELEMENT: {
-            const { id, nestedId } = action;
-            const { layerList } = state;
-
-            const layerItem = getItemById(layerList, id);
-            const elements = layerItem.elements.filter(element => element.id !== nestedId);
-
-            return {
-                ...state,
-                layerList: saveItemTo(layerList, {
-                    ...layerItem,
-                    elements
-                })
-            };
-        }
         case DRAG_AND_DROP: {
             const { id, result } = action;
             const { layerList } = state;
@@ -193,4 +181,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default LayerPage;

@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import LayerForm from "../../components/layerForm";
+import { addLayer, updateLayer } from "../../actions/layerComponent";
 import {
     addLayerElement,
+    clearLayerForm,
     deleteLayerElement,
     setSelectedId,
     updateLayerElement,
@@ -15,7 +17,10 @@ const mapStateToProps = (state) => {
         isValidName: state.layerForm.isValidName,
         elements: state.layerForm.elements,
         selectedElement: state.layerForm.elements.find(el => el.id === state.layerForm.selectedId),
-        selectedId: state.layerForm.selectedId
+        selectedId: state.layerForm.selectedId,
+        images: state.images.imageList,
+        animations: state.animations.animationList,
+        dragonBones: state.dragonBones.dragonBonesList
     };
 };
 
@@ -28,7 +33,15 @@ const mapDispatchToProps = (dispatch) => {
         },
         onChangeElement: (element) => dispatch(updateLayerElement(element)),
         setSelectedId: (id) => dispatch(setSelectedId(id)),
-        onChangeLayerName: (name) => dispatch(updateLayerName(name))
+        onChangeLayerName: (name) => dispatch(updateLayerName(name)),
+        onSaveLayer: (props) => {
+            dispatch(addLayer(props));
+            dispatch(clearLayerForm());
+        },
+        onUpdateLayer: (props) => {
+            dispatch(updateLayer(props));
+            dispatch(clearLayerForm());
+        }
     };
 };
 

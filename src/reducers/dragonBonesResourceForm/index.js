@@ -21,7 +21,7 @@ const initialState = {
     isOpen: false
 };
 
-export default (state = initialState, action) => {
+const DragonBonesResourceForm = (state = initialState, action) => {
     switch (action.type) {
         case IS_OPEN_DRAGON_BONES_MODAL: {
             return {
@@ -93,4 +93,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default DragonBonesResourceForm;

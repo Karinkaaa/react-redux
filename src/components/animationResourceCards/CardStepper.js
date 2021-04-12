@@ -44,15 +44,17 @@ const CardStepper = ({ urls }) => {
                 onChangeIndex={handleStepChange}
                 enableMouseEvents
             >
-                {urls.map((url, index) => (
-                    <div key={url}>
-                        {
-                            Math.abs(activeStep - index) <= 2 ? (
-                                <img className={classes.media} src={url} alt={url}/>
-                            ) : null
-                        }
-                    </div>
-                ))}
+                {
+                    urls.map((url, index) => (
+                        <div key={url}>
+                            {
+                                Math.abs(activeStep - index) <= 2 ? (
+                                    <img className={classes.media} src={url} alt={url}/>
+                                ) : null
+                            }
+                        </div>
+                    ))
+                }
             </AutoPlaySwipeableViews>
 
             <MobileStepper

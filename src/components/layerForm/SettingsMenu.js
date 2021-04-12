@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Grid, InputAdornment, TextField } from "@material-ui/core";
 import { DeleteForever } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import GroupedResources from "./GroupedResources";
 
 const useStyles = makeStyles({
     menu: {
@@ -22,9 +23,9 @@ const useStyles = makeStyles({
     }
 });
 
-const SettingsMenu = ({ selectedElement, onChangeElement, onDeleteElement }) => {
+const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChangeElement, onDeleteElement }) => {
     const classes = useStyles();
-    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 } } = selectedElement;
+    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "" } = selectedElement;
 
     return (
         <Grid item xs={2} className={classes.menu}>
@@ -90,6 +91,23 @@ const SettingsMenu = ({ selectedElement, onChangeElement, onDeleteElement }) => 
                 })}
             />
 
+            <h3>Resource:</h3>
+
+            <TextField
+                fullWidth
+                value={ref}
+                disabled
+                InputProps={{ startAdornment: <InputAdornment position="start">Ref: </InputAdornment> }}
+            />
+
+            <GroupedResources
+                images={images}
+                animations={animations}
+                dragonBones={dragonBones}
+                selectedElement={selectedElement}
+                onChangeElement={onChangeElement}
+            />
+
             <Button
                 fullWidth
                 color={"secondary"}
@@ -97,7 +115,6 @@ const SettingsMenu = ({ selectedElement, onChangeElement, onDeleteElement }) => 
                 variant={"contained"}
                 startIcon={<DeleteForever/>}
                 onClick={() => onDeleteElement(selectedElement.id)}
-                style={{ marginTop: 170 }}
             >
                 Remove
             </Button>
@@ -115,8 +132,32 @@ SettingsMenu.propTypes = {
         size: PropTypes.shape({
             height: PropTypes.number.isRequired,
             width: PropTypes.number.isRequired
-        })
+        }),
+        ref: PropTypes.string
     }).isRequired,
+    images: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    animations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
+        })
+    ).isRequired,
+    dragonBones: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            texture: PropTypes.string.isRequired,
+            textureJson: PropTypes.string.isRequired,
+            skeleton: PropTypes.string.isRequired
+        })
+    ).isRequired,
     onChangeElement: PropTypes.func.isRequired,
     onDeleteElement: PropTypes.func.isRequired
 };

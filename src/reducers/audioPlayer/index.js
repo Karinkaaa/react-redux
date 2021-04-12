@@ -6,7 +6,7 @@ const initialState = {
     prevUrl: ""
 };
 
-export default (state = initialState, action) => {
+const AudioPlayer = (state = initialState, action) => {
     switch (action.type) {
         case CLICK_PLAY_OR_PAUSE: {
             const { url } = action;
@@ -43,4 +43,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default AudioPlayer;

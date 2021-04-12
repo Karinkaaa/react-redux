@@ -82,7 +82,7 @@ const initialState = {
     filters: {}
 };
 
-export default (state = initialState, action) => {
+const AnimationPage = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ANIMATION_RESOURCE: {
             const { animationList } = state;
@@ -205,4 +205,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default AnimationPage;

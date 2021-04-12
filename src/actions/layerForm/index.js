@@ -1,5 +1,6 @@
 import {
     ADD_LAYER_ELEMENT,
+    CLEAR_LAYER_FORM,
     DELETE_LAYER_ELEMENT,
     PUT_LAYER_TO_FORM,
     SET_SELECTED_ID,
@@ -32,7 +33,13 @@ export const updateLayerName = (name) => ({
     name
 });
 
-export const putLayerToForm = (layer) => ({
+export const putLayerToForm = ({ id, name, elements }) => ({
     type: PUT_LAYER_TO_FORM,
-    layer
+    id,
+    name,
+    elements
+});
+
+export const clearLayerForm = () => ({
+    type: CLEAR_LAYER_FORM
 });

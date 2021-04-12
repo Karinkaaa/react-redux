@@ -11,13 +11,18 @@ const useStyles = makeStyles({
         cursor: "move",
         textAlign: "center",
         background: "#9fbac7",
-        position: "absolute"
+        position: "absolute",
+        backgroundSize: "100%",
+        backgroundRepeat: "no-repeat"
     }
 });
 
-const ResizableDraggableLayerElement = ({ element, onChangeElement, isSelected, setSelectedId }) => {
+const ResizableDraggableLayerElement = ({
+                                            element, onChangeElement, isSelected, setSelectedId,
+                                            images, animations, dragonBones
+                                        }) => {
     const classes = useStyles();
-    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 } } = element;
+    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "" } = element;
 
     const handleDrag = (e, d) => {
         onChangeElement({
@@ -40,6 +45,20 @@ const ResizableDraggableLayerElement = ({ element, onChangeElement, isSelected, 
         });
     };
 
+    const backgroundImage = () => {
+        let result = "";
+
+        if ((result = images.find((item) => item.id === ref))) {
+            return result.url;
+        } else if ((result = animations.find((item) => item.id === ref))) {
+            return result.urls[0];
+        } else if ((result = dragonBones.find((item) => item.id === ref))) {
+            return result.texture;
+        }
+
+        return result;
+    };
+
     return (
         <Rnd
             className={classes.rnd}
@@ -50,7 +69,9 @@ const ResizableDraggableLayerElement = ({ element, onChangeElement, isSelected, 
             onResizeStop={handleResize}
             style={{
                 zIndex: isSelected ? 1 : 0,
-                border: isSelected && "solid 1px white"
+                border: isSelected && "solid 1px white",
+                boxShadow: isSelected && "0 0 25px white, 0 5px 15px cyan",
+                backgroundImage: `url('${backgroundImage()}')`
             }}
         >
             <div>
@@ -75,7 +96,30 @@ ResizableDraggableLayerElement.propTypes = {
     }).isRequired,
     onChangeElement: PropTypes.func.isRequired,
     isSelected: PropTypes.bool.isRequired,
-    setSelectedId: PropTypes.func.isRequired
+    setSelectedId: PropTypes.func.isRequired,
+    images: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    animations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
+        })
+    ).isRequired,
+    dragonBones: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            texture: PropTypes.string.isRequired,
+            textureJson: PropTypes.string.isRequired,
+            skeleton: PropTypes.string.isRequired
+        })
+    ).isRequired
 };
 
 export default ResizableDraggableLayerElement;

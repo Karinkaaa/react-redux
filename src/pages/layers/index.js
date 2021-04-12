@@ -1,14 +1,16 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Button, Container, Grid } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import { Add } from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import LayersTable from "../../components/layersTable";
+import { LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
-                    layers, count, onDelete, onClickPutLayerToForm, pagination, onChangePage, onChangeLimit,
-                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue, onDeleteNestedElement, onDragAndDrop
+                    layers, count, onAdd, onDelete, onClickPutLayerToForm, pagination, onChangePage, onChangeLimit,
+                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue, onDragAndDrop
                 }) => {
     const { page, limit } = pagination;
 
@@ -21,14 +23,17 @@ const Layers = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            startIcon={<Add/>}
-                        >
-                            Add new layer
-                        </Button>
+                        <Link to={LAYER_FORM}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                startIcon={<Add/>}
+                                onClick={onAdd}
+                            >
+                                Add new layer
+                            </Button>
+                        </Link>
                     </Grid>
 
                     <Grid item xs={5}>
@@ -54,7 +59,6 @@ const Layers = ({
                         onChangeSort={onChangeSort}
                         onChangeDirection={onChangeDirection}
                         onChangeFilterValue={onChangeFilterValue}
-                        onDeleteNestedElement={onDeleteNestedElement}
                         onDragAndDrop={onDragAndDrop}
                     />
                 </Grid>
@@ -63,6 +67,46 @@ const Layers = ({
     );
 };
 
-// Layers.propTypes = {};
+Layers.propTypes = {
+    layers: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            isValidName: PropTypes.bool,
+            elements: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    position: PropTypes.shape({
+                        x: PropTypes.number.isRequired,
+                        y: PropTypes.number.isRequired
+                    }),
+                    size: PropTypes.shape({
+                        height: PropTypes.number.isRequired,
+                        width: PropTypes.number.isRequired
+                    })
+                }).isRequired
+            ).isRequired
+        }).isRequired
+    ).isRequired,
+    count: PropTypes.number.isRequired,
+    onAdd: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onClickPutLayerToForm: PropTypes.func.isRequired,
+    pagination: PropTypes.shape({
+        page: PropTypes.number.isRequired,
+        limit: PropTypes.number.isRequired
+    }).isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
+    sorting: PropTypes.shape({
+            field: PropTypes.string.isRequired,
+            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+        }
+    ).isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeDirection: PropTypes.func,
+    onChangeFilterValue: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired
+};
 
 export default Layers;

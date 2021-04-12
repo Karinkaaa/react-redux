@@ -18,7 +18,7 @@ const initialState = {
     isOpen: false
 };
 
-export default (state = initialState, action) => {
+const RuleForm = (state = initialState, action) => {
     switch (action.type) {
         case IS_OPEN_RULE_MODAL: {
             return {
@@ -85,4 +85,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default RuleForm;

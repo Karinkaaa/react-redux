@@ -73,7 +73,7 @@ const initialState = {
     filters: {}
 };
 
-export default (state = initialState, action) => {
+const RulePage = (state = initialState, action) => {
     switch (action.type) {
         case ADD_RULE: {
             const { ruleList } = state;
@@ -168,4 +168,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default RulePage;

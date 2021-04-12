@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, InputAdornment, TextField } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
-import { Add, Save } from "@material-ui/icons";
+import { Add, Save, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import ResizableDraggableLayerElement from "../resizableDraggableLayerElement";
 import SettingsMenu from "./SettingsMenu";
@@ -19,8 +19,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LayerForm = ({
-                       id, name, isValidName, elements, selectedId, selectedElement, setSelectedId,
-                       onChangeLayerName, onAddElement, onDeleteElement, onChangeElement
+                       id, name, elements, selectedId, selectedElement, images, animations, dragonBones,
+                       isValidName, onChangeLayerName, setSelectedId, onAddElement, onDeleteElement,
+                       onChangeElement, onSaveLayer, onUpdateLayer
                    }) => {
     const classes = useStyles();
 
@@ -41,15 +42,21 @@ const LayerForm = ({
                         </Button>
                     </Grid>
 
-                    <Grid item xs={3}>
-                        <TextField
-                            value={id}
-                            disabled
-                            InputProps={{ startAdornment: <InputAdornment position="start">ID: </InputAdornment> }}
-                        />
-                    </Grid>
+                    {
+                        id && (
+                            <Grid item xs={3}>
+                                <TextField
+                                    value={id}
+                                    disabled
+                                    InputProps={{
+                                        startAdornment: <InputAdornment position="start">ID: </InputAdornment>
+                                    }}
+                                />
+                            </Grid>
+                        )
+                    }
 
-                    <Grid item xs={4}>
+                    <Grid item xs={id ? 4 : 5}>
                         <TextField
                             fullWidth
                             value={name}
@@ -65,10 +72,10 @@ const LayerForm = ({
                             color={"primary"}
                             variant={"contained"}
                             disabled={!isValidName}
-                            startIcon={<Save/>}
-                            onClick={() => console.log("Save layer")}
+                            startIcon={id ? <Update/> : <Save/>}
+                            onClick={() => id ? onUpdateLayer({ id, name, elements }) : onSaveLayer({ name, elements })}
                         >
-                            Save layer
+                            {id ? "Update" : "Save"}
                         </Button>
                     </Grid>
 
@@ -81,6 +88,9 @@ const LayerForm = ({
                                     setSelectedId={setSelectedId}
                                     element={el}
                                     onChangeElement={onChangeElement}
+                                    images={images}
+                                    animations={animations}
+                                    dragonBones={dragonBones}
                                 />
                             )
                         }
@@ -90,6 +100,9 @@ const LayerForm = ({
                         selectedId && (
                             <SettingsMenu
                                 selectedElement={selectedElement}
+                                images={images}
+                                animations={animations}
+                                dragonBones={dragonBones}
                                 onChangeElement={onChangeElement}
                                 onDeleteElement={onDeleteElement}
                             />
@@ -128,13 +141,39 @@ LayerForm.propTypes = {
         size: PropTypes.shape({
             height: PropTypes.number.isRequired,
             width: PropTypes.number.isRequired
-        })
+        }),
+        ref: PropTypes.string
     }),
+    images: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    animations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            urls: PropTypes.arrayOf(PropTypes.string).isRequired
+        })
+    ).isRequired,
+    dragonBones: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string.isRequired,
+            texture: PropTypes.string.isRequired,
+            textureJson: PropTypes.string.isRequired,
+            skeleton: PropTypes.string.isRequired
+        })
+    ).isRequired,
     setSelectedId: PropTypes.func.isRequired,
     onChangeLayerName: PropTypes.func.isRequired,
     onAddElement: PropTypes.func.isRequired,
     onDeleteElement: PropTypes.func.isRequired,
-    onChangeElement: PropTypes.func.isRequired
+    onChangeElement: PropTypes.func.isRequired,
+    onSaveLayer: PropTypes.func.isRequired,
+    onUpdateLayer: PropTypes.func.isRequired
 };
 
 export default LayerForm;

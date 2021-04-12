@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LayersTable = ({
-                         layers, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutLayerToForm,
-                         onDeleteNestedElement, onDragAndDrop
+                         layers, sorting, onChangeSort, onChangeFilterValue, onDelete,
+                         onClickPutLayerToForm, onDragAndDrop
                      }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -34,7 +34,6 @@ const LayersTable = ({
                 layers={layers}
                 setAnchorEl={setAnchorEl}
                 onClickPutLayerToForm={onClickPutLayerToForm}
-                onDeleteNestedElement={onDeleteNestedElement}
                 onDragAndDrop={onDragAndDrop}
             />
 
@@ -52,6 +51,7 @@ LayersTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
+            isValidName: PropTypes.bool,
             elements: PropTypes.arrayOf(
                 PropTypes.shape({
                     id: PropTypes.string.isRequired,

@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import { LAYER_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -46,25 +48,27 @@ const LayerTableRow = ({ id, name, elements, handleToggle, onClickPutLayerToForm
                 </Typography>
             </Grid>
 
-            <Grid item xs={2} className={classes.gridItem}>
+            <Grid item xs={3} className={classes.gridItem}>
                 <Typography className={classes.typo}>
                     {name}
                 </Typography>
             </Grid>
 
-            <Grid item xs={6} className={classes.gridItem}>
+            <Grid item xs={5} className={classes.gridItem}>
                 <Typography className={classes.typo}>
                     . . . . . . . . . . . . . . . . .
                 </Typography>
             </Grid>
 
             <Grid item xs={1}>
-                <IconButton
-                    data-id={id}
-                    onClick={() => onClickPutLayerToForm({ id, name, elements })}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={LAYER_FORM}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onClickPutLayerToForm({ id, name, elements })}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
             </Grid>
 
             <Grid item xs={1}>

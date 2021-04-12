@@ -78,7 +78,7 @@ const LayerTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                 </div>
             </Grid>
 
-            <Grid item xs={2} className={classes.headCell}>
+            <Grid item xs={3} className={classes.headCell}>
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}

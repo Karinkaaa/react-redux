@@ -15,17 +15,17 @@ import {
 const initialState = {
     playlist: [
         {
-            id: "10",
+            id: "7",
             name: "Tuesday",
             url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
         },
         {
-            id: "2",
+            id: "6",
             name: "My Life Is Going On",
             url: "https://static.muzlo.cc/download/24036/Burak-Yeter-Cecilia-Krull_-_My-Life-Is-Going-On-Burak-Yeter-Remix.mp3"
         },
         {
-            id: "4",
+            id: "8",
             name: "Gorit",
             url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
         }
@@ -42,7 +42,7 @@ const initialState = {
     filters: {}
 };
 
-export default (state = initialState, action) => {
+const AudioPage = (state = initialState, action) => {
     switch (action.type) {
         case ADD_AUDIO_RESOURCE: {
             const { playlist } = state;
@@ -134,4 +134,6 @@ export default (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export default AudioPage;
