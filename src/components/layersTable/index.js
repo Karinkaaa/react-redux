@@ -13,10 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayersTable = ({
-                         layers, sorting, onChangeSort, onChangeFilterValue, onDelete,
-                         onClickPutLayerToForm, onDragAndDrop
-                     }) => {
+const LayersTable = ({ layers, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutLayerToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -34,7 +31,6 @@ const LayersTable = ({
                 layers={layers}
                 setAnchorEl={setAnchorEl}
                 onClickPutLayerToForm={onClickPutLayerToForm}
-                onDragAndDrop={onDragAndDrop}
             />
 
             <ConfirmMenu

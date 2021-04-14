@@ -1,107 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import TextField from "@material-ui/core/TextField";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Modal from "@material-ui/core/Modal";
+import { Link } from "react-router-dom";
+import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import { Add, Remove } from "@material-ui/icons";
+import TextField from "@material-ui/core/TextField";
+import { Button, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
-import { isValidImageUrl } from "../../utils/validation";
 import AnimationSpeed from "./AnimationSpeed";
+import GridUrls from "./GridUrls";
+import ClearUrlComponent from "./ClearUrlComponent";
+import { ANIMATIONS } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
     paper: {
-        position: "absolute",
-        width: 800,
         background: "lightblue",
-        border: "3px solid #1e88e5",
-        boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 8),
-        borderRadius: "3px"
+        borderRadius: "5px"
     },
-    grid: {
-        whiteSpace: "noWrap",
-        marginTop: 10
+    btn: {
+        marginInlineStart: "auto"
     },
-    media: {
-        padding: 12,
-        marginRight: 25
+    speed: {
+        marginLeft: 50
     },
-    iconBtnAdd: {
-        marginLeft: 10
-    },
-    iconBtnRemove: {
-        marginLeft: 10
+    link: {
+        pointerEvents: ({ isDisabledButtonSave }) => isDisabledButtonSave() ? "none" : "auto"
     }
 }));
 
 const AnimationResourceForm = ({
-                                   onSave, onDeleteImage, onAddImage, onUpdate, id,
-                                   speed, onChangeSpeed,
-                                   name, isValidName, onChangeName,
-                                   urls, isValidUrls, onChangeUrl,
-                                   isOpen, onChangeIsOpen
+                                   id, speed, urls, name, isValidName, onChangeName, onChangeSpeed, onAddImage,
+                                   onDeleteImage, isValidUrls, onChangeUrl, onSave, onUpdate, onDragAndDrop
                                }) => {
-    const classes = useStyles();
-
     const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
-    const handleClose = () => onChangeIsOpen(false);
-
     const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName || urls.length === 0 || speed === 0;
-    const [url, setUrl] = useState("");
 
-    const isValidUrl = isValidImageUrl(url);
-    const handleClickAdd = () => {
-        onAddImage(url);
-        setUrl("");
-    };
+    const classes = useStyles({ isDisabledButtonSave });
 
     return (
-        <Modal
-            className={classes.modal}
-            open={isOpen}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-                timeout: 500
-            }}
-        >
-            <Fade in={isOpen}>
-                <Grid container spacing={3} className={classes.paper}>
-                    <Grid item xs={12}>
-                        <AnimationSpeed
-                            speed={speed}
-                            onChangeSpeed={onChangeSpeed}
-                        />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <TextField
-                            label="Speed"
-                            variant="outlined"
-                            value={speed}
-                            required
-                            fullWidth
-                            disabled
-                        />
-                    </Grid>
-
+        <div>
+            <Toolbar/>
+            <Container className={classes.paper}>
+                <Grid container spacing={3}>
                     {
                         id && (
-                            <Grid item xs={12}>
+                            <Grid item xs={3}>
                                 <TextField
-                                    label="ID"
-                                    variant="outlined"
+                                    label={"ID"}
+                                    variant={"outlined"}
                                     value={id}
                                     required
                                     fullWidth
@@ -111,11 +57,11 @@ const AnimationResourceForm = ({
                         )
                     }
 
-                    <Grid item xs={12}>
+                    <Grid item xs={id ? 9 : 12}>
                         <TextField
-                            label="Name"
-                            placeholder="Enter the name of image resource"
-                            variant="outlined"
+                            label={"Name"}
+                            placeholder={"Enter the name of animation resource"}
+                            variant={"outlined"}
                             value={name}
                             required
                             fullWidth
@@ -124,117 +70,80 @@ const AnimationResourceForm = ({
                         />
                     </Grid>
 
-                    <Grid container spacing={2} className={classes.grid}>
-                        {
-                            urls.map((url, index) =>
-                                <Grid container item xs={12} key={url}>
-                                    <Grid item xs={1} className={classes.media}>
-                                        <Avatar src={url}/>
-                                    </Grid>
-
-                                    <Grid item xs={9}>
-                                        <TextField
-                                            label="URL"
-                                            placeholder="Enter the URL of image resource"
-                                            variant="outlined"
-                                            value={url}
-                                            required
-                                            fullWidth
-                                            error={!isValidUrls[index]}
-                                            onChange={e => onChangeUrl(e.target.value)}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={1}>
-                                        <IconButton
-                                            className={classes.iconBtnRemove}
-                                            onClick={() => onDeleteImage(index)}
-                                        >
-                                            <Remove color="secondary"/>
-                                        </IconButton>
-                                    </Grid>
-
-                                </Grid>
-                            )
-                        }
+                    <Grid item xs={3}>
+                        <TextField
+                            label={"Animation speed (in seconds)"}
+                            variant={"outlined"}
+                            value={speed}
+                            required
+                            fullWidth
+                            disabled
+                        />
                     </Grid>
 
-                    <Grid container item xs={12} spacing={2} className={classes.grid}>
-                        <Grid item xs={1} className={classes.media}>
-                            <Avatar src={url}/>
-                        </Grid>
+                    <Grid item xs={8} className={classes.speed}>
+                        <AnimationSpeed speed={speed} onChangeSpeed={onChangeSpeed}/>
+                    </Grid>
 
-                        <Grid item xs={9}>
-                            <TextField
-                                label="URL"
-                                placeholder="Enter the new URL of image resource"
-                                variant="outlined"
-                                value={url}
-                                required
+                    <GridUrls
+                        id={id}
+                        urls={urls}
+                        isValidUrls={isValidUrls}
+                        onChangeUrl={onChangeUrl}
+                        onDeleteImage={onDeleteImage}
+                        onDragAndDrop={onDragAndDrop}
+                    />
+
+                    <ClearUrlComponent onAddImage={onAddImage}/>
+
+                    <Grid item xs={2}>
+                        <Link to={ANIMATIONS}>
+                            <Button
                                 fullWidth
-                                error={!isValidUrl}
-                                onChange={(e) => setUrl(e.target.value)}
-                            />
-                        </Grid>
-
-                        <Grid item xs={1}>
-                            <IconButton
-                                className={classes.iconBtnAdd}
-                                disabled={!isValidUrl}
-                                onClick={handleClickAdd}
+                                color="secondary"
+                                variant="contained"
                             >
-                                <Add color="primary"/>
-                            </IconButton>
-                        </Grid>
+                                Cancel
+                            </Button>
+                        </Link>
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <Button
-                            fullWidth
-                            onClick={handleClose}
-                            color="secondary"
-                            variant="contained"
-                        >
-                            Cancel
-                        </Button>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <Button
-                            fullWidth
-                            onClick={() => {
-                                id ? onUpdate({ id, name, urls, speed }) : onSave({ id, name, urls, speed });
-                                handleClose();
-                            }}
-                            disabled={isDisabledButtonSave()}
-                            color="primary"
-                            variant="contained"
-                        >
-                            {id ? "Update" : "Save"}
-                        </Button>
+                    <Grid item xs={2} className={classes.btn}>
+                        <Link to={ANIMATIONS} className={classes.link}>
+                            <Button
+                                fullWidth
+                                onClick={() => {
+                                    id ? onUpdate({ id, name, urls, speed })
+                                        : onSave({ id, name, urls, speed });
+                                }}
+                                disabled={isDisabledButtonSave()}
+                                color={"primary"}
+                                variant={"contained"}
+                            >
+                                {id ? "Update" : "Save"}
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
-            </Fade>
-        </Modal>
+            </Container>
+        </div>
     );
 };
 
 AnimationResourceForm.propTypes = {
-    onSave: PropTypes.func.isRequired,
-    onDeleteImage: PropTypes.func.isRequired,
-    onAddImage: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
-    speed: PropTypes.number.isRequired,
-    onChangeSpeed: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    isValidName: PropTypes.bool.isRequired,
-    onChangeName: PropTypes.func.isRequired,
+    speed: PropTypes.number.isRequired,
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isValidName: PropTypes.bool.isRequired,
     isValidUrls: PropTypes.arrayOf(PropTypes.bool).isRequired,
+    onChangeName: PropTypes.func.isRequired,
+    onChangeSpeed: PropTypes.func.isRequired,
     onChangeUrl: PropTypes.func.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired
+    onAddImage: PropTypes.func.isRequired,
+    onDeleteImage: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired
 };
 
 export default AnimationResourceForm;

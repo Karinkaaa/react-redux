@@ -4,7 +4,6 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { reorderItems } from "../../utils/methods";
 
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "darkcyan" : "#335068",
     width: "100%"
 });
 
@@ -13,7 +12,6 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     userSelect: "none",
 
     // change background colour if dragging
-    background: isDragging ? "darkcyan" : "#335068",
 
     // styles we need to apply on draggable
     ...draggableStyle
@@ -54,7 +52,7 @@ const DragDropComponent = ({ items, onDragAndDrop, renderItem }) => (
                                                     provided.draggableProps.style
                                                 )}
                                             >
-                                                {renderItem(item)}
+                                                {renderItem(item, index)}
                                             </div>
                                         )
                                     }

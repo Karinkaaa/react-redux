@@ -7,7 +7,6 @@ import {
     CHANGE_ANIMATION_VIEW,
     DELETE_ANIMATION_RESOURCE,
     DELETE_NESTED_IMAGE_RESOURCE,
-    DRAG_AND_DROP,
     UPDATE_ANIMATION_RESOURCE
 } from "../../utils/actionConstants";
 
@@ -62,10 +61,4 @@ export const deleteNestedImageResource = (id, url) => ({
     type: DELETE_NESTED_IMAGE_RESOURCE,
     id,
     url
-});
-
-export const dragAndDrop = (result, id) => ({
-    type: DRAG_AND_DROP,
-    result,
-    id
 });

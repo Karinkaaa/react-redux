@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ConfirmMenu from "../confirmMenu";
 import AnimationCard from "./AnimationCard";
 
-const AnimationResourceCards = ({ animations, onDelete, onChangeIsOpen, onClickPutResourceToForm }) => {
+const AnimationResourceCards = ({ animations, onDelete, onClickPutResourceToForm }) => {
     const [anchorEl, setAnchorEl] = React.useState(false);
     const handleClose = () => setAnchorEl(null);
 
@@ -20,7 +20,6 @@ const AnimationResourceCards = ({ animations, onDelete, onChangeIsOpen, onClickP
                                 urls={urls}
                                 speed={speed}
                                 setAnchorEl={setAnchorEl}
-                                onChangeIsOpen={onChangeIsOpen}
                                 onClickPutResourceToForm={onClickPutResourceToForm}
                             />
                         </Grid>
@@ -44,7 +43,6 @@ AnimationResourceCards.propTypes = {
         })
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 

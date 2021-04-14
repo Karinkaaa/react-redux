@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Button, Container, Grid, InputAdornment, TextField } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
-import { Add, Save, Update } from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import ResizableDraggableLayerElement from "../resizableDraggableLayerElement";
 import SettingsMenu from "./SettingsMenu";
+import { LAYERS } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -13,8 +15,14 @@ const useStyles = makeStyles(theme => ({
         height: 700,
         marginTop: 50
     },
-    buttonSave: {
-        textAlign: "end"
+    btn: {
+        marginLeft: 50
+    },
+    id: {
+        marginRight: 50
+    },
+    link: {
+        pointerEvents: ({ isValidName }) => !isValidName ? "none" : "auto"
     }
 }));
 
@@ -23,7 +31,7 @@ const LayerForm = ({
                        isValidName, onChangeLayerName, setSelectedId, onAddElement, onDeleteElement,
                        onChangeElement, onSaveLayer, onUpdateLayer
                    }) => {
-    const classes = useStyles();
+    const classes = useStyles({ isValidName });
 
     return (
         <div>
@@ -44,7 +52,7 @@ const LayerForm = ({
 
                     {
                         id && (
-                            <Grid item xs={3}>
+                            <Grid item xs={2} className={classes.id}>
                                 <TextField
                                     value={id}
                                     disabled
@@ -56,7 +64,7 @@ const LayerForm = ({
                         )
                     }
 
-                    <Grid item xs={id ? 4 : 5}>
+                    <Grid item xs={id ? 3 : 4}>
                         <TextField
                             fullWidth
                             value={name}
@@ -66,17 +74,34 @@ const LayerForm = ({
                         />
                     </Grid>
 
-                    <Grid item xs={2} className={classes.buttonSave}>
-                        <Button
-                            size="large"
-                            color={"primary"}
-                            variant={"contained"}
-                            disabled={!isValidName}
-                            startIcon={id ? <Update/> : <Save/>}
-                            onClick={() => id ? onUpdateLayer({ id, name, elements }) : onSaveLayer({ name, elements })}
-                        >
-                            {id ? "Update" : "Save"}
-                        </Button>
+                    <Grid item xs={1} className={classes.btn}>
+                        <Link to={LAYERS} className={classes.link}>
+                            <Button
+                                fullWidth
+                                size="large"
+                                color={"primary"}
+                                variant={"contained"}
+                                disabled={!isValidName}
+                                onClick={() => id ? onUpdateLayer({ id, name, elements }) :
+                                    onSaveLayer({ name, elements })
+                                }
+                            >
+                                {id ? "Update" : "Save"}
+                            </Button>
+                        </Link>
+                    </Grid>
+
+                    <Grid item xs={1} className={classes.btn}>
+                        <Link to={LAYERS}>
+                            <Button
+                                fullWidth
+                                size="large"
+                                color="secondary"
+                                variant="contained"
+                            >
+                                Cancel
+                            </Button>
+                        </Link>
                     </Grid>
 
                     <Grid item xs={10} className={classes.container}>

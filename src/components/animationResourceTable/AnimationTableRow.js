@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 import { Avatar } from "@material-ui/core";
@@ -7,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { Delete, ExpandLess, ExpandMore, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import NestedTable from "./NestedTable";
+import { ANIMATION_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -28,10 +30,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AnimationTableRow = ({
-                               id, name, urls, speed, handleOpen, handleToggle, onDragAndDrop,
-                               onClickPutResourceToForm, onDeleteNestedImage
-                           }) => {
+const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutResourceToForm, onDeleteNestedImage }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
@@ -60,15 +59,14 @@ const AnimationTableRow = ({
             <Grid item xs={2} className={classes.gridItem}>{speed}</Grid>
 
             <Grid item xs={1}>
-                <IconButton
-                    data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, urls, speed });
-                    }}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={ANIMATION_FORM}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onClickPutResourceToForm({ id, name, urls, speed })}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
             </Grid>
 
             <Grid item xs={1}>
@@ -85,7 +83,6 @@ const AnimationTableRow = ({
                 urls={urls}
                 open={open}
                 onDeleteNestedImage={onDeleteNestedImage}
-                onDragAndDrop={onDragAndDrop}
             />
         </Grid>
     );
@@ -96,9 +93,7 @@ AnimationTableRow.propTypes = {
     name: PropTypes.string.isRequired,
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     speed: PropTypes.number.isRequired,
-    handleOpen: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onDragAndDrop: PropTypes.func.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };

@@ -1,7 +1,8 @@
 import {
     ADD_IMAGE_RESOURCE_TO_ANIMATION,
+    CLEAR_ANIMATION_FORM,
     DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
-    IS_OPEN_ANIMATION_MODAL,
+    DRAG_AND_DROP_IN_ANIMATION_FORM,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_SPEED,
@@ -24,11 +25,6 @@ export const updateAnimationUrl = (index, url) => ({
     url
 });
 
-export const isOpenAnimationModal = (isOpen) => ({
-    type: IS_OPEN_ANIMATION_MODAL,
-    isOpen
-});
-
 export const putAnimationResourceToForm = ({ id, name, urls, speed }) => ({
     type: PUT_ANIMATION_RESOURCE_TO_FORM,
     id,
@@ -45,4 +41,13 @@ export const deleteImageFromAnimationForm = (index) => ({
 export const addImageResourceToAnimation = (url) => ({
     type: ADD_IMAGE_RESOURCE_TO_ANIMATION,
     url
+});
+
+export const dragAndDropInAnimationForm = (result) => ({
+    type: DRAG_AND_DROP_IN_ANIMATION_FORM,
+    result
+});
+
+export const clearAnimationForm = () => ({
+    type: CLEAR_ANIMATION_FORM
 });

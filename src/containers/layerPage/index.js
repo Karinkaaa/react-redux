@@ -8,7 +8,6 @@ import {
     changeLayerPage,
     changeLayerSort,
     deleteLayer,
-    dragAndDrop,
     updateLayer
 } from "../../actions/layerComponent";
 
@@ -39,8 +38,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeLayerLimit(limit)),
         onChangeSort: (field) => dispatch(changeLayerSort(field)),
         onChangeFilterValue: (props) => dispatch(changeLayerFilterValue(props)),
-        onClickPutLayerToForm: (props) => dispatch(putLayerToForm(props)),
-        onDragAndDrop: (result, id) => dispatch(dragAndDrop(result, id))
+        onClickPutLayerToForm: (props) => dispatch(putLayerToForm(props))
     };
 };
 

@@ -1,5 +1,5 @@
 import uuid from "react-uuid";
-import { getItemById, removeItemById, saveItemTo } from "../../utils/methods";
+import { removeItemById, saveItemTo } from "../../utils/methods";
 import { isValidName } from "../../utils/validation";
 import {
     ADD_LAYER,
@@ -8,7 +8,6 @@ import {
     CHANGE_LAYER_PAGE,
     CHANGE_LAYER_SORT,
     DELETE_LAYER,
-    DRAG_AND_DROP,
     UPDATE_LAYER
 } from "../../utils/actionConstants";
 
@@ -164,19 +163,6 @@ const LayerPage = (state = initialState, action) => {
                 };
             }
             return state;
-        }
-        case DRAG_AND_DROP: {
-            const { id, result } = action;
-            const { layerList } = state;
-            const layerItem = getItemById(layerList, id);
-
-            return {
-                ...state,
-                layerList: saveItemTo(layerList, {
-                    ...layerItem,
-                    elements: result
-                })
-            };
         }
         default:
             return state;

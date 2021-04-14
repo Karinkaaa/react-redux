@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Animations from "../../pages/animations";
 import { filteringSortingPagingOfArray } from "../../utils/methods";
-import { isOpenAnimationModal, putAnimationResourceToForm } from "../../actions/animationResourceForm";
+import { clearAnimationForm, putAnimationResourceToForm } from "../../actions/animationResourceForm";
 import {
     changeAnimationFilterValue,
     changeAnimationLimit,
@@ -9,8 +9,7 @@ import {
     changeAnimationSort,
     changeAnimationView,
     deleteAnimationResource,
-    deleteNestedImageResource,
-    dragAndDrop
+    deleteNestedImageResource
 } from "../../actions/animationResourceComponent";
 
 const mapStateToProps = (state) => {
@@ -34,16 +33,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onAdd: () => dispatch(clearAnimationForm()),
         onDelete: (id) => dispatch(deleteAnimationResource(id)),
         onChangePage: (page) => dispatch(changeAnimationPage(page)),
         onChangeLimit: (limit) => dispatch(changeAnimationLimit(limit)),
         onChangeSort: (field) => dispatch(changeAnimationSort(field)),
         onChangeView: (view) => dispatch(changeAnimationView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
         onChangeFilterValue: (props) => dispatch(changeAnimationFilterValue(props)),
         onClickPutResourceToForm: (props) => dispatch(putAnimationResourceToForm(props)),
-        onDeleteNestedImage: (id, url) => dispatch(deleteNestedImageResource(id, url)),
-        onDragAndDrop: (result, id) => dispatch(dragAndDrop(result, id))
+        onDeleteNestedImage: (id, url) => dispatch(deleteNestedImageResource(id, url))
     };
 };
 

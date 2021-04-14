@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import MainPage from "../mainPage";
 import Images from "../../containers/imagePage";
 import Animations from "../../containers/animationPage";
+import AnimationForm from "../../containers/animationResourceForm";
 import DragonBones from "../../containers/dragonBonesPage";
 import Audio from "../../containers/audioPage";
 import Drums from "../../pages/drums";
@@ -11,6 +12,7 @@ import LayerForm from "../../containers/layerForm";
 import Layers from "../../containers/layerPage";
 import Info from "../../pages/info";
 import {
+    ANIMATION_FORM,
     ANIMATIONS,
     AUDIOS,
     DRAGON_BONES,
@@ -29,6 +31,7 @@ const Routers = () => (
             <Route exact path={MAIN_PAGE} component={MainPage}/>
             <Route exact path={IMAGES} component={Images}/>
             <Route exact path={ANIMATIONS} component={Animations}/>
+            <Route exact path={ANIMATION_FORM} component={AnimationForm}/>
             <Route exact path={DRAGON_BONES} component={DragonBones}/>
             <Route exact path={AUDIOS} component={Audio}/>
             <Route exact path={DRUMS} component={Drums}/>

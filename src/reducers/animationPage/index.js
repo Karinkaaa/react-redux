@@ -10,7 +10,6 @@ import {
     CHANGE_ANIMATION_VIEW,
     DELETE_ANIMATION_RESOURCE,
     DELETE_NESTED_IMAGE_RESOURCE,
-    DRAG_AND_DROP,
     UPDATE_ANIMATION_RESOURCE
 } from "../../utils/actionConstants";
 
@@ -186,19 +185,6 @@ const AnimationPage = (state = initialState, action) => {
                 animationList: saveItemTo(animationList, {
                     ...animationItem,
                     urls
-                })
-            };
-        }
-        case DRAG_AND_DROP: {
-            const { id, result } = action;
-            const { animationList } = state;
-            const animationItem = getItemById(animationList, id);
-
-            return {
-                ...state,
-                animationList: saveItemTo(animationList, {
-                    ...animationItem,
-                    urls: result
                 })
             };
         }

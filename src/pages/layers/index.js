@@ -9,8 +9,8 @@ import LayersTable from "../../components/layersTable";
 import { LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
-                    layers, count, onAdd, onDelete, onClickPutLayerToForm, pagination, onChangePage, onChangeLimit,
-                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue, onDragAndDrop
+                    layers, count, pagination, sorting, onAdd, onDelete, onClickPutLayerToForm,
+                    onChangePage, onChangeLimit, onChangeSort, onChangeDirection, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
@@ -59,7 +59,6 @@ const Layers = ({
                         onChangeSort={onChangeSort}
                         onChangeDirection={onChangeDirection}
                         onChangeFilterValue={onChangeFilterValue}
-                        onDragAndDrop={onDragAndDrop}
                     />
                 </Grid>
             </Container>
@@ -105,8 +104,7 @@ Layers.propTypes = {
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
-    onChangeFilterValue: PropTypes.func.isRequired,
-    onDragAndDrop: PropTypes.func.isRequired
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default Layers;

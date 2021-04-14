@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Card, CardActions, CardContent } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import CardStepper from "./CardStepper";
+import { ANIMATION_FORM } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,20 +31,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AnimationCard = ({
-                           id, name, urls, speed, setAnchorEl,
-                           onChangeIsOpen, onClickPutResourceToForm
-                       }) => {
+const AnimationCard = ({ id, name, urls, speed, setAnchorEl, onClickPutResourceToForm }) => {
     const classes = useStyles();
-
-    const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
         <Card className={classes.root}>
-            <CardStepper
-                urls={urls}
-            />
+            <CardStepper urls={urls}/>
 
             <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
@@ -51,15 +46,14 @@ const AnimationCard = ({
             </CardContent>
 
             <CardActions>
-                <IconButton
-                    data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, urls, speed });
-                    }}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={ANIMATION_FORM}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onClickPutResourceToForm({ id, name, urls, speed })}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
 
                 <IconButton
                     data-id={id}
@@ -78,7 +72,6 @@ AnimationCard.propTypes = {
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     speed: PropTypes.number.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 

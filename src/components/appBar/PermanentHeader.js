@@ -42,7 +42,7 @@ const PermanentHeader = () => {
                     variant="h6"
                     className={classes.header}
                 >
-                    BOOSiNKA
+                    Spin Admin
                 </Typography>
             </Toolbar>
         </AppBar>

@@ -4,7 +4,7 @@ import { addAnimationResource, updateAnimationResource } from "../../actions/ani
 import {
     addImageResourceToAnimation,
     deleteImageFromAnimationForm,
-    isOpenAnimationModal,
+    dragAndDropInAnimationForm,
     updateAnimationName,
     updateAnimationSpeed,
     updateAnimationUrl
@@ -17,8 +17,7 @@ const mapStateToProps = (state) => {
         name: state.animationForm.name,
         isValidName: state.animationForm.isValidName,
         urls: state.animationForm.urls,
-        isValidUrls: state.animationForm.isValidUrls,
-        isOpen: state.animationForm.isOpen
+        isValidUrls: state.animationForm.isValidUrls
     };
 };
 
@@ -28,10 +27,10 @@ const mapDispatchToProps = (dispatch) => {
         onChangeName: (name) => dispatch(updateAnimationName(name)),
         onChangeUrl: (index, url) => dispatch(updateAnimationUrl(index, url)),
         onSave: (props) => dispatch(addAnimationResource(props)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAnimationModal(isOpen)),
         onUpdate: (props) => dispatch(updateAnimationResource(props)),
         onDeleteImage: (index) => dispatch(deleteImageFromAnimationForm(index)),
-        onAddImage: (url) => dispatch(addImageResourceToAnimation(url))
+        onAddImage: (url) => dispatch(addImageResourceToAnimation(url)),
+        onDragAndDrop: (result) => dispatch(dragAndDropInAnimationForm(result))
     };
 };
 

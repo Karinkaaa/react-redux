@@ -1,24 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Button, Container, Grid } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import { Add, List, ViewModule } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import TablePagination from "@material-ui/core/TablePagination";
-import CreateResourceForm from "../../containers/animationResourceForm";
 import AnimationResourceTable from "../../components/animationResourceTable";
 import AnimationResourceCards from "../../components/animationResourceCards";
 import { GRID, TABLE } from "../../utils/constants";
+import { ANIMATION_FORM } from "../../utils/links";
 
 const Animations = ({
-                        animations, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
-                        view, onChangeView, pagination, onChangePage, onChangeLimit,
-                        sorting, onChangeSort, onChangeDirection, onChangeFilterValue,
-                        onDeleteNestedImage, onDragAndDrop
+                        animations, count, view, pagination, sorting, onAdd, onDelete,
+                        onClickPutResourceToForm, onChangeView, onChangePage, onChangeLimit,
+                        onChangeSort, onChangeDirection, onChangeFilterValue, onDeleteNestedImage
                     }) => {
     const { page, limit } = pagination;
 
-    const handleOpen = () => onChangeIsOpen(true);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
 
     const handleChangeAnimationPage = (event, newPage) => onChangePage(newPage);
@@ -44,15 +43,17 @@ const Animations = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            startIcon={<Add/>}
-                            onClick={handleOpen}
-                        >
-                            Add animation resource
-                        </Button>
+                        <Link to={ANIMATION_FORM}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="large"
+                                startIcon={<Add/>}
+                                onClick={onAdd}
+                            >
+                                Add animation resource
+                            </Button>
+                        </Link>
                     </Grid>
 
                     <Grid item xs={5}>
@@ -85,8 +86,6 @@ const Animations = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
-
                                 <AnimationResourceCards
                                     animations={animations}
                                     count={count}
@@ -95,7 +94,6 @@ const Animations = ({
                                     onDelete={onDelete}
                                     onChangePage={handleChangeAnimationPage}
                                     onChangeLimit={onChangeLimit}
-                                    onChangeIsOpen={onChangeIsOpen}
                                     onClickPutResourceToForm={onClickPutResourceToForm}
                                 />
                             </>
@@ -111,19 +109,15 @@ const Animations = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
-
                                 <AnimationResourceTable
                                     animations={animations}
                                     onDelete={onDelete}
-                                    onChangeIsOpen={onChangeIsOpen}
                                     onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
                                     onChangeDirection={onChangeDirection}
                                     onChangeFilterValue={onChangeFilterValue}
                                     onDeleteNestedImage={onDeleteNestedImage}
-                                    onDragAndDrop={onDragAndDrop}
                                 />
                             </>
                     }
@@ -142,8 +136,8 @@ Animations.propTypes = {
         })
     ).isRequired,
     count: PropTypes.number.isRequired,
+    onAdd: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     onChangeView: PropTypes.func.isRequired,
@@ -162,8 +156,7 @@ Animations.propTypes = {
     onChangeSort: PropTypes.func.isRequired,
     onChangeDirection: PropTypes.func,
     onChangeFilterValue: PropTypes.func.isRequired,
-    onDeleteNestedImage: PropTypes.func.isRequired,
-    onDragAndDrop: PropTypes.func.isRequired
+    onDeleteNestedImage: PropTypes.func.isRequired
 };
 
 export default Animations;

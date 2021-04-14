@@ -1,5 +1,5 @@
 import React from "react";
-import { ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, INFO, LAYER_FORM, LAYERS, RULES } from "../../utils/links";
+import { ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, INFO, LAYERS, RULES } from "../../utils/links";
 import {
     AccessibilityNew,
     BurstMode,
@@ -7,7 +7,6 @@ import {
     GroupWork,
     Info,
     Layers,
-    LibraryAdd,
     PhotoLibrary,
     QueueMusic,
     ViewCarousel,
@@ -59,11 +58,6 @@ export const MenuElements = [
                 name: "Layers",
                 Icon: () => <Layers/>,
                 link: LAYERS
-            },
-            {
-                name: "Layer Form",
-                Icon: () => <LibraryAdd/>,
-                link: LAYER_FORM
             }
         ]
     },

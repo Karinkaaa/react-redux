@@ -5,7 +5,6 @@ import {
     CHANGE_LAYER_PAGE,
     CHANGE_LAYER_SORT,
     DELETE_LAYER,
-    DRAG_AND_DROP,
     UPDATE_LAYER
 } from "../../utils/actionConstants";
 
@@ -46,10 +45,4 @@ export const changeLayerFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_LAYER_FILTER_VALUE,
     filterKey,
     filterValue
-});
-
-export const dragAndDrop = (result, id) => ({
-    type: DRAG_AND_DROP,
-    result,
-    id
 });

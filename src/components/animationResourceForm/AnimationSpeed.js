@@ -1,15 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
 import PropTypes from "prop-types";
+import Slider from "@material-ui/core/Slider";
 import { INITIAL_SPEED } from "../../utils/constants";
-
-const useStyles = makeStyles({
-    root: {
-        width: 640
-    }
-});
 
 const marks = [
     {
@@ -58,28 +50,19 @@ const marks = [
     }
 ];
 
-const AnimationSpeed = ({ speed, onChangeSpeed }) => {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.root}>
-            <Typography color={"primary"} gutterBottom>
-                Animation speed (in seconds)
-            </Typography>
-            <Slider
-                defaultValue={INITIAL_SPEED}
-                aria-labelledby="discrete-slider-small-steps"
-                step={INITIAL_SPEED}
-                marks={marks}
-                min={INITIAL_SPEED}
-                max={1}
-                valueLabelDisplay="auto"
-                value={speed}
-                onChange={(e, value) => onChangeSpeed(value)}
-            />
-        </div>
-    );
-};
+const AnimationSpeed = ({ speed, onChangeSpeed }) => (
+    <Slider
+        defaultValue={INITIAL_SPEED}
+        aria-labelledby="discrete-slider-small-steps"
+        step={INITIAL_SPEED}
+        marks={marks}
+        min={INITIAL_SPEED}
+        max={1}
+        valueLabelDisplay="auto"
+        value={speed}
+        onChange={(e, value) => onChangeSpeed(value)}
+    />
+);
 
 AnimationSpeed.propTypes = {
     speed: PropTypes.number.isRequired,

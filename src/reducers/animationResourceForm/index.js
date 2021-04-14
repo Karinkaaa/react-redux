@@ -2,9 +2,9 @@ import { isValidImageUrl, isValidName } from "../../utils/validation";
 import { removeItemByIndex } from "../../utils/methods";
 import { INITIAL_SPEED } from "../../utils/constants";
 import {
-    ADD_IMAGE_RESOURCE_TO_ANIMATION,
+    ADD_IMAGE_RESOURCE_TO_ANIMATION, CLEAR_ANIMATION_FORM,
     DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
-    IS_OPEN_ANIMATION_MODAL,
+    DRAG_AND_DROP_IN_ANIMATION_FORM,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_SPEED,
@@ -17,24 +17,11 @@ const initialState = {
     isValidName: false,
     urls: [],
     isValidUrls: [],
-    speed: INITIAL_SPEED,
-    isOpen: false
+    speed: INITIAL_SPEED
 };
 
 const AnimationResourceForm = (state = initialState, action) => {
     switch (action.type) {
-        case IS_OPEN_ANIMATION_MODAL: {
-            return {
-                ...state,
-                id: "",
-                name: "",
-                isValidName: false,
-                urls: [],
-                isValidUrls: [],
-                speed: INITIAL_SPEED,
-                isOpen: action.isOpen
-            };
-        }
         case UPDATE_ANIMATION_NAME: {
             const { name } = action;
 
@@ -101,6 +88,17 @@ const AnimationResourceForm = (state = initialState, action) => {
                     ...state.isValidUrls,
                     isValidImageUrl(url)
                 ]
+            };
+        }
+        case DRAG_AND_DROP_IN_ANIMATION_FORM: {
+            return {
+                ...state,
+                urls: action.result
+            };
+        }
+        case CLEAR_ANIMATION_FORM: {
+            return {
+                ...initialState
             };
         }
         default:
