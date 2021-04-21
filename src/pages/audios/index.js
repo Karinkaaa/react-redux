@@ -7,7 +7,7 @@ import { Add, List, ViewModule } from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import AudioResourceCards from "../../components/audioResourceCards";
 import AudioResourceTable from "../../components/audioResourceTable";
-import CreateResourceForm from "../../containers/audioResourceForm";
+import AudioResourceForm from "../../containers/audioResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
@@ -84,7 +84,7 @@ const Audios = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
+                                <AudioResourceForm/>
 
                                 <AudioResourceCards
                                     audios={audios}
@@ -110,7 +110,7 @@ const Audios = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
+                                <AudioResourceForm/>
 
                                 <AudioResourceTable
                                     audios={audios}

@@ -1,12 +1,7 @@
 import { connect } from "react-redux";
-import CreateRuleForm from "../../components/ruleForm";
+import RuleForm from "../../components/ruleForm";
 import { addRule, updateRule } from "../../actions/ruleComponent";
-import {
-    updateRuleCondition,
-    isOpenRuleModal,
-    updateRuleCost,
-    updateRuleName
-} from "../../actions/ruleForm";
+import { isOpenRuleModal, updateRuleCondition, updateRuleCost, updateRuleName } from "../../actions/ruleForm";
 
 const mapStateToProps = (state) => {
     return {
@@ -31,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateRuleForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RuleForm);

@@ -27,11 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RuleForm = ({
-                      onSave, onUpdate, id,
-                      name, isValidName, onChangeName,
-                      cost, isValidCost, onChangeCost,
-                      conditions, onChangeCondition,
-                      isOpen, onChangeIsOpen
+                      id, name, isValidName, cost, isValidCost, conditions, onSave, onUpdate,
+                      onChangeName, onChangeCost, onChangeCondition, isOpen, onChangeIsOpen
                   }) => {
     const classes = useStyles();
 

@@ -7,7 +7,7 @@ import { Add, List, ViewModule } from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
 import DragonBonesResourceCards from "../../components/dragonBonesResourceCards";
-import CreateResourceForm from "../../containers/dragonBonesResourceForm";
+import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
@@ -86,7 +86,7 @@ const DragonBones = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
+                                <DragonBonesResourceForm/>
 
                                 <DragonBonesResourceCards
                                     dragonBones={dragonBones}
@@ -115,7 +115,7 @@ const DragonBones = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
+                                <DragonBonesResourceForm/>
 
                                 <DragonBonesResourceTable
                                     dragonBones={dragonBones}

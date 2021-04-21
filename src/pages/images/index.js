@@ -7,7 +7,7 @@ import { Add, List, ViewModule } from "@material-ui/icons";
 import TablePagination from "@material-ui/core/TablePagination";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
-import CreateResourceForm from "../../containers/imageResourceForm";
+import ImageResourceForm from "../../containers/imageResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Images = ({
@@ -84,7 +84,7 @@ const Images = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
+                                <ImageResourceForm/>
 
                                 <ImageResourceCards
                                     images={images}
@@ -110,7 +110,7 @@ const Images = ({
                                     </IconButton>
                                 </Grid>
 
-                                <CreateResourceForm/>
+                                <ImageResourceForm/>
 
                                 <ImageResourceTable
                                     images={images}
