@@ -22,7 +22,7 @@ const ResizableDraggableLayerElement = ({
                                             images, animations, dragonBones
                                         }) => {
     const classes = useStyles();
-    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "" } = element;
+    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "", zIndex = 0 } = element;
 
     const handleDrag = (e, d) => {
         onChangeElement({
@@ -68,7 +68,7 @@ const ResizableDraggableLayerElement = ({
             onDragStop={handleDrag}
             onResizeStop={handleResize}
             style={{
-                zIndex: isSelected ? 1 : 0,
+                zIndex: isSelected ? 999 : zIndex,
                 border: isSelected && "solid 1px white",
                 boxShadow: isSelected && "0 0 25px white, 0 5px 15px cyan",
                 backgroundImage: `url('${backgroundImage()}')`
@@ -92,7 +92,9 @@ ResizableDraggableLayerElement.propTypes = {
         size: PropTypes.shape({
             height: PropTypes.number.isRequired,
             width: PropTypes.number.isRequired
-        })
+        }),
+        ref: PropTypes.string,
+        zIndex: PropTypes.number
     }).isRequired,
     onChangeElement: PropTypes.func.isRequired,
     isSelected: PropTypes.bool.isRequired,

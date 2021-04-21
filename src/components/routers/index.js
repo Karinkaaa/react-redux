@@ -7,7 +7,7 @@ import AnimationForm from "../../containers/animationResourceForm";
 import DragonBones from "../../containers/dragonBonesPage";
 import Audio from "../../containers/audioPage";
 import Drums from "../../pages/drums";
-import Rules from "../../containers/layerForm";
+import Rules from "../../containers/ruleForm";
 import LayerForm from "../../containers/layerForm";
 import Layers from "../../containers/layerPage";
 import Info from "../../pages/info";

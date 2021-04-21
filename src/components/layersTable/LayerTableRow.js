@@ -96,7 +96,9 @@ LayerTableRow.propTypes = {
             size: PropTypes.shape({
                 height: PropTypes.number.isRequired,
                 width: PropTypes.number.isRequired
-            })
+            }),
+            ref: PropTypes.string,
+            zIndex: PropTypes.number
         }).isRequired
     ).isRequired,
     handleToggle: PropTypes.func.isRequired,

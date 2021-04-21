@@ -39,7 +39,9 @@ LayerTableBody.propTypes = {
                     size: PropTypes.shape({
                         height: PropTypes.number.isRequired,
                         width: PropTypes.number.isRequired
-                    })
+                    }),
+                    ref: PropTypes.string,
+                    zIndex: PropTypes.number
                 }).isRequired
             ).isRequired
         }).isRequired

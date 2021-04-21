@@ -28,7 +28,8 @@ const initialState = {
                         width: 100,
                         height: 100
                     },
-                    ref: ""
+                    ref: "",
+                    zIndex: 0
                 },
                 {
                     id: "2",
@@ -40,7 +41,8 @@ const initialState = {
                         width: 100,
                         height: 100
                     },
-                    ref: ""
+                    ref: "",
+                    zIndex: 0
                 }
             ]
         },
@@ -59,7 +61,8 @@ const initialState = {
                         width: 100,
                         height: 100
                     },
-                    ref: ""
+                    ref: "",
+                    zIndex: 0
                 },
                 {
                     id: "8",
@@ -71,7 +74,8 @@ const initialState = {
                         width: 100,
                         height: 100
                     },
-                    ref: ""
+                    ref: "",
+                    zIndex: 0
                 }
             ]
         }

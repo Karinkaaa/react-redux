@@ -17,7 +17,7 @@ const GroupedResources = ({ images, animations, dragonBones, selectedElement, on
     return (
         <Autocomplete
             fullWidth
-            style={{ marginBottom: 50 }}
+            style={{ marginBottom: 20 }}
             options={options}
             value={selectedOption}
             getOptionSelected={((option, value) => option.id === value.id)}
@@ -66,7 +66,8 @@ GroupedResources.propTypes = {
             height: PropTypes.number.isRequired,
             width: PropTypes.number.isRequired
         }),
-        ref: PropTypes.string
+        ref: PropTypes.string,
+        zIndex: PropTypes.number
     }).isRequired,
     onChangeElement: PropTypes.func.isRequired
 };

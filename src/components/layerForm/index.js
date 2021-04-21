@@ -7,13 +7,15 @@ import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import ResizableDraggableLayerElement from "../resizableDraggableLayerElement";
 import SettingsMenu from "./SettingsMenu";
+import ElementsList from "./ElementsList";
 import { LAYERS } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     container: {
         background: theme.palette.blueGrey1Color,
-        height: 700,
-        marginTop: 50
+        height: 695,
+        marginTop: 20,
+        border: "solid 1px white"
     },
     btn: {
         marginLeft: 50
@@ -37,6 +39,16 @@ const LayerForm = ({
         <div>
             <Toolbar/>
             <Container>
+                <ElementsList
+                    elements={elements}
+                    selectedId={selectedId}
+                    images={images}
+                    animations={animations}
+                    dragonBones={dragonBones}
+                    setSelectedId={setSelectedId}
+                    onChangeElement={onChangeElement}
+                />
+
                 <Grid container>
                     <Grid item xs={3}>
                         <Button
@@ -104,7 +116,12 @@ const LayerForm = ({
                         </Link>
                     </Grid>
 
-                    <Grid item xs={10} className={classes.container}>
+                    <Grid
+                        id={"container"}
+                        item xs={12}
+                        className={classes.container}
+                        onClick={(e) => e.target.id === "container" && setSelectedId(null)}
+                    >
                         {
                             elements.map(el =>
                                 <ResizableDraggableLayerElement
@@ -120,21 +137,21 @@ const LayerForm = ({
                             )
                         }
                     </Grid>
-
-                    {
-                        selectedId && (
-                            <SettingsMenu
-                                selectedElement={selectedElement}
-                                images={images}
-                                animations={animations}
-                                dragonBones={dragonBones}
-                                onChangeElement={onChangeElement}
-                                onDeleteElement={onDeleteElement}
-                            />
-                        )
-                    }
                 </Grid>
             </Container>
+
+            {
+                selectedId && (
+                    <SettingsMenu
+                        selectedElement={selectedElement}
+                        images={images}
+                        animations={animations}
+                        dragonBones={dragonBones}
+                        onChangeElement={onChangeElement}
+                        onDeleteElement={onDeleteElement}
+                    />
+                )
+            }
         </div>
     );
 };
@@ -153,7 +170,9 @@ LayerForm.propTypes = {
             size: PropTypes.shape({
                 height: PropTypes.number.isRequired,
                 width: PropTypes.number.isRequired
-            })
+            }),
+            ref: PropTypes.string,
+            zIndex: PropTypes.number
         }).isRequired
     ).isRequired,
     selectedId: PropTypes.string,
@@ -167,7 +186,8 @@ LayerForm.propTypes = {
             height: PropTypes.number.isRequired,
             width: PropTypes.number.isRequired
         }),
-        ref: PropTypes.string
+        ref: PropTypes.string,
+        zIndex: PropTypes.number
     }),
     images: PropTypes.arrayOf(
         PropTypes.shape({

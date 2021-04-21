@@ -1,34 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Grid, InputAdornment, TextField } from "@material-ui/core";
+import Toolbar from "@material-ui/core/Toolbar";
+import { Button, Drawer, InputAdornment, TextField } from "@material-ui/core";
 import { DeleteForever } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import GroupedResources from "./GroupedResources";
 
-const useStyles = makeStyles({
-    menu: {
-        background: "linear-gradient(steelblue, paleturquoise, skyblue)",
-        height: 700,
-        marginTop: 50,
-        padding: 20
+const useStyles = makeStyles((theme) => ({
+    drawer: {
+        flexShrink: 0
     },
     title: {
-        marginBottom: 50,
         fontSize: 20,
-        fontWeight: 900,
-        textAlign: "center"
+        fontWeight: 700,
+        textAlign: "center",
+        marginBottom: 30
     },
     lastMargin: {
-        marginBottom: 15
+        marginBottom: 20
+    },
+    drawerPaper: {
+        width: 170,
+        background: theme.palette.blueGrey3Color,
+        padding: 20
+    },
+    btn: {
+        marginTop: "auto"
     }
-});
+}));
 
 const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChangeElement, onDeleteElement }) => {
     const classes = useStyles();
-    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "" } = selectedElement;
+    const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "", zIndex = 0 } = selectedElement;
 
     return (
-        <Grid item xs={2} className={classes.menu}>
+        <Drawer
+            className={classes.drawer}
+            variant={"permanent"}
+            classes={{ paper: classes.drawerPaper }}
+            anchor={"right"}
+        >
+            <Toolbar/>
             <h3 className={classes.title}>ITEM SETTINGS</h3>
 
             <TextField
@@ -70,7 +82,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 fullWidth
                 value={size.height}
                 type={"number"}
-                inputProps={{ min: 0, max: 700 }}
+                inputProps={{ min: 0, max: 635 }}
                 InputProps={{ startAdornment: <InputAdornment position="start">height: </InputAdornment> }}
                 onChange={e => onChangeElement({
                     ...selectedElement,
@@ -108,7 +120,20 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 onChangeElement={onChangeElement}
             />
 
+            <TextField
+                className={classes.lastMargin}
+                fullWidth
+                value={zIndex}
+                type={"number"}
+                InputProps={{ startAdornment: <InputAdornment position="start">Z-index: </InputAdornment> }}
+                onChange={e => onChangeElement({
+                    ...selectedElement,
+                    zIndex: parseInt(e.target.value)
+                })}
+            />
+
             <Button
+                className={classes.btn}
                 fullWidth
                 color={"secondary"}
                 size={"medium"}
@@ -118,7 +143,9 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
             >
                 Remove
             </Button>
-        </Grid>
+
+            <Toolbar/>
+        </Drawer>
     );
 };
 
@@ -133,7 +160,8 @@ SettingsMenu.propTypes = {
             height: PropTypes.number.isRequired,
             width: PropTypes.number.isRequired
         }),
-        ref: PropTypes.string
+        ref: PropTypes.string,
+        zIndex: PropTypes.number
     }).isRequired,
     images: PropTypes.arrayOf(
         PropTypes.shape({
