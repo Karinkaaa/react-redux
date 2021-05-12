@@ -9,3 +9,5 @@ export const RULES = "/rules";
 export const LAYERS = "/ui/layers";
 export const LAYER_FORM = "/ui/layer/form";
 export const INFO = "/info";
+export const INFO_CREATE_FORM = "/info/form";
+export const INFO_UPDATE_FORM = "/info/form/:id";
