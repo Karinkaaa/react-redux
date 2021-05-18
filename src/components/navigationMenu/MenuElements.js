@@ -1,12 +1,12 @@
 import React from "react";
-import { ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, INFO, LAYERS, RULES } from "../../utils/links";
+import { ANIMATIONS, AUDIOS, DRAGON_BONES, DRUMS, IMAGES, LAYERS, MOVIES, RULES } from "../../utils/links";
 import {
     AccessibilityNew,
     BurstMode,
     Error,
     GroupWork,
-    Info,
     Layers,
+    Movie,
     PhotoLibrary,
     QueueMusic,
     ViewCarousel,
@@ -62,8 +62,8 @@ export const MenuElements = [
         ]
     },
     {
-        name: "Info",
-        Icon: () => <Info/>,
-        link: INFO
+        name: "Movies",
+        Icon: () => <Movie/>,
+        link: MOVIES
     }
 ];

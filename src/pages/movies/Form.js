@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Button, Grid, TextField } from "@material-ui/core";
 import { Save, UpdateRounded } from "@material-ui/icons";
-import { INFO } from "../../utils/links";
-import { getMovieByIdSaga, saveMovieSaga, updateMovieSaga } from "../../actions/movie";
+import { getMovieByIdSaga, saveMovieSaga, setMovieFormSaga, updateMovieSaga } from "../../actions/movies";
+import { MOVIES } from "../../utils/links";
 
-const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
+const Form = ({ movie, onChangeMovie, saveMovie, updateMovie, putDataToForm }) => {
     const { id } = useParams();
 
     const onPutData = (id) => {
@@ -15,14 +15,10 @@ const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
 
     const onSave = ({ id, ...movie }) => {
         saveMovie(movie);
-
-
     };
 
     const onUpdate = ({ id, ...movie }) => {
         updateMovie(id, movie);
-
-
     };
 
     useEffect(() => {
@@ -33,9 +29,9 @@ const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
         <Grid container spacing={5} style={{ margin: 50 }}>
             <Grid item xs={2}>
                 <TextField
-                    label={"Title"}
-                    value={movie.title}
-                    // onChange={(e) => setMovie({ ...movie, title: e.target.value })}
+                    label={"name"}
+                    value={movie.name}
+                    onChange={(e) => onChangeMovie({ ...movie, name: e.target.value })}
                 />
             </Grid>
 
@@ -44,7 +40,7 @@ const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
                     label={"Year"}
                     value={movie.year}
                     type={"number"}
-                    // onChange={(e) => setMovie({ ...movie, year: parseInt(e.target.value) })}
+                    onChange={(e) => onChangeMovie({ ...movie, year: parseInt(e.target.value) })}
                 />
             </Grid>
 
@@ -52,14 +48,14 @@ const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
                 <TextField
                     label={"Rating"}
                     value={movie.rating}
-                    // onChange={(e) => setMovie({ ...movie, rating: e.target.value })}
+                    onChange={(e) => onChangeMovie({ ...movie, rating: e.target.value })}
                 />
             </Grid>
 
             <Grid item xs={2}>
                 {
                     id ? (
-                        <Link to={INFO}>
+                        <Link to={MOVIES}>
                             <Button
                                 onClick={() => onUpdate(movie)}
                                 color={"primary"}
@@ -70,7 +66,7 @@ const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
                             </Button>
                         </Link>
                     ) : (
-                        <Link to={INFO}>
+                        <Link to={MOVIES}>
                             <Button
                                 onClick={() => onSave(movie)}
                                 color={"primary"}
@@ -88,15 +84,16 @@ const InfoForm = ({ movie, saveMovie, putDataToForm, updateMovie }) => {
 };
 
 const mapStateToProps = (state) => {
-    return {movie: state.movies.form};
+    return { movie: state.movies.form };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         saveMovie: (movie) => dispatch(saveMovieSaga(movie)),
         updateMovie: (id, movie) => dispatch(updateMovieSaga(id, movie)),
-        putDataToForm: (id) => dispatch(getMovieByIdSaga(id))
+        putDataToForm: (id) => dispatch(getMovieByIdSaga(id)),
+        onChangeMovie: (movie) => dispatch(setMovieFormSaga(movie))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoForm);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

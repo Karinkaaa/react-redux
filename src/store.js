@@ -15,7 +15,7 @@ import rules from "./reducers/rulePage";
 import ruleForm from "./reducers/ruleForm";
 import layers from "./reducers/layerPage";
 import layerForm from "./reducers/layerForm";
-import { SET_FORM_SAGA, SET_MOVIES_SAGA } from "./utils/actionConstants";
+import movies from "./reducers/movies";
 
 const reducers = combineReducers({
     images,
@@ -31,33 +31,7 @@ const reducers = combineReducers({
     ruleForm,
     layers,
     layerForm,
-    movies: (state = {
-                 list: [],
-                 form: {
-                     title: "",
-                     year: 0,
-                     rating: ""
-                 }
-             },
-             action) => {
-        switch (action.type) {
-            case SET_MOVIES_SAGA: {
-                return { ...state, list: action.movies };
-            }
-            case SET_FORM_SAGA: {
-                const { movie } = action;
-                return {
-                    ...state,
-                    form: {
-                        title: movie.title,
-                        year: movie.year,
-                        rating: movie.rating
-                    }
-                };
-            }
-        }
-        return state;
-    }
+    movies
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -69,6 +43,5 @@ const store = createStore(reducers,
 );
 
 sagaMiddleware.run(mainSaga);
-
 
 export default store;

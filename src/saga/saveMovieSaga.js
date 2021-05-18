@@ -1,14 +1,14 @@
-import { takeEvery } from "redux-saga/effects";
+import *  as axios from "axios";
+import { call, put, takeEvery } from "redux-saga/effects";
+import { getMoviesSaga } from "../actions/movies";
+import { MOVIES_API } from "../utils/apiLinks";
 import { SAVE_MOVIE_SAGA } from "../utils/actionConstants";
 
 export function* saveMovieSaga(action) {
     const { movie } = action;
-    console.log("saga save", movie);
 
-    fetch("/api/movies", {
-        method: "POST",
-        body: JSON.stringify({ movie: movie })
-    });
+    yield call(axios.post, MOVIES_API, { movie });
+    yield put(getMoviesSaga());
 }
 
 export function* watchSaveMovieSaga() {
