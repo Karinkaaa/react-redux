@@ -1,6 +1,8 @@
 import {
+    CHANGE_MOVIE_FILTER_VALUE,
     CHANGE_MOVIE_LIMIT,
     CHANGE_MOVIE_PAGE,
+    CHANGE_MOVIE_SORT,
     CLEAR_MOVIE_FORM,
     GET_MOVIE_BY_ID_SAGA,
     GET_MOVIES_SAGA,
@@ -61,7 +63,18 @@ export const changeMovieLimit = (limit) => ({
     limit
 });
 
+export const changeMovieSort = (field) => ({
+    type: CHANGE_MOVIE_SORT,
+    field
+});
+
 export const setTotalMoviesCount = (count) => ({
     type: SET_TOTAL_MOVIES_COUNT,
     count
+});
+
+export const changeMovieFilterValue = ({ filterKey, filterValue }) => ({
+    type: CHANGE_MOVIE_FILTER_VALUE,
+    filterKey,
+    filterValue
 });
