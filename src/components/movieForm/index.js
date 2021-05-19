@@ -1,25 +1,16 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Button, Grid, TextField } from "@material-ui/core";
 import { Save, UpdateRounded } from "@material-ui/icons";
-import { getMovieByIdSaga, saveMovieSaga, setMovieFormSaga, updateMovieSaga } from "../../actions/movies";
 import { MOVIES } from "../../utils/links";
 
-const Form = ({ movie, onChangeMovie, saveMovie, updateMovie, putDataToForm }) => {
+const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, putDataToForm }) => {
     const { id } = useParams();
 
-    const onPutData = (id) => {
-        putDataToForm(id);
-    };
-
-    const onSave = ({ id, ...movie }) => {
-        saveMovie(movie);
-    };
-
-    const onUpdate = ({ id, ...movie }) => {
-        updateMovie(id, movie);
-    };
+    const onPutData = (id) => putDataToForm(id);
+    const onSave = ({ id, ...movie }) => saveMovie(movie);
+    const onUpdate = ({ id, ...movie }) => updateMovie(id, movie);
 
     useEffect(() => {
         if (id) onPutData(id);
@@ -83,17 +74,17 @@ const Form = ({ movie, onChangeMovie, saveMovie, updateMovie, putDataToForm }) =
     );
 };
 
-const mapStateToProps = (state) => {
-    return { movie: state.movies.form };
+MovieForm.propTypes = {
+    movie: PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        rating: PropTypes.string.isRequired
+    }).isRequired,
+    onChangeMovie: PropTypes.func.isRequired,
+    saveMovie: PropTypes.func.isRequired,
+    updateMovie: PropTypes.func.isRequired,
+    putDataToForm: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        saveMovie: (movie) => dispatch(saveMovieSaga(movie)),
-        updateMovie: (id, movie) => dispatch(updateMovieSaga(id, movie)),
-        putDataToForm: (id) => dispatch(getMovieByIdSaga(id)),
-        onChangeMovie: (movie) => dispatch(setMovieFormSaga(movie))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default MovieForm;
