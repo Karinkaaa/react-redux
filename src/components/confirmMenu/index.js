@@ -1,20 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import { Menu, MenuItem } from "@material-ui/core";
 import { Check, Close } from "@material-ui/icons";
 
 const ConfirmMenu = ({ anchorEl, handleClose, onAccept }) => (
     <Menu
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
-        id="menu-list-grow"
+        id={"menu-list-grow"}
         onClose={handleClose}
-        variant="selectedMenu"
+        variant={"selectedMenu"}
     >
         <div style={{ display: "flex" }}>
             <MenuItem onClick={handleClose}>
-                <Close color="secondary"/>
+                <Close color={"secondary"}/>
             </MenuItem>
 
             <MenuItem
@@ -23,7 +22,7 @@ const ConfirmMenu = ({ anchorEl, handleClose, onAccept }) => (
                     handleClose();
                 }}
             >
-                <Check color="primary"/>
+                <Check color={"primary"}/>
             </MenuItem>
         </div>
     </Menu>

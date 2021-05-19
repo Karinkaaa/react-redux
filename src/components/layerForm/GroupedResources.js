@@ -27,7 +27,7 @@ const GroupedResources = ({ images, animations, dragonBones, selectedElement, on
                 ...selectedElement,
                 ref: value ? value.id : ""
             })}
-            renderInput={(params) => <TextField {...params} label="Resources"/>}
+            renderInput={(params) => <TextField {...params} label={"Resources"}/>}
         />
     );
 };
@@ -38,14 +38,14 @@ GroupedResources.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     animations: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     dragonBones: PropTypes.arrayOf(
         PropTypes.shape({
@@ -54,7 +54,7 @@ GroupedResources.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     selectedElement: PropTypes.shape({
         id: PropTypes.string.isRequired,

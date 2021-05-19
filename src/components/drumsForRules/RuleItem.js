@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
+import { Grid, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { isExistCondition } from "../../utils/methods";
 

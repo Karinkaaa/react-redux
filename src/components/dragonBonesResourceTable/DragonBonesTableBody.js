@@ -36,7 +36,7 @@ DragonBonesTableBody.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     setAnchorEl: PropTypes.func.isRequired,

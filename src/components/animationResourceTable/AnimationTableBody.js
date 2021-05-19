@@ -32,7 +32,7 @@ AnimationTableBody.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onDeleteNestedImage: PropTypes.func.isRequired,

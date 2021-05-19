@@ -1,11 +1,8 @@
 import React from "react";
 import uuid from "react-uuid";
 import PropTypes from "prop-types";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
+import { Avatar, Grid, IconButton, TextField } from "@material-ui/core";
 import { Remove } from "@material-ui/icons";
-import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({

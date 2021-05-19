@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
+import { Grid, InputBase, TableSortLabel } from "@material-ui/core";
 import { FilterList } from "@material-ui/icons";
-import InputBase from "@material-ui/core/InputBase";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -70,8 +68,9 @@ const DragonBonesTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) =>
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={"Search..."}
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
@@ -96,8 +95,9 @@ const DragonBonesTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) =>
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={"Search..."}
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
@@ -108,8 +108,13 @@ const DragonBonesTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) =>
                 </div>
             </Grid>
 
-            <Grid item xs={3} className={classes.headCell} style={{ paddingLeft: 20 }}>Texture JSON</Grid>
-            <Grid item className={classes.headCell} style={{ paddingLeft: 20 }}>Skeleton</Grid>
+            <Grid item xs={3} className={classes.headCell} style={{ paddingLeft: 20 }}>
+                Texture JSON
+            </Grid>
+
+            <Grid item className={classes.headCell} style={{ paddingLeft: 20 }}>
+                Skeleton
+            </Grid>
         </Grid>
     );
 };

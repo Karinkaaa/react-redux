@@ -44,7 +44,7 @@ DragonBonesResourceCards.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,

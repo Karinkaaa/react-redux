@@ -1,4 +1,3 @@
-// a little function to help us with reordering the result
 export const reorderItems = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -7,8 +6,8 @@ export const reorderItems = (list, startIndex, endIndex) => {
     return result;
 };
 
-export function getAvailableCurrentPage(array, page, limit) {
-    if (array.length % limit === 0 && page > 0) return page - 1;
+export function getAvailableCurrentPage(arrayLength, page, limit) {
+    if (arrayLength % limit === 0 && page > 0) return page - 1;
     return page;
 }
 
@@ -90,7 +89,7 @@ export function filteringSortingPagingOfArray(arr, {
 
     result = result.filter(item =>
         filterKeys.every(key =>
-            item[key].toLowerCase().includes(filters[key].toLowerCase())
+            String(item[key]).toLowerCase().includes(filters[key].toLowerCase())
         )
     );
 

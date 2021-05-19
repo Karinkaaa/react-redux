@@ -1,5 +1,5 @@
 import uuid from "react-uuid";
-import { removeItemById, saveItemTo } from "../../utils/methods";
+import { getAvailableCurrentPage, removeItemById, saveItemTo } from "../../utils/methods";
 import { isValidName } from "../../utils/validation";
 import {
     ADD_LAYER,
@@ -126,12 +126,20 @@ const LayerPage = (state = initialState, action) => {
             };
         }
         case DELETE_LAYER: {
-            const { layerList } = state;
+            const { layerList, pagination } = state;
+            const { page, limit } = pagination;
             const { id } = action;
+
+            const result = removeItemById(layerList, id);
+            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
 
             return {
                 ...state,
-                layerList: removeItemById(layerList, id)
+                layerList: result,
+                pagination: {
+                    ...pagination,
+                    page: pageNumber
+                }
             };
         }
         case CHANGE_LAYER_LIMIT: {

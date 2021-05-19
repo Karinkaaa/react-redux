@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardActionArea, CardActions, CardContent, CardMedia } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -36,7 +34,7 @@ const ImageCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutResou
                     image={url}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant={"h5"} component={"h2"}>
                         {name}
                     </Typography>
                 </CardContent>

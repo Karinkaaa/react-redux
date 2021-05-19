@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Toolbar from "@material-ui/core/Toolbar";
-import { Button, Drawer, InputAdornment, TextField } from "@material-ui/core";
+import { Button, Drawer, InputAdornment, TextField, Toolbar } from "@material-ui/core";
 import { DeleteForever } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import GroupedResources from "./GroupedResources";
@@ -48,7 +47,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 fullWidth
                 value={selectedElement.id}
                 disabled
-                InputProps={{ startAdornment: <InputAdornment position="start">ID: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>ID: </InputAdornment> }}
             />
 
             <h3>Position:</h3>
@@ -57,7 +56,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 fullWidth
                 value={position.x}
                 type={"number"}
-                InputProps={{ startAdornment: <InputAdornment position="start">x: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>x: </InputAdornment> }}
                 onChange={e => onChangeElement({
                     ...selectedElement,
                     position: { ...position, x: parseInt(e.target.value) }
@@ -69,7 +68,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 fullWidth
                 value={position.y}
                 type={"number"}
-                InputProps={{ startAdornment: <InputAdornment position="start">y: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>y: </InputAdornment> }}
                 onChange={e => onChangeElement({
                     ...selectedElement,
                     position: { ...position, y: parseInt(e.target.value) }
@@ -83,7 +82,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 value={size.height}
                 type={"number"}
                 inputProps={{ min: 0, max: 635 }}
-                InputProps={{ startAdornment: <InputAdornment position="start">height: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>height: </InputAdornment> }}
                 onChange={e => onChangeElement({
                     ...selectedElement,
                     size: { ...size, height: parseInt(e.target.value) }
@@ -96,7 +95,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 value={size.width}
                 type={"number"}
                 inputProps={{ min: 0, max: 875 }}
-                InputProps={{ startAdornment: <InputAdornment position="start">width: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>width: </InputAdornment> }}
                 onChange={e => onChangeElement({
                     ...selectedElement,
                     size: { ...size, width: parseInt(e.target.value) }
@@ -109,7 +108,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 fullWidth
                 value={ref}
                 disabled
-                InputProps={{ startAdornment: <InputAdornment position="start">Ref: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>Ref: </InputAdornment> }}
             />
 
             <GroupedResources
@@ -125,7 +124,7 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 fullWidth
                 value={zIndex}
                 type={"number"}
-                InputProps={{ startAdornment: <InputAdornment position="start">Z-index: </InputAdornment> }}
+                InputProps={{ startAdornment: <InputAdornment position={"start"}>Z-index: </InputAdornment> }}
                 onChange={e => onChangeElement({
                     ...selectedElement,
                     zIndex: parseInt(e.target.value)
@@ -168,14 +167,14 @@ SettingsMenu.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     animations: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     dragonBones: PropTypes.arrayOf(
         PropTypes.shape({
@@ -184,7 +183,7 @@ SettingsMenu.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     onChangeElement: PropTypes.func.isRequired,
     onDeleteElement: PropTypes.func.isRequired

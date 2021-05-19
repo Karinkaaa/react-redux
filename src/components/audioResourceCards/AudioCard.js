@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardActionArea, CardActions, CardContent } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import { Card, CardActionArea, CardActions, CardContent, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import AudioPlayButton from "../audioPlayer";
@@ -33,7 +31,7 @@ const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutResou
         <Card className={classes.root}>
             <CardActionArea>
                 <CardContent>
-                    <Typography gutterBottom variant="h6">
+                    <Typography gutterBottom variant={"h6"}>
                         {name}
                     </Typography>
                 </CardContent>

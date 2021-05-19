@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Drawer from "@material-ui/core/Drawer";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Drawer, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import NavigationMenu from "../navigationMenu";
 import { MenuElements } from "../navigationMenu/MenuElements";
@@ -30,7 +29,7 @@ const MenuComponent = ({ items }) => {
     return (
         <Drawer
             className={classes.drawer}
-            variant="permanent"
+            variant={"permanent"}
             classes={{
                 paper: classes.drawerPaper
             }}

@@ -32,7 +32,7 @@ ImageTableBody.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     setAnchorEl: PropTypes.func.isRequired,

@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Button, Container, Grid } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import TablePagination from "@material-ui/core/TablePagination";
 import LayersTable from "../../components/layersTable";
 import { LAYER_FORM } from "../../utils/links";
 
@@ -25,9 +23,9 @@ const Layers = ({
                     <Grid item xs={5}>
                         <Link to={LAYER_FORM}>
                             <Button
-                                variant="contained"
-                                color="primary"
-                                size="large"
+                                variant={"contained"}
+                                color={"primary"}
+                                size={"large"}
                                 startIcon={<Add/>}
                                 onClick={onAdd}
                             >
@@ -39,8 +37,8 @@ const Layers = ({
                     <Grid item xs={5}>
                         <TablePagination
                             style={{ color: "#cfeaff" }}
-                            component="div"
-                            color="primary"
+                            component={"div"}
+                            color={"primary"}
                             colSpan={6}
                             page={page}
                             count={count}

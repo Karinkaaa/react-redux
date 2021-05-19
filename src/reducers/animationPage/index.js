@@ -112,7 +112,7 @@ const AnimationPage = (state = initialState, action) => {
             const { id } = action;
 
             const result = removeItemById(animationList, id);
-            const pageNumber = getAvailableCurrentPage(result, page, limit);
+            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
 
             return {
                 ...state,

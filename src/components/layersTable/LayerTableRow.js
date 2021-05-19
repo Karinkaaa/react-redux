@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
+import { Grid, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { LAYER_FORM } from "../../utils/links";

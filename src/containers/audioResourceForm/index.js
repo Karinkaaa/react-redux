@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import AudioResourceForm from "../../components/imageResourceForm";
+import AudioResourceForm from "../../components/audioResourceForm";
 import { addAudioResource, updateAudioResource } from "../../actions/audioResourceComponent";
 import { isOpenAudioModal, updateAudioName, updateAudioUrl } from "../../actions/audioResourceForm";
 
@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch) => {
         onChangeName: (name) => dispatch(updateAudioName(name)),
         onChangeUrl: (url) => dispatch(updateAudioUrl(url)),
         onSave: (props) => dispatch(addAudioResource(props)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen)),
-        onUpdate: (props) => dispatch(updateAudioResource(props))
+        onUpdate: (props) => dispatch(updateAudioResource(props)),
+        onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen))
     };
 };
 

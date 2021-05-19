@@ -40,7 +40,7 @@ AudioResourceCards.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,

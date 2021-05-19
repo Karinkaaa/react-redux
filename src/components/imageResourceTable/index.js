@@ -52,7 +52,7 @@ ImageResourceTable.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,

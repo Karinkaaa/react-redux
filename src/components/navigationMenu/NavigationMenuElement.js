@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
-import Collapse from "@material-ui/core/Collapse";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { Collapse, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -53,14 +50,19 @@ const NavigationMenuElement = withRouter(({ name, Icon, link, children }) => {
         return (
             <>
                 <WrapLink link={link}>
-                    <StyledListItem button key={name} onClick={handleClick} selected={window.location.pathname === link}>
+                    <StyledListItem
+                        key={name}
+                        button
+                        onClick={handleClick}
+                        selected={window.location.pathname === link}
+                    >
                         <ListItemIcon className={classes.icon}>
                             <Icon/>
                         </ListItemIcon>
+
                         <ListItemText primary={name}/>
-                        {
-                            children ? (open ? <ExpandLess/> : <ExpandMore/>) : null
-                        }
+
+                        {children ? (open ? <ExpandLess/> : <ExpandMore/>) : null}
                     </StyledListItem>
                 </WrapLink>
                 {

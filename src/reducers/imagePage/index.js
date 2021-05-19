@@ -71,7 +71,7 @@ const ImagePage = (state = initialState, action) => {
             const { page, limit } = pagination;
 
             const result = removeItemById(imageList, action.id);
-            const pageNumber = getAvailableCurrentPage(result, page, limit);
+            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
 
             return {
                 ...state,

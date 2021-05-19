@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Container, Grid } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
+import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
-import TablePagination from "@material-ui/core/TablePagination";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
 import ImageResourceForm from "../../containers/imageResourceForm";
@@ -26,14 +23,16 @@ const Images = ({
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
             <defs>
-                <linearGradient id="gradient1">
-                    <stop offset="20%" stopColor="cornflowerblue"/>
-                    <stop offset="80%" stopColor="deepskyblue"/>
+                <linearGradient id={"gradient1"}>
+                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
+                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
                 </linearGradient>
             </defs>
-            {React.cloneElement(svgProps.children[0], {
-                fill: "url(#gradient1)"
-            })}
+            {
+                React.cloneElement(svgProps.children[0], {
+                    fill: "url(#gradient1)"
+                })
+            }
         </svg>
     );
 
@@ -44,9 +43,9 @@ const Images = ({
                 <Grid container>
                     <Grid item xs={5}>
                         <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
+                            variant={"contained"}
+                            color={"primary"}
+                            size={"large"}
                             startIcon={<Add/>}
                             onClick={handleOpen}
                         >
@@ -57,8 +56,8 @@ const Images = ({
                     <Grid item xs={5}>
                         <TablePagination
                             style={{ color: "#cfeaff" }}
-                            component="div"
-                            color="primary"
+                            component={"div"}
+                            color={"primary"}
                             colSpan={6}
                             page={page}
                             count={count}
@@ -77,8 +76,8 @@ const Images = ({
                                 <Grid item xs={1}>
                                     <IconButton onClick={handleView}>
                                         <List
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -103,8 +102,8 @@ const Images = ({
                                 <Grid item>
                                     <IconButton onClick={handleView}>
                                         <ViewModule
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -136,7 +135,7 @@ Images.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,

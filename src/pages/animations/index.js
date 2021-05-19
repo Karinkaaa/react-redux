@@ -1,11 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Button, Container, Grid } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
-import IconButton from "@material-ui/core/IconButton";
-import TablePagination from "@material-ui/core/TablePagination";
 import AnimationResourceTable from "../../components/animationResourceTable";
 import AnimationResourceCards from "../../components/animationResourceCards";
 import { GRID, TABLE } from "../../utils/constants";
@@ -19,21 +16,22 @@ const Animations = ({
     const { page, limit } = pagination;
 
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
-
     const handleChangeAnimationPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAnimationLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
             <defs>
-                <linearGradient id="gradient1">
-                    <stop offset="20%" stopColor="cornflowerblue"/>
-                    <stop offset="80%" stopColor="deepskyblue"/>
+                <linearGradient id={"gradient1"}>
+                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
+                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
                 </linearGradient>
             </defs>
-            {React.cloneElement(svgProps.children[0], {
-                fill: "url(#gradient1)"
-            })}
+            {
+                React.cloneElement(svgProps.children[0], {
+                    fill: "url(#gradient1)"
+                })
+            }
         </svg>
     );
 
@@ -45,9 +43,9 @@ const Animations = ({
                     <Grid item xs={5}>
                         <Link to={ANIMATION_FORM}>
                             <Button
-                                variant="contained"
-                                color="primary"
-                                size="large"
+                                variant={"contained"}
+                                color={"primary"}
+                                size={"large"}
                                 startIcon={<Add/>}
                                 onClick={onAdd}
                             >
@@ -59,8 +57,8 @@ const Animations = ({
                     <Grid item xs={5}>
                         <TablePagination
                             style={{ color: "#cfeaff" }}
-                            component="div"
-                            color="primary"
+                            component={"div"}
+                            color={"primary"}
                             colSpan={6}
                             page={page}
                             count={count}
@@ -79,8 +77,8 @@ const Animations = ({
                                 <Grid item xs={1}>
                                     <IconButton onClick={handleView}>
                                         <List
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -102,8 +100,8 @@ const Animations = ({
                                 <Grid item>
                                     <IconButton onClick={handleView}>
                                         <ViewModule
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -133,7 +131,7 @@ Animations.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
     onAdd: PropTypes.func.isRequired,

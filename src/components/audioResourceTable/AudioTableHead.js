@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
+import { Grid, InputBase, TableSortLabel } from "@material-ui/core";
 import { FilterList } from "@material-ui/icons";
-import InputBase from "@material-ui/core/InputBase";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -52,7 +50,9 @@ const AudioTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
 
     return (
         <Grid container className={classes.head}>
-            <Grid item xs={1} className={classes.headCell} style={{ paddingLeft: 5 }}>Play / Pause</Grid>
+            <Grid item xs={1} className={classes.headCell} style={{ paddingLeft: 5 }}>
+                Play / Pause
+            </Grid>
 
             <Grid item xs={2} className={classes.headCell}>
                 <TableSortLabel
@@ -68,6 +68,7 @@ const AudioTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
                         placeholder="Search..."
                         className={classes.input}
@@ -94,6 +95,7 @@ const AudioTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
                         placeholder="Search..."
                         className={classes.input}
@@ -106,7 +108,9 @@ const AudioTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                 </div>
             </Grid>
 
-            <Grid item className={classes.headCell} style={{ paddingLeft: 20 }}>URL</Grid>
+            <Grid item className={classes.headCell} style={{ paddingLeft: 20 }}>
+                URL
+            </Grid>
         </Grid>
     );
 };

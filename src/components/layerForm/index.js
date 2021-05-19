@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Button, Container, Grid, InputAdornment, TextField } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Button, Container, Grid, InputAdornment, TextField, Toolbar } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import ResizableDraggableLayerElement from "../resizableDraggableLayerElement";
@@ -52,9 +51,9 @@ const LayerForm = ({
                 <Grid container>
                     <Grid item xs={3}>
                         <Button
-                            color="primary"
-                            size="large"
-                            variant="contained"
+                            color={"primary"}
+                            size={"large"}
+                            variant={"contained"}
                             startIcon={<Add/>}
                             onClick={onAddElement}
                         >
@@ -69,7 +68,7 @@ const LayerForm = ({
                                     value={id}
                                     disabled
                                     InputProps={{
-                                        startAdornment: <InputAdornment position="start">ID: </InputAdornment>
+                                        startAdornment: <InputAdornment position={"start"}>ID: </InputAdornment>
                                     }}
                                 />
                             </Grid>
@@ -81,7 +80,7 @@ const LayerForm = ({
                             fullWidth
                             value={name}
                             error={!isValidName}
-                            InputProps={{ startAdornment: <InputAdornment position="start">Name: </InputAdornment> }}
+                            InputProps={{ startAdornment: <InputAdornment position={"start"}>Name: </InputAdornment> }}
                             onChange={e => onChangeLayerName(e.target.value)}
                         />
                     </Grid>
@@ -90,7 +89,7 @@ const LayerForm = ({
                         <Link to={LAYERS} className={classes.link}>
                             <Button
                                 fullWidth
-                                size="large"
+                                size={"large"}
                                 color={"primary"}
                                 variant={"contained"}
                                 disabled={!isValidName}
@@ -107,9 +106,9 @@ const LayerForm = ({
                         <Link to={LAYERS}>
                             <Button
                                 fullWidth
-                                size="large"
-                                color="secondary"
-                                variant="contained"
+                                size={"large"}
+                                color={"secondary"}
+                                variant={"contained"}
                             >
                                 Cancel
                             </Button>

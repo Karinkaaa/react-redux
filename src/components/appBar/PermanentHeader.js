@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
 import { Home } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import { MAIN_PAGE } from "../../utils/links";
@@ -29,7 +26,7 @@ const PermanentHeader = () => {
     const classes = useStyles();
 
     return (
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position={"fixed"} className={classes.appBar}>
             <Toolbar>
                 <Link to={MAIN_PAGE}>
                     <IconButton>
@@ -39,7 +36,7 @@ const PermanentHeader = () => {
 
                 <Typography
                     noWrap
-                    variant="h6"
+                    variant={"h6"}
                     className={classes.header}
                 >
                     Spin Admin

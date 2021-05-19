@@ -31,7 +31,10 @@ const initialState = {
 const Movies = (state = initialState, action) => {
     switch (action.type) {
         case SET_MOVIES_SAGA: {
-            return { ...state, movieList: action.movies };
+            return {
+                ...state,
+                movieList: action.movies
+            };
         }
         case SET_MOVIE_FORM_SAGA: {
             const { movie } = action;

@@ -85,7 +85,7 @@ const DragonBonesPage = (state = initialState, action) => {
             const { page, limit } = pagination;
 
             const result = removeItemById(dragonBonesList, action.id);
-            const pageNumber = getAvailableCurrentPage(result, page, limit);
+            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
 
             return {
                 ...state,

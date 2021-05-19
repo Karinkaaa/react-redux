@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
-import InputBase from "@material-ui/core/InputBase";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
+import { Grid, InputBase, TableSortLabel } from "@material-ui/core";
 import { FilterList } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -70,8 +68,9 @@ const AnimationTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={"Search..."}
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
@@ -97,7 +96,7 @@ const AnimationTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                         <FilterList/>
                     </div>
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={"Search..."}
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({

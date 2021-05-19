@@ -1,21 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Container, Grid } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import { Add, List, ViewModule } from "@material-ui/icons";
-import TablePagination from "@material-ui/core/TablePagination";
+import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
 import DragonBonesResourceCards from "../../components/dragonBonesResourceCards";
+import { Add, List, ViewModule } from "@material-ui/icons";
 import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
                          dragonBones, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
-                         view, onChangeView,
-                         pagination, onChangePage, onChangeLimit,
-                         sorting, onChangeSort,
-                         onChangeDirection, onChangeFilterValue
+                         view, onChangeView, pagination, onChangePage, onChangeLimit,
+                         sorting, onChangeSort, onChangeDirection, onChangeFilterValue
                      }) => {
     const { page, limit } = pagination;
 
@@ -28,14 +23,16 @@ const DragonBones = ({
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
             <defs>
-                <linearGradient id="gradient1">
-                    <stop offset="20%" stopColor="cornflowerblue"/>
-                    <stop offset="80%" stopColor="deepskyblue"/>
+                <linearGradient id={"gradient1"}>
+                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
+                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
                 </linearGradient>
             </defs>
-            {React.cloneElement(svgProps.children[0], {
-                fill: "url(#gradient1)"
-            })}
+            {
+                React.cloneElement(svgProps.children[0], {
+                    fill: "url(#gradient1)"
+                })
+            }
         </svg>
     );
 
@@ -46,9 +43,9 @@ const DragonBones = ({
                 <Grid container>
                     <Grid item xs={5}>
                         <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
+                            variant={"contained"}
+                            color={"primary"}
+                            size={"large"}
                             startIcon={<Add/>}
                             onClick={handleOpen}
                         >
@@ -59,8 +56,8 @@ const DragonBones = ({
                     <Grid item xs={5}>
                         <TablePagination
                             style={{ color: "#cfeaff" }}
-                            component="div"
-                            color="primary"
+                            component={"div"}
+                            color={"primary"}
                             colSpan={6}
                             page={page}
                             count={count}
@@ -79,8 +76,8 @@ const DragonBones = ({
                                 <Grid item xs={1}>
                                     <IconButton onClick={handleView}>
                                         <List
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -108,8 +105,8 @@ const DragonBones = ({
                                 <Grid item>
                                     <IconButton onClick={handleView}>
                                         <ViewModule
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -143,7 +140,7 @@ DragonBones.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,

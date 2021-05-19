@@ -1,20 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Container, Grid } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
-import IconButton from "@material-ui/core/IconButton";
-import TablePagination from "@material-ui/core/TablePagination";
 import RuleForm from "../../containers/ruleForm";
 import RuleTable from "../../components/ruleTable";
 import RuleCards from "../../components/ruleCards";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
-                   rules, count, onDelete, view, onChangeView,
-                   pagination, onChangePage, onChangeLimit,
-                   sorting, onChangeSort, onChangeDirection,
-                   onChangeIsOpen, onChangeFilterValue, onClickPutRuleToForm
+                   rules, count, view, pagination, sorting, onDelete, onChangeView, onChangePage, onChangeLimit,
+                   onChangeSort, onChangeDirection, onChangeIsOpen, onChangeFilterValue, onClickPutRuleToForm
                }) => {
     const { page, limit } = pagination;
 
@@ -27,14 +22,16 @@ const Rules = ({
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
             <defs>
-                <linearGradient id="gradient1">
-                    <stop offset="20%" stopColor="cornflowerblue"/>
-                    <stop offset="80%" stopColor="deepskyblue"/>
+                <linearGradient id={"gradient1"}>
+                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
+                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
                 </linearGradient>
             </defs>
-            {React.cloneElement(svgProps.children[0], {
-                fill: "url(#gradient1)"
-            })}
+            {
+                React.cloneElement(svgProps.children[0], {
+                    fill: "url(#gradient1)"
+                })
+            }
         </svg>
     );
 
@@ -45,9 +42,9 @@ const Rules = ({
                 <Grid container>
                     <Grid item xs={5}>
                         <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
+                            variant={"contained"}
+                            color={"primary"}
+                            size={"large"}
                             startIcon={<Add/>}
                             onClick={handleOpen}
                         >
@@ -58,8 +55,8 @@ const Rules = ({
                     <Grid item xs={5}>
                         <TablePagination
                             style={{ color: "#cfeaff" }}
-                            component="div"
-                            color="primary"
+                            component={"div"}
+                            color={"primary"}
                             colSpan={6}
                             page={page}
                             count={count}
@@ -78,8 +75,8 @@ const Rules = ({
                                 <Grid item xs={1}>
                                     <IconButton onClick={handleView}>
                                         <List
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -104,8 +101,8 @@ const Rules = ({
                                 <Grid item>
                                     <IconButton onClick={handleView}>
                                         <ViewModule
-                                            color="primary"
-                                            fontSize="large"
+                                            color={"primary"}
+                                            fontSize={"large"}
                                             component={svgComponent}
                                         />
                                     </IconButton>
@@ -144,7 +141,7 @@ Rules.propTypes = {
                     }
                 ).isRequired
             ).isRequired
-        })
+        }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
     onDelete: PropTypes.func.isRequired,

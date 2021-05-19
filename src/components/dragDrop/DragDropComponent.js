@@ -30,7 +30,7 @@ const DragDropComponent = ({ items, onDragAndDrop, renderItem }) => (
             ));
         }}
     >
-        <Droppable droppableId="droppable">
+        <Droppable droppableId={"droppable"}>
             {
                 (provided, snapshot) => (
                     <div

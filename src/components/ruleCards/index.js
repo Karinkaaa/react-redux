@@ -48,7 +48,7 @@ RuleCards.propTypes = {
                     }
                 ).isRequired
             ).isRequired
-        })
+        }).isRequired
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,

@@ -53,12 +53,12 @@ const marks = [
 const AnimationSpeed = ({ speed, onChangeSpeed }) => (
     <Slider
         defaultValue={INITIAL_SPEED}
-        aria-labelledby="discrete-slider-small-steps"
+        aria-labelledby={"discrete-slider-small-steps"}
         step={INITIAL_SPEED}
         marks={marks}
         min={INITIAL_SPEED}
         max={1}
-        valueLabelDisplay="auto"
+        valueLabelDisplay={"auto"}
         value={speed}
         onChange={(e, value) => onChangeSpeed(value)}
     />

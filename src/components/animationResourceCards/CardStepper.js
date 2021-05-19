@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import MobileStepper from "@material-ui/core/MobileStepper";
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton, MobileStepper } from "@material-ui/core";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import useTheme from "@material-ui/core/styles/useTheme";
 import { makeStyles } from "@material-ui/core/styles";
@@ -60,16 +59,16 @@ const CardStepper = ({ urls }) => {
             <MobileStepper
                 className={classes.stepper}
                 steps={maxSteps}
-                position="static"
-                variant="text"
+                position={"static"}
+                variant={"text"}
                 activeStep={activeStep}
                 nextButton={
-                    <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                    <IconButton size={"small"} onClick={handleNext} disabled={activeStep === maxSteps - 1}>
                         <ArrowForwardIos/>
                     </IconButton>
                 }
                 backButton={
-                    <IconButton size="small" onClick={handleBack} disabled={activeStep === 0}>
+                    <IconButton size={"small"} onClick={handleBack} disabled={activeStep === 0}>
                         <ArrowBackIos/>
                     </IconButton>
                 }

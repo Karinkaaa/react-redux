@@ -10,8 +10,8 @@ import Drums from "../../pages/drums";
 import Rules from "../../containers/rulePage";
 import LayerForm from "../../containers/layerForm";
 import Layers from "../../containers/layerPage";
-import Movies from "../../pages/movies";
-import InfoForm from "../../pages/movies/Form";
+import Movies from "../../containers/moviesPage";
+import MovieForm from "../../containers/movieForm";
 import {
     ANIMATION_FORM,
     ANIMATIONS,
@@ -42,8 +42,8 @@ const Routers = () => (
             <Route exact path={LAYERS} component={Layers}/>
             <Route exact path={LAYER_FORM} component={LayerForm}/>
             <Route exact path={MOVIES} component={Movies}/>
-            <Route exact path={MOVIE_UPDATE_FORM} component={InfoForm}/>
-            <Route exact path={MOVIE_CREATE_FORM} component={InfoForm}/>
+            <Route exact path={MOVIE_UPDATE_FORM} component={MovieForm}/>
+            <Route exact path={MOVIE_CREATE_FORM} component={MovieForm}/>
         </Switch>
     </main>
 );

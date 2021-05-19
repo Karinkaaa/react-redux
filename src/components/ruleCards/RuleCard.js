@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, CardActions, CardContent } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import { Card, CardActions, CardContent, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import RulesGrid from "../ruleTable/RulesGrid";
@@ -34,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RuleCard = ({
-                      id, name, cost, conditions, setAnchorEl, onChangeIsOpen, onClickPutRuleToForm
-                  }) => {
+const RuleCard = ({ id, name, cost, conditions, setAnchorEl, onChangeIsOpen, onClickPutRuleToForm }) => {
     const classes = useStyles();
 
     const handleOpen = () => onChangeIsOpen(true);
@@ -45,12 +41,14 @@ const RuleCard = ({
     return (
         <Card className={classes.root}>
             <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant={"h5"} component={"h2"}>
                     {name}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="h2" color={"secondary"}>
+
+                <Typography gutterBottom variant={"h5"} component={"h2"} color={"secondary"}>
                     {cost}
                 </Typography>
+
                 <div className={classes.gridContainer}>
                     <RulesGrid conditions={conditions}/>
                 </div>

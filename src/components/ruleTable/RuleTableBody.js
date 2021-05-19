@@ -40,7 +40,7 @@ RuleTableBody.propTypes = {
                     }
                 ).isRequired
             ).isRequired
-        })
+        }).isRequired
     ).isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     setAnchorEl: PropTypes.func.isRequired,

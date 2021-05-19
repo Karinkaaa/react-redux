@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Toolbar from "@material-ui/core/Toolbar";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import { Button, Container } from "@material-ui/core";
+import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AnimationSpeed from "./AnimationSpeed";
 import GridUrls from "./GridUrls";
@@ -100,8 +97,8 @@ const AnimationResourceForm = ({
                         <Link to={ANIMATIONS}>
                             <Button
                                 fullWidth
-                                color="secondary"
-                                variant="contained"
+                                color={"secondary"}
+                                variant={"contained"}
                             >
                                 Cancel
                             </Button>
@@ -143,7 +140,8 @@ AnimationResourceForm.propTypes = {
     onAddImage: PropTypes.func.isRequired,
     onDeleteImage: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired
+    onUpdate: PropTypes.func.isRequired,
+    onDragAndDrop: PropTypes.func.isRequired
 };
 
 export default AnimationResourceForm;

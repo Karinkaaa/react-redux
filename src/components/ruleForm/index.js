@@ -1,11 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextField from "@material-ui/core/TextField";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import Modal from "@material-ui/core/Modal";
-import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import { Backdrop, Button, Fade, Grid, Modal, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DrumsForRules from "../drumsForRules";
 
@@ -27,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RuleForm = ({
-                      id, name, isValidName, cost, isValidCost, conditions, onSave, onUpdate,
-                      onChangeName, onChangeCost, onChangeCondition, isOpen, onChangeIsOpen
+                      id, name, isValidName, cost, isValidCost, conditions, isOpen,
+                      onChangeName, onChangeCost, onChangeCondition, onChangeIsOpen, onSave, onUpdate
                   }) => {
     const classes = useStyles();
 
@@ -42,9 +37,7 @@ const RuleForm = ({
             onClose={handleClose}
             closeAfterTransition
             BackdropComponent={Backdrop}
-            BackdropProps={{
-                timeout: 500
-            }}
+            BackdropProps={{ timeout: 500 }}
         >
             <Fade in={isOpen}>
                 <Grid container spacing={3} className={classes.paper}>
@@ -52,8 +45,8 @@ const RuleForm = ({
                         id && (
                             <Grid item xs={12}>
                                 <TextField
-                                    label="ID"
-                                    variant="outlined"
+                                    label={"ID"}
+                                    variant={"outlined"}
                                     value={id}
                                     required
                                     fullWidth
@@ -65,9 +58,9 @@ const RuleForm = ({
 
                     <Grid item xs={12}>
                         <TextField
-                            label="Name"
-                            placeholder="Enter the name of rule"
-                            variant="outlined"
+                            label={"Name"}
+                            placeholder={"Enter the name of rule"}
+                            variant={"outlined"}
                             value={name}
                             required
                             fullWidth
@@ -78,9 +71,9 @@ const RuleForm = ({
 
                     <Grid item xs={12}>
                         <TextField
-                            label="Cost"
-                            placeholder="Enter the cost of rule"
-                            variant="outlined"
+                            label={"Cost"}
+                            placeholder={"Enter the cost of rule"}
+                            variant={"outlined"}
                             value={cost}
                             type={"number"}
                             required
@@ -103,8 +96,8 @@ const RuleForm = ({
                         <Button
                             fullWidth
                             onClick={handleClose}
-                            color="secondary"
-                            variant="contained"
+                            color={"secondary"}
+                            variant={"contained"}
                         >
                             Cancel
                         </Button>
@@ -113,6 +106,9 @@ const RuleForm = ({
                     <Grid item xs={6}>
                         <Button
                             fullWidth
+                            color={"primary"}
+                            variant={"contained"}
+                            disabled={isDisabledButtonSave()}
                             onClick={() => {
                                 id ? onUpdate({ id, name, cost, conditions }) : onSave({
                                     id,
@@ -122,9 +118,6 @@ const RuleForm = ({
                                 });
                                 handleClose();
                             }}
-                            disabled={isDisabledButtonSave()}
-                            color="primary"
-                            variant="contained"
                         >
                             {id ? "Update" : "Save"}
                         </Button>
@@ -136,8 +129,6 @@ const RuleForm = ({
 };
 
 RuleForm.propTypes = {
-    onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     isValidName: PropTypes.bool.isRequired,
@@ -152,7 +143,9 @@ RuleForm.propTypes = {
     ).isRequired,
     onChangeCondition: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired
+    onChangeIsOpen: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired
 };
 
 export default RuleForm;

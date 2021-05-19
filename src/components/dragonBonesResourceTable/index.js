@@ -54,7 +54,7 @@ DragonBonesResourceTable.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,

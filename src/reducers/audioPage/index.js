@@ -71,7 +71,7 @@ const AudioPage = (state = initialState, action) => {
             const { page, limit } = pagination;
 
             const result = removeItemById(playlist, action.id);
-            const pageNumber = getAvailableCurrentPage(result, page, limit);
+            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
 
             return {
                 ...state,

@@ -40,7 +40,7 @@ AnimationResourceCards.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired

@@ -1,4 +1,4 @@
-import { isValidImageUrl, isValidName } from "../../utils/validation";
+import { isValidAudioUrl, isValidName } from "../../utils/validation";
 import {
     IS_OPEN_AUDIO_MODAL,
     PUT_AUDIO_RESOURCE_TO_FORM,
@@ -43,7 +43,7 @@ const AudioResourceForm = (state = initialState, action) => {
             return {
                 ...state,
                 url,
-                isValidUrl: isValidImageUrl(url)
+                isValidUrl: isValidAudioUrl(url)
             };
         }
         case PUT_AUDIO_RESOURCE_TO_FORM: {
@@ -55,7 +55,7 @@ const AudioResourceForm = (state = initialState, action) => {
                 name,
                 isValidName: isValidName(name),
                 url,
-                isValidUrl: isValidImageUrl(url)
+                isValidUrl: isValidAudioUrl(url)
             };
         }
         default:

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
+import { Avatar, Grid, IconButton, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import { isValidImageUrl } from "../../utils/validation";
 

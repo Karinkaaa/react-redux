@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Drawer } from "@material-ui/core";
-import Toolbar from "@material-ui/core/Toolbar";
+import { Drawer, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ElementIcon from "./ElementIcon";
 
@@ -68,14 +67,14 @@ ElementsList.propTypes = {
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     animations: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     dragonBones: PropTypes.arrayOf(
         PropTypes.shape({
@@ -84,7 +83,7 @@ ElementsList.propTypes = {
             texture: PropTypes.string.isRequired,
             textureJson: PropTypes.string.isRequired,
             skeleton: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     setSelectedId: PropTypes.func.isRequired,
     onChangeElement: PropTypes.func.isRequired
