@@ -77,7 +77,7 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                 </div>
             </Grid>
 
-            <Grid item xs={3} className={classes.headCell}>
+            <Grid item xs={4} className={classes.headCell} style={{ paddingLeft: 2 }}>
                 <TableSortLabel
                     active={field === "name"}
                     direction={direction}
@@ -104,7 +104,7 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                 </div>
             </Grid>
 
-            <Grid item xs={3} className={classes.headCell}>
+            <Grid item xs={2} className={classes.headCell} style={{ paddingLeft: 15 }}>
                 <TableSortLabel
                     active={field === "year"}
                     direction={direction}
@@ -131,7 +131,7 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                 </div>
             </Grid>
 
-            <Grid item xs={2} className={classes.headCell}>
+            <Grid item xs={2} className={classes.headCell} style={{ paddingLeft: 20 }}>
                 <TableSortLabel
                     active={field === "rating"}
                     direction={direction}

@@ -46,13 +46,13 @@ const MovieRow = ({ id, name, year, rating, onDelete }) => {
                 </Typography>
             </Grid>
 
-            <Grid item xs={3} className={classes.gridItem}>
+            <Grid item xs={4} className={classes.gridItem}>
                 <Typography className={classes.typo}>
                     {name}
                 </Typography>
             </Grid>
 
-            <Grid item xs={3} className={classes.gridItem}>
+            <Grid item xs={2} className={classes.gridItem}>
                 <Typography className={classes.typo}>
                     {year}
                 </Typography>

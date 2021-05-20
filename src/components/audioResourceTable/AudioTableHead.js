@@ -70,7 +70,7 @@ const AudioTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     </div>
 
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={"Search..."}
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
@@ -97,7 +97,7 @@ const AudioTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     </div>
 
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={"Search..."}
                         className={classes.input}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
