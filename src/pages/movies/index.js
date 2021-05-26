@@ -6,8 +6,8 @@ import MovieTable from "../../components/movieTable";
 import { MOVIE_CREATE_FORM } from "../../utils/links";
 
 const Movie = ({
-                   movies, count, pagination, sorting, filters, getMovies, clearForm, removeMovie, onChangeIsOpen,
-                   onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue, onClickPutResourceToForm
+                   movies, count, pagination, sorting, filters, getMovies,
+                   onAdd, removeMovie, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
                }) => {
     const { page, limit } = pagination;
 
@@ -29,7 +29,7 @@ const Movie = ({
                             <Button
                                 variant={"contained"}
                                 color={"primary"}
-                                onClick={clearForm}
+                                onClick={onAdd}
                             >
                                 Create movie
                             </Button>
@@ -57,8 +57,6 @@ const Movie = ({
                         onDelete={onRemove}
                         onChangeSort={onChangeSort}
                         onChangeFilterValue={onChangeFilterValue}
-                        onChangeIsOpen={onChangeIsOpen}
-                        onClickPutResourceToForm={onClickPutResourceToForm}
                     />
                 </Grid>
             </Container>
@@ -88,14 +86,12 @@ Movie.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     getMovies: PropTypes.func.isRequired,
-    clearForm: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
     removeMovie: PropTypes.func.isRequired,
     onChangePage: PropTypes.func.isRequired,
     onChangeLimit: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func,
-    onClickPutResourceToForm: PropTypes.func
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default Movie;

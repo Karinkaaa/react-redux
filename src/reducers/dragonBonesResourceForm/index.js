@@ -1,6 +1,7 @@
 import { isValidImageUrl, isValidJsonUrl, isValidName } from "../../utils/validation";
 import {
-    IS_OPEN_DRAGON_BONES_MODAL,
+    CLEAR_DRAGON_BONES_FORM,
+    OPEN_OR_CLOSE_DRAGON_BONES_MODAL,
     PUT_DRAGON_BONES_RESOURCE_TO_FORM,
     UPDATE_DRAGON_BONES_NAME,
     UPDATE_SKELETON,
@@ -23,18 +24,9 @@ const initialState = {
 
 const DragonBonesResourceForm = (state = initialState, action) => {
     switch (action.type) {
-        case IS_OPEN_DRAGON_BONES_MODAL: {
+        case OPEN_OR_CLOSE_DRAGON_BONES_MODAL: {
             return {
                 ...state,
-                id: "",
-                name: "",
-                isValidName: false,
-                texture: "",
-                isValidTexture: false,
-                textureJson: "",
-                isValidTextureJson: false,
-                skeleton: "",
-                isValidSkeleton: false,
                 isOpen: action.isOpen
             };
         }
@@ -88,6 +80,11 @@ const DragonBonesResourceForm = (state = initialState, action) => {
                 isValidTextureJson: isValidJsonUrl(textureJson),
                 skeleton,
                 isValidSkeleton: isValidJsonUrl(skeleton)
+            };
+        }
+        case CLEAR_DRAGON_BONES_FORM: {
+            return {
+                ...initialState
             };
         }
         default:

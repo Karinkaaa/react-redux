@@ -38,13 +38,12 @@ const Movies = (state = initialState, action) => {
         }
         case SET_MOVIE_FORM_SAGA: {
             const { movie } = action;
+
             return {
                 ...state,
                 form: {
-                    id: movie.id,
-                    name: movie.name,
-                    year: movie.year,
-                    rating: movie.rating
+                    ...state.form,
+                    ...movie
                 }
             };
         }

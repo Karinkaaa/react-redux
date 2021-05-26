@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Audios from "../../pages/audios";
 import { filteringSortingPagingOfArray } from "../../utils/methods";
-import { isOpenAudioModal, putAudioResourceToForm } from "../../actions/audioResourceForm";
+import { clearAudioForm, isOpenAudioModal, putAudioResourceToForm } from "../../actions/audioResourceForm";
 import {
     changeAudioFilterValue,
     changeAudioLimit,
@@ -37,7 +37,10 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeAudioLimit(limit)),
         onChangeSort: (field) => dispatch(changeAudioSort(field)),
         onChangeView: (view) => dispatch(changeAudioView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen)),
+        onChangeIsOpen: (isOpen) => {
+            dispatch(clearAudioForm());
+            dispatch(isOpenAudioModal(isOpen));
+        },
         onChangeFilterValue: (props) => dispatch(changeAudioFilterValue(props)),
         onClickPutResourceToForm: (props) => dispatch(putAudioResourceToForm(props))
     };

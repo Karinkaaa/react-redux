@@ -1,5 +1,6 @@
 import {
-    IS_OPEN_AUDIO_MODAL,
+    CLEAR_AUDIO_FORM,
+    OPEN_OR_CLOSE_AUDIO_MODAL,
     PUT_AUDIO_RESOURCE_TO_FORM,
     UPDATE_AUDIO_NAME,
     UPDATE_AUDIO_URL
@@ -16,7 +17,7 @@ export const updateAudioUrl = (url) => ({
 });
 
 export const isOpenAudioModal = (isOpen) => ({
-    type: IS_OPEN_AUDIO_MODAL,
+    type: OPEN_OR_CLOSE_AUDIO_MODAL,
     isOpen
 });
 
@@ -25,4 +26,8 @@ export const putAudioResourceToForm = ({ id, name, url }) => ({
     id,
     name,
     url
+});
+
+export const clearAudioForm = () => ({
+    type: CLEAR_AUDIO_FORM
 });

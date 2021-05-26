@@ -1,5 +1,6 @@
 import {
-    IS_OPEN_DRAGON_BONES_MODAL,
+    CLEAR_DRAGON_BONES_FORM,
+    OPEN_OR_CLOSE_DRAGON_BONES_MODAL,
     PUT_DRAGON_BONES_RESOURCE_TO_FORM,
     UPDATE_DRAGON_BONES_NAME,
     UPDATE_SKELETON,
@@ -28,7 +29,7 @@ export const updateSkeletonUrl = (skeleton) => ({
 });
 
 export const isOpenDragonBonesModal = (isOpen) => ({
-    type: IS_OPEN_DRAGON_BONES_MODAL,
+    type: OPEN_OR_CLOSE_DRAGON_BONES_MODAL,
     isOpen
 });
 
@@ -39,4 +40,8 @@ export const putDragonBonesResourceToForm = ({ id, name, texture, textureJson, s
     texture,
     textureJson,
     skeleton
+});
+
+export const clearDragonBonesForm = () => ({
+    type: CLEAR_DRAGON_BONES_FORM
 });

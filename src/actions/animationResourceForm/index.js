@@ -1,7 +1,7 @@
 import {
     ADD_IMAGE_RESOURCE_TO_ANIMATION,
     CLEAR_ANIMATION_FORM,
-    DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
+    DELETE_IMAGE_FROM_ANIMATION_FORM,
     DRAG_AND_DROP_IN_ANIMATION_FORM,
     PUT_ANIMATION_RESOURCE_TO_FORM,
     UPDATE_ANIMATION_NAME,
@@ -34,7 +34,7 @@ export const putAnimationResourceToForm = ({ id, name, urls, speed }) => ({
 });
 
 export const deleteImageFromAnimationForm = (index) => ({
-    type: DELETE_IMAGE_RESOURCE_FROM_ANIMATION_FORM,
+    type: DELETE_IMAGE_FROM_ANIMATION_FORM,
     index
 });
 

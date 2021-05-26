@@ -1,7 +1,8 @@
 import { isValidCost, isValidName } from "../../utils/validation";
 import { getIndexOfCondition, isExistCondition, removeItemByIndex } from "../../utils/methods";
 import {
-    IS_OPEN_RULE_MODAL,
+    CLEAR_RULE_FORM,
+    OPEN_OR_CLOSE_RULE_MODAL,
     PUT_RULE_TO_FORM,
     UPDATE_RULE_CONDITION,
     UPDATE_RULE_COST,
@@ -20,15 +21,9 @@ const initialState = {
 
 const RuleForm = (state = initialState, action) => {
     switch (action.type) {
-        case IS_OPEN_RULE_MODAL: {
+        case OPEN_OR_CLOSE_RULE_MODAL: {
             return {
                 ...state,
-                id: "",
-                name: "",
-                isValidName: false,
-                cost: 0,
-                isValidCost: false,
-                conditions: [],
                 isOpen: action.isOpen
             };
         }
@@ -80,6 +75,11 @@ const RuleForm = (state = initialState, action) => {
                 cost,
                 isValidCost: isValidCost(cost),
                 conditions
+            };
+        }
+        case CLEAR_RULE_FORM: {
+            return {
+                ...initialState
             };
         }
         default:

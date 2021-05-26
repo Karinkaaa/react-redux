@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import DragonBonesResourceForm from "../../components/dragonBonesResourceForm";
 import { addDragonBonesResource, updateDragonBonesResource } from "../../actions/dragonBonesResourceComponent";
 import {
+    clearDragonBonesForm,
     isOpenDragonBonesModal,
     updateDragonBonesName,
     updateSkeletonUrl,
@@ -31,7 +32,10 @@ const mapDispatchToProps = (dispatch) => {
         onChangeTextureJson: (textureJson) => dispatch(updateTextureJson(textureJson)),
         onChangeSkeleton: (skeleton) => dispatch(updateSkeletonUrl(skeleton)),
         onSave: (props) => dispatch(addDragonBonesResource(props)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenDragonBonesModal(isOpen)),
+        onChangeIsOpen: (isOpen) => {
+            dispatch(clearDragonBonesForm());
+            dispatch(isOpenDragonBonesModal(isOpen));
+        },
         onUpdate: (props) => dispatch(updateDragonBonesResource(props))
     };
 };

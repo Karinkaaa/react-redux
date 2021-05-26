@@ -12,10 +12,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MovieTable = ({
-                        movies, sorting, onChangeSort, onChangeFilterValue, onChangeIsOpen,
-                        onDelete, onClickPutResourceToForm
-                    }) => {
+const MovieTable = ({ movies, sorting, onChangeSort, onChangeFilterValue, onDelete }) => {
     const classes = useStyles();
 
     return (
@@ -29,8 +26,6 @@ const MovieTable = ({
             <MoviesBody
                 movies={movies}
                 onDelete={onDelete}
-                onChangeIsOpen={onChangeIsOpen}
-                onClickPutResourceToForm={onClickPutResourceToForm}
             />
         </Grid>
     );
@@ -52,9 +47,7 @@ MovieTable.propTypes = {
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func,
-    onDelete: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func
+    onDelete: PropTypes.func.isRequired
 };
 
 export default MovieTable;

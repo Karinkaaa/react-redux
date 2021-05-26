@@ -13,9 +13,7 @@ const Rules = ({
                }) => {
     const { page, limit } = pagination;
 
-    const handleOpen = () => onChangeIsOpen(true);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
-
     const handleChangeRulesPage = (event, newPage) => onChangePage(newPage);
     const handleChangeRulesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -46,7 +44,7 @@ const Rules = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={handleOpen}
+                            onClick={() => onChangeIsOpen(true)}
                         >
                             Add rule
                         </Button>

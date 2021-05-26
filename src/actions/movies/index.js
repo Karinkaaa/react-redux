@@ -14,6 +14,37 @@ import {
     UPDATE_MOVIE_SAGA
 } from "../../utils/actionConstants";
 
+export const changeMoviePage = (page) => ({
+    type: CHANGE_MOVIE_PAGE,
+    page
+});
+
+export const changeMovieLimit = (limit) => ({
+    type: CHANGE_MOVIE_LIMIT,
+    limit
+});
+
+export const changeMovieSort = (field) => ({
+    type: CHANGE_MOVIE_SORT,
+    field
+});
+
+export const setTotalMoviesCount = (count) => ({
+    type: SET_TOTAL_MOVIES_COUNT,
+    count
+});
+
+export const changeMovieFilterValue = ({ filterKey, filterValue }) => ({
+    type: CHANGE_MOVIE_FILTER_VALUE,
+    filterKey,
+    filterValue
+});
+
+export const clearMovieForm = () => ({
+    type: CLEAR_MOVIE_FORM
+});
+
+// saga
 export const saveMovieSaga = (movie) => ({
     type: SAVE_MOVIE_SAGA,
     movie
@@ -47,34 +78,4 @@ export const setMovieFormSaga = (movie) => ({
 export const getMovieByIdSaga = (id) => ({
     type: GET_MOVIE_BY_ID_SAGA,
     id
-});
-
-export const clearMovieForm = () => ({
-    type: CLEAR_MOVIE_FORM
-});
-
-export const changeMoviePage = (page) => ({
-    type: CHANGE_MOVIE_PAGE,
-    page
-});
-
-export const changeMovieLimit = (limit) => ({
-    type: CHANGE_MOVIE_LIMIT,
-    limit
-});
-
-export const changeMovieSort = (field) => ({
-    type: CHANGE_MOVIE_SORT,
-    field
-});
-
-export const setTotalMoviesCount = (count) => ({
-    type: SET_TOTAL_MOVIES_COUNT,
-    count
-});
-
-export const changeMovieFilterValue = ({ filterKey, filterValue }) => ({
-    type: CHANGE_MOVIE_FILTER_VALUE,
-    filterKey,
-    filterValue
 });

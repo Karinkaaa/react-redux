@@ -1,5 +1,6 @@
 import {
-    IS_OPEN_RULE_MODAL,
+    CLEAR_RULE_FORM,
+    OPEN_OR_CLOSE_RULE_MODAL,
     PUT_RULE_TO_FORM,
     UPDATE_RULE_CONDITION,
     UPDATE_RULE_COST,
@@ -22,7 +23,7 @@ export const updateRuleCondition = (condition) => ({
 });
 
 export const isOpenRuleModal = (isOpen) => ({
-    type: IS_OPEN_RULE_MODAL,
+    type: OPEN_OR_CLOSE_RULE_MODAL,
     isOpen
 });
 
@@ -32,4 +33,8 @@ export const putRuleToForm = ({ id, name, cost, conditions }) => ({
     name,
     cost,
     conditions
+});
+
+export const clearRuleForm = () => ({
+    type: CLEAR_RULE_FORM
 });

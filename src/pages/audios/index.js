@@ -10,13 +10,11 @@ import { GRID, TABLE } from "../../utils/constants";
 const Audios = ({
                     audios, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
                     view, onChangeView, pagination, onChangePage, onChangeLimit,
-                    sorting, onChangeSort, onChangeDirection, onChangeFilterValue
+                    sorting, onChangeSort, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
-    const handleOpen = () => onChangeIsOpen(true);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
-
     const handleChangeAudioPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAudioLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -47,7 +45,7 @@ const Audios = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={handleOpen}
+                            onClick={() => onChangeIsOpen(true)}
                         >
                             Add audio resource
                         </Button>
@@ -118,7 +116,6 @@ const Audios = ({
                                     onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
-                                    onChangeDirection={onChangeDirection}
                                     onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
@@ -156,7 +153,6 @@ Audio.propTypes = {
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeDirection: PropTypes.func,
     onChangeFilterValue: PropTypes.func.isRequired
 };
 

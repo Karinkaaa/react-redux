@@ -22,9 +22,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onAdd: () => dispatch(clearMovieForm()),
         getMovies: () => dispatch(getMoviesSaga()),
         removeMovie: (id) => dispatch(removeMovieSaga(id)),
-        clearForm: () => dispatch(clearMovieForm()),
         onChangePage: (page) => dispatch(changeMoviePage(page)),
         onChangeLimit: (limit) => dispatch(changeMovieLimit(limit)),
         onChangeSort: (field) => dispatch(changeMovieSort(field)),

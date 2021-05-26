@@ -20,7 +20,7 @@ const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, putDataToForm
         <Grid container spacing={5} style={{ margin: 50 }}>
             <Grid item xs={2}>
                 <TextField
-                    label={"name"}
+                    label={"Name"}
                     value={movie.name}
                     onChange={(e) => onChangeMovie({ ...movie, name: e.target.value })}
                 />

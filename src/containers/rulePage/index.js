@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { filteringSortingPagingOfArray } from "../../utils/methods";
-import { isOpenRuleModal, putRuleToForm } from "../../actions/ruleForm";
+import { clearRuleForm, isOpenRuleModal, putRuleToForm } from "../../actions/ruleForm";
 import Rules from "../../pages/rules";
 import {
     changeRuleFilterValue,
@@ -37,7 +37,10 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeRuleLimit(limit)),
         onChangeSort: (field) => dispatch(changeRuleSort(field)),
         onChangeView: (view) => dispatch(changeRuleView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenRuleModal(isOpen)),
+        onChangeIsOpen: (isOpen) => {
+            dispatch(clearRuleForm());
+            dispatch(isOpenRuleModal(isOpen))
+        },
         onChangeFilterValue: (props) => dispatch(changeRuleFilterValue(props)),
         onClickPutRuleToForm: (props) => dispatch(putRuleToForm(props))
     };
