@@ -1,32 +1,15 @@
 import {
-    ADD_IMAGE_RESOURCE,
     CHANGE_IMAGE_FILTER_VALUE,
     CHANGE_IMAGE_LIMIT,
     CHANGE_IMAGE_PAGE,
     CHANGE_IMAGE_SORT,
     CHANGE_IMAGE_VIEW,
-    DELETE_IMAGE_RESOURCE,
-    UPDATE_IMAGE_RESOURCE
+    GET_IMAGE_BY_ID_SAGA,
+    GET_IMAGES_SAGA,
+    REMOVE_IMAGE_SAGA,
+    SET_IMAGES_SAGA,
+    SET_TOTAL_IMAGES_COUNT
 } from "../../utils/actionConstants";
-
-export const addImageResource = ({ id, name, url }) => ({
-    type: ADD_IMAGE_RESOURCE,
-    id,
-    name,
-    url
-});
-
-export const deleteImageResource = ({ id }) => ({
-    type: DELETE_IMAGE_RESOURCE,
-    id
-});
-
-export const updateImageResource = ({ id, name, url }) => ({
-    type: UPDATE_IMAGE_RESOURCE,
-    id,
-    name,
-    url
-});
 
 export const changeImageView = (view) => ({
     type: CHANGE_IMAGE_VIEW,
@@ -48,8 +31,32 @@ export const changeImageSort = (field) => ({
     field
 });
 
+export const setTotalImagesCount = (count) => ({
+    type: SET_TOTAL_IMAGES_COUNT,
+    count
+});
+
 export const changeImageFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_IMAGE_FILTER_VALUE,
     filterKey,
     filterValue
+});
+
+export const removeImageSaga = ({ id }) => ({
+    type: REMOVE_IMAGE_SAGA,
+    id
+});
+
+export const setImagesSaga = (images) => ({
+    type: SET_IMAGES_SAGA,
+    images
+});
+
+export const getImagesSaga = () => ({
+    type: GET_IMAGES_SAGA
+});
+
+export const getImageByIdSaga = (id) => ({
+    type: GET_IMAGE_BY_ID_SAGA,
+    id
 });

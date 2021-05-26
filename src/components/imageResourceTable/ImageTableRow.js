@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutResourceToForm }) => {
+const ImageTableRow = ({ id, name, url, handleOpen, handleToggle }) => {
     const classes = useStyles();
 
     return (
@@ -63,10 +63,7 @@ const ImageTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutReso
             <Grid item xs={1}>
                 <IconButton
                     data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, url });
-                    }}
+                    onClick={() => handleOpen(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -89,8 +86,7 @@ ImageTableRow.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
-    handleToggle: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired
 };
 
 export default ImageTableRow;

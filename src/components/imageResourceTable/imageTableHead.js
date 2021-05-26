@@ -68,6 +68,7 @@ const ImageTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
@@ -94,6 +95,7 @@ const ImageTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <div className={classes.filterIcon}>
                         <FilterList/>
                     </div>
+
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}

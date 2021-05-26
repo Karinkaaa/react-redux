@@ -1,9 +1,14 @@
 import { all } from "redux-saga/effects";
-import { watchRemoveMovieSaga } from "./removeMovieSaga";
-import { watchSaveMovieSaga } from "./saveMovieSaga";
-import { watchUpdateMovieSaga } from "./updateMovieSaga";
-import { watchGetMoviesSaga } from "./getMoviesSaga";
-import { watchPutDataToFormSaga } from "./getMovieByIdSaga";
+import { watchRemoveMovieSaga } from "./movies/removeMovieSaga";
+import { watchSaveMovieSaga } from "./movies/saveMovieSaga";
+import { watchUpdateMovieSaga } from "./movies/updateMovieSaga";
+import { watchGetMoviesSaga } from "./movies/getMoviesSaga";
+import { watchPutDataToFormSaga } from "./movies/getMovieByIdSaga";
+import { watchGetImagesSaga } from "./images/getImagesSaga";
+import { watchGetImageByIdSaga } from "./images/getImageByIdSaga";
+import { watchRemoveImageSaga } from "./images/removeImageSaga";
+import { watchSaveImageSaga } from "./images/saveImageSaga";
+import { watchUpdateImageSaga } from "./images/updateImageSaga";
 
 export default function* mainSaga() {
     yield all([
@@ -11,6 +16,12 @@ export default function* mainSaga() {
         watchSaveMovieSaga(),
         watchUpdateMovieSaga(),
         watchGetMoviesSaga(),
-        watchPutDataToFormSaga()
+        watchPutDataToFormSaga(),
+        watchGetImagesSaga(),
+        watchGetImageByIdSaga(),
+        watchRemoveImageSaga(),
+        watchSaveImageSaga(),
+        watchUpdateImageSaga(),
+
     ]);
 }

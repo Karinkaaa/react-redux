@@ -28,9 +28,12 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageResourceForm = ({
                                id, name, isValidName, onChangeName, url, isValidUrl, onChangeUrl,
-                               isOpen, onChangeIsOpen, onSave, onUpdate
+                               isOpen, onChangeIsOpen, saveImage, updateImage
                            }) => {
     const classes = useStyles();
+
+    const onSave = ({ id, ...image }) => saveImage(image);
+    const onUpdate = ({ id, ...image }) => updateImage(id, image);
 
     const handleClose = () => onChangeIsOpen(false);
     const isDisabledButtonSave = () => !isValidUrl || !isValidName;
@@ -130,8 +133,8 @@ ImageResourceForm.propTypes = {
     onChangeUrl: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired
+    saveImage: PropTypes.func.isRequired,
+    updateImage: PropTypes.func.isRequired
 };
 
 export default ImageResourceForm;

@@ -1,7 +1,9 @@
 import { isValidImageUrl, isValidName } from "../../utils/validation";
 import {
-    IS_OPEN_IMAGE_MODAL,
+    CLEAR_IMAGE_FORM,
+    OPEN_OR_CLOSE_IMAGE_MODAL,
     PUT_IMAGE_RESOURCE_TO_FORM,
+    SET_IMAGE_FORM_SAGA,
     UPDATE_IMAGE_NAME,
     UPDATE_IMAGE_URL
 } from "../../utils/actionConstants";
@@ -17,14 +19,9 @@ const initialState = {
 
 const ImageResourceForm = (state = initialState, action) => {
     switch (action.type) {
-        case IS_OPEN_IMAGE_MODAL: {
+        case OPEN_OR_CLOSE_IMAGE_MODAL: {
             return {
                 ...state,
-                id: "",
-                name: "",
-                isValidName: false,
-                url: "",
-                isValidUrl: false,
                 isOpen: action.isOpen
             };
         }
@@ -46,6 +43,16 @@ const ImageResourceForm = (state = initialState, action) => {
                 isValidUrl: isValidImageUrl(url)
             };
         }
+        case SET_IMAGE_FORM_SAGA: {
+            const { image } = action;
+
+            return {
+                ...state,
+                ...image,
+                isValidName: isValidName(image.name),
+                isValidUrl: isValidImageUrl(image.url)
+            };
+        }
         case PUT_IMAGE_RESOURCE_TO_FORM: {
             const { id, name, url } = action;
 
@@ -56,6 +63,11 @@ const ImageResourceForm = (state = initialState, action) => {
                 isValidName: isValidName(name),
                 url,
                 isValidUrl: isValidImageUrl(url)
+            };
+        }
+        case CLEAR_IMAGE_FORM: {
+            return {
+                ...initialState
             };
         }
         default:

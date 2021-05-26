@@ -14,8 +14,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ImageResourceTable = ({
-                                images, sorting, onChangeSort, onChangeFilterValue,
-                                onDelete, onChangeIsOpen, onClickPutResourceToForm
+                                images, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -33,7 +32,6 @@ const ImageResourceTable = ({
             <ImageTableBody
                 images={images}
                 setAnchorEl={setAnchorEl}
-                onChangeIsOpen={onChangeIsOpen}
                 onClickPutResourceToForm={onClickPutResourceToForm}
             />
 
@@ -62,7 +60,6 @@ ImageResourceTable.propTypes = {
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 
