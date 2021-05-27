@@ -3,8 +3,9 @@ import {
     CLEAR_ANIMATION_FORM,
     DELETE_IMAGE_FROM_ANIMATION_FORM,
     DRAG_AND_DROP_IN_ANIMATION_FORM,
-    PUT_ANIMATION_RESOURCE_TO_FORM,
+    SAVE_ANIMATION_SAGA,
     UPDATE_ANIMATION_NAME,
+    UPDATE_ANIMATION_SAGA,
     UPDATE_ANIMATION_SPEED,
     UPDATE_ANIMATION_URL
 } from "../../utils/actionConstants";
@@ -25,14 +26,6 @@ export const updateAnimationUrl = (index, url) => ({
     url
 });
 
-export const putAnimationResourceToForm = ({ id, name, urls, speed }) => ({
-    type: PUT_ANIMATION_RESOURCE_TO_FORM,
-    id,
-    name,
-    urls,
-    speed
-});
-
 export const deleteImageFromAnimationForm = (index) => ({
     type: DELETE_IMAGE_FROM_ANIMATION_FORM,
     index
@@ -50,4 +43,16 @@ export const dragAndDropInAnimationForm = (result) => ({
 
 export const clearAnimationForm = () => ({
     type: CLEAR_ANIMATION_FORM
+});
+
+// saga
+export const updateAnimationSaga = (id, animation) => ({
+    type: UPDATE_ANIMATION_SAGA,
+    id,
+    animation
+});
+
+export const saveAnimationSaga = (animation) => ({
+    type: SAVE_ANIMATION_SAGA,
+    animation
 });

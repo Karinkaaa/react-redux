@@ -72,9 +72,6 @@ export function filteringSortingPagingOfArray(arr, {
 }) {
     let result = [...arr];
 
-    // paging
-    result = result.slice(page * limit, page * limit + limit);
-
     // sorting
     const directionMultiplier = direction === "asc" ? 1 : -1;
 
@@ -93,6 +90,9 @@ export function filteringSortingPagingOfArray(arr, {
         )
     );
 
+    // paging
+    result = result.slice(page * limit, page * limit + limit);
+
     return { data: result, count: arr.length };
 }
 
@@ -110,8 +110,39 @@ export function readFile(file) {
     });
 }
 
+const cors_api_url = "https://murmuring-retreat-06793.herokuapp.com/";
+
+function doCORSRequest(url, onload) {
+    const x = new XMLHttpRequest();
+    x.responseType = "blob";
+    x.open("GET", cors_api_url + url);
+    x.onload = x.onerror = function () {
+        onload(x);
+    };
+
+    x.setRequestHeader("X-Requested-With", "*");
+    x.setRequestHeader("Access-Control-Allow-Origin", "*");
+    x.send();
+}
+
 export async function createFileFromUrl(url) {
-    const response = await fetch(url);
+    // return new Promise((resolve) => {
+    //     if (url.includes("data:")) return;
+    //
+    //         doCORSRequest(url, (x) => {
+    //         const filename = url.replace(/\?.+/, "").split("/").pop();
+    //         const metadata = { type: "jpeg" };
+    //             console.log(x.response);
+    //             resolve(new File([x.response], filename, metadata))
+    //     })
+    // });
+
+    const response = await fetch(cors_api_url + url, {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    });
     const data = await response.blob();
     const metadata = { type: data.type };
     const filename = url.replace(/\?.+/, "").split("/").pop();

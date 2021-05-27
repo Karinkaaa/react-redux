@@ -5,7 +5,7 @@ import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AnimationSpeed from "./AnimationSpeed";
 import GridUrls from "./GridUrls";
-import ClearUrlComponent from "./ClearUrlComponent";
+import BlankUrlComponent from "./BlankUrlComponent";
 import { ANIMATIONS } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,13 +26,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AnimationResourceForm = ({
-                                   id, speed, urls, name, isValidName, onChangeName, onChangeSpeed, onAddImage,
-                                   onDeleteImage, isValidUrls, onChangeUrl, onSave, onUpdate, onDragAndDrop
+                                   id, name, speed, urls, isValidName, isValidUrls,
+                                   onChangeName, onChangeSpeed, onChangeUrl, onAddImage, onDeleteImage,
+                                   saveAnimation, updateAnimation, onDragAndDrop
                                }) => {
     const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
     const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName || urls.length === 0 || speed === 0;
 
     const classes = useStyles({ isDisabledButtonSave });
+
+    const onSave = (animation) => saveAnimation(animation);
+    const onUpdate = ({ id, ...animation }) => updateAnimation(id, animation);
 
     return (
         <div>
@@ -91,7 +95,7 @@ const AnimationResourceForm = ({
                         onDragAndDrop={onDragAndDrop}
                     />
 
-                    <ClearUrlComponent onAddImage={onAddImage}/>
+                    <BlankUrlComponent onAddImage={onAddImage}/>
 
                     <Grid item xs={2}>
                         <Link to={ANIMATIONS}>
@@ -111,7 +115,7 @@ const AnimationResourceForm = ({
                                 fullWidth
                                 onClick={() => {
                                     id ? onUpdate({ id, name, urls, speed })
-                                        : onSave({ id, name, urls, speed });
+                                        : onSave({ name, urls, speed });
                                 }}
                                 disabled={isDisabledButtonSave()}
                                 color={"primary"}
@@ -137,10 +141,10 @@ AnimationResourceForm.propTypes = {
     onChangeName: PropTypes.func.isRequired,
     onChangeSpeed: PropTypes.func.isRequired,
     onChangeUrl: PropTypes.func.isRequired,
+    saveAnimation: PropTypes.func.isRequired,
+    updateAnimation: PropTypes.func.isRequired,
     onAddImage: PropTypes.func.isRequired,
     onDeleteImage: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired
 };
 

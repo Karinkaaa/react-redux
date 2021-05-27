@@ -7,6 +7,7 @@ import {
     DELETE_IMAGE_FROM_ANIMATION_FORM,
     DRAG_AND_DROP_IN_ANIMATION_FORM,
     PUT_ANIMATION_RESOURCE_TO_FORM,
+    SET_ANIMATION_FORM,
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_SPEED,
     UPDATE_ANIMATION_URL
@@ -23,6 +24,16 @@ const initialState = {
 
 const AnimationResourceForm = (state = initialState, action) => {
     switch (action.type) {
+        case SET_ANIMATION_FORM: {
+            const { animation } = action;
+
+            return {
+                ...state,
+                ...animation,
+                isValidName: isValidName(animation.name),
+                isValidUrls: animation.urls.map(url => isValidImageUrl(url))
+            };
+        }
         case UPDATE_ANIMATION_NAME: {
             const { name } = action;
 

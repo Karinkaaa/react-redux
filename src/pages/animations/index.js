@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
@@ -9,12 +9,13 @@ import { GRID, TABLE } from "../../utils/constants";
 import { ANIMATION_FORM } from "../../utils/links";
 
 const Animations = ({
-                        animations, count, view, pagination, sorting, onAdd, onDelete,
-                        onClickPutResourceToForm, onChangeView, onChangePage, onChangeLimit,
-                        onChangeSort, onChangeDirection, onChangeFilterValue, onDeleteNestedImage
+                        animations, count, view, pagination, sorting, filters, getAnimations,
+                        onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue,
+                        onAdd, onPutData, removeAnimation
                     }) => {
     const { page, limit } = pagination;
 
+    const onRemove = (id) => removeAnimation(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
     const handleChangeAnimationPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAnimationLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
@@ -34,6 +35,10 @@ const Animations = ({
             }
         </svg>
     );
+
+    useEffect(() => {
+        getAnimations();
+    }, [pagination, sorting, filters]);
 
     return (
         <div>
@@ -89,10 +94,10 @@ const Animations = ({
                                     count={count}
                                     page={page}
                                     limit={limit}
-                                    onDelete={onDelete}
+                                    onDelete={onRemove}
                                     onChangePage={handleChangeAnimationPage}
                                     onChangeLimit={onChangeLimit}
-                                    onClickPutResourceToForm={onClickPutResourceToForm}
+                                    onClickPutResourceToForm={onPutData}
                                 />
                             </>
                             :
@@ -109,13 +114,11 @@ const Animations = ({
 
                                 <AnimationResourceTable
                                     animations={animations}
-                                    onDelete={onDelete}
-                                    onClickPutResourceToForm={onClickPutResourceToForm}
+                                    onDelete={onRemove}
+                                    onClickPutResourceToForm={onPutData}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
-                                    onChangeDirection={onChangeDirection}
                                     onChangeFilterValue={onChangeFilterValue}
-                                    onDeleteNestedImage={onDeleteNestedImage}
                                 />
                             </>
                     }
@@ -134,9 +137,10 @@ Animations.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
+    getAnimations: PropTypes.func.isRequired,
     onAdd: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired,
+    onPutData: PropTypes.func.isRequired,
+    removeAnimation: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
@@ -151,10 +155,9 @@ Animations.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeDirection: PropTypes.func,
-    onChangeFilterValue: PropTypes.func.isRequired,
-    onDeleteNestedImage: PropTypes.func.isRequired
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default Animations;
