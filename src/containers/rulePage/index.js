@@ -32,15 +32,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onAdd: () => {
+            dispatch(clearRuleForm());
+            dispatch(isOpenRuleModal(true));
+        },
         onDelete: (id) => dispatch(deleteRule(id)),
         onChangePage: (page) => dispatch(changeRulePage(page)),
         onChangeLimit: (limit) => dispatch(changeRuleLimit(limit)),
         onChangeSort: (field) => dispatch(changeRuleSort(field)),
         onChangeView: (view) => dispatch(changeRuleView(view)),
-        onChangeIsOpen: (isOpen) => {
-            dispatch(clearRuleForm());
-            dispatch(isOpenRuleModal(isOpen))
-        },
+        onChangeIsOpen: (isOpen) => dispatch(isOpenRuleModal(isOpen)),
         onChangeFilterValue: (props) => dispatch(changeRuleFilterValue(props)),
         onClickPutRuleToForm: (props) => dispatch(putRuleToForm(props))
     };

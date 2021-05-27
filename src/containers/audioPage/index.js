@@ -32,15 +32,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onAdd: () => {
+            dispatch(clearAudioForm());
+            dispatch(isOpenAudioModal(true));
+        },
         onDelete: (props) => dispatch(deleteAudioResource(props)),
         onChangePage: (page) => dispatch(changeAudioPage(page)),
         onChangeLimit: (limit) => dispatch(changeAudioLimit(limit)),
         onChangeSort: (field) => dispatch(changeAudioSort(field)),
         onChangeView: (view) => dispatch(changeAudioView(view)),
-        onChangeIsOpen: (isOpen) => {
-            dispatch(clearAudioForm());
-            dispatch(isOpenAudioModal(isOpen));
-        },
+        onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen)),
         onChangeFilterValue: (props) => dispatch(changeAudioFilterValue(props)),
         onClickPutResourceToForm: (props) => dispatch(putAudioResourceToForm(props))
     };

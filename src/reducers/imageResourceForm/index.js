@@ -3,7 +3,7 @@ import {
     CLEAR_IMAGE_FORM,
     OPEN_OR_CLOSE_IMAGE_MODAL,
     PUT_IMAGE_RESOURCE_TO_FORM,
-    SET_IMAGE_FORM_SAGA,
+    SET_IMAGE_FORM,
     UPDATE_IMAGE_NAME,
     UPDATE_IMAGE_URL
 } from "../../utils/actionConstants";
@@ -43,7 +43,7 @@ const ImageResourceForm = (state = initialState, action) => {
                 isValidUrl: isValidImageUrl(url)
             };
         }
-        case SET_IMAGE_FORM_SAGA: {
+        case SET_IMAGE_FORM: {
             const { image } = action;
 
             return {

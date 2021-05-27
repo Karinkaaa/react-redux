@@ -8,8 +8,8 @@ import {
     GET_MOVIES_SAGA,
     REMOVE_MOVIE_SAGA,
     SAVE_MOVIE_SAGA,
-    SET_MOVIE_FORM_SAGA,
-    SET_MOVIES_SAGA,
+    SET_MOVIE_FORM,
+    SET_MOVIES,
     SET_TOTAL_MOVIES_COUNT,
     UPDATE_MOVIE_SAGA
 } from "../../utils/actionConstants";
@@ -29,6 +29,11 @@ export const changeMovieSort = (field) => ({
     field
 });
 
+export const setMovies = (movies) => ({
+    type: SET_MOVIES,
+    movies
+});
+
 export const setTotalMoviesCount = (count) => ({
     type: SET_TOTAL_MOVIES_COUNT,
     count
@@ -39,7 +44,6 @@ export const changeMovieFilterValue = ({ filterKey, filterValue }) => ({
     filterKey,
     filterValue
 });
-
 export const clearMovieForm = () => ({
     type: CLEAR_MOVIE_FORM
 });
@@ -65,13 +69,8 @@ export const getMoviesSaga = () => ({
     type: GET_MOVIES_SAGA
 });
 
-export const setMoviesSaga = (movies) => ({
-    type: SET_MOVIES_SAGA,
-    movies
-});
-
-export const setMovieFormSaga = (movie) => ({
-    type: SET_MOVIE_FORM_SAGA,
+export const setMovieForm = (movie) => ({
+    type: SET_MOVIE_FORM,
     movie
 });
 

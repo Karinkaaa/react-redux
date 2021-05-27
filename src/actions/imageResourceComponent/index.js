@@ -7,7 +7,7 @@ import {
     GET_IMAGE_BY_ID_SAGA,
     GET_IMAGES_SAGA,
     REMOVE_IMAGE_SAGA,
-    SET_IMAGES_SAGA,
+    SET_IMAGES,
     SET_TOTAL_IMAGES_COUNT
 } from "../../utils/actionConstants";
 
@@ -47,8 +47,8 @@ export const removeImageSaga = ({ id }) => ({
     id
 });
 
-export const setImagesSaga = (images) => ({
-    type: SET_IMAGES_SAGA,
+export const setImages = (images) => ({
+    type: SET_IMAGES,
     images
 });
 

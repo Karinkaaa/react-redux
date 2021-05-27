@@ -2,7 +2,7 @@ import {
     CLEAR_IMAGE_FORM,
     OPEN_OR_CLOSE_IMAGE_MODAL,
     SAVE_IMAGE_SAGA,
-    SET_IMAGE_FORM_SAGA,
+    SET_IMAGE_FORM,
     UPDATE_IMAGE_NAME,
     UPDATE_IMAGE_SAGA,
     UPDATE_IMAGE_URL
@@ -18,6 +18,11 @@ export const updateImageUrl = (url) => ({
     url
 });
 
+export const setImageForm = (image) => ({
+    type: SET_IMAGE_FORM,
+    image
+});
+
 export const isOpenImageModal = (isOpen) => ({
     type: OPEN_OR_CLOSE_IMAGE_MODAL,
     isOpen
@@ -28,11 +33,6 @@ export const clearImageForm = () => ({
 });
 
 // saga
-export const setImageFormSaga = (image) => ({
-    type: SET_IMAGE_FORM_SAGA,
-    image
-});
-
 export const saveImageSaga = (image) => ({
     type: SAVE_IMAGE_SAGA,
     image

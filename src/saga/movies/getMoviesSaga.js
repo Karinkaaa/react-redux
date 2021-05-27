@@ -1,6 +1,6 @@
 import *  as axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { setMoviesSaga, setTotalMoviesCount } from "../../actions/movies";
+import { setMovies, setTotalMoviesCount } from "../../actions/movies";
 import { MOVIES_API } from "../../utils/apiLinks";
 import { GET_MOVIES_SAGA } from "../../utils/actionConstants";
 
@@ -17,7 +17,7 @@ export function* getMoviesSaga() {
         }
     });
 
-    yield put(setMoviesSaga(result.data.movies));
+    yield put(setMovies(result.data.movies));
     yield put(setTotalMoviesCount(result.data.count));
 }
 

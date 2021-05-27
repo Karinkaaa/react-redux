@@ -3,7 +3,7 @@ import {
     CLEAR_LAYER_FORM,
     DELETE_LAYER_ELEMENT,
     PUT_LAYER_TO_FORM,
-    SET_SELECTED_ID,
+    SET_LAYER_SELECTED_ID,
     UPDATE_LAYER_ELEMENT,
     UPDATE_LAYER_NAME
 } from "../../utils/actionConstants";
@@ -24,7 +24,7 @@ export const deleteLayerElement = (id) => ({
 });
 
 export const setSelectedId = (id) => ({
-    type: SET_SELECTED_ID,
+    type: SET_LAYER_SELECTED_ID,
     id
 });
 

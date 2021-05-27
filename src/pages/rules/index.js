@@ -8,7 +8,7 @@ import RuleCards from "../../components/ruleCards";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
-                   rules, count, view, pagination, sorting, onDelete, onChangeView, onChangePage, onChangeLimit,
+                   rules, count, view, pagination, sorting, onAdd, onDelete, onChangeView, onChangePage, onChangeLimit,
                    onChangeSort, onChangeDirection, onChangeIsOpen, onChangeFilterValue, onClickPutRuleToForm
                }) => {
     const { page, limit } = pagination;
@@ -44,7 +44,7 @@ const Rules = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={() => onChangeIsOpen(true)}
+                            onClick={onAdd}
                         >
                             Add rule
                         </Button>
@@ -142,6 +142,7 @@ Rules.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
+    onAdd: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutRuleToForm: PropTypes.func.isRequired,

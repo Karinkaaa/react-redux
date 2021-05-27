@@ -8,7 +8,7 @@ import {
     CHANGE_IMAGE_PAGE,
     CHANGE_IMAGE_SORT,
     CHANGE_IMAGE_VIEW,
-    SET_IMAGES_SAGA,
+    SET_IMAGES,
     SET_TOTAL_IMAGES_COUNT
 } from "../../utils/actionConstants";
 
@@ -42,7 +42,7 @@ const ImagePage = (state = initialState, action) => {
                 })
             };
         }
-        case SET_IMAGES_SAGA: {
+        case SET_IMAGES: {
             return {
                 ...state,
                 imageList: action.images

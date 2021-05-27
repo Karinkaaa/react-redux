@@ -2,7 +2,7 @@ import *  as axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { GET_IMAGES_SAGA } from "../../utils/actionConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
-import { setImagesSaga, setTotalImagesCount } from "../../actions/imageResourceComponent";
+import { setImages, setTotalImagesCount } from "../../actions/imageResourceComponent";
 
 export function* getImagesSaga() {
     const pagination = yield select(state => state.images.pagination);
@@ -17,7 +17,7 @@ export function* getImagesSaga() {
         }
     });
 
-    yield put(setImagesSaga(result.data.images));
+    yield put(setImages(result.data.images));
     yield put(setTotalImagesCount(result.data.count));
 }
 

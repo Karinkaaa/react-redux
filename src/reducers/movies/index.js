@@ -4,8 +4,8 @@ import {
     CHANGE_MOVIE_PAGE,
     CHANGE_MOVIE_SORT,
     CLEAR_MOVIE_FORM,
-    SET_MOVIE_FORM_SAGA,
-    SET_MOVIES_SAGA,
+    SET_MOVIE_FORM,
+    SET_MOVIES,
     SET_TOTAL_MOVIES_COUNT
 } from "../../utils/actionConstants";
 
@@ -30,13 +30,13 @@ const initialState = {
 
 const Movies = (state = initialState, action) => {
     switch (action.type) {
-        case SET_MOVIES_SAGA: {
+        case SET_MOVIES: {
             return {
                 ...state,
                 movieList: action.movies
             };
         }
-        case SET_MOVIE_FORM_SAGA: {
+        case SET_MOVIE_FORM: {
             const { movie } = action;
 
             return {

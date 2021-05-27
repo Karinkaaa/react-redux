@@ -8,7 +8,7 @@ import AudioResourceForm from "../../containers/audioResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
-                    audios, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
+                    audios, count, onAdd, onDelete, onChangeIsOpen, onClickPutResourceToForm,
                     view, onChangeView, pagination, onChangePage, onChangeLimit,
                     sorting, onChangeSort, onChangeFilterValue
                 }) => {
@@ -45,7 +45,7 @@ const Audios = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={() => onChangeIsOpen(true)}
+                            onClick={onAdd}
                         >
                             Add audio resource
                         </Button>
@@ -135,6 +135,7 @@ Audio.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
+    onAdd: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired,
