@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     }
 });
 
-const ClearUrlComponent = ({ onAddImage }) => {
+const BlankUrlComponent = ({ onAddImage }) => {
     const classes = useStyles();
 
     const [url, setUrl] = useState("");
@@ -64,8 +64,8 @@ const ClearUrlComponent = ({ onAddImage }) => {
     );
 };
 
-ClearUrlComponent.propTypes = {
+BlankUrlComponent.propTypes = {
     onAddImage: PropTypes.func.isRequired
 };
 
-export default ClearUrlComponent;
+export default BlankUrlComponent;

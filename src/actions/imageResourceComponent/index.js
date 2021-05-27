@@ -11,6 +11,11 @@ import {
     SET_TOTAL_IMAGES_COUNT
 } from "../../utils/actionConstants";
 
+export const setImages = (images) => ({
+    type: SET_IMAGES,
+    images
+});
+
 export const changeImageView = (view) => ({
     type: CHANGE_IMAGE_VIEW,
     view
@@ -42,21 +47,17 @@ export const changeImageFilterValue = ({ filterKey, filterValue }) => ({
     filterValue
 });
 
-export const removeImageSaga = ({ id }) => ({
-    type: REMOVE_IMAGE_SAGA,
-    id
-});
-
-export const setImages = (images) => ({
-    type: SET_IMAGES,
-    images
-});
-
+// saga
 export const getImagesSaga = () => ({
     type: GET_IMAGES_SAGA
 });
 
 export const getImageByIdSaga = (id) => ({
     type: GET_IMAGE_BY_ID_SAGA,
+    id
+});
+
+export const removeImageSaga = ({ id }) => ({
+    type: REMOVE_IMAGE_SAGA,
     id
 });

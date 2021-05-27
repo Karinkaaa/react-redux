@@ -1,8 +1,5 @@
-import uuid from "react-uuid";
-import { saveItemTo } from "../../utils/methods";
 import { TABLE } from "../../utils/constants";
 import {
-    ADD_IMAGE_RESOURCE,
     CHANGE_IMAGE_FILTER_VALUE,
     CHANGE_IMAGE_LIMIT,
     CHANGE_IMAGE_PAGE,
@@ -29,19 +26,6 @@ const initialState = {
 
 const ImagePage = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_IMAGE_RESOURCE: {
-            const { imageList } = state;
-            const { name, url } = action;
-
-            return {
-                ...state,
-                imageList: saveItemTo(imageList, {
-                    id: uuid(),
-                    name,
-                    url
-                })
-            };
-        }
         case SET_IMAGES: {
             return {
                 ...state,

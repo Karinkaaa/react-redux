@@ -28,15 +28,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutResourceToForm, onDeleteNestedImage }) => {
+const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutResourceToForm }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
-    const handleClick = () => setOpen(!open);
-
     return (
         <Grid container className={classes.grid}>
-            <Grid container item xs={3} className={classes.gridItem} onClick={handleClick}>
+            <Grid container item xs={3} className={classes.gridItem} onClick={() => setOpen(!open)}>
                 <Grid item xs={6}>
                     <AvatarGroup max={3}>
                         {
@@ -60,7 +58,7 @@ const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutReso
                 <Link to={ANIMATION_FORM}>
                     <IconButton
                         data-id={id}
-                        onClick={() => onClickPutResourceToForm({ id, name, urls, speed })}
+                        onClick={() => onClickPutResourceToForm(id)}
                     >
                         <Update className={classes.updateIcon}/>
                     </IconButton>
@@ -77,10 +75,8 @@ const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutReso
             </Grid>
 
             <NestedTable
-                id={id}
                 urls={urls}
                 open={open}
-                onDeleteNestedImage={onDeleteNestedImage}
             />
         </Grid>
     );
@@ -92,7 +88,6 @@ AnimationTableRow.propTypes = {
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     speed: PropTypes.number.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onDeleteNestedImage: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 

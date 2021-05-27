@@ -8,7 +8,7 @@ import { LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
                     layers, count, pagination, sorting, onAdd, onDelete, onClickPutLayerToForm,
-                    onChangePage, onChangeLimit, onChangeSort, onChangeDirection, onChangeFilterValue
+                    onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
@@ -55,7 +55,6 @@ const Layers = ({
                         onClickPutLayerToForm={onClickPutLayerToForm}
                         sorting={sorting}
                         onChangeSort={onChangeSort}
-                        onChangeDirection={onChangeDirection}
                         onChangeFilterValue={onChangeFilterValue}
                     />
                 </Grid>
@@ -103,7 +102,6 @@ Layers.propTypes = {
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeDirection: PropTypes.func,
     onChangeFilterValue: PropTypes.func.isRequired
 };
 

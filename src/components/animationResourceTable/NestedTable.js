@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import NestedTableItem from "./NestedTableItem";
 
-const NestedTable = ({ id, urls, open, onDeleteNestedImage }) => (
+const NestedTable = ({ urls, open }) => (
     <Grid container style={{ background: "#335068" }}>
         {
             open && (
@@ -11,7 +11,6 @@ const NestedTable = ({ id, urls, open, onDeleteNestedImage }) => (
                     <NestedTableItem
                         key={url}
                         url={url}
-                        onDeleteNestedImage={() => onDeleteNestedImage(id, url)}
                     />
                 ))
             )
@@ -20,10 +19,8 @@ const NestedTable = ({ id, urls, open, onDeleteNestedImage }) => (
 );
 
 NestedTable.propTypes = {
-    id: PropTypes.string.isRequired,
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    open: PropTypes.bool.isRequired,
-    onDeleteNestedImage: PropTypes.func.isRequired
+    open: PropTypes.bool.isRequired
 };
 
 export default NestedTable;

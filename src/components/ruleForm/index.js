@@ -110,12 +110,9 @@ const RuleForm = ({
                             variant={"contained"}
                             disabled={isDisabledButtonSave()}
                             onClick={() => {
-                                id ? onUpdate({ id, name, cost, conditions }) : onSave({
-                                    id,
-                                    name,
-                                    cost,
-                                    conditions
-                                });
+                                id ?
+                                    onUpdate({ id, name, cost, conditions }) :
+                                    onSave({ name, cost, conditions });
                                 handleClose();
                             }}
                         >

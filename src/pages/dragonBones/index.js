@@ -10,7 +10,7 @@ import { GRID, TABLE } from "../../utils/constants";
 const DragonBones = ({
                          dragonBones, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
                          view, onChangeView, pagination, onChangePage, onChangeLimit,
-                         sorting, onChangeSort, onChangeDirection, onChangeFilterValue
+                         sorting, onChangeSort, onChangeFilterValue
                      }) => {
     const { page, limit } = pagination;
 
@@ -121,7 +121,6 @@ const DragonBones = ({
                                     onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
-                                    onChangeDirection={onChangeDirection}
                                     onChangeFilterValue={onChangeFilterValue}
                                 />
                             </>
@@ -161,7 +160,6 @@ DragonBones.propTypes = {
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeDirection: PropTypes.func,
     onChangeFilterValue: PropTypes.func.isRequired
 };
 

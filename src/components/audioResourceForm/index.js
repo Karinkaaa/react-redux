@@ -96,7 +96,7 @@ const AudioResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                id ? onUpdate({ id, name, url }) : onSave({ id, name, url });
+                                id ? onUpdate({ id, name, url }) : onSave({ name, url });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}

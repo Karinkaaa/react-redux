@@ -128,7 +128,7 @@ const DragonBonesResourceForm = ({
                             onClick={() => {
                                 id
                                     ? onUpdate({ id, name, texture, textureJson, skeleton })
-                                    : onSave({ id, name, texture, textureJson, skeleton });
+                                    : onSave({ name, texture, textureJson, skeleton });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}

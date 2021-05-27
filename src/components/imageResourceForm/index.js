@@ -32,7 +32,7 @@ const ImageResourceForm = ({
                            }) => {
     const classes = useStyles();
 
-    const onSave = ({ id, ...image }) => saveImage(image);
+    const onSave = (image) => saveImage(image);
     const onUpdate = ({ id, ...image }) => updateImage(id, image);
 
     const handleClose = () => onChangeIsOpen(false);
@@ -107,7 +107,7 @@ const ImageResourceForm = ({
                         <Button
                             fullWidth
                             onClick={() => {
-                                id ? onUpdate({ id, name, url }) : onSave({ id, name, url });
+                                id ? onUpdate({ id, name, url }) : onSave({ name, url });
                                 handleClose();
                             }}
                             disabled={isDisabledButtonSave()}

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Avatar, Grid, IconButton, Typography } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
+import { Avatar, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import ConfirmMenu from "../confirmMenu";
 
 const useStyles = makeStyles((theme) => ({
     grid: {
@@ -22,18 +20,11 @@ const useStyles = makeStyles((theme) => ({
         wordBreak: "break-all",
         paddingRight: 15,
         marginRight: 30
-    },
-    deleteIcon: {
-        color: theme.palette.delete3Color
     }
 }));
 
-const NestedTableItem = ({ url, onDeleteNestedImage }) => {
+const NestedTableItem = ({ url }) => {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = useState(false);
-
-    const handleClose = () => setAnchorEl(null);
-    const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
         <Grid container item spacing={1} className={classes.grid}>
@@ -43,35 +34,19 @@ const NestedTableItem = ({ url, onDeleteNestedImage }) => {
                 <Avatar src={url}/>
             </Grid>
 
-            <Grid item xs={6} className={classes.gridItem}>
+            <Grid item className={classes.gridItem}>
                 <Typography className={classes.typo}>
                     {url}
                 </Typography>
             </Grid>
 
-            <Grid item xs={1}>
-                <IconButton
-                    onClick={handleToggle}
-                    data-id={url}
-                >
-                    <Delete className={classes.deleteIcon}/>
-                </IconButton>
-            </Grid>
-
             <Grid item xs={2}/>
-
-            <ConfirmMenu
-                anchorEl={anchorEl}
-                handleClose={handleClose}
-                onAccept={onDeleteNestedImage}
-            />
         </Grid>
     );
 };
 
 NestedTableItem.propTypes = {
-    url: PropTypes.string.isRequired,
-    onDeleteNestedImage: PropTypes.func.isRequired
+    url: PropTypes.string.isRequired
 };
 
 export default NestedTableItem;
