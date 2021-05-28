@@ -22,9 +22,12 @@ const useStyles = makeStyles((theme) => ({
 
 const AudioResourceForm = ({
                                id, name, isValidName, url, isValidUrl, isOpen,
-                               onSave, onUpdate, onChangeName, onChangeUrl, onChangeIsOpen
+                               saveAudio, updateAudio, onChangeName, onChangeUrl, onChangeIsOpen
                            }) => {
     const classes = useStyles();
+
+    const onSave = (audio) => saveAudio(audio);
+    const onUpdate = ({ id, ...audio }) => updateAudio(id, audio);
 
     const handleClose = () => onChangeIsOpen(false);
     const isDisabledButtonSave = () => !isValidUrl || !isValidName;
@@ -119,8 +122,8 @@ AudioResourceForm.propTypes = {
     url: PropTypes.string.isRequired,
     isValidUrl: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired,
+    saveAudio: PropTypes.func.isRequired,
+    updateAudio: PropTypes.func.isRequired,
     onChangeName: PropTypes.func.isRequired,
     onChangeUrl: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired

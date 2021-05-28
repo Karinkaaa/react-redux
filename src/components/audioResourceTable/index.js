@@ -14,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AudioResourceTable = ({
-                                audios, sorting, onChangeSort, onChangeFilterValue,
-                                onDelete, onChangeIsOpen, onClickPutResourceToForm
+                                audios, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -33,7 +32,6 @@ const AudioResourceTable = ({
             <AudioTableBody
                 audios={audios}
                 setAnchorEl={setAnchorEl}
-                onChangeIsOpen={onChangeIsOpen}
                 onClickPutResourceToForm={onClickPutResourceToForm}
             />
 
@@ -52,7 +50,7 @@ AudioResourceTable.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
-        })
+        }).isRequired
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
@@ -62,7 +60,6 @@ AudioResourceTable.propTypes = {
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 

@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutResourceToForm }) => {
+const AudioTableRow = ({ id, name, url, handleOpen, handleToggle }) => {
     const classes = useStyles();
 
     return (
@@ -64,10 +64,7 @@ const AudioTableRow = ({ id, name, url, handleOpen, handleToggle, onClickPutReso
             <Grid item xs={1}>
                 <IconButton
                     data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, url });
-                    }}
+                    onClick={() => handleOpen(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -91,8 +88,7 @@ AudioTableRow.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
-    handleToggle: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired
 };
 
 export default AudioTableRow;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
@@ -8,13 +8,14 @@ import AudioResourceForm from "../../containers/audioResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
-                    audios, count, onAdd, onDelete, onChangeIsOpen, onClickPutResourceToForm,
-                    view, onChangeView, pagination, onChangePage, onChangeLimit,
-                    sorting, onChangeSort, onChangeFilterValue
+                    audios, count, view, pagination, sorting, filters, getAudios, onPutData, removeAudio,
+                    onChangeIsOpen, onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
+    const onRemove = (id) => removeAudio(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
+
     const handleChangeAudioPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAudioLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -34,6 +35,10 @@ const Audios = ({
         </svg>
     );
 
+    useEffect(() => {
+        getAudios();
+    }, [pagination, sorting, filters]);
+
     return (
         <div>
             <Toolbar/>
@@ -45,7 +50,7 @@ const Audios = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={onAdd}
+                            onClick={() => onChangeIsOpen(true)}
                         >
                             Add audio resource
                         </Button>
@@ -85,14 +90,8 @@ const Audios = ({
 
                                 <AudioResourceCards
                                     audios={audios}
-                                    count={count}
-                                    page={page}
-                                    limit={limit}
-                                    onDelete={onDelete}
-                                    onChangePage={onChangePage}
-                                    onChangeLimit={onChangeLimit}
-                                    onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutResourceToForm={onClickPutResourceToForm}
+                                    onDelete={onRemove}
+                                    onClickPutResourceToForm={onPutData}
                                 />
                             </>
                             :
@@ -111,12 +110,11 @@ const Audios = ({
 
                                 <AudioResourceTable
                                     audios={audios}
-                                    onDelete={onDelete}
-                                    onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
+                                    onDelete={onRemove}
+                                    onClickPutResourceToForm={onPutData}
                                 />
                             </>
                     }
@@ -135,10 +133,10 @@ Audio.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
-    onAdd: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    getAudios: PropTypes.func.isRequired,
+    removeAudio: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired,
+    onPutData: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({

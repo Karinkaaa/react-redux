@@ -41,7 +41,8 @@ createServer({
         movie: Model,
         image: Model,
         animation: Model,
-        dragonBone: Model
+        dragonBone: Model,
+        audio: Model
     },
     factories: {
         movie: Factory.extend({
@@ -66,6 +67,10 @@ createServer({
             texture: (i) => faker.image.imageUrl(50, 50, undefined, i),
             textureJson: () => faker.internet.url() + ".json",
             skeleton: () => faker.internet.url() + ".json"
+        }),
+        audio: Factory.extend({
+            name: () => faker.name.firstName(),
+            url: () => faker.internet.url() + ".mp3"
         })
     },
     seeds(server) {
@@ -76,7 +81,9 @@ createServer({
 
         server.create("image");
         server.create("image");
-        server.create("image", { url: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" });
+        server.create("image", {
+            url: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+        });
         server.createList("image", 10);
 
         server.create("animation");
@@ -98,6 +105,19 @@ createServer({
             skeleton: "https://raw.githubusercontent.com/DragonBones/DragonBonesJS/master/Pixi/Demos/resource/bullet_01/bullet_01_ske.json"
         });
         server.createList("dragonBone", 10);
+
+        server.create("audio");
+        server.create("audio");
+        server.create("audio");
+        server.create("audio", {
+            name: "Tuesday",
+            url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
+        });
+        server.create("audio", {
+            name: "Gorit",
+            url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
+        });
+        server.createList("audio", 10);
     },
     routes() {
         this.namespace = "api";
@@ -107,6 +127,7 @@ createServer({
         this.resource("images");
         this.resource("animations");
         this.resource("dragonBones");
+        this.resource("audios");
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
     }

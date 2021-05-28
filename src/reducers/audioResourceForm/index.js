@@ -3,6 +3,7 @@ import {
     CLEAR_AUDIO_FORM,
     OPEN_OR_CLOSE_AUDIO_MODAL,
     PUT_AUDIO_RESOURCE_TO_FORM,
+    SET_AUDIO_FORM,
     UPDATE_AUDIO_NAME,
     UPDATE_AUDIO_URL
 } from "../../utils/actionConstants";
@@ -18,6 +19,16 @@ const initialState = {
 
 const AudioResourceForm = (state = initialState, action) => {
     switch (action.type) {
+        case SET_AUDIO_FORM: {
+            const { audio } = action;
+
+            return {
+                ...state,
+                ...audio,
+                isValidName: isValidName(audio.name),
+                isValidUrl: isValidAudioUrl(audio.url)
+            };
+        }
         case OPEN_OR_CLOSE_AUDIO_MODAL: {
             return {
                 ...state,

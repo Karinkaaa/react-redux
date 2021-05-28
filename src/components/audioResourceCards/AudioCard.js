@@ -21,10 +21,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutResourceToForm }) => {
+const AudioCard = ({ id, name, url, setAnchorEl, onClickPutResourceToForm }) => {
     const classes = useStyles();
-
-    const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -42,10 +40,7 @@ const AudioCard = ({ id, name, url, setAnchorEl, onChangeIsOpen, onClickPutResou
 
                 <IconButton
                     data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, url });
-                    }}
+                    onClick={() => onClickPutResourceToForm(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -66,7 +61,6 @@ AudioCard.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 

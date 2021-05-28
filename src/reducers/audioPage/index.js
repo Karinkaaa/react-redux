@@ -1,35 +1,17 @@
-import uuid from "react-uuid";
-import { getAvailableCurrentPage, removeItemById, saveItemTo } from "../../utils/methods";
 import { TABLE } from "../../utils/constants";
 import {
-    ADD_AUDIO_RESOURCE,
     CHANGE_AUDIO_FILTER_VALUE,
     CHANGE_AUDIO_LIMIT,
     CHANGE_AUDIO_PAGE,
     CHANGE_AUDIO_SORT,
     CHANGE_AUDIO_VIEW,
-    DELETE_AUDIO_RESOURCE,
-    UPDATE_AUDIO_RESOURCE
+    SET_AUDIOS,
+    SET_TOTAL_AUDIOS_COUNT
 } from "../../utils/actionConstants";
 
 const initialState = {
-    playlist: [
-        {
-            id: "7",
-            name: "Tuesday",
-            url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
-        },
-        {
-            id: "6",
-            name: "My Life Is Going On",
-            url: "https://static.muzlo.cc/download/24036/Burak-Yeter-Cecilia-Krull_-_My-Life-Is-Going-On-Burak-Yeter-Remix.mp3"
-        },
-        {
-            id: "8",
-            name: "Gorit",
-            url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
-        }
-    ],
+    playlist: [],
+    count: 0, // total records of db
     view: TABLE,
     pagination: {
         page: 0,
@@ -44,42 +26,16 @@ const initialState = {
 
 const AudioPage = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_AUDIO_RESOURCE: {
-            const { playlist } = state;
-            const { name, url } = action;
-
+        case SET_AUDIOS: {
             return {
                 ...state,
-                playlist: saveItemTo(playlist, {
-                    id: uuid(),
-                    name,
-                    url
-                })
+                playlist: action.audios
             };
         }
-        case UPDATE_AUDIO_RESOURCE: {
-            const { playlist } = state;
-            const { id, name, url } = action;
-
+        case SET_TOTAL_AUDIOS_COUNT: {
             return {
                 ...state,
-                playlist: saveItemTo(playlist, { id, name, url })
-            };
-        }
-        case DELETE_AUDIO_RESOURCE: {
-            const { playlist, pagination } = state;
-            const { page, limit } = pagination;
-
-            const result = removeItemById(playlist, action.id);
-            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
-
-            return {
-                ...state,
-                playlist: result,
-                pagination: {
-                    ...pagination,
-                    page: pageNumber
-                }
+                count: action.count
             };
         }
         case CHANGE_AUDIO_VIEW: {

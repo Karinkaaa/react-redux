@@ -1,28 +1,22 @@
 import { connect } from "react-redux";
 import Audios from "../../pages/audios";
-import { filteringSortingPagingOfArray } from "../../utils/methods";
-import { clearAudioForm, isOpenAudioModal, putAudioResourceToForm } from "../../actions/audioResourceForm";
+import { clearAudioForm, isOpenAudioModal } from "../../actions/audioResourceForm";
 import {
     changeAudioFilterValue,
     changeAudioLimit,
     changeAudioPage,
     changeAudioSort,
     changeAudioView,
-    deleteAudioResource
+    deleteAudioResource,
+    getAudioByIdSaga,
+    getAudiosSaga, removeAudioSaga
 } from "../../actions/audioResourceComponent";
+import { watchRemoveAudioSaga } from "../../saga/audios/removeAudioSaga";
 
 const mapStateToProps = (state) => {
-    const { data: audios, count } = filteringSortingPagingOfArray(state.audios.playlist,
-        {
-            pagination: state.audios.pagination,
-            sorting: state.audios.sorting,
-            filters: state.audios.filters
-        }
-    );
-
     return {
-        count,
-        audios,
+        audios: state.audios.playlist,
+        count: state.audios.count,
         view: state.audios.view,
         pagination: state.audios.pagination,
         sorting: state.audios.sorting,
@@ -32,18 +26,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAdd: () => {
-            dispatch(clearAudioForm());
-            dispatch(isOpenAudioModal(true));
-        },
-        onDelete: (props) => dispatch(deleteAudioResource(props)),
+        getAudios: () => dispatch(getAudiosSaga()),
+        onPutData: (id) => dispatch(getAudioByIdSaga(id)),
+        removeAudio: (id) => dispatch(removeAudioSaga(id)),
+        onChangeView: (view) => dispatch(changeAudioView(view)),
         onChangePage: (page) => dispatch(changeAudioPage(page)),
         onChangeLimit: (limit) => dispatch(changeAudioLimit(limit)),
         onChangeSort: (field) => dispatch(changeAudioSort(field)),
-        onChangeView: (view) => dispatch(changeAudioView(view)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen)),
         onChangeFilterValue: (props) => dispatch(changeAudioFilterValue(props)),
-        onClickPutResourceToForm: (props) => dispatch(putAudioResourceToForm(props))
+        onChangeIsOpen: (isOpen) => {
+            dispatch(clearAudioForm());
+            dispatch(isOpenAudioModal(isOpen));
+        }
     };
 };
 

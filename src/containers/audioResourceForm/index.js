@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import AudioResourceForm from "../../components/audioResourceForm";
-import { addAudioResource, updateAudioResource } from "../../actions/audioResourceComponent";
-import { isOpenAudioModal, updateAudioName, updateAudioUrl } from "../../actions/audioResourceForm";
+import {
+    isOpenAudioModal,
+    saveAudioSaga,
+    updateAudioName,
+    updateAudioSaga,
+    updateAudioUrl
+} from "../../actions/audioResourceForm";
 
 const mapStateToProps = (state) => {
     return {
@@ -16,10 +21,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        saveAudio: (audio) => dispatch(saveAudioSaga(audio)),
+        updateAudio: (id, audio) => dispatch(updateAudioSaga(id, audio)),
         onChangeName: (name) => dispatch(updateAudioName(name)),
         onChangeUrl: (url) => dispatch(updateAudioUrl(url)),
-        onSave: (props) => dispatch(addAudioResource(props)),
-        onUpdate: (props) => dispatch(updateAudioResource(props)),
         onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen))
     };
 };
