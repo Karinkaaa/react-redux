@@ -40,39 +40,32 @@ createServer({
     models: {
         movie: Model,
         image: Model,
-        animation: Model
+        animation: Model,
+        dragonBone: Model
     },
     factories: {
         movie: Factory.extend({
-            name() {
-                return faker.name.title();
-            },
-            year() {
-                return new Date(faker.date.between(1950, 2021)).getFullYear();
-            },
+            name: () => faker.name.title(),
+            year: () => new Date(faker.date.between(1950, 2021)).getFullYear(),
             rating: () => faker.datatype.number() + ""
         }),
         image: Factory.extend({
-            name() {
-                return faker.name.firstName();
-            },
-            url(i) {
-                return faker.image.imageUrl(50, 50, undefined, i);
-            }
+            name: () => faker.name.firstName(),
+            url: (i) => faker.image.imageUrl(50, 50, undefined, i)
         }),
         animation: Factory.extend({
-            speed() {
-                return faker.datatype.float({ min: 0.01, max: 1.0, precision: 0.01 });
-            },
-            name() {
-                return faker.name.firstName();
-            },
-            urls(i) {
-                return faker.random.arrayElements([
-                    faker.image.imageUrl(50, 50, undefined, i),
-                    faker.image.imageUrl(50, 50, undefined, i + 1)
-                ], 3);
-            }
+            speed: () => faker.datatype.float({ min: 0.01, max: 1.0, precision: 0.01 }),
+            name: () => faker.name.firstName(),
+            urls: (i) => faker.random.arrayElements([
+                faker.image.imageUrl(50, 50, undefined, i),
+                faker.image.imageUrl(50, 50, undefined, i + 1)
+            ], 3)
+        }),
+        dragonBone: Factory.extend({
+            name: () => faker.name.firstName(),
+            texture: (i) => faker.image.imageUrl(50, 50, undefined, i),
+            textureJson: () => faker.internet.url() + ".json",
+            skeleton: () => faker.internet.url() + ".json"
         })
     },
     seeds(server) {
@@ -95,6 +88,16 @@ createServer({
             ]
         });
         server.createList("animation", 10);
+
+        server.create("dragonBone");
+        server.create("dragonBone");
+        server.create("dragonBone");
+        server.create("dragonBone", {
+            texture: "https://www.w3schools.com/images/colorpicker.gif",
+            textureJson: "https://raw.githubusercontent.com/DragonBones/DragonBonesJS/master/Pixi/Demos/resource/bullet_01/bullet_01_ske.json",
+            skeleton: "https://raw.githubusercontent.com/DragonBones/DragonBonesJS/master/Pixi/Demos/resource/bullet_01/bullet_01_ske.json"
+        });
+        server.createList("dragonBone", 10);
     },
     routes() {
         this.namespace = "api";
@@ -103,6 +106,7 @@ createServer({
         this.resource("movies");
         this.resource("images");
         this.resource("animations");
+        this.resource("dragonBones");
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
     }

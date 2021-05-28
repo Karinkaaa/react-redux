@@ -1,9 +1,9 @@
 import { isValidImageUrl, isValidJsonUrl, isValidName } from "../../utils/validation";
 import {
-    CLEAR_DRAGON_BONES_FORM,
-    OPEN_OR_CLOSE_DRAGON_BONES_MODAL,
-    PUT_DRAGON_BONES_RESOURCE_TO_FORM,
-    UPDATE_DRAGON_BONES_NAME,
+    CLEAR_DRAGON_BONE_FORM,
+    OPEN_OR_CLOSE_DRAGON_BONE_MODAL,
+    SET_DRAGON_BONE_FORM,
+    UPDATE_DRAGON_BONE_NAME,
     UPDATE_SKELETON,
     UPDATE_TEXTURE,
     UPDATE_TEXTURE_JSON
@@ -24,13 +24,13 @@ const initialState = {
 
 const DragonBonesResourceForm = (state = initialState, action) => {
     switch (action.type) {
-        case OPEN_OR_CLOSE_DRAGON_BONES_MODAL: {
+        case OPEN_OR_CLOSE_DRAGON_BONE_MODAL: {
             return {
                 ...state,
                 isOpen: action.isOpen
             };
         }
-        case UPDATE_DRAGON_BONES_NAME: {
+        case UPDATE_DRAGON_BONE_NAME: {
             const { name } = action;
 
             return {
@@ -66,23 +66,19 @@ const DragonBonesResourceForm = (state = initialState, action) => {
                 isValidSkeleton: isValidJsonUrl(skeleton)
             };
         }
-        case PUT_DRAGON_BONES_RESOURCE_TO_FORM: {
-            const { id, name, texture, textureJson, skeleton } = action;
+        case SET_DRAGON_BONE_FORM: {
+            const { dragonBone } = action;
 
             return {
                 ...state,
-                id,
-                name,
-                isValidName: isValidName(name),
-                texture,
-                isValidTexture: isValidImageUrl(texture),
-                textureJson,
-                isValidTextureJson: isValidJsonUrl(textureJson),
-                skeleton,
-                isValidSkeleton: isValidJsonUrl(skeleton)
+                ...dragonBone,
+                isValidName: isValidName(dragonBone.name),
+                isValidTexture: isValidImageUrl(dragonBone.texture),
+                isValidTextureJson: isValidJsonUrl(dragonBone.textureJson),
+                isValidSkeleton: isValidJsonUrl(dragonBone.skeleton)
             };
         }
-        case CLEAR_DRAGON_BONES_FORM: {
+        case CLEAR_DRAGON_BONE_FORM: {
             return {
                 ...initialState
             };

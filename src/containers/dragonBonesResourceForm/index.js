@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
 import DragonBonesResourceForm from "../../components/dragonBonesResourceForm";
-import { addDragonBonesResource, updateDragonBonesResource } from "../../actions/dragonBonesResourceComponent";
 import {
-    clearDragonBonesForm,
-    isOpenDragonBonesModal,
-    updateDragonBonesName,
+    clearDragonBoneForm,
+    isOpenDragonBoneModal,
+    saveDragonBoneSaga,
+    updateDragonBoneSaga,
+    updateDragonBoneName,
     updateSkeletonUrl,
     updateTexture,
     updateTextureJson
@@ -27,16 +28,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onChangeName: (name) => dispatch(updateDragonBonesName(name)),
+        saveDragonBone: (dragonBone) => dispatch(saveDragonBoneSaga(dragonBone)),
+        updateDragonBone: (id, dragonBone) => dispatch(updateDragonBoneSaga(id, dragonBone)),
+        onChangeName: (name) => dispatch(updateDragonBoneName(name)),
         onChangeTexture: (texture) => dispatch(updateTexture(texture)),
         onChangeTextureJson: (textureJson) => dispatch(updateTextureJson(textureJson)),
         onChangeSkeleton: (skeleton) => dispatch(updateSkeletonUrl(skeleton)),
-        onSave: (props) => dispatch(addDragonBonesResource(props)),
         onChangeIsOpen: (isOpen) => {
-            dispatch(clearDragonBonesForm());
-            dispatch(isOpenDragonBonesModal(isOpen));
-        },
-        onUpdate: (props) => dispatch(updateDragonBonesResource(props))
+            dispatch(clearDragonBoneForm());
+            dispatch(isOpenDragonBoneModal(isOpen));
+        }
     };
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
@@ -8,17 +8,21 @@ import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
-                         dragonBones, count, onDelete, onChangeIsOpen, onClickPutResourceToForm,
-                         view, onChangeView, pagination, onChangePage, onChangeLimit,
-                         sorting, onChangeSort, onChangeFilterValue
+                         dragonBones, count, view, pagination, sorting, filters,
+                         onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue,
+                         onChangeIsOpen, getDragonBones, removeDragonBone, onPutData
                      }) => {
     const { page, limit } = pagination;
 
-    const handleOpen = () => onChangeIsOpen(true);
+    const onRemove = (id) => removeDragonBone(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
 
     const handleChangeDragonBonesPage = (event, newPage) => onChangePage(newPage);
     const handleChangeDragonBonesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
+
+    useEffect(() => {
+        getDragonBones();
+    }, [pagination, sorting, filters]);
 
     const svgComponent = (svgProps) => (
         <svg {...svgProps}>
@@ -47,7 +51,7 @@ const DragonBones = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={handleOpen}
+                            onClick={() => onChangeIsOpen(true)}
                         >
                             Add dragon bones resource
                         </Button>
@@ -87,17 +91,8 @@ const DragonBones = ({
 
                                 <DragonBonesResourceCards
                                     dragonBones={dragonBones}
-                                    count={count}
-                                    page={page}
-                                    limit={limit}
-                                    sorting={sorting}
-                                    onDelete={onDelete}
-                                    onChangeIsOpen={onChangeIsOpen}
-                                    onChangePage={onChangePage}
-                                    onChangeLimit={onChangeLimit}
-                                    onChangeSort={onChangeSort}
-                                    onClickPutResourceToForm={onClickPutResourceToForm}
-                                    onChangeFilterValue={onChangeFilterValue}
+                                    onDelete={onRemove}
+                                    onClickPutResourceToForm={onPutData}
                                 />
                             </>
                             :
@@ -116,12 +111,11 @@ const DragonBones = ({
 
                                 <DragonBonesResourceTable
                                     dragonBones={dragonBones}
-                                    onDelete={onDelete}
-                                    onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutResourceToForm={onClickPutResourceToForm}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
+                                    onDelete={onRemove}
+                                    onClickPutResourceToForm={onPutData}
                                 />
                             </>
                     }
@@ -142,25 +136,27 @@ DragonBones.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
+    getDragonBones: PropTypes.func.isRequired,
+    removeDragonBone: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired,
+    onPutData: PropTypes.func.isRequired
 };
 
 export default DragonBones;

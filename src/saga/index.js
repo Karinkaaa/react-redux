@@ -14,6 +14,11 @@ import { watchGetAnimationById } from "./animations/getAnimationByIdSaga";
 import { watchUpdateAnimationSaga } from "./animations/updateAnimationSaga";
 import { watchRemoveAnimationSaga } from "./animations/removeAnimationSaga";
 import { watchSaveAnimationSaga } from "./animations/saveAnimationSaga";
+import { watchGetDragonBonesSaga } from "./dragonBones/getDragonBonesSaga";
+import { watchGetDragonBoneByIdSaga } from "./dragonBones/getDragonBoneByIdSaga";
+import { watchUpdateDragonBoneSaga } from "./dragonBones/updateDragonBoneSaga";
+import { watchSaveDragonBoneSaga } from "./dragonBones/saveDragonBoneSaga";
+import { watchRemoveDragonBoneSaga } from "./dragonBones/removeDragonBoneSaga";
 
 export default function* mainSaga() {
     yield all([
@@ -32,6 +37,11 @@ export default function* mainSaga() {
         watchUpdateAnimationSaga(),
         watchRemoveAnimationSaga(),
         watchSaveAnimationSaga(),
+        watchGetDragonBonesSaga(),
+        watchGetDragonBoneByIdSaga(),
+        watchUpdateDragonBoneSaga(),
+        watchSaveDragonBoneSaga(),
+        watchRemoveDragonBoneSaga(),
 
     ]);
 }

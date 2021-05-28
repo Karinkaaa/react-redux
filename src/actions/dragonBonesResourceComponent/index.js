@@ -1,35 +1,24 @@
 import {
-    ADD_DRAGON_BONES_RESOURCE,
     CHANGE_DRAGON_BONES_FILTER_VALUE,
     CHANGE_DRAGON_BONES_LIMIT,
     CHANGE_DRAGON_BONES_PAGE,
     CHANGE_DRAGON_BONES_SORT,
     CHANGE_DRAGON_BONES_VIEW,
-    DELETE_DRAGON_BONES_RESOURCE,
-    UPDATE_DRAGON_BONES_RESOURCE
+    GET_DRAGON_BONE_BY_ID_SAGA,
+    GET_DRAGON_BONES_SAGA,
+    REMOVE_DRAGON_BONE_SAGA,
+    SET_DRAGON_BONES,
+    SET_TOTAL_DRAGON_BONES_COUNT
 } from "../../utils/actionConstants";
 
-export const addDragonBonesResource = ({ id, name, texture, textureJson, skeleton }) => ({
-    type: ADD_DRAGON_BONES_RESOURCE,
-    id,
-    name,
-    texture,
-    textureJson,
-    skeleton
+export const setDragonBones = (dragonBones) => ({
+    type: SET_DRAGON_BONES,
+    dragonBones
 });
 
-export const deleteDragonBonesResource = ({ id }) => ({
-    type: DELETE_DRAGON_BONES_RESOURCE,
-    id
-});
-
-export const updateDragonBonesResource = ({ id, name, texture, textureJson, skeleton }) => ({
-    type: UPDATE_DRAGON_BONES_RESOURCE,
-    id,
-    name,
-    texture,
-    textureJson,
-    skeleton
+export const setTotalDragonBonesCount = (count) => ({
+    type: SET_TOTAL_DRAGON_BONES_COUNT,
+    count
 });
 
 export const changeDragonBonesView = (view) => ({
@@ -56,4 +45,19 @@ export const changeDragonBonesFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_DRAGON_BONES_FILTER_VALUE,
     filterKey,
     filterValue
+});
+
+// saga
+export const getDragonBonesSaga = () => ({
+    type: GET_DRAGON_BONES_SAGA
+});
+
+export const getDragonBoneByIdSaga = (id) => ({
+    type: GET_DRAGON_BONE_BY_ID_SAGA,
+    id
+});
+
+export const removeDragonBoneSaga = ({ id }) => ({
+    type: REMOVE_DRAGON_BONE_SAGA,
+    id
 });

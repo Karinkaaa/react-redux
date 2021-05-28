@@ -33,10 +33,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const DragonBonesTableRow = ({
-                                 id, name, texture, textureJson, skeleton,
-                                 handleOpen, handleToggle, onClickPutResourceToForm
-                             }) => {
+const DragonBonesTableRow = ({ id, name, texture, textureJson, skeleton, handleOpen, handleToggle }) => {
     const classes = useStyles();
 
     return (
@@ -72,10 +69,7 @@ const DragonBonesTableRow = ({
             <Grid item xs={1}>
                 <IconButton
                     data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, texture, textureJson, skeleton });
-                    }}
+                    onClick={() => handleOpen(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -100,8 +94,7 @@ DragonBonesTableRow.propTypes = {
     textureJson: PropTypes.string.isRequired,
     skeleton: PropTypes.string.isRequired,
     handleOpen: PropTypes.func.isRequired,
-    handleToggle: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired
 };
 
 export default DragonBonesTableRow;

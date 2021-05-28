@@ -1,15 +1,17 @@
 import {
-    CLEAR_DRAGON_BONES_FORM,
-    OPEN_OR_CLOSE_DRAGON_BONES_MODAL,
-    PUT_DRAGON_BONES_RESOURCE_TO_FORM,
-    UPDATE_DRAGON_BONES_NAME,
+    CLEAR_DRAGON_BONE_FORM,
+    OPEN_OR_CLOSE_DRAGON_BONE_MODAL,
+    SAVE_DRAGON_BONE_SAGA,
+    SET_DRAGON_BONE_FORM,
+    UPDATE_DRAGON_BONE_NAME,
+    UPDATE_DRAGON_BONE_SAGA,
     UPDATE_SKELETON,
     UPDATE_TEXTURE,
     UPDATE_TEXTURE_JSON
 } from "../../utils/actionConstants";
 
-export const updateDragonBonesName = (name) => ({
-    type: UPDATE_DRAGON_BONES_NAME,
+export const updateDragonBoneName = (name) => ({
+    type: UPDATE_DRAGON_BONE_NAME,
     name
 });
 
@@ -28,20 +30,28 @@ export const updateSkeletonUrl = (skeleton) => ({
     skeleton
 });
 
-export const isOpenDragonBonesModal = (isOpen) => ({
-    type: OPEN_OR_CLOSE_DRAGON_BONES_MODAL,
+export const isOpenDragonBoneModal = (isOpen) => ({
+    type: OPEN_OR_CLOSE_DRAGON_BONE_MODAL,
     isOpen
 });
 
-export const putDragonBonesResourceToForm = ({ id, name, texture, textureJson, skeleton }) => ({
-    type: PUT_DRAGON_BONES_RESOURCE_TO_FORM,
-    id,
-    name,
-    texture,
-    textureJson,
-    skeleton
+export const setDragonBoneForm = (dragonBone) => ({
+    type: SET_DRAGON_BONE_FORM,
+    dragonBone
 });
 
-export const clearDragonBonesForm = () => ({
-    type: CLEAR_DRAGON_BONES_FORM
+export const clearDragonBoneForm = () => ({
+    type: CLEAR_DRAGON_BONE_FORM
+});
+
+// saga
+export const saveDragonBoneSaga = (dragonBone) => ({
+    type: SAVE_DRAGON_BONE_SAGA,
+    dragonBone
+});
+
+export const updateDragonBoneSaga = (id, dragonBone) => ({
+    type: UPDATE_DRAGON_BONE_SAGA,
+    id,
+    dragonBone
 });

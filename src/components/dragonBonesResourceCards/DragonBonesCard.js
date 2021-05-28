@@ -20,13 +20,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const DragonBonesCard = ({
-                             id, name, texture, textureJson, skeleton,
-                             setAnchorEl, onChangeIsOpen, onClickPutResourceToForm
-                         }) => {
+const DragonBonesCard = ({ id, name, texture, setAnchorEl, onClickPutResourceToForm }) => {
     const classes = useStyles();
-
-    const handleOpen = () => onChangeIsOpen(true);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -36,6 +31,7 @@ const DragonBonesCard = ({
                     className={classes.media}
                     image={texture}
                 />
+
                 <CardContent>
                     <Typography gutterBottom variant={"h5"} component={"h2"}>
                         {name}
@@ -46,10 +42,7 @@ const DragonBonesCard = ({
             <CardActions>
                 <IconButton
                     data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutResourceToForm({ id, name, texture, textureJson, skeleton });
-                    }}
+                    onClick={() => onClickPutResourceToForm(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -69,10 +62,7 @@ DragonBonesCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     texture: PropTypes.string.isRequired,
-    textureJson: PropTypes.string.isRequired,
-    skeleton: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired
 };
 

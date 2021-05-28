@@ -25,12 +25,15 @@ const DragonBonesResourceForm = ({
                                      texture, isValidTexture, onChangeTexture,
                                      textureJson, isValidTextureJson, onChangeTextureJson,
                                      skeleton, isValidSkeleton, onChangeSkeleton,
-                                     isOpen, onChangeIsOpen, onSave, onUpdate
+                                     isOpen, onChangeIsOpen, saveDragonBone, updateDragonBone
                                  }) => {
     const classes = useStyles();
 
+    const onSave = (dragonBone) => saveDragonBone(dragonBone);
+    const onUpdate = ({ id, ...dragonBone }) => updateDragonBone(id, dragonBone);
+
     const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !isValidTexture || !isValidName;
+    const isDisabledButtonSave = () => !isValidTexture || !isValidName || !isValidTextureJson || !isValidSkeleton;
 
     return (
         <Modal
@@ -160,8 +163,8 @@ DragonBonesResourceForm.propTypes = {
     onChangeSkeleton: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired
+    saveDragonBone: PropTypes.func.isRequired,
+    updateDragonBone: PropTypes.func.isRequired
 };
 
 export default DragonBonesResourceForm;
