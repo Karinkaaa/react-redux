@@ -31,12 +31,12 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeImageLimit(limit)),
         onChangeSort: (field) => dispatch(changeImageSort(field)),
         onChangeView: (view) => dispatch(changeImageView(view)),
+        onChangeFilterValue: (props) => dispatch(changeImageFilterValue(props)),
+        onPutData: (id) => dispatch(getImageByIdSaga(id)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearImageForm());
             dispatch(isOpenImageModal(isOpen));
-        },
-        onChangeFilterValue: (props) => dispatch(changeImageFilterValue(props)),
-        onPutData: (id) => dispatch(getImageByIdSaga(id))
+        }
     };
 };
 

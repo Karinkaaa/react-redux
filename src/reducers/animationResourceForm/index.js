@@ -6,7 +6,6 @@ import {
     CLEAR_ANIMATION_FORM,
     DELETE_IMAGE_FROM_ANIMATION_FORM,
     DRAG_AND_DROP_IN_ANIMATION_FORM,
-    PUT_ANIMATION_RESOURCE_TO_FORM,
     SET_ANIMATION_FORM,
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_SPEED,
@@ -63,19 +62,6 @@ const AnimationResourceForm = (state = initialState, action) => {
                 ...state,
                 urls: newUrls,
                 isValidUrls: newIsValidUrls
-            };
-        }
-        case PUT_ANIMATION_RESOURCE_TO_FORM: {
-            const { id, name, urls, speed } = action;
-
-            return {
-                ...state,
-                id,
-                name,
-                isValidName: isValidName(name),
-                urls,
-                isValidUrls: urls.map(url => isValidImageUrl(url)),
-                speed
             };
         }
         case DELETE_IMAGE_FROM_ANIMATION_FORM: {

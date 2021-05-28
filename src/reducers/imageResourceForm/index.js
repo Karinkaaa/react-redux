@@ -2,7 +2,6 @@ import { isValidImageUrl, isValidName } from "../../utils/validation";
 import {
     CLEAR_IMAGE_FORM,
     OPEN_OR_CLOSE_IMAGE_MODAL,
-    PUT_IMAGE_RESOURCE_TO_FORM,
     SET_IMAGE_FORM,
     UPDATE_IMAGE_NAME,
     UPDATE_IMAGE_URL
@@ -51,18 +50,6 @@ const ImageResourceForm = (state = initialState, action) => {
                 ...image,
                 isValidName: isValidName(image.name),
                 isValidUrl: isValidImageUrl(image.url)
-            };
-        }
-        case PUT_IMAGE_RESOURCE_TO_FORM: {
-            const { id, name, url } = action;
-
-            return {
-                ...state,
-                id,
-                name,
-                isValidName: isValidName(name),
-                url,
-                isValidUrl: isValidImageUrl(url)
             };
         }
         case CLEAR_IMAGE_FORM: {
