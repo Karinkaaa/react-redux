@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const RuleTableRow = ({ id, name, cost, conditions, handleOpen, handleToggle, onClickPutRuleToForm }) => {
+const RuleTableRow = ({ id, name, cost, conditions, handleOpen, handleToggle }) => {
     const classes = useStyles();
 
     return (
@@ -42,10 +42,7 @@ const RuleTableRow = ({ id, name, cost, conditions, handleOpen, handleToggle, on
             <Grid item xs={1}>
                 <IconButton
                     data-id={id}
-                    onClick={() => {
-                        handleOpen();
-                        onClickPutRuleToForm({ id, name, cost, conditions });
-                    }}
+                    onClick={() => handleOpen(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -69,8 +66,7 @@ RuleTableRow.propTypes = {
     cost: PropTypes.number.isRequired,
     conditions: PropTypes.arrayOf(PropTypes.object).isRequired,
     handleOpen: PropTypes.func.isRequired,
-    handleToggle: PropTypes.func.isRequired,
-    onClickPutRuleToForm: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired
 };
 
 export default RuleTableRow;

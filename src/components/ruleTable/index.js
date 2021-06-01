@@ -13,10 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const RuleTable = ({
-                       rules, onDelete, onChangeIsOpen, onClickPutRuleToForm,
-                       sorting, onChangeSort, onChangeFilterValue
-                   }) => {
+const RuleTable = ({ rules, onDelete, onClickPutRuleToForm, sorting, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -32,7 +29,6 @@ const RuleTable = ({
 
             <RuleTableBody
                 rules={rules}
-                onChangeIsOpen={onChangeIsOpen}
                 setAnchorEl={setAnchorEl}
                 onClickPutRuleToForm={onClickPutRuleToForm}
             />
@@ -68,7 +64,6 @@ RuleTable.propTypes = {
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutRuleToForm: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired
 };

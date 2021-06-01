@@ -1,67 +1,18 @@
-import uuid from "react-uuid";
 import { TABLE } from "../../utils/constants";
-import { getAvailableCurrentPage, removeItemById, saveItemTo } from "../../utils/methods";
 import {
-    ADD_RULE,
     CHANGE_RULE_FILTER_VALUE,
     CHANGE_RULE_LIMIT,
     CHANGE_RULE_PAGE,
     CHANGE_RULE_SORT,
     CHANGE_RULE_VIEW,
-    DELETE_RULE,
-    UPDATE_RULE
+    SET_RULES,
+    SET_TOTAL_RULES_COUNT
 } from "../../utils/actionConstants";
 
 const initialState = {
-    ruleList: [
-        {
-            id: "1",
-            name: "One after one",
-            cost: 10,
-            conditions: [
-                {
-                    x: 0,
-                    y: 1
-                },
-                {
-                    x: 2,
-                    y: 1
-                },
-                {
-                    x: 4,
-                    y: 1
-                }
-            ]
-        },
-        {
-            id: "2",
-            name: "Five in a row",
-            cost: 15,
-            conditions: [
-                {
-                    x: 0,
-                    y: 1
-                },
-                {
-                    x: 1,
-                    y: 1
-                },
-                {
-                    x: 2,
-                    y: 1
-                },
-                {
-                    x: 3,
-                    y: 1
-                },
-                {
-                    x: 4,
-                    y: 1
-                }
-            ]
-        }
-    ],
+    ruleList: [],
     view: TABLE,
+    count: 0, // total records of db
     pagination: {
         page: 0,
         limit: 4
@@ -75,44 +26,16 @@ const initialState = {
 
 const RulePage = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_RULE: {
-            const { ruleList } = state;
-            const { name, cost, conditions } = action;
-
+        case SET_RULES: {
             return {
                 ...state,
-                ruleList: saveItemTo(ruleList, {
-                    id: uuid(),
-                    name,
-                    cost,
-                    conditions
-                })
+                ruleList: action.rules
             };
         }
-        case UPDATE_RULE: {
-            const { ruleList } = state;
-            const { id, name, cost, conditions } = action;
-
+        case SET_TOTAL_RULES_COUNT: {
             return {
                 ...state,
-                ruleList: saveItemTo(ruleList, { id, name, cost, conditions })
-            };
-        }
-        case DELETE_RULE: {
-            const { ruleList, pagination } = state;
-            const { page, limit } = pagination;
-            const { id } = action;
-
-            const result = removeItemById(ruleList, id);
-            const pageNumber = getAvailableCurrentPage(result.length, page, limit);
-
-            return {
-                ...state,
-                ruleList: result,
-                pagination: {
-                    ...pagination,
-                    page: pageNumber
-                }
+                count: action.count
             };
         }
         case CHANGE_RULE_VIEW: {

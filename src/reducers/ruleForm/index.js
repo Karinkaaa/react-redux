@@ -3,7 +3,7 @@ import { getIndexOfCondition, isExistCondition, removeItemByIndex } from "../../
 import {
     CLEAR_RULE_FORM,
     OPEN_OR_CLOSE_RULE_MODAL,
-    PUT_RULE_TO_FORM,
+    SET_RULE_FORM,
     UPDATE_RULE_CONDITION,
     UPDATE_RULE_COST,
     UPDATE_RULE_NAME
@@ -21,6 +21,16 @@ const initialState = {
 
 const RuleForm = (state = initialState, action) => {
     switch (action.type) {
+        case SET_RULE_FORM: {
+            const { rule } = action;
+
+            return {
+                ...state,
+                ...rule,
+                isValidName: isValidName(rule.name),
+                isValidCost: isValidCost(rule.cost)
+            };
+        }
         case OPEN_OR_CLOSE_RULE_MODAL: {
             return {
                 ...state,
@@ -62,19 +72,6 @@ const RuleForm = (state = initialState, action) => {
             return {
                 ...state,
                 conditions: newConditions
-            };
-        }
-        case PUT_RULE_TO_FORM: {
-            const { id, name, cost, conditions } = action;
-
-            return {
-                ...state,
-                id,
-                name,
-                isValidName: isValidName(name),
-                cost,
-                isValidCost: isValidCost(cost),
-                conditions
             };
         }
         case CLEAR_RULE_FORM: {

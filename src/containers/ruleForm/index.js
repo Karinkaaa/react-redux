@@ -1,7 +1,13 @@
 import { connect } from "react-redux";
 import RuleForm from "../../components/ruleForm";
-import { addRule, updateRule } from "../../actions/ruleComponent";
-import { isOpenRuleModal, updateRuleCondition, updateRuleCost, updateRuleName } from "../../actions/ruleForm";
+import {
+    isOpenRuleModal,
+    saveRuleSaga,
+    updateRuleCondition,
+    updateRuleCost,
+    updateRuleName,
+    updateRuleSaga
+} from "../../actions/ruleForm";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,12 +23,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        saveRule: (rule) => dispatch(saveRuleSaga(rule)),
+        updateRule: (id, rule) => dispatch(updateRuleSaga(id, rule)),
         onChangeName: (name) => dispatch(updateRuleName(name)),
         onChangeCost: (cost) => dispatch(updateRuleCost(cost)),
         onChangeCondition: (condition) => dispatch(updateRuleCondition(condition)),
-        onSave: (props) => dispatch(addRule(props)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenRuleModal(isOpen)),
-        onUpdate: (props) => dispatch(updateRule(props))
+        onChangeIsOpen: (isOpen) => dispatch(isOpenRuleModal(isOpen))
     };
 };
 

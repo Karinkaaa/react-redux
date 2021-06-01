@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ConfirmMenu from "../confirmMenu";
 import RuleCard from "./RuleCard";
 
-const RuleCards = ({ rules, onDelete, onChangeIsOpen, onClickPutRuleToForm }) => {
+const RuleCards = ({ rules, onDelete, onClickPutRuleToForm }) => {
     const [anchorEl, setAnchorEl] = React.useState(false);
     const handleClose = () => setAnchorEl(null);
 
@@ -20,7 +20,6 @@ const RuleCards = ({ rules, onDelete, onChangeIsOpen, onClickPutRuleToForm }) =>
                                 cost={cost}
                                 conditions={conditions}
                                 setAnchorEl={setAnchorEl}
-                                onChangeIsOpen={onChangeIsOpen}
                                 onClickPutRuleToForm={onClickPutRuleToForm}
                             />
                         </Grid>
@@ -51,7 +50,6 @@ RuleCards.propTypes = {
         }).isRequired
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
     onClickPutRuleToForm: PropTypes.func.isRequired
 };
 

@@ -23,9 +23,12 @@ const useStyles = makeStyles((theme) => ({
 
 const RuleForm = ({
                       id, name, isValidName, cost, isValidCost, conditions, isOpen,
-                      onChangeName, onChangeCost, onChangeCondition, onChangeIsOpen, onSave, onUpdate
+                      onChangeName, onChangeCost, onChangeCondition, onChangeIsOpen, saveRule, updateRule
                   }) => {
     const classes = useStyles();
+
+    const onSave = (rule) => saveRule(rule);
+    const onUpdate = ({ id, ...rule }) => updateRule(id, rule);
 
     const handleClose = () => onChangeIsOpen(false);
     const isDisabledButtonSave = () => !isValidName || !isValidCost || conditions.length === 0;
@@ -141,8 +144,8 @@ RuleForm.propTypes = {
     onChangeCondition: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired
+    saveRule: PropTypes.func.isRequired,
+    updateRule: PropTypes.func.isRequired
 };
 
 export default RuleForm;

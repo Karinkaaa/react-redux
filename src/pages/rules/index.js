@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
@@ -8,12 +8,14 @@ import RuleCards from "../../components/ruleCards";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
-                   rules, count, view, pagination, sorting, onAdd, onDelete, onChangeView, onChangePage, onChangeLimit,
-                   onChangeSort, onChangeIsOpen, onChangeFilterValue, onClickPutRuleToForm
+                   rules, count, view, pagination, sorting, filters, getRules, onPutData, removeRule,
+                   onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue, onChangeIsOpen
                }) => {
     const { page, limit } = pagination;
 
+    const onRemove = (id) => removeRule(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
+
     const handleChangeRulesPage = (event, newPage) => onChangePage(newPage);
     const handleChangeRulesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -33,6 +35,10 @@ const Rules = ({
         </svg>
     );
 
+    useEffect(() => {
+        getRules();
+    }, [pagination, sorting, filters]);
+
     return (
         <div>
             <Toolbar/>
@@ -44,7 +50,7 @@ const Rules = ({
                             color={"primary"}
                             size={"large"}
                             startIcon={<Add/>}
-                            onClick={onAdd}
+                            onClick={() => onChangeIsOpen(true)}
                         >
                             Add rule
                         </Button>
@@ -84,14 +90,8 @@ const Rules = ({
 
                                 <RuleCards
                                     rules={rules}
-                                    count={count}
-                                    page={page}
-                                    limit={limit}
-                                    onDelete={onDelete}
-                                    onChangePage={handleChangeRulesPage}
-                                    onChangeLimit={onChangeLimit}
-                                    onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutRuleToForm={onClickPutRuleToForm}
+                                    onDelete={onRemove}
+                                    onClickPutRuleToForm={onPutData}
                                 />
                             </>
                             :
@@ -110,12 +110,11 @@ const Rules = ({
 
                                 <RuleTable
                                     rules={rules}
-                                    onDelete={onDelete}
-                                    onChangeIsOpen={onChangeIsOpen}
-                                    onClickPutRuleToForm={onClickPutRuleToForm}
                                     sorting={sorting}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
+                                    onDelete={onRemove}
+                                    onClickPutRuleToForm={onPutData}
                                 />
                             </>
                     }
@@ -141,10 +140,9 @@ Rules.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
-    onAdd: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
-    onClickPutRuleToForm: PropTypes.func.isRequired,
+    getRules: PropTypes.func.isRequired,
+    removeRule: PropTypes.func.isRequired,
+    onPutData: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
@@ -160,7 +158,9 @@ Rules.propTypes = {
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    filters: PropTypes.object.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeIsOpen: PropTypes.func.isRequired
 };
 
 export default Rules;

@@ -24,6 +24,11 @@ import { watchGetAudioByIdSaga } from "./audios/getAudioByIdSaga";
 import { watchUpdateAudioSaga } from "./audios/updateAudioSaga";
 import { watchSaveAudioSaga } from "./audios/saveAudioSaga";
 import { watchRemoveAudioSaga } from "./audios/removeAudioSaga";
+import { watchGetRulesSaga } from "./rules/getRulesSaga";
+import { watchGetRuleByIdSaga } from "./rules/getRuleByIdSaga";
+import { watchUpdateRuleSaga } from "./rules/updateRuleSaga";
+import { watchSaveRuleSaga } from "./rules/saveRuleSaga";
+import { watchRemoveRuleSaga } from "./rules/removeRuleSaga";
 
 export default function* mainSaga() {
     yield all([
@@ -52,6 +57,11 @@ export default function* mainSaga() {
         watchUpdateAudioSaga(),
         watchSaveAudioSaga(),
         watchRemoveAudioSaga(),
-        
+        watchGetRulesSaga(),
+        watchGetRuleByIdSaga(),
+        watchUpdateRuleSaga(),
+        watchSaveRuleSaga(),
+        watchRemoveRuleSaga(),
+
     ]);
 }

@@ -1,33 +1,24 @@
 import {
-    ADD_RULE,
     CHANGE_RULE_FILTER_VALUE,
     CHANGE_RULE_LIMIT,
     CHANGE_RULE_PAGE,
     CHANGE_RULE_SORT,
     CHANGE_RULE_VIEW,
-    DELETE_RULE,
-    UPDATE_RULE
+    GET_RULE_BY_ID_SAGA,
+    GET_RULES_SAGA,
+    REMOVE_RULE_SAGA,
+    SET_RULES,
+    SET_TOTAL_RULES_COUNT
 } from "../../utils/actionConstants";
 
-export const addRule = ({ id, name, cost, conditions }) => ({
-    type: ADD_RULE,
-    id,
-    name,
-    cost,
-    conditions
+export const setRules = (rules) => ({
+    type: SET_RULES,
+    rules
 });
 
-export const deleteRule = ({ id }) => ({
-    type: DELETE_RULE,
-    id
-});
-
-export const updateRule = ({ id, name, cost, conditions }) => ({
-    type: UPDATE_RULE,
-    id,
-    name,
-    cost,
-    conditions
+export const setTotalRulesCount = (count) => ({
+    type: SET_TOTAL_RULES_COUNT,
+    count
 });
 
 export const changeRuleView = (view) => ({
@@ -54,4 +45,19 @@ export const changeRuleFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_RULE_FILTER_VALUE,
     filterKey,
     filterValue
+});
+
+// saga
+export const getRulesSaga = () => ({
+    type: GET_RULES_SAGA
+});
+
+export const getRuleByIdSaga = (id) => ({
+    type: GET_RULE_BY_ID_SAGA,
+    id
+});
+
+export const removeRuleSaga = ({ id }) => ({
+    type: REMOVE_RULE_SAGA,
+    id
 });

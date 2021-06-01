@@ -42,7 +42,8 @@ createServer({
         image: Model,
         animation: Model,
         dragonBone: Model,
-        audio: Model
+        audio: Model,
+        rule: Model
     },
     factories: {
         movie: Factory.extend({
@@ -71,14 +72,34 @@ createServer({
         audio: Factory.extend({
             name: () => faker.name.firstName(),
             url: () => faker.internet.url() + ".mp3"
+        }),
+        rule: Factory.extend({
+            name: () => faker.name.firstName(),
+            cost: () => faker.datatype.number({ min: 0, max: 100 }),
+            conditions: () => faker.random.arrayElements([
+                {
+                    x: faker.datatype.number({ min: 0, max: 4 }),
+                    y: faker.datatype.number({ min: 0, max: 2 })
+                },
+                {
+                    x: faker.datatype.number({ min: 0, max: 4 }),
+                    y: faker.datatype.number({ min: 0, max: 2 })
+                },
+                {
+                    x: faker.datatype.number({ min: 0, max: 4 }),
+                    y: faker.datatype.number({ min: 0, max: 2 })
+                }
+            ])
         })
     },
     seeds(server) {
+        // movies
         server.create("movie");
         server.create("movie");
         server.create("movie", { rating: "R-11" });
         server.createList("movie", 10);
 
+        // images
         server.create("image");
         server.create("image");
         server.create("image", {
@@ -86,6 +107,7 @@ createServer({
         });
         server.createList("image", 10);
 
+        // animations
         server.create("animation");
         server.create("animation");
         server.create("animation", {
@@ -96,6 +118,7 @@ createServer({
         });
         server.createList("animation", 10);
 
+        // dragon bones
         server.create("dragonBone");
         server.create("dragonBone");
         server.create("dragonBone");
@@ -106,6 +129,7 @@ createServer({
         });
         server.createList("dragonBone", 10);
 
+        // audios
         server.create("audio");
         server.create("audio");
         server.create("audio");
@@ -118,6 +142,56 @@ createServer({
             url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
         });
         server.createList("audio", 10);
+
+        // rules
+        server.create("rule");
+        server.create("rule");
+        server.create("rule");
+        server.create("rule", {
+            name: "One after one",
+            cost: 10,
+            conditions: [
+                {
+                    x: 0,
+                    y: 1
+                },
+                {
+                    x: 2,
+                    y: 1
+                },
+                {
+                    x: 4,
+                    y: 1
+                }
+            ]
+        });
+        server.create("rule", {
+            name: "Five in a row",
+            cost: 15,
+            conditions: [
+                {
+                    x: 0,
+                    y: 1
+                },
+                {
+                    x: 1,
+                    y: 1
+                },
+                {
+                    x: 2,
+                    y: 1
+                },
+                {
+                    x: 3,
+                    y: 1
+                },
+                {
+                    x: 4,
+                    y: 1
+                }
+            ]
+        });
+        server.createList("rule", 10);
     },
     routes() {
         this.namespace = "api";
@@ -128,6 +202,7 @@ createServer({
         this.resource("animations");
         this.resource("dragonBones");
         this.resource("audios");
+        this.resource("rules");
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
     }

@@ -1,11 +1,18 @@
 import {
     CLEAR_RULE_FORM,
     OPEN_OR_CLOSE_RULE_MODAL,
-    PUT_RULE_TO_FORM,
+    SAVE_RULE_SAGA,
+    SET_RULE_FORM,
     UPDATE_RULE_CONDITION,
     UPDATE_RULE_COST,
-    UPDATE_RULE_NAME
+    UPDATE_RULE_NAME,
+    UPDATE_RULE_SAGA
 } from "../../utils/actionConstants";
+
+export const setRuleForm = (rule) => ({
+    type: SET_RULE_FORM,
+    rule
+});
 
 export const updateRuleName = (name) => ({
     type: UPDATE_RULE_NAME,
@@ -27,14 +34,18 @@ export const isOpenRuleModal = (isOpen) => ({
     isOpen
 });
 
-export const putRuleToForm = ({ id, name, cost, conditions }) => ({
-    type: PUT_RULE_TO_FORM,
-    id,
-    name,
-    cost,
-    conditions
-});
-
 export const clearRuleForm = () => ({
     type: CLEAR_RULE_FORM
+});
+
+// saga
+export const saveRuleSaga = (rule) => ({
+    type: SAVE_RULE_SAGA,
+    rule
+});
+
+export const updateRuleSaga = (id, rule) => ({
+    type: UPDATE_RULE_SAGA,
+    id,
+    rule
 });
