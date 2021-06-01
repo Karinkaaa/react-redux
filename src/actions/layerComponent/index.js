@@ -1,11 +1,9 @@
+import { GET_LAYER_BY_ID_SAGA, GET_LAYERS_SAGA, REMOVE_LAYER_SAGA } from "../../utils/actionSagaConstants";
 import {
     CHANGE_LAYER_FILTER_VALUE,
     CHANGE_LAYER_LIMIT,
     CHANGE_LAYER_PAGE,
     CHANGE_LAYER_SORT,
-    GET_LAYER_BY_ID_SAGA,
-    GET_LAYERS_SAGA,
-    REMOVE_LAYER_SAGA,
     SET_LAYERS,
     SET_TOTAL_LAYERS_COUNT
 } from "../../utils/actionConstants";

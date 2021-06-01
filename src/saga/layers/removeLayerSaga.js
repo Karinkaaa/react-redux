@@ -1,6 +1,6 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { REMOVE_LAYER_SAGA } from "../../utils/actionConstants";
+import { REMOVE_LAYER_SAGA } from "../../utils/actionSagaConstants";
 import { LAYERS_API } from "../../utils/apiLinks";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { changeLayerPage, getLayersSaga } from "../../actions/layerComponent";

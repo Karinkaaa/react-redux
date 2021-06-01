@@ -1,14 +1,13 @@
+import { GET_AUDIO_BY_ID_SAGA, GET_AUDIOS_SAGA, REMOVE_AUDIO_SAGA } from "../../utils/actionSagaConstants";
 import {
     CHANGE_AUDIO_FILTER_VALUE,
     CHANGE_AUDIO_LIMIT,
     CHANGE_AUDIO_PAGE,
     CHANGE_AUDIO_SORT,
     CHANGE_AUDIO_VIEW,
-    GET_AUDIO_BY_ID_SAGA,
-    GET_AUDIOS_SAGA,
-    REMOVE_AUDIO_SAGA,
     SET_AUDIOS,
-    SET_TOTAL_AUDIOS_COUNT, STOP_AUDIO
+    SET_TOTAL_AUDIOS_COUNT,
+    STOP_AUDIO
 } from "../../utils/actionConstants";
 
 export const setAudios = (audios) => ({
@@ -50,7 +49,7 @@ export const changeAudioFilterValue = ({ filterKey, filterValue }) => ({
 export const stopAudio = (url) => ({
     type: STOP_AUDIO,
     url
-})
+});
 
 // saga
 export const getAudiosSaga = () => ({

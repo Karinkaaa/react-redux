@@ -1,17 +1,19 @@
 import {
+    GET_MOVIE_BY_ID_SAGA,
+    GET_MOVIES_SAGA,
+    REMOVE_MOVIE_SAGA,
+    SAVE_MOVIE_SAGA,
+    UPDATE_MOVIE_SAGA
+} from "../../utils/actionSagaConstants";
+import {
     CHANGE_MOVIE_FILTER_VALUE,
     CHANGE_MOVIE_LIMIT,
     CHANGE_MOVIE_PAGE,
     CHANGE_MOVIE_SORT,
     CLEAR_MOVIE_FORM,
-    GET_MOVIE_BY_ID_SAGA,
-    GET_MOVIES_SAGA,
-    REMOVE_MOVIE_SAGA,
-    SAVE_MOVIE_SAGA,
     SET_MOVIE_FORM,
     SET_MOVIES,
-    SET_TOTAL_MOVIES_COUNT,
-    UPDATE_MOVIE_SAGA
+    SET_TOTAL_MOVIES_COUNT
 } from "../../utils/actionConstants";
 
 export const changeMoviePage = (page) => ({

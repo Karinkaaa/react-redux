@@ -1,12 +1,10 @@
+import { GET_RULE_BY_ID_SAGA, GET_RULES_SAGA, REMOVE_RULE_SAGA } from "../../utils/actionSagaConstants";
 import {
     CHANGE_RULE_FILTER_VALUE,
     CHANGE_RULE_LIMIT,
     CHANGE_RULE_PAGE,
     CHANGE_RULE_SORT,
     CHANGE_RULE_VIEW,
-    GET_RULE_BY_ID_SAGA,
-    GET_RULES_SAGA,
-    REMOVE_RULE_SAGA,
     SET_RULES,
     SET_TOTAL_RULES_COUNT
 } from "../../utils/actionConstants";

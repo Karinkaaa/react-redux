@@ -1,13 +1,12 @@
+import { SAVE_LAYER_SAGA, UPDATE_LAYER_SAGA } from "../../utils/actionSagaConstants";
 import {
     ADD_LAYER_ELEMENT,
     CLEAR_LAYER_FORM,
     DELETE_LAYER_ELEMENT,
-    SAVE_LAYER_SAGA,
     SET_LAYER_FORM,
     SET_LAYER_SELECTED_ID,
     UPDATE_LAYER_ELEMENT,
-    UPDATE_LAYER_NAME,
-    UPDATE_LAYER_SAGA
+    UPDATE_LAYER_NAME
 } from "../../utils/actionConstants";
 
 export const setLayerForm = (layer) => ({

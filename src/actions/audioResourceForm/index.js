@@ -1,10 +1,9 @@
+import { SAVE_AUDIO_SAGA, UPDATE_AUDIO_SAGA } from "../../utils/actionSagaConstants";
 import {
     CLEAR_AUDIO_FORM,
     OPEN_OR_CLOSE_AUDIO_MODAL,
-    SAVE_AUDIO_SAGA,
     SET_AUDIO_FORM,
     UPDATE_AUDIO_NAME,
-    UPDATE_AUDIO_SAGA,
     UPDATE_AUDIO_URL
 } from "../../utils/actionConstants";
 

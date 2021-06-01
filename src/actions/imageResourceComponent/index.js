@@ -1,12 +1,10 @@
+import { GET_IMAGE_BY_ID_SAGA, GET_IMAGES_SAGA, REMOVE_IMAGE_SAGA } from "../../utils/actionSagaConstants";
 import {
     CHANGE_IMAGE_FILTER_VALUE,
     CHANGE_IMAGE_LIMIT,
     CHANGE_IMAGE_PAGE,
     CHANGE_IMAGE_SORT,
     CHANGE_IMAGE_VIEW,
-    GET_IMAGE_BY_ID_SAGA,
-    GET_IMAGES_SAGA,
-    REMOVE_IMAGE_SAGA,
     SET_IMAGES,
     SET_TOTAL_IMAGES_COUNT
 } from "../../utils/actionConstants";

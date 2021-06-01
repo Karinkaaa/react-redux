@@ -1,12 +1,11 @@
+import { SAVE_RULE_SAGA, UPDATE_RULE_SAGA } from "../../utils/actionSagaConstants";
 import {
     CLEAR_RULE_FORM,
     OPEN_OR_CLOSE_RULE_MODAL,
-    SAVE_RULE_SAGA,
     SET_RULE_FORM,
     UPDATE_RULE_CONDITION,
     UPDATE_RULE_COST,
-    UPDATE_RULE_NAME,
-    UPDATE_RULE_SAGA
+    UPDATE_RULE_NAME
 } from "../../utils/actionConstants";
 
 export const setRuleForm = (rule) => ({

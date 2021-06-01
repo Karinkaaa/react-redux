@@ -1,6 +1,6 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_LAYERS_SAGA } from "../../utils/actionConstants";
+import { GET_LAYERS_SAGA } from "../../utils/actionSagaConstants";
 import { LAYERS_API } from "../../utils/apiLinks";
 import { setLayers, setTotalLayersCount } from "../../actions/layerComponent";
 
