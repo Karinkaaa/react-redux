@@ -10,12 +10,11 @@ const LayerTableBody = ({ layers, setAnchorEl, onClickPutLayerToForm }) => {
         <Grid item xs={12}>
             {
                 layers
-                    .map(({ id, name, elements }) =>
+                    .map(({ id, name }) =>
                         <LayerTableRow
                             key={id}
                             id={id}
                             name={name}
-                            elements={elements}
                             handleToggle={handleToggle}
                             onClickPutLayerToForm={onClickPutLayerToForm}
                         />

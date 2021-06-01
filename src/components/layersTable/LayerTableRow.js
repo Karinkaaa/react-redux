@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayerTableRow = ({ id, name, elements, handleToggle, onClickPutLayerToForm }) => {
+const LayerTableRow = ({ id, name, handleToggle, onClickPutLayerToForm }) => {
     const classes = useStyles();
 
     return (
@@ -62,7 +62,7 @@ const LayerTableRow = ({ id, name, elements, handleToggle, onClickPutLayerToForm
                 <Link to={LAYER_FORM}>
                     <IconButton
                         data-id={id}
-                        onClick={() => onClickPutLayerToForm({ id, name, elements })}
+                        onClick={() => onClickPutLayerToForm(id)}
                     >
                         <Update className={classes.updateIcon}/>
                     </IconButton>
@@ -84,21 +84,6 @@ const LayerTableRow = ({ id, name, elements, handleToggle, onClickPutLayerToForm
 LayerTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    elements: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            position: PropTypes.shape({
-                x: PropTypes.number.isRequired,
-                y: PropTypes.number.isRequired
-            }),
-            size: PropTypes.shape({
-                height: PropTypes.number.isRequired,
-                width: PropTypes.number.isRequired
-            }),
-            ref: PropTypes.string,
-            zIndex: PropTypes.number
-        }).isRequired
-    ).isRequired,
     handleToggle: PropTypes.func.isRequired,
     onClickPutLayerToForm: PropTypes.func.isRequired
 };

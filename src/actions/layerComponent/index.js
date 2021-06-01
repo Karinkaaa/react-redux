@@ -1,29 +1,23 @@
 import {
-    ADD_LAYER,
     CHANGE_LAYER_FILTER_VALUE,
     CHANGE_LAYER_LIMIT,
     CHANGE_LAYER_PAGE,
     CHANGE_LAYER_SORT,
-    DELETE_LAYER,
-    UPDATE_LAYER
+    GET_LAYER_BY_ID_SAGA,
+    GET_LAYERS_SAGA,
+    REMOVE_LAYER_SAGA,
+    SET_LAYERS,
+    SET_TOTAL_LAYERS_COUNT
 } from "../../utils/actionConstants";
 
-export const addLayer = ({ name, elements }) => ({
-    type: ADD_LAYER,
-    name,
-    elements
+export const setLayers = (layers) => ({
+    type: SET_LAYERS,
+    layers
 });
 
-export const updateLayer = ({ id, name, elements }) => ({
-    type: UPDATE_LAYER,
-    id,
-    name,
-    elements
-});
-
-export const deleteLayer = ({ id }) => ({
-    type: DELETE_LAYER,
-    id
+export const setTotalLayersCount = (count) => ({
+    type: SET_TOTAL_LAYERS_COUNT,
+    count
 });
 
 export const changeLayerPage = (page) => ({
@@ -45,4 +39,19 @@ export const changeLayerFilterValue = ({ filterKey, filterValue }) => ({
     type: CHANGE_LAYER_FILTER_VALUE,
     filterKey,
     filterValue
+});
+
+// saga
+export const getLayersSaga = () => ({
+    type: GET_LAYERS_SAGA
+});
+
+export const getLayerByIdSaga = (id) => ({
+    type: GET_LAYER_BY_ID_SAGA,
+    id
+});
+
+export const removeLayerSaga = ({ id }) => ({
+    type: REMOVE_LAYER_SAGA,
+    id
 });

@@ -30,9 +30,12 @@ const useStyles = makeStyles(theme => ({
 const LayerForm = ({
                        id, name, elements, selectedId, selectedElement, images, animations, dragonBones,
                        isValidName, onChangeLayerName, setSelectedId, onAddElement, onDeleteElement,
-                       onChangeElement, onSaveLayer, onUpdateLayer
+                       onChangeElement, saveLayer, updateLayer
                    }) => {
     const classes = useStyles({ isValidName });
+
+    const onSave = (layer) => saveLayer(layer);
+    const onUpdate = ({ id, ...layer }) => updateLayer(id, layer);
 
     return (
         <div>
@@ -93,8 +96,8 @@ const LayerForm = ({
                                 color={"primary"}
                                 variant={"contained"}
                                 disabled={!isValidName}
-                                onClick={() => id ? onUpdateLayer({ id, name, elements }) :
-                                    onSaveLayer({ name, elements })
+                                onClick={() => id ? onUpdate({ id, name, elements }) :
+                                    onSave({ name, elements })
                                 }
                             >
                                 {id ? "Update" : "Save"}
@@ -216,8 +219,8 @@ LayerForm.propTypes = {
     onAddElement: PropTypes.func.isRequired,
     onDeleteElement: PropTypes.func.isRequired,
     onChangeElement: PropTypes.func.isRequired,
-    onSaveLayer: PropTypes.func.isRequired,
-    onUpdateLayer: PropTypes.func.isRequired
+    saveLayer: PropTypes.func.isRequired,
+    updateLayer: PropTypes.func.isRequired
 };
 
 export default LayerForm;

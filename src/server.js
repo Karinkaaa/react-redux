@@ -43,7 +43,8 @@ createServer({
         animation: Model,
         dragonBone: Model,
         audio: Model,
-        rule: Model
+        rule: Model,
+        layer: Model
     },
     factories: {
         movie: Factory.extend({
@@ -88,6 +89,50 @@ createServer({
                 {
                     x: faker.datatype.number({ min: 0, max: 4 }),
                     y: faker.datatype.number({ min: 0, max: 2 })
+                }
+            ])
+        }),
+        layer: Factory.extend({
+            name: () => faker.name.firstName(),
+            elements: () => faker.random.arrayElements([
+                {
+                    id: faker.datatype.uuid(),
+                    position: {
+                        x: faker.datatype.number({ min: 0, max: 1132 }),
+                        y: faker.datatype.number({ min: 0, max: 596 })
+                    },
+                    size: {
+                        width: faker.datatype.number({ min: 0, max: 875 }),
+                        height: faker.datatype.number({ min: 0, max: 635 })
+                    },
+                    ref: () => faker.datatype.string(),
+                    zIndex: () => faker.datatype.number({ min: 0, max: 999 })
+                },
+                {
+                    id: faker.datatype.uuid(),
+                    position: {
+                        x: faker.datatype.number({ min: 0, max: 1132 }),
+                        y: faker.datatype.number({ min: 0, max: 596 })
+                    },
+                    size: {
+                        width: faker.datatype.number({ min: 0, max: 875 }),
+                        height: faker.datatype.number({ min: 0, max: 635 })
+                    },
+                    ref: () => faker.datatype.string(),
+                    zIndex: () => faker.datatype.number({ min: 0, max: 999 })
+                },
+                {
+                    id: faker.datatype.uuid(),
+                    position: {
+                        x: faker.datatype.number({ min: 0, max: 1132 }),
+                        y: faker.datatype.number({ min: 0, max: 596 })
+                    },
+                    size: {
+                        width: faker.datatype.number({ min: 0, max: 875 }),
+                        height: faker.datatype.number({ min: 0, max: 635 })
+                    },
+                    ref: () => faker.datatype.string(),
+                    zIndex: () => faker.datatype.number({ min: 0, max: 999 })
                 }
             ])
         })
@@ -192,6 +237,74 @@ createServer({
             ]
         });
         server.createList("rule", 10);
+
+        // layers
+        server.create("layer");
+        server.create("layer");
+        server.create("layer");
+        server.create("layer", {
+            name: "Main Layer",
+            elements: [
+                {
+                    id: "1",
+                    position: {
+                        x: 200,
+                        y: 300
+                    },
+                    size: {
+                        width: 100,
+                        height: 100
+                    },
+                    ref: "",
+                    zIndex: 0
+                },
+                {
+                    id: "2",
+                    position: {
+                        x: 400,
+                        y: 500
+                    },
+                    size: {
+                        width: 100,
+                        height: 100
+                    },
+                    ref: "",
+                    zIndex: 0
+                }
+            ]
+        });
+        server.create("layer", {
+            name: "Layer",
+            elements: [
+                {
+                    id: "6",
+                    position: {
+                        x: 200,
+                        y: 300
+                    },
+                    size: {
+                        width: 100,
+                        height: 100
+                    },
+                    ref: "",
+                    zIndex: 0
+                },
+                {
+                    id: "8",
+                    position: {
+                        x: 400,
+                        y: 500
+                    },
+                    size: {
+                        width: 100,
+                        height: 100
+                    },
+                    ref: "",
+                    zIndex: 0
+                }
+            ]
+        });
+        server.createList("layer", 10);
     },
     routes() {
         this.namespace = "api";
@@ -203,6 +316,7 @@ createServer({
         this.resource("dragonBones");
         this.resource("audios");
         this.resource("rules");
+        this.resource("layers");
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
     }

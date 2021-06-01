@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/core";
@@ -7,13 +7,18 @@ import LayersTable from "../../components/layersTable";
 import { LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
-                    layers, count, pagination, sorting, onAdd, onDelete, onClickPutLayerToForm,
+                    layers, count, pagination, sorting, filters, getLayers, onAdd, onPutData, removeLayer,
                     onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
                 }) => {
     const { page, limit } = pagination;
 
+    const onRemove = (id) => removeLayer(id);
     const handleChangeLayerPage = (event, newPage) => onChangePage(newPage);
     const handleChangeLayerLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
+
+    useEffect(() => {
+        getLayers();
+    }, [pagination, sorting, filters]);
 
     return (
         <div>
@@ -51,11 +56,11 @@ const Layers = ({
 
                     <LayersTable
                         layers={layers}
-                        onDelete={onDelete}
-                        onClickPutLayerToForm={onClickPutLayerToForm}
                         sorting={sorting}
                         onChangeSort={onChangeSort}
                         onChangeFilterValue={onChangeFilterValue}
+                        onDelete={onRemove}
+                        onClickPutLayerToForm={onPutData}
                     />
                 </Grid>
             </Container>
@@ -87,9 +92,10 @@ Layers.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
+    getLayers: PropTypes.func.isRequired,
     onAdd: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onClickPutLayerToForm: PropTypes.func.isRequired,
+    removeLayer: PropTypes.func.isRequired,
+    onPutData: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
         page: PropTypes.number.isRequired,
         limit: PropTypes.number.isRequired
@@ -102,6 +108,7 @@ Layers.propTypes = {
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired
 };
 

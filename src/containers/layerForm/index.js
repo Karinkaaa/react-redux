@@ -1,13 +1,14 @@
 import { connect } from "react-redux";
 import LayerForm from "../../components/layerForm";
-import { addLayer, updateLayer } from "../../actions/layerComponent";
 import {
     addLayerElement,
     clearLayerForm,
     deleteLayerElement,
+    saveLayerSaga,
     setSelectedId,
     updateLayerElement,
-    updateLayerName
+    updateLayerName,
+    updateLayerSaga
 } from "../../actions/layerForm";
 
 const mapStateToProps = (state) => {
@@ -26,22 +27,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        saveLayer: (layer) => dispatch(saveLayerSaga(layer)),
+        updateLayer: (id, layer) => {
+            dispatch(updateLayerSaga(id, layer));
+            dispatch(clearLayerForm());
+        },
         onAddElement: () => dispatch(addLayerElement()),
+        onChangeElement: (element) => dispatch(updateLayerElement(element)),
         onDeleteElement: (id) => {
             dispatch(deleteLayerElement(id));
             dispatch(setSelectedId(null));
         },
-        onChangeElement: (element) => dispatch(updateLayerElement(element)),
         setSelectedId: (id) => dispatch(setSelectedId(id)),
-        onChangeLayerName: (name) => dispatch(updateLayerName(name)),
-        onSaveLayer: (props) => {
-            dispatch(addLayer(props));
-            dispatch(clearLayerForm());
-        },
-        onUpdateLayer: (props) => {
-            dispatch(updateLayer(props));
-            dispatch(clearLayerForm());
-        }
+        onChangeLayerName: (name) => dispatch(updateLayerName(name))
     };
 };
 

@@ -3,7 +3,7 @@ import { watchRemoveMovieSaga } from "./movies/removeMovieSaga";
 import { watchSaveMovieSaga } from "./movies/saveMovieSaga";
 import { watchUpdateMovieSaga } from "./movies/updateMovieSaga";
 import { watchGetMoviesSaga } from "./movies/getMoviesSaga";
-import { watchPutDataToFormSaga } from "./movies/getMovieByIdSaga";
+import { watchGetMovieByIdSaga } from "./movies/getMovieByIdSaga";
 import { watchGetImagesSaga } from "./images/getImagesSaga";
 import { watchGetImageByIdSaga } from "./images/getImageByIdSaga";
 import { watchRemoveImageSaga } from "./images/removeImageSaga";
@@ -29,24 +29,24 @@ import { watchGetRuleByIdSaga } from "./rules/getRuleByIdSaga";
 import { watchUpdateRuleSaga } from "./rules/updateRuleSaga";
 import { watchSaveRuleSaga } from "./rules/saveRuleSaga";
 import { watchRemoveRuleSaga } from "./rules/removeRuleSaga";
+import { watchGetLayersSaga } from "./layers/getLayersSaga";
+import { watchGetLayerByIdSaga } from "./layers/getLayerByIdSaga";
+import { watchUpdateLayerSaga } from "./layers/updateLayerSaga";
+import { watchSaveLayerSaga } from "./layers/saveLayerSaga";
+import { watchRemoveLayerSaga } from "./layers/removeLayerSaga";
 
 export default function* mainSaga() {
     yield all([
-        watchRemoveMovieSaga(),
-        watchSaveMovieSaga(),
-        watchUpdateMovieSaga(),
-        watchGetMoviesSaga(),
-        watchPutDataToFormSaga(),
         watchGetImagesSaga(),
         watchGetImageByIdSaga(),
-        watchRemoveImageSaga(),
-        watchSaveImageSaga(),
         watchUpdateImageSaga(),
+        watchSaveImageSaga(),
+        watchRemoveImageSaga(),
         watchGetAnimationsSaga(),
         watchGetAnimationById(),
         watchUpdateAnimationSaga(),
-        watchRemoveAnimationSaga(),
         watchSaveAnimationSaga(),
+        watchRemoveAnimationSaga(),
         watchGetDragonBonesSaga(),
         watchGetDragonBoneByIdSaga(),
         watchUpdateDragonBoneSaga(),
@@ -62,6 +62,15 @@ export default function* mainSaga() {
         watchUpdateRuleSaga(),
         watchSaveRuleSaga(),
         watchRemoveRuleSaga(),
-
+        watchGetLayersSaga(),
+        watchGetLayerByIdSaga(),
+        watchUpdateLayerSaga(),
+        watchSaveLayerSaga(),
+        watchRemoveLayerSaga(),
+        watchGetMoviesSaga(),
+        watchGetMovieByIdSaga(),
+        watchUpdateMovieSaga(),
+        watchSaveMovieSaga(),
+        watchRemoveMovieSaga()
     ]);
 }

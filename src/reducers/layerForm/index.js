@@ -5,7 +5,7 @@ import {
     ADD_LAYER_ELEMENT,
     CLEAR_LAYER_FORM,
     DELETE_LAYER_ELEMENT,
-    PUT_LAYER_TO_FORM,
+    SET_LAYER_FORM,
     SET_LAYER_SELECTED_ID,
     UPDATE_LAYER_ELEMENT,
     UPDATE_LAYER_NAME
@@ -21,6 +21,15 @@ const initialState = {
 
 const LayerForm = (state = initialState, action) => {
     switch (action.type) {
+        case SET_LAYER_FORM: {
+            const { layer } = action;
+
+            return {
+                ...state,
+                ...layer,
+                isValidName: isValidName(layer.name)
+            };
+        }
         case ADD_LAYER_ELEMENT: {
             return {
                 ...state,
@@ -60,17 +69,6 @@ const LayerForm = (state = initialState, action) => {
             return {
                 ...state,
                 selectedId: action.id
-            };
-        }
-        case PUT_LAYER_TO_FORM: {
-            const { id, name, elements } = action;
-
-            return {
-                ...state,
-                id,
-                name,
-                isValidName: isValidName(name),
-                elements
             };
         }
         case CLEAR_LAYER_FORM: {

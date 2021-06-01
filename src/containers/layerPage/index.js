@@ -1,28 +1,20 @@
 import { connect } from "react-redux";
 import Layers from "../../pages/layers";
-import { filteringSortingPagingOfArray } from "../../utils/methods";
-import { clearLayerForm, putLayerToForm } from "../../actions/layerForm";
+import { clearLayerForm } from "../../actions/layerForm";
 import {
     changeLayerFilterValue,
     changeLayerLimit,
     changeLayerPage,
     changeLayerSort,
-    deleteLayer,
-    updateLayer
+    getLayerByIdSaga,
+    getLayersSaga,
+    removeLayerSaga
 } from "../../actions/layerComponent";
 
 const mapStateToProps = (state) => {
-    const { data: layers, count } = filteringSortingPagingOfArray(state.layers.layerList,
-        {
-            pagination: state.layers.pagination,
-            sorting: state.layers.sorting,
-            filters: state.layers.filters
-        }
-    );
-
     return {
-        layers,
-        count,
+        layers: state.layers.layerList,
+        count: state.layers.count,
         pagination: state.layers.pagination,
         sorting: state.layers.sorting,
         filters: state.layers.filters
@@ -31,14 +23,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getLayers: () => dispatch(getLayersSaga()),
+        onPutData: (id) => dispatch(getLayerByIdSaga(id)),
+        removeLayer: (id) => dispatch(removeLayerSaga(id)),
         onAdd: () => dispatch(clearLayerForm()),
-        onDelete: (id) => dispatch(deleteLayer(id)),
-        onChange: (layer) => dispatch(updateLayer(layer)),
         onChangePage: (page) => dispatch(changeLayerPage(page)),
         onChangeLimit: (limit) => dispatch(changeLayerLimit(limit)),
         onChangeSort: (field) => dispatch(changeLayerSort(field)),
-        onChangeFilterValue: (props) => dispatch(changeLayerFilterValue(props)),
-        onClickPutLayerToForm: (props) => dispatch(putLayerToForm(props))
+        onChangeFilterValue: (props) => dispatch(changeLayerFilterValue(props))
     };
 };
 
