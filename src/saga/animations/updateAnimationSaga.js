@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { UPDATE_ANIMATION_SAGA } from "../../utils/actionConstants";
+import { UPDATE_ANIMATION_SAGA } from "../../utils/actionSagaConstants";
 import { ANIMATIONS_API } from "../../utils/apiLinks";
 import { getAnimationsSaga } from "../../actions/animationResourceComponent";
 

@@ -1,7 +1,7 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { AUDIOS_API } from "../../utils/apiLinks";
-import { GET_AUDIOS_SAGA } from "../../utils/actionConstants";
+import { GET_AUDIOS_SAGA } from "../../utils/actionSagaConstants";
 import { setAudios, setTotalAudiosCount } from "../../actions/audioResourceComponent";
 
 export function* getAudiosSaga() {

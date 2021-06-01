@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_RULES_SAGA } from "../../utils/actionConstants";
+import { GET_RULES_SAGA } from "../../utils/actionSagaConstants";
 import { RULES_API } from "../../utils/apiLinks";
 import { setRules, setTotalRulesCount } from "../../actions/ruleComponent";
 

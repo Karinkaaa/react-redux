@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { GET_DRAGON_BONE_BY_ID_SAGA } from "../../utils/actionConstants";
+import { GET_DRAGON_BONE_BY_ID_SAGA } from "../../utils/actionSagaConstants";
 import { DRAGON_BONES_API } from "../../utils/apiLinks";
 import { isOpenDragonBoneModal, setDragonBoneForm } from "../../actions/dragonBonesResourceForm";
 

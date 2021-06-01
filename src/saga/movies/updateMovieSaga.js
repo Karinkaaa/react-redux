@@ -1,8 +1,8 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getMoviesSaga } from "../../actions/movies";
 import { MOVIES_API } from "../../utils/apiLinks";
-import { UPDATE_MOVIE_SAGA } from "../../utils/actionConstants";
+import { UPDATE_MOVIE_SAGA } from "../../utils/actionSagaConstants";
+import { getMoviesSaga } from "../../actions/movies";
 
 export function* updateMovieSaga(action) {
     const { id, movie } = action;

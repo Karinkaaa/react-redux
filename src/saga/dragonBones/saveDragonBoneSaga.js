@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { SAVE_DRAGON_BONE_SAGA } from "../../utils/actionConstants";
+import { SAVE_DRAGON_BONE_SAGA } from "../../utils/actionSagaConstants";
 import { DRAGON_BONES_API } from "../../utils/apiLinks";
 import { getDragonBonesSaga } from "../../actions/dragonBonesResourceComponent";
 

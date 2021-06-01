@@ -1,7 +1,7 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { ANIMATIONS_API } from "../../utils/apiLinks";
-import { GET_ANIMATION_BY_ID_SAGA } from "../../utils/actionConstants";
+import { GET_ANIMATION_BY_ID_SAGA } from "../../utils/actionSagaConstants";
 import { setAnimationForm } from "../../actions/animationResourceComponent";
 
 export function* getAnimationByIdSaga(action) {

@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_IMAGES_SAGA } from "../../utils/actionConstants";
+import { GET_IMAGES_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
 import { setImages, setTotalImagesCount } from "../../actions/imageResourceComponent";
 

@@ -1,7 +1,7 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { ANIMATIONS_API } from "../../utils/apiLinks";
-import { REMOVE_ANIMATION_SAGA } from "../../utils/actionConstants";
+import { REMOVE_ANIMATION_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { changeAnimationPage, getAnimationsSaga } from "../../actions/animationResourceComponent";
 

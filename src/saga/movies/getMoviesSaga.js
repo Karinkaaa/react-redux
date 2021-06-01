@@ -1,8 +1,8 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { setMovies, setTotalMoviesCount } from "../../actions/movies";
 import { MOVIES_API } from "../../utils/apiLinks";
-import { GET_MOVIES_SAGA } from "../../utils/actionConstants";
+import { GET_MOVIES_SAGA } from "../../utils/actionSagaConstants";
+import { setMovies, setTotalMoviesCount } from "../../actions/movies";
 
 export function* getMoviesSaga() {
     const pagination = yield select(state => state.movies.pagination);

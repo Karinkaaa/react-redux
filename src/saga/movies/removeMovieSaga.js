@@ -1,9 +1,9 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { changeMoviePage, getMoviesSaga } from "../../actions/movies";
 import { MOVIES_API } from "../../utils/apiLinks";
-import { REMOVE_MOVIE_SAGA } from "../../utils/actionConstants";
+import { REMOVE_MOVIE_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
+import { changeMoviePage, getMoviesSaga } from "../../actions/movies";
 
 export function* removeMovieSaga(action) {
     const { id } = action;

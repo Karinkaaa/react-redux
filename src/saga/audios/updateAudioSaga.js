@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { UPDATE_AUDIO_SAGA } from "../../utils/actionConstants";
+import { UPDATE_AUDIO_SAGA } from "../../utils/actionSagaConstants";
 import { AUDIOS_API } from "../../utils/apiLinks";
 import { getAudiosSaga } from "../../actions/audioResourceComponent";
 

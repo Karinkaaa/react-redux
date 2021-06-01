@@ -1,6 +1,6 @@
-import *  as axios from "axios";
+import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { GET_IMAGE_BY_ID_SAGA } from "../../utils/actionConstants";
+import { GET_IMAGE_BY_ID_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
 import { isOpenImageModal, setImageForm } from "../../actions/imageResourceForm";
 
