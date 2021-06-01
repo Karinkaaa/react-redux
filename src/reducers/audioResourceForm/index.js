@@ -2,7 +2,6 @@ import { isValidAudioUrl, isValidName } from "../../utils/validation";
 import {
     CLEAR_AUDIO_FORM,
     OPEN_OR_CLOSE_AUDIO_MODAL,
-    PUT_AUDIO_RESOURCE_TO_FORM,
     SET_AUDIO_FORM,
     UPDATE_AUDIO_NAME,
     UPDATE_AUDIO_URL
@@ -49,18 +48,6 @@ const AudioResourceForm = (state = initialState, action) => {
 
             return {
                 ...state,
-                url,
-                isValidUrl: isValidAudioUrl(url)
-            };
-        }
-        case PUT_AUDIO_RESOURCE_TO_FORM: {
-            const { id, name, url } = action;
-
-            return {
-                ...state,
-                id,
-                name,
-                isValidName: isValidName(name),
                 url,
                 isValidUrl: isValidAudioUrl(url)
             };

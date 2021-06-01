@@ -7,11 +7,10 @@ import {
     changeAudioPage,
     changeAudioSort,
     changeAudioView,
-    deleteAudioResource,
     getAudioByIdSaga,
-    getAudiosSaga, removeAudioSaga
+    getAudiosSaga,
+    removeAudioSaga
 } from "../../actions/audioResourceComponent";
-import { watchRemoveAudioSaga } from "../../saga/audios/removeAudioSaga";
 
 const mapStateToProps = (state) => {
     return {
