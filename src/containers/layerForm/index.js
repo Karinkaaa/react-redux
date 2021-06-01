@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import LayerForm from "../../components/layerForm";
 import {
     addLayerElement,
-    clearLayerForm,
     deleteLayerElement,
     saveLayerSaga,
     setSelectedId,
@@ -28,10 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         saveLayer: (layer) => dispatch(saveLayerSaga(layer)),
-        updateLayer: (id, layer) => {
-            dispatch(updateLayerSaga(id, layer));
-            dispatch(clearLayerForm());
-        },
+        updateLayer: (id, layer) => dispatch(updateLayerSaga(id, layer)),
         onAddElement: () => dispatch(addLayerElement()),
         onChangeElement: (element) => dispatch(updateLayerElement(element)),
         onDeleteElement: (id) => {

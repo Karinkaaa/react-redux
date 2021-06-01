@@ -27,7 +27,8 @@ const LayerForm = (state = initialState, action) => {
             return {
                 ...state,
                 ...layer,
-                isValidName: isValidName(layer.name)
+                isValidName: isValidName(layer.name),
+                selectedId: null
             };
         }
         case ADD_LAYER_ELEMENT: {
