@@ -31,8 +31,8 @@ const mapDispatchToProps = (dispatch) => {
         onAddElement: () => dispatch(addLayerElement()),
         onChangeElement: (element) => dispatch(updateLayerElement(element)),
         onDeleteElement: (id) => {
-            dispatch(deleteLayerElement(id));
             dispatch(setSelectedId(null));
+            dispatch(deleteLayerElement(id));
         },
         setSelectedId: (id) => dispatch(setSelectedId(id)),
         onChangeLayerName: (name) => dispatch(updateLayerName(name))
