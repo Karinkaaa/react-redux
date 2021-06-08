@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AudioTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValue }) => {
+const AudioTableHead = ({ sorting, filters, onChangeSort, onChangeFilters }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -74,7 +74,7 @@ const AudioTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValue })
                         className={classes.input}
                         value={filters.id || ""}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeFilterValue({
+                        onChange={(e) => onChangeFilters({
                             ...filters,
                             id: e.target.value
                         })}
@@ -102,7 +102,7 @@ const AudioTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValue })
                         className={classes.input}
                         value={filters.name || ""}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeFilterValue({
+                        onChange={(e) => onChangeFilters({
                             ...filters,
                             name: e.target.value
                         })}
@@ -125,7 +125,7 @@ AudioTableHead.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default AudioTableHead;

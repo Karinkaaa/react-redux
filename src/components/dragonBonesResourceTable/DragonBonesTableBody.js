@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import DragonBonesTableRow from "./DragonBonesTableRow";
 
-const DragonBonesTableBody = ({ dragonBones, setAnchorEl, onClickPutResourceToForm }) => {
-    const handleOpen = (id) => onClickPutResourceToForm(id);
+const DragonBonesTableBody = ({ dragonBones, setAnchorEl, onPutDataToForm }) => {
+    const handleOpen = (id) => onPutDataToForm(id);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -38,7 +38,7 @@ DragonBonesTableBody.propTypes = {
         }).isRequired
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default DragonBonesTableBody;

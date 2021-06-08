@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeTableLimit("dragonBones", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("dragonBones", field)),
         onChangeView: (view) => dispatch(changeDataView("dragonBones", view)),
-        onChangeFilterValue: (filters) => dispatch(changeTableFilters("dragonBones", filters)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters("dragonBones", filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearDragonBoneForm());
             dispatch(isOpenDragonBoneModal(isOpen));

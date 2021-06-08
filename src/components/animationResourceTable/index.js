@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AnimationResourceTable = ({
-                                    animations, sorting, filters, onChangeSort, onChangeFilterValue,
-                                    onDelete, onClickPutResourceToForm
+                                    animations, sorting, filters, onChangeSort, onChangeFilters,
+                                    onDelete, onPutDataToForm
                                 }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -28,13 +28,13 @@ const AnimationResourceTable = ({
                 sorting={sorting}
                 filters={filters}
                 onChangeSort={onChangeSort}
-                onChangeFilterValue={onChangeFilterValue}
+                onChangeFilters={onChangeFilters}
             />
 
             <AnimationTableBody
                 animations={animations}
                 setAnchorEl={setAnchorEl}
-                onClickPutResourceToForm={onClickPutResourceToForm}
+                onPutDataToForm={onPutDataToForm}
             />
 
             <ConfirmMenu
@@ -62,8 +62,8 @@ AnimationResourceTable.propTypes = {
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default AnimationResourceTable;

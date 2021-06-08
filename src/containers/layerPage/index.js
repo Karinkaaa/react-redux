@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangePage: (page) => dispatch(changeTablePage("layers", page)),
         onChangeLimit: (limit) => dispatch(changeTableLimit("layers", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("layers", field)),
-        onChangeFilterValue: (filters) => dispatch(changeTableFilters("layers", filters))
+        onChangeFilters: (filters) => dispatch(changeTableFilters("layers", filters))
     };
 };
 

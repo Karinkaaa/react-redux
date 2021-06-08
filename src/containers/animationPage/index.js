@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeTableLimit("animations", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("animations", field)),
         onChangeView: (view) => dispatch(changeDataView("animations", view)),
-        onChangeFilterValue: (filters) => dispatch(changeTableFilters("animations", filters))
+        onChangeFilters: (filters) => dispatch(changeTableFilters("animations", filters))
     };
 };
 

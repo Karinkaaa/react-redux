@@ -9,7 +9,7 @@ import { GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
                     audios, count, view, pagination, sorting, filters, getAudios, onPutData, removeAudio,
-                    onChangeIsOpen, onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
+                    onChangeIsOpen, onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                 }) => {
     const { page, limit } = pagination;
 
@@ -91,7 +91,7 @@ const Audios = ({
                                 <AudioResourceCards
                                     audios={audios}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                             :
@@ -113,9 +113,9 @@ const Audios = ({
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
-                                    onChangeFilterValue={onChangeFilterValue}
+                                    onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                     }
@@ -153,7 +153,7 @@ Audio.propTypes = {
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default Audios;

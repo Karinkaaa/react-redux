@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DragonBonesResourceTable = ({
-                                      dragonBones, sorting, filters, onChangeSort, onChangeFilterValue,
-                                      onDelete, onClickPutResourceToForm
+                                      dragonBones, sorting, filters, onChangeSort, onChangeFilters,
+                                      onDelete, onPutDataToForm
                                   }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -28,13 +28,13 @@ const DragonBonesResourceTable = ({
                 sorting={sorting}
                 filters={filters}
                 onChangeSort={onChangeSort}
-                onChangeFilterValue={onChangeFilterValue}
+                onChangeFilters={onChangeFilters}
             />
 
             <DragonBonesTableBody
                 dragonBones={dragonBones}
                 setAnchorEl={setAnchorEl}
-                onClickPutResourceToForm={onClickPutResourceToForm}
+                onPutDataToForm={onPutDataToForm}
             />
 
             <ConfirmMenu
@@ -63,9 +63,9 @@ DragonBonesResourceTable.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default DragonBonesResourceTable;

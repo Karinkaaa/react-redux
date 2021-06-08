@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeTableLimit("rules", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("rules", field)),
         onChangeView: (view) => dispatch(changeDataView("rules", view)),
-        onChangeFilterValue: (filters) => dispatch(changeTableFilters("rules", filters)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters("rules", filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearRuleForm());
             dispatch(isOpenRuleModal(isOpen));

@@ -13,10 +13,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AudioResourceTable = ({
-                                audios, sorting, filters, onChangeSort, onChangeFilterValue,
-                                onDelete, onClickPutResourceToForm
-                            }) => {
+const AudioResourceTable = ({ audios, sorting, filters, onChangeSort, onChangeFilters, onDelete, onPutDataToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -28,13 +25,13 @@ const AudioResourceTable = ({
                 sorting={sorting}
                 filters={filters}
                 onChangeSort={onChangeSort}
-                onChangeFilterValue={onChangeFilterValue}
+                onChangeFilters={onChangeFilters}
             />
 
             <AudioTableBody
                 audios={audios}
                 setAnchorEl={setAnchorEl}
-                onClickPutResourceToForm={onClickPutResourceToForm}
+                onPutDataToForm={onPutDataToForm}
             />
 
             <ConfirmMenu
@@ -61,9 +58,9 @@ AudioResourceTable.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default AudioResourceTable;

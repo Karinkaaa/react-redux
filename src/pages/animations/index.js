@@ -9,9 +9,8 @@ import { GRID, TABLE } from "../../utils/constants";
 import { ANIMATION_FORM } from "../../utils/links";
 
 const Animations = ({
-                        animations, count, view, pagination, sorting, filters, getAnimations,
-                        onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue,
-                        onAdd, onPutData, removeAnimation
+                        animations, count, view, pagination, sorting, filters, getAnimations, onAdd, onPutData,
+                        onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, removeAnimation
                     }) => {
     const { page, limit } = pagination;
 
@@ -98,7 +97,7 @@ const Animations = ({
                                     onDelete={onRemove}
                                     onChangePage={handleChangeAnimationPage}
                                     onChangeLimit={onChangeLimit}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                             :
@@ -116,11 +115,11 @@ const Animations = ({
                                 <AnimationResourceTable
                                     animations={animations}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
-                                    onChangeFilterValue={onChangeFilterValue}
+                                    onChangeFilters={onChangeFilters}
                                 />
                             </>
                     }
@@ -159,7 +158,7 @@ Animations.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default Animations;

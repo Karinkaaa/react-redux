@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangePage: (page) => dispatch(changeTablePage("audios", page)),
         onChangeLimit: (limit) => dispatch(changeTableLimit("audios", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("audios", field)),
-        onChangeFilterValue: (filters) => dispatch(changeTableFilters("audios", filters)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters("audios", filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearAudioForm());
             dispatch(isOpenAudioModal(isOpen));

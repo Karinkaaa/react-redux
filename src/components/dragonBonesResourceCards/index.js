@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import ConfirmMenu from "../confirmMenu";
 import DragonBonesCard from "./DragonBonesCard";
 
-const DragonBonesResourceCards = ({ dragonBones, onDelete, onClickPutResourceToForm }) => {
+const DragonBonesResourceCards = ({ dragonBones, onDelete, onPutDataToForm }) => {
     const [anchorEl, setAnchorEl] = React.useState(false);
     const handleClose = () => setAnchorEl(null);
 
@@ -19,7 +19,7 @@ const DragonBonesResourceCards = ({ dragonBones, onDelete, onClickPutResourceToF
                                 name={name}
                                 texture={texture}
                                 setAnchorEl={setAnchorEl}
-                                onClickPutResourceToForm={onClickPutResourceToForm}
+                                onPutDataToForm={onPutDataToForm}
                             />
                         </Grid>
                     )
@@ -44,7 +44,7 @@ DragonBonesResourceCards.propTypes = {
         }).isRequired
     ).isRequired,
     onDelete: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default DragonBonesResourceCards;

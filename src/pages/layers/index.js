@@ -8,7 +8,7 @@ import { LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
                     layers, count, pagination, sorting, filters, getLayers, onAdd, onPutData, removeLayer,
-                    onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
+                    onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                 }) => {
     const { page, limit } = pagination;
 
@@ -59,7 +59,7 @@ const Layers = ({
                         sorting={sorting}
                         filters={filters}
                         onChangeSort={onChangeSort}
-                        onChangeFilterValue={onChangeFilterValue}
+                        onChangeFilters={onChangeFilters}
                         onDelete={onRemove}
                         onClickPutLayerToForm={onPutData}
                     />
@@ -110,7 +110,7 @@ Layers.propTypes = {
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
     filters: PropTypes.object.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default Layers;

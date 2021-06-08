@@ -9,7 +9,7 @@ import { GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
                    rules, count, view, pagination, sorting, filters, getRules, onPutData, removeRule,
-                   onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue, onChangeIsOpen
+                   onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen
                }) => {
     const { page, limit } = pagination;
 
@@ -113,7 +113,7 @@ const Rules = ({
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
-                                    onChangeFilterValue={onChangeFilterValue}
+                                    onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
                                     onClickPutRuleToForm={onPutData}
                                 />
@@ -160,7 +160,7 @@ Rules.propTypes = {
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,
     filters: PropTypes.object.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired
 };
 

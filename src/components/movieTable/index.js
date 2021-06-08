@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MovieTable = ({ movies, sorting, filters, onChangeSort, onChangeFilterValue, onDelete }) => {
+const MovieTable = ({ movies, sorting, filters, onChangeSort, onChangeFilters, onDelete }) => {
     const classes = useStyles();
 
     return (
@@ -21,7 +21,7 @@ const MovieTable = ({ movies, sorting, filters, onChangeSort, onChangeFilterValu
                 sorting={sorting}
                 filters={filters}
                 onChangeSort={onChangeSort}
-                onChangeFilterValue={onChangeFilterValue}
+                onChangeFilters={onChangeFilters}
             />
 
             <MoviesBody
@@ -48,7 +48,7 @@ MovieTable.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired
 };
 

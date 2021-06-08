@@ -6,8 +6,8 @@ import MovieTable from "../../components/movieTable";
 import { MOVIE_CREATE_FORM } from "../../utils/links";
 
 const Movie = ({
-                   movies, count, pagination, sorting, filters, getMovies,
-                   onAdd, removeMovie, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue
+                   movies, count, pagination, sorting, filters, getMovies, onAdd, removeMovie,
+                   onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                }) => {
     const { page, limit } = pagination;
 
@@ -57,7 +57,7 @@ const Movie = ({
                         filters={filters}
                         onDelete={onRemove}
                         onChangeSort={onChangeSort}
-                        onChangeFilterValue={onChangeFilterValue}
+                        onChangeFilters={onChangeFilters}
                     />
                 </Grid>
             </Container>
@@ -92,7 +92,7 @@ Movie.propTypes = {
     onChangePage: PropTypes.func.isRequired,
     onChangeLimit: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default Movie;

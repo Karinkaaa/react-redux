@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangeLimit: (limit) => dispatch(changeTableLimit("images", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("images", field)),
         onChangeView: (view) => dispatch(changeDataView("images", view)),
-        onChangeFilterValue: (filters) => dispatch(changeTableFilters("images", filters)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters("images", filters)),
         onPutData: (id) => dispatch(getImageByIdSaga(id)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearImageForm());

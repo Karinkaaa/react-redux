@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageCard = ({ id, name, url, setAnchorEl, onClickPutResourceToForm }) => {
+const ImageCard = ({ id, name, url, setAnchorEl, onPutDataToForm }) => {
     const classes = useStyles();
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
@@ -41,7 +41,7 @@ const ImageCard = ({ id, name, url, setAnchorEl, onClickPutResourceToForm }) => 
             <CardActions>
                 <IconButton
                     data-id={id}
-                    onClick={() => onClickPutResourceToForm(id)}
+                    onClick={() => onPutDataToForm(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -62,7 +62,7 @@ ImageCard.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default ImageCard;

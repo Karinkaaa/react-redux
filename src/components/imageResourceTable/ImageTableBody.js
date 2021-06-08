@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import ImageTableRow from "./ImageTableRow";
 
-const ImageTableBody = ({ images, setAnchorEl, onClickPutResourceToForm }) => {
-    const handleOpen = (id) => onClickPutResourceToForm(id);
+const ImageTableBody = ({ images, setAnchorEl, onPutDataToForm }) => {
+    const handleOpen = (id) => onPutDataToForm(id);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -35,7 +35,7 @@ ImageTableBody.propTypes = {
         }).isRequired
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default ImageTableBody;

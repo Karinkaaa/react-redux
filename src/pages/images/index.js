@@ -9,7 +9,7 @@ import { GRID, TABLE } from "../../utils/constants";
 
 const Images = ({
                     images, count, view, onChangeView, pagination, filters, sorting, getImages, removeImage,
-                    onPutData, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue, onChangeIsOpen
+                    onPutData, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen
                 }) => {
     const { page, limit } = pagination;
 
@@ -91,7 +91,7 @@ const Images = ({
                                 <ImageResourceCards
                                     images={images}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                             :
@@ -113,9 +113,9 @@ const Images = ({
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
-                                    onChangeFilterValue={onChangeFilterValue}
+                                    onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                     }
@@ -151,7 +151,7 @@ Images.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onPutData: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired
 };

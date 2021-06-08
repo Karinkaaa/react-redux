@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import AnimationTableRow from "./AnimationTableRow";
 
-const AnimationTableBody = ({ animations, setAnchorEl, onClickPutResourceToForm }) => {
+const AnimationTableBody = ({ animations, setAnchorEl, onPutDataToForm }) => {
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -17,7 +17,7 @@ const AnimationTableBody = ({ animations, setAnchorEl, onClickPutResourceToForm 
                         urls={urls}
                         speed={speed}
                         handleToggle={handleToggle}
-                        onClickPutResourceToForm={onClickPutResourceToForm}
+                        onPutDataToForm={onPutDataToForm}
                     />
                 )
             }
@@ -34,7 +34,7 @@ AnimationTableBody.propTypes = {
         }).isRequired
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default AnimationTableBody;

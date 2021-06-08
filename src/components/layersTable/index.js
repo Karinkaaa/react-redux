@@ -13,10 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayersTable = ({
-                         layers, sorting, filters, onChangeSort, onChangeFilterValue,
-                         onDelete, onClickPutLayerToForm
-                     }) => {
+const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, onDelete, onClickPutLayerToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -28,7 +25,7 @@ const LayersTable = ({
                 sorting={sorting}
                 filters={filters}
                 onChangeSort={onChangeSort}
-                onChangeFilterValue={onChangeFilterValue}
+                onChangeFilters={onChangeFilters}
             />
 
             <LayerTableBody
@@ -76,7 +73,7 @@ LayersTable.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onClickPutLayerToForm: PropTypes.func.isRequired
 };

@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const DragonBonesCard = ({ id, name, texture, setAnchorEl, onClickPutResourceToForm }) => {
+const DragonBonesCard = ({ id, name, texture, setAnchorEl, onPutDataToForm }) => {
     const classes = useStyles();
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
@@ -42,7 +42,7 @@ const DragonBonesCard = ({ id, name, texture, setAnchorEl, onClickPutResourceToF
             <CardActions>
                 <IconButton
                     data-id={id}
-                    onClick={() => onClickPutResourceToForm(id)}
+                    onClick={() => onPutDataToForm(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -63,7 +63,7 @@ DragonBonesCard.propTypes = {
     name: PropTypes.string.isRequired,
     texture: PropTypes.string.isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default DragonBonesCard;

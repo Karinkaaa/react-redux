@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AnimationTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValue }) => {
+const AnimationTableHead = ({ sorting, filters, onChangeSort, onChangeFilters }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -74,7 +74,7 @@ const AnimationTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValu
                         className={classes.input}
                         value={filters.id || ""}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeFilterValue({
+                        onChange={(e) => onChangeFilters({
                             ...filters,
                             id: e.target.value
                         })}
@@ -101,7 +101,7 @@ const AnimationTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValu
                         className={classes.input}
                         value={filters.name || ""}
                         inputProps={{ "aria-label": "filter" }}
-                        onChange={(e) => onChangeFilterValue({
+                        onChange={(e) => onChangeFilters({
                             ...filters,
                             name: e.target.value
                         })}
@@ -124,7 +124,7 @@ AnimationTableHead.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default AnimationTableHead;

@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutResourceToForm }) => {
+const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onPutDataToForm }) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
@@ -58,7 +58,7 @@ const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onClickPutReso
                 <Link to={ANIMATION_FORM}>
                     <IconButton
                         data-id={id}
-                        onClick={() => onClickPutResourceToForm(id)}
+                        onClick={() => onPutDataToForm(id)}
                     >
                         <Update className={classes.updateIcon}/>
                     </IconButton>
@@ -88,7 +88,7 @@ AnimationTableRow.propTypes = {
     urls: PropTypes.arrayOf(PropTypes.string).isRequired,
     speed: PropTypes.number.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onClickPutResourceToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default AnimationTableRow;

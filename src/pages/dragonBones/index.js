@@ -8,9 +8,8 @@ import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
-                         dragonBones, count, view, pagination, sorting, filters,
-                         onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilterValue,
-                         onChangeIsOpen, getDragonBones, removeDragonBone, onPutData
+                         dragonBones, count, view, pagination, sorting, filters, onPutData, onChangeView, onChangePage,
+                         onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen, getDragonBones, removeDragonBone
                      }) => {
     const { page, limit } = pagination;
 
@@ -92,7 +91,7 @@ const DragonBones = ({
                                 <DragonBonesResourceCards
                                     dragonBones={dragonBones}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                             :
@@ -114,9 +113,9 @@ const DragonBones = ({
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
-                                    onChangeFilterValue={onChangeFilterValue}
+                                    onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onClickPutResourceToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                     }
@@ -155,7 +154,7 @@ DragonBones.propTypes = {
     onChangePage: PropTypes.func.isRequired,
     onChangeLimit: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilterValue: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
     onPutData: PropTypes.func.isRequired
 };
