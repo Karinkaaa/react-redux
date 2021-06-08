@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayerTableRow = ({ id, name, handleToggle, onClickPutLayerToForm }) => {
+const LayerTableRow = ({ id, name, handleToggle, onPutDataToForm }) => {
     const classes = useStyles();
 
     return (
@@ -62,7 +62,7 @@ const LayerTableRow = ({ id, name, handleToggle, onClickPutLayerToForm }) => {
                 <Link to={LAYER_FORM}>
                     <IconButton
                         data-id={id}
-                        onClick={() => onClickPutLayerToForm(id)}
+                        onClick={() => onPutDataToForm(id)}
                     >
                         <Update className={classes.updateIcon}/>
                     </IconButton>
@@ -85,7 +85,7 @@ LayerTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     handleToggle: PropTypes.func.isRequired,
-    onClickPutLayerToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default LayerTableRow;

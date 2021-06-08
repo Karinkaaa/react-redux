@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import RuleTableRow from "./RuleTableRow";
 
-const RuleTableBody = ({ rules, setAnchorEl, onClickPutRuleToForm }) => {
-    const handleOpen = (id) => onClickPutRuleToForm(id);
+const RuleTableBody = ({ rules, setAnchorEl, onPutDataToForm }) => {
+    const handleOpen = (id) => onPutDataToForm(id);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -42,7 +42,7 @@ RuleTableBody.propTypes = {
         }).isRequired
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutRuleToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default RuleTableBody;

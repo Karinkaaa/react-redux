@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, onDelete, onClickPutLayerToForm }) => {
+const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, onDelete, onPutDataToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -31,7 +31,7 @@ const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, 
             <LayerTableBody
                 layers={layers}
                 setAnchorEl={setAnchorEl}
-                onClickPutLayerToForm={onClickPutLayerToForm}
+                onPutDataToForm={onPutDataToForm}
             />
 
             <ConfirmMenu
@@ -75,7 +75,7 @@ LayersTable.propTypes = {
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onClickPutLayerToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default LayersTable;

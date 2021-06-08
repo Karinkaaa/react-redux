@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RuleCard = ({ id, name, cost, conditions, setAnchorEl, onClickPutRuleToForm }) => {
+const RuleCard = ({ id, name, cost, conditions, setAnchorEl, onPutDataToForm }) => {
     const classes = useStyles();
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
@@ -55,7 +55,7 @@ const RuleCard = ({ id, name, cost, conditions, setAnchorEl, onClickPutRuleToFor
             <CardActions>
                 <IconButton
                     data-id={id}
-                    onClick={() => onClickPutRuleToForm(id)}
+                    onClick={() => onPutDataToForm(id)}
                 >
                     <Update className={classes.updateIcon}/>
                 </IconButton>
@@ -77,7 +77,7 @@ RuleCard.propTypes = {
     cost: PropTypes.number.isRequired,
     conditions: PropTypes.arrayOf(PropTypes.object).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutRuleToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default RuleCard;

@@ -91,7 +91,7 @@ const Rules = ({
                                 <RuleCards
                                     rules={rules}
                                     onDelete={onRemove}
-                                    onClickPutRuleToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                             :
@@ -115,7 +115,7 @@ const Rules = ({
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onClickPutRuleToForm={onPutData}
+                                    onPutDataToForm={onPutData}
                                 />
                             </>
                     }

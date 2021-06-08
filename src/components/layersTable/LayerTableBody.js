@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import LayerTableRow from "./LayerTableRow";
 
-const LayerTableBody = ({ layers, setAnchorEl, onClickPutLayerToForm }) => {
+const LayerTableBody = ({ layers, setAnchorEl, onPutDataToForm }) => {
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -16,7 +16,7 @@ const LayerTableBody = ({ layers, setAnchorEl, onClickPutLayerToForm }) => {
                             id={id}
                             name={name}
                             handleToggle={handleToggle}
-                            onClickPutLayerToForm={onClickPutLayerToForm}
+                            onPutDataToForm={onPutDataToForm}
                         />
                     )}
         </Grid>
@@ -46,7 +46,7 @@ LayerTableBody.propTypes = {
         }).isRequired
     ).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
-    onClickPutLayerToForm: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default LayerTableBody;

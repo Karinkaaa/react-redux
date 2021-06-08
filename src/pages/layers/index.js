@@ -61,7 +61,7 @@ const Layers = ({
                         onChangeSort={onChangeSort}
                         onChangeFilters={onChangeFilters}
                         onDelete={onRemove}
-                        onClickPutLayerToForm={onPutData}
+                        onPutDataToForm={onPutData}
                     />
                 </Grid>
             </Container>
