@@ -11,7 +11,7 @@ const Movies = (state = initialState, action) => {
         case SET_MOVIE_FORM: {
             return {
                 ...state,
-                movie: action.movie
+                ...action.movie
             };
         }
         case CLEAR_MOVIE_FORM: {

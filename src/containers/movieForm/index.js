@@ -5,7 +5,7 @@ import { saveMovieSaga, setMovieForm, updateMovieSaga } from "../../actions/movi
 
 const mapStateToProps = (state) => {
     return {
-        movie: state.movies.form
+        movie: state.movieForm
     };
 };
 
@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         saveMovie: (movie) => dispatch(saveMovieSaga(movie)),
         updateMovie: (id, movie) => dispatch(updateMovieSaga(id, movie)),
-        putDataToForm: (id) => dispatch(getMovieByIdSaga(id)),
+        onPutData: (id) => dispatch(getMovieByIdSaga(id)),
         onChangeMovie: (movie) => dispatch(setMovieForm(movie))
     };
 };
