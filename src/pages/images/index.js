@@ -111,6 +111,7 @@ const Images = ({
                                 <ImageResourceTable
                                     images={images}
                                     sorting={sorting}
+                                    filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
                                     onDelete={onRemove}

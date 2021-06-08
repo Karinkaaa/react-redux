@@ -54,6 +54,7 @@ const Movie = ({
                     <MovieTable
                         movies={movies}
                         sorting={sorting}
+                        filters={filters}
                         onDelete={onRemove}
                         onChangeSort={onChangeSort}
                         onChangeFilterValue={onChangeFilterValue}

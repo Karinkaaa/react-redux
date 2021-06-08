@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DragonBonesResourceTable = ({
-                                      dragonBones, sorting, onChangeSort, onChangeFilterValue,
+                                      dragonBones, sorting, filters, onChangeSort, onChangeFilterValue,
                                       onDelete, onClickPutResourceToForm
                                   }) => {
     const classes = useStyles();
@@ -26,6 +26,7 @@ const DragonBonesResourceTable = ({
         <Grid container className={classes.content}>
             <DragonBonesTableHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -60,6 +61,7 @@ DragonBonesResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,

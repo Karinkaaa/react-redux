@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AudioResourceTable = ({
-                                audios, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutResourceToForm
+                                audios, sorting, filters, onChangeSort, onChangeFilterValue,
+                                onDelete, onClickPutResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -25,6 +26,7 @@ const AudioResourceTable = ({
         <Grid container className={classes.content}>
             <AudioTableHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -57,6 +59,7 @@ AudioResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,

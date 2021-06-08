@@ -2,7 +2,7 @@ import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { MOVIES_API } from "../../utils/apiLinks";
 import { GET_MOVIE_BY_ID_SAGA } from "../../utils/actionSagaConstants";
-import { setMovieForm } from "../../actions/movies";
+import { setMovieForm } from "../../actions/movieForm";
 
 export function* getMovieByIdSaga(action) {
     const { id } = action;

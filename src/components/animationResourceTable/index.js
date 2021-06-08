@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AnimationResourceTable = ({
-                                    animations, sorting, onChangeSort, onChangeFilterValue,
+                                    animations, sorting, filters, onChangeSort, onChangeFilterValue,
                                     onDelete, onClickPutResourceToForm
                                 }) => {
     const classes = useStyles();
@@ -26,6 +26,7 @@ const AnimationResourceTable = ({
         <Grid container className={classes.content}>
             <AnimationTableHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -51,13 +52,14 @@ AnimationResourceTable.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             urls: PropTypes.arrayOf(PropTypes.string).isRequired
-        })
+        }).isRequired
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onClickPutResourceToForm: PropTypes.func.isRequired,

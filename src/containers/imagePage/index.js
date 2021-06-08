@@ -1,25 +1,23 @@
 import { connect } from "react-redux";
 import Images from "../../pages/images";
 import { clearImageForm, isOpenImageModal } from "../../actions/imageResourceForm";
+import { getImageByIdSaga, getImagesSaga, removeImageSaga } from "../../actions/imagesSaga";
 import {
-    changeImageFilterValue,
-    changeImageLimit,
-    changeImagePage,
-    changeImageSort,
-    changeImageView,
-    getImageByIdSaga,
-    getImagesSaga,
-    removeImageSaga
-} from "../../actions/imageResourceComponent";
+    changeDataView,
+    changeTableFilters,
+    changeTableLimit,
+    changeTablePage,
+    changeTableSort
+} from "../../actions/table";
 
 const mapStateToProps = (state) => {
     return {
-        images: state.images.imageList,
-        count: state.images.count,
-        view: state.images.view,
-        pagination: state.images.pagination,
-        sorting: state.images.sorting,
-        filters: state.images.filters
+        images: state.table.images.list,
+        count: state.table.images.count,
+        view: state.table.images.view,
+        pagination: state.table.images.pagination,
+        sorting: state.table.images.sorting,
+        filters: state.table.images.filters
     };
 };
 
@@ -27,11 +25,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getImages: () => dispatch(getImagesSaga()),
         removeImage: (id) => dispatch(removeImageSaga(id)),
-        onChangePage: (page) => dispatch(changeImagePage(page)),
-        onChangeLimit: (limit) => dispatch(changeImageLimit(limit)),
-        onChangeSort: (field) => dispatch(changeImageSort(field)),
-        onChangeView: (view) => dispatch(changeImageView(view)),
-        onChangeFilterValue: (props) => dispatch(changeImageFilterValue(props)),
+        onChangePage: (page) => dispatch(changeTablePage("images", page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit("images", limit)),
+        onChangeSort: (field) => dispatch(changeTableSort("images", field)),
+        onChangeView: (view) => dispatch(changeDataView("images", view)),
+        onChangeFilterValue: (filters) => dispatch(changeTableFilters("images", filters)),
         onPutData: (id) => dispatch(getImageByIdSaga(id)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearImageForm());

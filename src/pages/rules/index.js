@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
-import RuleForm from "../../containers/ruleForm";
 import RuleTable from "../../components/ruleTable";
 import RuleCards from "../../components/ruleCards";
+import RuleForm from "../../containers/ruleForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
@@ -111,6 +111,7 @@ const Rules = ({
                                 <RuleTable
                                     rules={rules}
                                     sorting={sorting}
+                                    filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
                                     onDelete={onRemove}

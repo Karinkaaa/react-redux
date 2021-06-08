@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AnimationTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
+const AnimationTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -72,10 +72,11 @@ const AnimationTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.id || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "id",
-                            filterValue: e.target.value
+                            ...filters,
+                            id: e.target.value
                         })}
                     />
                 </div>
@@ -98,10 +99,11 @@ const AnimationTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.name || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "name",
-                            filterValue: e.target.value
+                            ...filters,
+                            name: e.target.value
                         })}
                     />
                 </div>
@@ -120,8 +122,9 @@ AnimationTableHead.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeSort: PropTypes.func,
-    onChangeFilterValue: PropTypes.func
+    filters: PropTypes.object.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default AnimationTableHead;

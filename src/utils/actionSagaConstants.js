@@ -40,7 +40,7 @@ export const SAVE_LAYER_SAGA = "SAVE_LAYER_SAGA";
 export const UPDATE_LAYER_SAGA = "UPDATE_LAYER_SAGA";
 export const REMOVE_LAYER_SAGA = "REMOVE_LAYER_SAGA";
 
-// movies
+// movieForm
 export const GET_MOVIES_SAGA = "GET_MOVIES_SAGA";
 export const GET_MOVIE_BY_ID_SAGA = "GET_MOVIE_BY_ID_SAGA";
 export const SAVE_MOVIE_SAGA = "SAVE_MOVIE_SAGA";

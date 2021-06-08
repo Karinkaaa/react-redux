@@ -57,6 +57,7 @@ const Layers = ({
                     <LayersTable
                         layers={layers}
                         sorting={sorting}
+                        filters={filters}
                         onChangeSort={onChangeSort}
                         onChangeFilterValue={onChangeFilterValue}
                         onDelete={onRemove}

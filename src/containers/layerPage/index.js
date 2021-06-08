@@ -1,23 +1,16 @@
 import { connect } from "react-redux";
 import Layers from "../../pages/layers";
 import { clearLayerForm } from "../../actions/layerForm";
-import {
-    changeLayerFilterValue,
-    changeLayerLimit,
-    changeLayerPage,
-    changeLayerSort,
-    getLayerByIdSaga,
-    getLayersSaga,
-    removeLayerSaga
-} from "../../actions/layerComponent";
+import { getLayerByIdSaga, getLayersSaga, removeLayerSaga } from "../../actions/layersSaga";
+import { changeTableFilters, changeTableLimit, changeTablePage, changeTableSort } from "../../actions/table";
 
 const mapStateToProps = (state) => {
     return {
-        layers: state.layers.layerList,
-        count: state.layers.count,
-        pagination: state.layers.pagination,
-        sorting: state.layers.sorting,
-        filters: state.layers.filters
+        layers: state.table.layers.list,
+        count: state.table.layers.count,
+        pagination: state.table.layers.pagination,
+        sorting: state.table.layers.sorting,
+        filters: state.table.layers.filters
     };
 };
 
@@ -27,10 +20,10 @@ const mapDispatchToProps = (dispatch) => {
         onPutData: (id) => dispatch(getLayerByIdSaga(id)),
         removeLayer: (id) => dispatch(removeLayerSaga(id)),
         onAdd: () => dispatch(clearLayerForm()),
-        onChangePage: (page) => dispatch(changeLayerPage(page)),
-        onChangeLimit: (limit) => dispatch(changeLayerLimit(limit)),
-        onChangeSort: (field) => dispatch(changeLayerSort(field)),
-        onChangeFilterValue: (props) => dispatch(changeLayerFilterValue(props))
+        onChangePage: (page) => dispatch(changeTablePage("layers", page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit("layers", limit)),
+        onChangeSort: (field) => dispatch(changeTableSort("layers", field)),
+        onChangeFilterValue: (filters) => dispatch(changeTableFilters("layers", filters))
     };
 };
 

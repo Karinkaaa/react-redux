@@ -1,25 +1,23 @@
 import { connect } from "react-redux";
 import Rules from "../../pages/rules";
 import { clearRuleForm, isOpenRuleModal } from "../../actions/ruleForm";
+import { getRuleByIdSaga, getRulesSaga, removeRuleSaga } from "../../actions/rulesSaga";
 import {
-    changeRuleFilterValue,
-    changeRuleLimit,
-    changeRulePage,
-    changeRuleSort,
-    changeRuleView,
-    getRuleByIdSaga,
-    getRulesSaga,
-    removeRuleSaga
-} from "../../actions/ruleComponent";
+    changeDataView,
+    changeTableFilters,
+    changeTableLimit,
+    changeTablePage,
+    changeTableSort
+} from "../../actions/table";
 
 const mapStateToProps = (state) => {
     return {
-        rules: state.rules.ruleList,
-        count: state.rules.count,
-        view: state.rules.view,
-        pagination: state.rules.pagination,
-        sorting: state.rules.sorting,
-        filters: state.rules.filters
+        rules: state.table.rules.list,
+        count: state.table.rules.count,
+        view: state.table.rules.view,
+        pagination: state.table.rules.pagination,
+        sorting: state.table.rules.sorting,
+        filters: state.table.rules.filters
     };
 };
 
@@ -28,11 +26,11 @@ const mapDispatchToProps = (dispatch) => {
         getRules: () => dispatch(getRulesSaga()),
         removeRule: (id) => dispatch(removeRuleSaga(id)),
         onPutData: (id) => dispatch(getRuleByIdSaga(id)),
-        onChangePage: (page) => dispatch(changeRulePage(page)),
-        onChangeLimit: (limit) => dispatch(changeRuleLimit(limit)),
-        onChangeSort: (field) => dispatch(changeRuleSort(field)),
-        onChangeView: (view) => dispatch(changeRuleView(view)),
-        onChangeFilterValue: (props) => dispatch(changeRuleFilterValue(props)),
+        onChangePage: (page) => dispatch(changeTablePage("rules", page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit("rules", limit)),
+        onChangeSort: (field) => dispatch(changeTableSort("rules", field)),
+        onChangeView: (view) => dispatch(changeDataView("rules", view)),
+        onChangeFilterValue: (filters) => dispatch(changeTableFilters("rules", filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearRuleForm());
             dispatch(isOpenRuleModal(isOpen));

@@ -1,25 +1,23 @@
 import { connect } from "react-redux";
 import Audios from "../../pages/audios";
 import { clearAudioForm, isOpenAudioModal } from "../../actions/audioResourceForm";
+import { getAudioByIdSaga, getAudiosSaga, removeAudioSaga } from "../../actions/audiosSaga";
 import {
-    changeAudioFilterValue,
-    changeAudioLimit,
-    changeAudioPage,
-    changeAudioSort,
-    changeAudioView,
-    getAudioByIdSaga,
-    getAudiosSaga,
-    removeAudioSaga
-} from "../../actions/audioResourceComponent";
+    changeDataView,
+    changeTableFilters,
+    changeTableLimit,
+    changeTablePage,
+    changeTableSort
+} from "../../actions/table";
 
 const mapStateToProps = (state) => {
     return {
-        audios: state.audios.playlist,
-        count: state.audios.count,
-        view: state.audios.view,
-        pagination: state.audios.pagination,
-        sorting: state.audios.sorting,
-        filters: state.audios.filters
+        audios: state.table.audios.list,
+        count: state.table.audios.count,
+        view: state.table.audios.view,
+        pagination: state.table.audios.pagination,
+        sorting: state.table.audios.sorting,
+        filters: state.table.audios.filters
     };
 };
 
@@ -28,11 +26,11 @@ const mapDispatchToProps = (dispatch) => {
         getAudios: () => dispatch(getAudiosSaga()),
         onPutData: (id) => dispatch(getAudioByIdSaga(id)),
         removeAudio: (id) => dispatch(removeAudioSaga(id)),
-        onChangeView: (view) => dispatch(changeAudioView(view)),
-        onChangePage: (page) => dispatch(changeAudioPage(page)),
-        onChangeLimit: (limit) => dispatch(changeAudioLimit(limit)),
-        onChangeSort: (field) => dispatch(changeAudioSort(field)),
-        onChangeFilterValue: (props) => dispatch(changeAudioFilterValue(props)),
+        onChangeView: (view) => dispatch(changeDataView("audios", view)),
+        onChangePage: (page) => dispatch(changeTablePage("audios", page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit("audios", limit)),
+        onChangeSort: (field) => dispatch(changeTableSort("audios", field)),
+        onChangeFilterValue: (filters) => dispatch(changeTableFilters("audios", filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearAudioForm());
             dispatch(isOpenAudioModal(isOpen));

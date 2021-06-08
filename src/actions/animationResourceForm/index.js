@@ -4,10 +4,16 @@ import {
     CLEAR_ANIMATION_FORM,
     DELETE_IMAGE_FROM_ANIMATION_FORM,
     DRAG_AND_DROP_IN_ANIMATION_FORM,
+    SET_ANIMATION_FORM,
     UPDATE_ANIMATION_NAME,
     UPDATE_ANIMATION_SPEED,
     UPDATE_ANIMATION_URL
 } from "../../utils/actionConstants";
+
+export const setAnimationForm = (animation) => ({
+    type: SET_ANIMATION_FORM,
+    animation
+});
 
 export const updateAnimationName = (name) => ({
     type: UPDATE_ANIMATION_NAME,

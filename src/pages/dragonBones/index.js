@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
+import { Add, List, ViewModule } from "@material-ui/icons";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
 import DragonBonesResourceCards from "../../components/dragonBonesResourceCards";
-import { Add, List, ViewModule } from "@material-ui/icons";
 import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
@@ -112,6 +112,7 @@ const DragonBones = ({
                                 <DragonBonesResourceTable
                                     dragonBones={dragonBones}
                                     sorting={sorting}
+                                    filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
                                     onDelete={onRemove}

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ImageResourceForm from "../../components/imageResourceForm";
-import { getImageByIdSaga } from "../../actions/imageResourceComponent";
+import { getImageByIdSaga } from "../../actions/imagesSaga";
 import {
     isOpenImageModal,
     saveImageSaga,

@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const RuleTable = ({ rules, onDelete, onClickPutRuleToForm, sorting, onChangeSort, onChangeFilterValue }) => {
+const RuleTable = ({ rules, sorting, filters, onChangeSort, onChangeFilterValue, onDelete, onClickPutRuleToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -23,6 +23,7 @@ const RuleTable = ({ rules, onDelete, onClickPutRuleToForm, sorting, onChangeSor
         <Grid container className={classes.content}>
             <RuleTableHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -55,13 +56,14 @@ RuleTable.propTypes = {
                     }
                 ).isRequired
             ).isRequired
-        })
+        }).isRequired
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onClickPutRuleToForm: PropTypes.func.isRequired,

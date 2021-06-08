@@ -2,7 +2,7 @@ import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { UPDATE_ANIMATION_SAGA } from "../../utils/actionSagaConstants";
 import { ANIMATIONS_API } from "../../utils/apiLinks";
-import { getAnimationsSaga } from "../../actions/animationResourceComponent";
+import { getAnimationsSaga } from "../../actions/animationsSaga";
 
 export function* updateAnimationSaga(action) {
     const { id, animation } = action;

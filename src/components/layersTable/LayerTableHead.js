@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayerTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
+const LayerTableHead = ({ sorting, filters, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -68,10 +68,11 @@ const LayerTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.id || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "id",
-                            filterValue: e.target.value
+                            ...filters,
+                            id: e.target.value
                         })}
                     />
                 </div>
@@ -95,10 +96,11 @@ const LayerTableHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.name || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "name",
-                            filterValue: e.target.value
+                            ...filters,
+                            name: e.target.value
                         })}
                     />
                 </div>
@@ -117,6 +119,7 @@ LayerTableHead.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired
 };

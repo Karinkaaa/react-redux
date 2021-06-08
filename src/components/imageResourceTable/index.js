@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ImageResourceTable = ({
-                                images, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutResourceToForm
+                                images, sorting, filters, onChangeSort, onChangeFilterValue,
+                                onDelete, onClickPutResourceToForm
                             }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -25,6 +26,7 @@ const ImageResourceTable = ({
         <Grid container className={classes.content}>
             <ImageTableHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -57,6 +59,7 @@ ImageResourceTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,

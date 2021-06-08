@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
+const MoviesHead = ({ sorting, filters, onChangeSort, onChangeFilterValue }) => {
     const classes = useStyles();
     const { field, direction } = sorting;
 
@@ -68,10 +68,11 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.id || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "id",
-                            filterValue: e.target.value
+                            ...filters,
+                            id: e.target.value
                         })}
                     />
                 </div>
@@ -95,10 +96,11 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.name || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "name",
-                            filterValue: e.target.value
+                            ...filters,
+                            name: e.target.value
                         })}
                     />
                 </div>
@@ -122,10 +124,11 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.year || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "year",
-                            filterValue: e.target.value
+                            ...filters,
+                            year: e.target.value
                         })}
                     />
                 </div>
@@ -149,10 +152,11 @@ const MoviesHead = ({ sorting, onChangeSort, onChangeFilterValue }) => {
                     <InputBase
                         placeholder={"Search..."}
                         className={classes.input}
+                        value={filters.rating || ""}
                         inputProps={{ "aria-label": "filter" }}
                         onChange={(e) => onChangeFilterValue({
-                            filterKey: "rating",
-                            filterValue: e.target.value
+                            ...filters,
+                            rating: e.target.value
                         })}
                     />
                 </div>
@@ -167,8 +171,9 @@ MoviesHead.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
-    onChangeSort: PropTypes.func,
-    onChangeFilterValue: PropTypes.func
+    filters: PropTypes.object.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilterValue: PropTypes.func.isRequired
 };
 
 export default MoviesHead;

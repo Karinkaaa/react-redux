@@ -1,10 +1,10 @@
 import { TABLE } from "../../utils/constants";
 import {
+    CHANGE_DATA_VIEW,
     CHANGE_TABLE_FILTERS,
     CHANGE_TABLE_LIMIT,
     CHANGE_TABLE_PAGE,
     CHANGE_TABLE_SORT,
-    CHANGE_DATA_VIEW,
     SET_TABLE_DATA,
     SET_TOTAL_TABLE_DATA_COUNT
 } from "../../utils/actionConstants";
@@ -25,13 +25,13 @@ const initialTable = {
 };
 
 export const initialState = {
-    "IMAGES": { ...initialTable },
-    "ANIMATIONS": { ...initialTable },
-    "DRAGON_BONES": { ...initialTable },
-    "AUDIOS": { ...initialTable },
-    "RULES": { ...initialTable },
-    "LAYERS": { ...initialTable },
-    "MOVIES": { ...initialTable }
+    "images": { ...initialTable },
+    "animations": { ...initialTable },
+    "dragonBones": { ...initialTable },
+    "audios": { ...initialTable },
+    "rules": { ...initialTable },
+    "layers": { ...initialTable },
+    "movies": { ...initialTable }
 };
 
 const ResourcePage = (state = initialState, action) => {

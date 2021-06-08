@@ -2,7 +2,7 @@ import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { UPDATE_RULE_SAGA } from "../../utils/actionSagaConstants";
 import { RULES_API } from "../../utils/apiLinks";
-import { getRulesSaga } from "../../actions/ruleComponent";
+import { getRulesSaga } from "../../actions/rulesSaga";
 
 export function* updateRuleSaga(action) {
     const { id, rule } = action;

@@ -138,7 +138,7 @@ createServer({
         })
     },
     seeds(server) {
-        // movies
+        // movieForm
         server.create("movie");
         server.create("movie");
         server.create("movie", { rating: "R-11" });

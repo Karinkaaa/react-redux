@@ -12,13 +12,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MovieTable = ({ movies, sorting, onChangeSort, onChangeFilterValue, onDelete }) => {
+const MovieTable = ({ movies, sorting, filters, onChangeSort, onChangeFilterValue, onDelete }) => {
     const classes = useStyles();
 
     return (
         <Grid container className={classes.content}>
             <MoviesHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -45,6 +46,7 @@ MovieTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired

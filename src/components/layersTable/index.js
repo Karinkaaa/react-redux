@@ -13,7 +13,10 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayersTable = ({ layers, sorting, onChangeSort, onChangeFilterValue, onDelete, onClickPutLayerToForm }) => {
+const LayersTable = ({
+                         layers, sorting, filters, onChangeSort, onChangeFilterValue,
+                         onDelete, onClickPutLayerToForm
+                     }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -23,6 +26,7 @@ const LayersTable = ({ layers, sorting, onChangeSort, onChangeFilterValue, onDel
         <Grid container className={classes.content}>
             <LayerTableHead
                 sorting={sorting}
+                filters={filters}
                 onChangeSort={onChangeSort}
                 onChangeFilterValue={onChangeFilterValue}
             />
@@ -70,6 +74,7 @@ LayersTable.propTypes = {
             direction: PropTypes.oneOf(["asc", "desc"]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilterValue: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,

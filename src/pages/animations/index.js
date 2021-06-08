@@ -17,6 +17,7 @@ const Animations = ({
 
     const onRemove = (id) => removeAnimation(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
+
     const handleChangeAnimationPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAnimationLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -117,6 +118,7 @@ const Animations = ({
                                     onDelete={onRemove}
                                     onClickPutResourceToForm={onPutData}
                                     sorting={sorting}
+                                    filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
                                 />

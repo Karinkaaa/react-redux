@@ -2,12 +2,12 @@ import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { GET_RULES_SAGA } from "../../utils/actionSagaConstants";
 import { RULES_API } from "../../utils/apiLinks";
-import { setRules, setTotalRulesCount } from "../../actions/ruleComponent";
+import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getRulesSaga() {
-    const pagination = yield select(state => state.rules.pagination);
-    const sorting = yield select(state => state.rules.sorting);
-    const filters = yield select(state => state.rules.filters);
+    const pagination = yield select(state => state.table.rules.pagination);
+    const sorting = yield select(state => state.table.rules.sorting);
+    const filters = yield select(state => state.table.rules.filters);
 
     const result = yield call(axios.get, RULES_API, {
         params: {
@@ -17,8 +17,8 @@ export function* getRulesSaga() {
         }
     });
 
-    yield put(setRules(result.data.rules));
-    yield put(setTotalRulesCount(result.data.count));
+    yield put(setTableData("rules", result.data.rules));
+    yield put(setTotalTableDataCount("rules", result.data.count));
 }
 
 export function* watchGetRulesSaga() {

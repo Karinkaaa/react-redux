@@ -111,6 +111,7 @@ const Audios = ({
                                 <AudioResourceTable
                                     audios={audios}
                                     sorting={sorting}
+                                    filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilterValue={onChangeFilterValue}
                                     onDelete={onRemove}

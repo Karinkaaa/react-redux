@@ -18,9 +18,9 @@ const mapStateToProps = (state) => {
         elements: state.layerForm.elements,
         selectedElement: state.layerForm.elements.find(el => el.id === state.layerForm.selectedId),
         selectedId: state.layerForm.selectedId,
-        images: state.images.imageList,
-        animations: state.animations.animationList,
-        dragonBones: state.dragonBones.dragonBonesList
+        images: state.table.images.list,
+        animations: state.table.animations.list,
+        dragonBones: state.table.dragonBones.list
     };
 };
 

@@ -2,12 +2,12 @@ import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { GET_IMAGES_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
-import { setImages, setTotalImagesCount } from "../../actions/imageResourceComponent";
+import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getImagesSaga() {
-    const pagination = yield select(state => state.images.pagination);
-    const sorting = yield select(state => state.images.sorting);
-    const filters = yield select(state => state.images.filters);
+    const pagination = yield select(state => state.table.images.pagination);
+    const sorting = yield select(state => state.table.images.sorting);
+    const filters = yield select(state => state.table.images.filters);
 
     const result = yield call(axios.get, IMAGES_API, {
         params: {
@@ -17,8 +17,8 @@ export function* getImagesSaga() {
         }
     });
 
-    yield put(setImages(result.data.images));
-    yield put(setTotalImagesCount(result.data.count));
+    yield put(setTableData("images", result.data.images));
+    yield put(setTotalTableDataCount("images", result.data.count));
 }
 
 export function* watchGetImagesSaga() {

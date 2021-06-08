@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import MovieForm from "../../components/movieForm";
-import { getMovieByIdSaga, saveMovieSaga, setMovieForm, updateMovieSaga } from "../../actions/movies";
+import { getMovieByIdSaga } from "../../actions/moviesSaga";
+import { saveMovieSaga, setMovieForm, updateMovieSaga } from "../../actions/movieForm";
 
 const mapStateToProps = (state) => {
     return {
