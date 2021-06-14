@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     sortLabel: {
-        paddingLeft: 5
+        paddingLeft: 3
     }
 }));
 
@@ -109,8 +109,31 @@ const AnimationTableHead = ({ sorting, filters, onChangeSort, onChangeFilters })
                 </div>
             </Grid>
 
-            <Grid item className={classes.headCell} style={{ paddingLeft: 30 }}>
-                Speed
+            <Grid item xs className={classes.headCell} style={{ paddingLeft: 25 }}>
+                <TableSortLabel
+                    active={field === "speed"}
+                    direction={direction}
+                    onClick={() => onChangeSort("speed")}
+                    className={classes.sortLabel}
+                >
+                    Speed
+                </TableSortLabel>
+
+                <div className={classes.filter}>
+                    <div className={classes.filterIcon}>
+                        <FilterList/>
+                    </div>
+                    <InputBase
+                        placeholder={"Search..."}
+                        className={classes.input}
+                        value={filters.speed || ""}
+                        inputProps={{ "aria-label": "filter" }}
+                        onChange={(e) => onChangeFilters({
+                            ...filters,
+                            speed: e.target.value
+                        })}
+                    />
+                </div>
             </Grid>
         </Grid>
     );

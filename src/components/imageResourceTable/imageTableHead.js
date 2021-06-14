@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     sortLabel: {
-        paddingLeft: 5
+        paddingLeft: 3
     }
 }));
 

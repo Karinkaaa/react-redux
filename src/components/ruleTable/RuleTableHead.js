@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     sortLabel: {
-        paddingLeft: 5
+        paddingLeft: 3
     }
 }));
 
@@ -110,8 +110,33 @@ const RuleTableHead = ({ sorting, filters, onChangeSort, onChangeFilters }) => {
                 </div>
             </Grid>
 
-            <Grid item className={classes.headCell} style={{ paddingLeft: 30 }}>
-                Cost
+
+            <Grid item xs={3} className={classes.headCell} style={{ paddingLeft: 15 }}>
+                <TableSortLabel
+                    active={field === "cost"}
+                    direction={direction}
+                    onClick={() => onChangeSort("cost")}
+                    className={classes.sortLabel}
+                >
+                    Cost
+                </TableSortLabel>
+
+                <div className={classes.filter}>
+                    <div className={classes.filterIcon}>
+                        <FilterList/>
+                    </div>
+
+                    <InputBase
+                        placeholder={"Search..."}
+                        className={classes.input}
+                        value={filters.cost || ""}
+                        inputProps={{ "aria-label": "filter" }}
+                        onChange={(e) => onChangeFilters({
+                            ...filters,
+                            cost: e.target.value
+                        })}
+                    />
+                </div>
             </Grid>
         </Grid>
     );
