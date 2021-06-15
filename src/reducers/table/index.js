@@ -91,7 +91,7 @@ const ResourcePage = (state = initialState, action) => {
                 [tableKey]: {
                     ...state[tableKey],
                     pagination: {
-                        ...state[tableKey].pagination,
+                        page: 0,
                         limit
                     }
                 }
