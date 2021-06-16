@@ -11,6 +11,7 @@ import ruleForm from "./reducers/ruleForm";
 import layerForm from "./reducers/layerForm";
 import movieForm from "./reducers/movieForm";
 import table from "./reducers/table";
+import form from "./reducers/form";
 
 const reducers = combineReducers({
     imageForm,
@@ -21,7 +22,8 @@ const reducers = combineReducers({
     ruleForm,
     layerForm,
     movieForm,
-    table
+    table,
+    form
 });
 
 const sagaMiddleware = createSagaMiddleware();
