@@ -1,5 +1,5 @@
-import { GRID, TABLE } from "../../utils/constants";
 import reducer, { initialState } from "./index";
+import { GRID, IMAGES_KEY, TABLE } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
@@ -9,20 +9,27 @@ import {
     setTableData,
     setTotalTableDataCount
 } from "../../actions/table";
-
-const RESOURCE = "IMAGES";
+import {
+    CHANGE_DATA_VIEW,
+    CHANGE_TABLE_FILTERS,
+    CHANGE_TABLE_LIMIT,
+    CHANGE_TABLE_PAGE,
+    CHANGE_TABLE_SORT,
+    SET_TABLE_DATA,
+    SET_TOTAL_TABLE_DATA_COUNT
+} from "../../utils/actionConstants";
 
 describe("Table Reducer", () => {
     it("Should return the initial state", () => {
         expect(reducer(undefined, {})).toEqual(initialState);
     });
 
-    it("Should handle SET_TABLE_DATA", () => {
-        const action = setTableData(RESOURCE, [1, 2]);
+    it("Should handle " + SET_TABLE_DATA, () => {
+        const action = setTableData(IMAGES_KEY, [1, 2]);
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [1, 2],
                 count: 0,
                 view: TABLE,
@@ -32,19 +39,19 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "",
-                    direction: "desc"
+                    direction: DESCENDING_SORT
                 },
                 filters: {}
             }
         });
     });
 
-    it("Should handle SET_TOTAL_TABLE_DATA_COUNT", () => {
-        const action = setTotalTableDataCount(RESOURCE, 12);
+    it("Should handle " + SET_TOTAL_TABLE_DATA_COUNT, () => {
+        const action = setTotalTableDataCount(IMAGES_KEY, 12);
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [],
                 count: 12,
                 view: TABLE,
@@ -54,19 +61,19 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "",
-                    direction: "desc"
+                    direction: DESCENDING_SORT
                 },
                 filters: {}
             }
         });
     });
 
-    it("Should handle CHANGE_DATA_VIEW", () => {
-        const action = changeDataView(RESOURCE, GRID);
+    it("Should handle " + CHANGE_DATA_VIEW, () => {
+        const action = changeDataView(IMAGES_KEY, GRID);
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [],
                 count: 0,
                 view: GRID,
@@ -76,19 +83,19 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "",
-                    direction: "desc"
+                    direction: DESCENDING_SORT
                 },
                 filters: {}
             }
         });
     });
 
-    it("Should handle CHANGE_TABLE_PAGE", () => {
-        const action = changeTablePage(RESOURCE, 1);
+    it("Should handle " + CHANGE_TABLE_PAGE, () => {
+        const action = changeTablePage(IMAGES_KEY, 1);
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [],
                 count: 0,
                 view: TABLE,
@@ -98,19 +105,19 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "",
-                    direction: "desc"
+                    direction: DESCENDING_SORT
                 },
                 filters: {}
             }
         });
     });
 
-    it("Should handle CHANGE_TABLE_LIMIT", () => {
-        const action = changeTableLimit(RESOURCE, 5);
+    it("Should handle " + CHANGE_TABLE_LIMIT, () => {
+        const action = changeTableLimit(IMAGES_KEY, 5);
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [],
                 count: 0,
                 view: TABLE,
@@ -120,19 +127,19 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "",
-                    direction: "desc"
+                    direction: DESCENDING_SORT
                 },
                 filters: {}
             }
         });
     });
 
-    it("Should handle CHANGE_TABLE_SORT", () => {
-        const action = changeTableSort(RESOURCE, "name");
+    it("Should handle " + CHANGE_TABLE_SORT, () => {
+        const action = changeTableSort(IMAGES_KEY, "name");
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [],
                 count: 0,
                 view: TABLE,
@@ -142,19 +149,19 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "name",
-                    direction: "asc"
+                    direction: ASCENDING_SORT
                 },
                 filters: {}
             }
         });
     });
 
-    it("Should handle CHANGE_TABLE_FILTERS", () => {
-        const action = changeTableFilters(RESOURCE, { filterKey: "name", filterValue: "al" });
+    it("Should handle " + CHANGE_TABLE_FILTERS, () => {
+        const action = changeTableFilters(IMAGES_KEY, { filterKey: "name", filterValue: "al" });
 
         expect(reducer(undefined, action)).toEqual({
             ...initialState,
-            [RESOURCE]: {
+            [IMAGES_KEY]: {
                 list: [],
                 count: 0,
                 view: TABLE,
@@ -164,7 +171,7 @@ describe("Table Reducer", () => {
                 },
                 sorting: {
                     field: "",
-                    direction: "desc"
+                    direction: DESCENDING_SORT
                 },
                 filters: {
                     filterKey: "name",
