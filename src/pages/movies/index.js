@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/core";
 import MovieTable from "../../components/movieTable";
-import { MOVIE_CREATE_FORM } from "../../utils/links";
+import { LINK_TO_MOVIE_CREATE_FORM } from "../../utils/links";
 
 const Movie = ({
                    movies, count, pagination, sorting, filters, getMovies, onAdd, removeMovie,
@@ -25,7 +25,7 @@ const Movie = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Link to={MOVIE_CREATE_FORM}>
+                        <Link to={LINK_TO_MOVIE_CREATE_FORM}>
                             <Button
                                 variant={"contained"}
                                 color={"primary"}

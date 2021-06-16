@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Movie from "../../pages/movies";
 import { clearMovieForm } from "../../actions/movieForm";
-import {  getMoviesSaga, removeMovieSaga } from "../../actions/moviesSaga";
+import { getMoviesSaga, removeMovieSaga } from "../../actions/moviesSaga";
 import { changeTableFilters, changeTableLimit, changeTablePage, changeTableSort } from "../../actions/table";
 
 const mapStateToProps = (state) => {

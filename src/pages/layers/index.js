@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import LayersTable from "../../components/layersTable";
-import { LAYER_FORM } from "../../utils/links";
+import { LINK_TO_LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
                     layers, count, pagination, sorting, filters, getLayers, onAdd, onPutDataToForm, removeLayer,
@@ -26,7 +26,7 @@ const Layers = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Link to={LAYER_FORM}>
+                        <Link to={LINK_TO_LAYER_FORM}>
                             <Button
                                 variant={"contained"}
                                 color={"primary"}

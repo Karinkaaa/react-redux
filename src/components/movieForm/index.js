@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Button, Grid, TextField } from "@material-ui/core";
 import { Save, UpdateRounded } from "@material-ui/icons";
-import { MOVIES } from "../../utils/links";
+import { LINK_TO_MOVIES } from "../../utils/links";
 
 const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, onPutDataToForm }) => {
     const { id } = useParams();
@@ -45,7 +45,7 @@ const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, onPutDataToFo
             <Grid item xs={2}>
                 {
                     id ? (
-                        <Link to={MOVIES}>
+                        <Link to={LINK_TO_MOVIES}>
                             <Button
                                 onClick={() => onUpdate(movie)}
                                 color={"primary"}
@@ -56,7 +56,7 @@ const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, onPutDataToFo
                             </Button>
                         </Link>
                     ) : (
-                        <Link to={MOVIES}>
+                        <Link to={LINK_TO_MOVIES}>
                             <Button
                                 onClick={() => onSave(movie)}
                                 color={"primary"}

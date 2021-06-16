@@ -6,7 +6,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import App from "./components/app";
 import store from "./store";
 import { theme } from "./utils/theme";
-import "./server"
+import "./server";
 
 ReactDOM.render(
     <Provider store={store}>

@@ -4,8 +4,8 @@ import {
     clearDragonBoneForm,
     isOpenDragonBoneModal,
     saveDragonBoneSaga,
-    updateDragonBoneSaga,
     updateDragonBoneName,
+    updateDragonBoneSaga,
     updateSkeletonUrl,
     updateTexture,
     updateTextureJson

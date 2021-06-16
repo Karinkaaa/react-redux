@@ -6,8 +6,8 @@ import { theme } from "../../utils/theme";
 import DragDropComponent from "./DragDropComponent";
 
 export default {
-    title: 'DragDrop/DragDropComponent',
-    component: DragDropComponent,
+    title: "DragDrop/DragDropComponent",
+    component: DragDropComponent
 };
 
 const Template = (args) =>
@@ -17,7 +17,7 @@ const Template = (args) =>
                 <DragDropComponent {...args} />
             </Container>
         </BrowserRouter>
-    </MuiThemeProvider>
+    </MuiThemeProvider>;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -28,19 +28,19 @@ Primary.args = {
     items: [
         {
             id: "1",
-            name: "Boos",
+            name: "Boos"
         },
         {
             id: "2",
-            name: "Boos",
+            name: "Boos"
         },
         {
             id: "3",
-            name: "Boos",
+            name: "Boos"
         },
         {
             id: "4",
-            name: "Boos",
+            name: "Boos"
         }
     ]
 };
@@ -52,16 +52,16 @@ Primary2.args = {
     </div>,
     items: [
         {
-            name: "1Boos",
+            name: "1Boos"
         },
         {
-            name: "2Boos",
+            name: "2Boos"
         },
         {
-            name: "3Boos",
+            name: "3Boos"
         },
         {
-            name: "4Boos",
+            name: "4Boos"
         }
     ]
 };
@@ -78,19 +78,19 @@ export const Demo = (args) => {
     const [items, setItems] = useState([
         {
             id: "1",
-            name: "Boos",
+            name: "Boos"
         },
         {
             id: "2",
-            name: "Boos",
+            name: "Boos"
         },
         {
             id: "3",
-            name: "Boos",
+            name: "Boos"
         },
         {
             id: "4",
-            name: "Boos",
+            name: "Boos"
         }
     ]);
     const renderItem = (item) => <div>
@@ -108,5 +108,5 @@ export const Demo = (args) => {
                 </Container>
             </BrowserRouter>
         </MuiThemeProvider>
-    )
-}
+    );
+};

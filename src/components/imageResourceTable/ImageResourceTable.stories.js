@@ -6,20 +6,20 @@ import { theme } from "../../utils/theme";
 export default {
     title: "Images/ImageResourceTable",
     component: ImageResourceTable
-}
+};
 
 const Template = (args) =>
     <ThemeProvider theme={theme}>
         <ImageResourceTable {...args}/>
-    </ThemeProvider>
+    </ThemeProvider>;
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
     images: [],
     sorting: {}
-}
+};
 
-export const WithData = Template.bind({})
+export const WithData = Template.bind({});
 WithData.args = {
     images: [
         {
@@ -79,4 +79,4 @@ WithData.args = {
         }
     ],
     sorting: {}
-}
+};

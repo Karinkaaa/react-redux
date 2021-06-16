@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Grid, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import { MOVIE_UPDATE_FORM } from "../../utils/links";
+import { LINK_TO_MOVIE_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -65,7 +65,7 @@ const MovieRow = ({ id, name, year, rating, onDelete }) => {
             </Grid>
 
             <Grid item xs={1}>
-                <Link to={MOVIE_UPDATE_FORM.replace(":id", id)}>
+                <Link to={LINK_TO_MOVIE_UPDATE_FORM.replace(":id", id)}>
                     <IconButton>
                         <Update className={classes.updateIcon}/>
                     </IconButton>

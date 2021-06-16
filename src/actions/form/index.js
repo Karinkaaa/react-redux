@@ -16,4 +16,4 @@ export const changeFormData = (formKey, key, value) => ({
 export const clearResourceForm = (formKey) => ({
     type: CLEAR_FORM,
     formKey
-})
+});

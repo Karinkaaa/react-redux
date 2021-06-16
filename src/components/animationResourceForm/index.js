@@ -7,7 +7,7 @@ import { removeItemByIndex, saveItemTo } from "../../utils/methods";
 import BlankUrlComponent from "./BlankUrlComponent";
 import AnimationSpeed from "./AnimationSpeed";
 import GridUrls from "./GridUrls";
-import { ANIMATIONS } from "../../utils/links";
+import { LINK_TO_ANIMATIONS } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -90,7 +90,7 @@ const AnimationResourceForm = ({ id, name, speed, urls, onChangeFormData, onSave
                     <BlankUrlComponent onAddImage={onAddImage}/>
 
                     <Grid item xs={2}>
-                        <Link to={ANIMATIONS}>
+                        <Link to={LINK_TO_ANIMATIONS}>
                             <Button
                                 fullWidth
                                 color={"secondary"}
@@ -102,7 +102,7 @@ const AnimationResourceForm = ({ id, name, speed, urls, onChangeFormData, onSave
                     </Grid>
 
                     <Grid item xs={2} className={classes.btn}>
-                        <Link to={ANIMATIONS}>
+                        <Link to={LINK_TO_ANIMATIONS}>
                             <Button
                                 fullWidth
                                 color={"primary"}

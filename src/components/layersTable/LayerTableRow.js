@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Grid, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import { LAYER_FORM } from "../../utils/links";
+import { LINK_TO_LAYER_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -59,7 +59,7 @@ const LayerTableRow = ({ id, name, handleToggle, onPutDataToForm }) => {
             </Grid>
 
             <Grid item xs={1}>
-                <Link to={LAYER_FORM}>
+                <Link to={LINK_TO_LAYER_FORM}>
                     <IconButton
                         data-id={id}
                         onClick={() => onPutDataToForm(id)}

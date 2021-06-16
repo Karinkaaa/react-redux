@@ -13,37 +13,37 @@ import Layers from "../../containers/layerPage";
 import Movies from "../../containers/moviesPage";
 import MovieForm from "../../containers/movieForm";
 import {
-    ANIMATION_FORM,
-    ANIMATIONS,
-    AUDIOS,
-    DRAGON_BONES,
-    DRUMS,
-    IMAGES,
-    LAYER_FORM,
-    LAYERS,
-    MAIN_PAGE,
-    MOVIE_CREATE_FORM,
-    MOVIE_UPDATE_FORM,
-    MOVIES,
-    RULES
+    LINK_TO_ANIMATION_FORM,
+    LINK_TO_ANIMATIONS,
+    LINK_TO_AUDIOS,
+    LINK_TO_DRAGON_BONES,
+    LINK_TO_DRUMS,
+    LINK_TO_IMAGES,
+    LINK_TO_LAYER_FORM,
+    LINK_TO_LAYERS,
+    LINK_TO_MAIN_PAGE,
+    LINK_TO_MOVIE_CREATE_FORM,
+    LINK_TO_MOVIE_UPDATE_FORM,
+    LINK_TO_MOVIES,
+    LINK_TO_RULES
 } from "../../utils/links";
 
 const Routers = () => (
     <main>
         <Switch>
-            <Route exact path={MAIN_PAGE} component={MainPage}/>
-            <Route exact path={IMAGES} component={Images}/>
-            <Route exact path={ANIMATIONS} component={Animations}/>
-            <Route exact path={ANIMATION_FORM} component={AnimationForm}/>
-            <Route exact path={DRAGON_BONES} component={DragonBones}/>
-            <Route exact path={AUDIOS} component={Audio}/>
-            <Route exact path={DRUMS} component={Drums}/>
-            <Route exact path={RULES} component={Rules}/>
-            <Route exact path={LAYERS} component={Layers}/>
-            <Route exact path={LAYER_FORM} component={LayerForm}/>
-            <Route exact path={MOVIES} component={Movies}/>
-            <Route exact path={MOVIE_UPDATE_FORM} component={MovieForm}/>
-            <Route exact path={MOVIE_CREATE_FORM} component={MovieForm}/>
+            <Route exact path={LINK_TO_MAIN_PAGE} component={MainPage}/>
+            <Route exact path={LINK_TO_IMAGES} component={Images}/>
+            <Route exact path={LINK_TO_ANIMATIONS} component={Animations}/>
+            <Route exact path={LINK_TO_ANIMATION_FORM} component={AnimationForm}/>
+            <Route exact path={LINK_TO_DRAGON_BONES} component={DragonBones}/>
+            <Route exact path={LINK_TO_AUDIOS} component={Audio}/>
+            <Route exact path={LINK_TO_DRUMS} component={Drums}/>
+            <Route exact path={LINK_TO_RULES} component={Rules}/>
+            <Route exact path={LINK_TO_LAYERS} component={Layers}/>
+            <Route exact path={LINK_TO_LAYER_FORM} component={LayerForm}/>
+            <Route exact path={LINK_TO_MOVIES} component={Movies}/>
+            <Route exact path={LINK_TO_MOVIE_UPDATE_FORM} component={MovieForm}/>
+            <Route exact path={LINK_TO_MOVIE_CREATE_FORM} component={MovieForm}/>
         </Switch>
     </main>
 );

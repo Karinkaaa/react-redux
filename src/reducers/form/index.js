@@ -34,7 +34,7 @@ const initialState = {
         elements: [],
         selectedId: ""
     }
-}
+};
 
 const ResourceForm = (state = initialState, action) => {
     switch (action.type) {
@@ -44,7 +44,7 @@ const ResourceForm = (state = initialState, action) => {
             return {
                 ...state,
                 [formKey]: formData
-            }
+            };
         }
         case CHANGE_FORM_DATA: {
             const { formKey, key, value } = action;
@@ -55,7 +55,7 @@ const ResourceForm = (state = initialState, action) => {
                     ...state[formKey],
                     [key]: value
                 }
-            }
+            };
         }
         case CLEAR_FORM: {
             const { formKey } = action;
@@ -63,11 +63,11 @@ const ResourceForm = (state = initialState, action) => {
             return {
                 ...state,
                 [formKey]: initialState[formKey]
-            }
+            };
         }
         default:
             return state;
     }
-}
+};
 
 export default ResourceForm;

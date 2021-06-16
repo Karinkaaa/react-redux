@@ -9,8 +9,21 @@ import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
-                         dragonBones, count, view, pagination, sorting, filters, onPutDataToForm, onChangeView, onChangePage,
-                         onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen, getDragonBones, removeDragonBone
+                         dragonBones,
+                         count,
+                         view,
+                         pagination,
+                         sorting,
+                         filters,
+                         onPutDataToForm,
+                         onChangeView,
+                         onChangePage,
+                         onChangeLimit,
+                         onChangeSort,
+                         onChangeFilters,
+                         onChangeIsOpen,
+                         getDragonBones,
+                         removeDragonBone
                      }) => {
     const { page, limit } = pagination;
 

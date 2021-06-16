@@ -7,8 +7,8 @@ import { MuiThemeProvider } from "material-ui";
 import { theme } from "../../utils/theme";
 
 export default {
-    title: 'Example/NavigationMenu',
-    component: NavigationMenu,
+    title: "Example/NavigationMenu",
+    component: NavigationMenu
 };
 
 const Template = (args) =>
@@ -18,7 +18,7 @@ const Template = (args) =>
                 <NavigationMenu {...args} />
             </Container>
         </BrowserRouter>
-    </MuiThemeProvider>
+    </MuiThemeProvider>;
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -26,22 +26,22 @@ Primary.args = {
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         },
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         },
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         },
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         }
     ]
 };
@@ -57,29 +57,29 @@ WithNested.args = {
                 {
                     name: "Images",
                     Icon: () => <CloudDownload/>,
-                    link: "",
+                    link: ""
                 },
                 {
                     name: "Animations",
                     Icon: () => <CloudDownload/>,
-                    link: "",
+                    link: ""
                 }
             ]
         },
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         },
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         },
         {
             name: "Boos",
             Icon: () => <CloudDownload/>,
-            link: "",
+            link: ""
         }
     ]
 };

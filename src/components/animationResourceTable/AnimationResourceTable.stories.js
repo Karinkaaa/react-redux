@@ -6,20 +6,20 @@ import AnimationResourceTable from "./index";
 export default {
     title: "Animations/AnimationResourceTable",
     component: AnimationResourceTable
-}
+};
 
 const Template = (args) =>
     <ThemeProvider theme={theme}>
         <AnimationResourceTable {...args}/>
-    </ThemeProvider>
+    </ThemeProvider>;
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
     animations: [],
     sorting: {}
-}
+};
 
-export const WithData = Template.bind({})
+export const WithData = Template.bind({});
 WithData.args = {
     animations: [
         {
@@ -72,4 +72,4 @@ WithData.args = {
         }
     ],
     sorting: {}
-}
+};

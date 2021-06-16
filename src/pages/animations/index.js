@@ -7,7 +7,7 @@ import SvgComponent from "../../components/svgComponent";
 import AnimationResourceTable from "../../components/animationResourceTable";
 import AnimationResourceCards from "../../components/animationResourceCards";
 import { GRID, TABLE } from "../../utils/constants";
-import { ANIMATION_FORM } from "../../utils/links";
+import { LINK_TO_ANIMATION_FORM } from "../../utils/links";
 
 const Animations = ({
                         animations, count, view, pagination, sorting, filters, getAnimations, onAdd, onPutDataToForm,
@@ -29,7 +29,7 @@ const Animations = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Link to={ANIMATION_FORM}>
+                        <Link to={LINK_TO_ANIMATION_FORM}>
                             <Button
                                 variant={"contained"}
                                 color={"primary"}
