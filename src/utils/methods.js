@@ -43,7 +43,7 @@ export function getIndexOfCondition(list, condition) {
 }
 
 export function saveItemTo(list, item) {
-    const index = list.findIndex((el) => el.id === item.id);
+    const index = typeof item === "object" ? list.findIndex((el) => el.id === item.id) : list.indexOf(item);
     let newList;
 
     if (index === -1) {
