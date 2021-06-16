@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ResizableDraggableLayerElement from "../resizableDraggableLayerElement";
 import SettingsMenu from "./SettingsMenu";
 import ElementsList from "./ElementsList";
-import { LAYERS } from "../../utils/links";
+import { LINK_TO_LAYERS } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -89,7 +89,7 @@ const LayerForm = ({
                     </Grid>
 
                     <Grid item xs={1} className={classes.btn}>
-                        <Link to={LAYERS} className={classes.link}>
+                        <Link to={LINK_TO_LAYERS} className={classes.link}>
                             <Button
                                 fullWidth
                                 size={"large"}
@@ -106,7 +106,7 @@ const LayerForm = ({
                     </Grid>
 
                     <Grid item xs={1} className={classes.btn}>
-                        <Link to={LAYERS}>
+                        <Link to={LINK_TO_LAYERS}>
                             <Button
                                 fullWidth
                                 size={"large"}
