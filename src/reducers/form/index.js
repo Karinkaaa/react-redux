@@ -1,38 +1,52 @@
 import { CHANGE_FORM_DATA, CLEAR_FORM, SET_FORM_DATA } from "../../utils/actionConstants";
+import {
+    ANIMATIONS_KEY,
+    AUDIOS_KEY,
+    DRAGON_BONES_KEY,
+    IMAGES_KEY,
+    LAYERS_KEY,
+    MOVIES_KEY,
+    RULES_KEY
+} from "../../utils/constants";
 
 const initialState = {
-    images: {
+    [IMAGES_KEY]: {
         name: "",
         url: "",
         isOpen: false
     },
-    animations: {
+    [ANIMATIONS_KEY]: {
         name: "",
         urls: [],
         speed: 0
     },
-    dragonBones: {
+    [DRAGON_BONES_KEY]: {
         name: "",
         texture: "",
         textureJson: "",
         skeleton: "",
         isOpen: false
     },
-    audios: {
+    [AUDIOS_KEY]: {
         name: "",
         url: "",
         isOpen: false
     },
-    rules: {
+    [RULES_KEY]: {
         name: "",
         conditions: [],
         cost: 0,
         isOpen: false
     },
-    layers: {
+    [LAYERS_KEY]: {
         name: "",
         elements: [],
         selectedId: ""
+    },
+    [MOVIES_KEY]: {
+        name: "",
+        year: 0,
+        rating: ""
     }
 };
 

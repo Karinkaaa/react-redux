@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_LAYERS_SAGA } from "../../utils/actionSagaConstants";
 import { LAYERS_API } from "../../utils/apiLinks";
+import { LAYERS_KEY } from "../../utils/constants";
+import { GET_LAYERS_SAGA } from "../../utils/actionSagaConstants";
 import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getLayersSaga() {
@@ -17,8 +18,8 @@ export function* getLayersSaga() {
         }
     });
 
-    yield put(setTableData("layers", result.data.layers));
-    yield put(setTotalTableDataCount("layers", result.data.count));
+    yield put(setTableData(LAYERS_KEY, result.data.layers));
+    yield put(setTotalTableDataCount(LAYERS_KEY, result.data.count));
 }
 
 export function* watchGetLayersSaga() {

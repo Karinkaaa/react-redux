@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { REMOVE_IMAGE_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
+import { IMAGES_KEY } from "../../utils/constants";
+import { REMOVE_IMAGE_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { getImagesSaga } from "../../actions/imagesSaga";
 import { changeTablePage } from "../../actions/table";
@@ -14,7 +15,7 @@ export function* removeImageSaga(action) {
 
     yield call(axios.delete, IMAGES_API + "/" + id);
 
-    yield put(changeTablePage("images", pageNumber));
+    yield put(changeTablePage(IMAGES_KEY, pageNumber));
     yield put(getImagesSaga());
 }
 

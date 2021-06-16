@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { REMOVE_RULE_SAGA } from "../../utils/actionSagaConstants";
 import { RULES_API } from "../../utils/apiLinks";
+import { RULES_KEY } from "../../utils/constants";
+import { REMOVE_RULE_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { getRulesSaga } from "../../actions/rulesSaga";
 import { changeTablePage } from "../../actions/table";
@@ -14,7 +15,7 @@ export function* removeRuleSaga(action) {
 
     yield call(axios.delete, RULES_API + "/" + id);
 
-    yield put(changeTablePage("rules", pageNumber));
+    yield put(changeTablePage(RULES_KEY, pageNumber));
     yield put(getRulesSaga());
 }
 

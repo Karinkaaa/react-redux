@@ -1,7 +1,7 @@
 import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { SAVE_IMAGE_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
+import { SAVE_IMAGE_SAGA } from "../../utils/actionSagaConstants";
 import { getImagesSaga } from "../../actions/imagesSaga";
 
 export function* saveImageSaga(action) {

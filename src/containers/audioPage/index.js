@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Audios from "../../pages/audios";
 import { clearAudioForm, isOpenAudioModal } from "../../actions/audioResourceForm";
 import { getAudioByIdSaga, getAudiosSaga, removeAudioSaga } from "../../actions/audiosSaga";
+import { AUDIOS_KEY } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
@@ -26,11 +27,11 @@ const mapDispatchToProps = (dispatch) => {
         getAudios: () => dispatch(getAudiosSaga()),
         onPutDataToForm: (id) => dispatch(getAudioByIdSaga(id)),
         removeAudio: (id) => dispatch(removeAudioSaga(id)),
-        onChangeView: (view) => dispatch(changeDataView("audios", view)),
-        onChangePage: (page) => dispatch(changeTablePage("audios", page)),
-        onChangeLimit: (limit) => dispatch(changeTableLimit("audios", limit)),
-        onChangeSort: (field) => dispatch(changeTableSort("audios", field)),
-        onChangeFilters: (filters) => dispatch(changeTableFilters("audios", filters)),
+        onChangeView: (view) => dispatch(changeDataView(AUDIOS_KEY, view)),
+        onChangePage: (page) => dispatch(changeTablePage(AUDIOS_KEY, page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit(AUDIOS_KEY, limit)),
+        onChangeSort: (field) => dispatch(changeTableSort(AUDIOS_KEY, field)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters(AUDIOS_KEY, filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearAudioForm());
             dispatch(isOpenAudioModal(isOpen));

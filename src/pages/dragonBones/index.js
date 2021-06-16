@@ -6,24 +6,12 @@ import SvgComponent from "../../components/svgComponent";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
 import DragonBonesResourceCards from "../../components/dragonBonesResourceCards";
 import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
-import { GRID, TABLE } from "../../utils/constants";
+import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
-                         dragonBones,
-                         count,
-                         view,
-                         pagination,
-                         sorting,
-                         filters,
-                         onPutDataToForm,
-                         onChangeView,
-                         onChangePage,
-                         onChangeLimit,
-                         onChangeSort,
-                         onChangeFilters,
-                         onChangeIsOpen,
-                         getDragonBones,
-                         removeDragonBone
+                         dragonBones, count, view, pagination, sorting, filters, onPutDataToForm,
+                         onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters,
+                         onChangeIsOpen, getDragonBones, removeDragonBone
                      }) => {
     const { page, limit } = pagination;
 
@@ -142,7 +130,7 @@ DragonBones.propTypes = {
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

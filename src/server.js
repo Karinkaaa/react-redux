@@ -1,6 +1,22 @@
 import faker from "faker";
 import { createServer, Factory, Model, RestSerializer } from "miragejs";
 import { filteringSortingPagingOfArray } from "./utils/methods";
+import {
+    ANIMATION_MODEL,
+    ANIMATIONS_KEY,
+    AUDIO_MODEL,
+    AUDIOS_KEY,
+    DRAGON_BONE_MODEL,
+    DRAGON_BONES_KEY,
+    IMAGE_MODEL,
+    IMAGES_KEY,
+    LAYER_MODEL,
+    LAYERS_KEY,
+    MOVIE_MODEL,
+    MOVIES_KEY,
+    RULE_MODEL,
+    RULES_KEY
+} from "./utils/constants";
 
 const AppSerializer = RestSerializer.extend({
     serialize(response, request) {
@@ -139,60 +155,60 @@ createServer({
     },
     seeds(server) {
         // movieForm
-        server.create("movie");
-        server.create("movie");
-        server.create("movie", { rating: "R-11" });
-        server.createList("movie", 10);
+        server.create(MOVIE_MODEL);
+        server.create(MOVIE_MODEL);
+        server.create(MOVIE_MODEL, { rating: "R-11" });
+        server.createList(MOVIE_MODEL, 10);
 
         // images
-        server.create("image");
-        server.create("image");
-        server.create("image", {
+        server.create(IMAGE_MODEL);
+        server.create(IMAGE_MODEL);
+        server.create(IMAGE_MODEL, {
             url: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
         });
-        server.createList("image", 10);
+        server.createList(IMAGE_MODEL, 10);
 
         // animations
-        server.create("animation");
-        server.create("animation");
-        server.create("animation", {
+        server.create(ANIMATION_MODEL);
+        server.create(ANIMATION_MODEL);
+        server.create(ANIMATION_MODEL, {
             urls: [
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUGY-ErWOw-KCv2ENc2n16VvJejyRKUhx78w&usqp=CAU",
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyZ1etrh0R1kbCGvs5nw3rOLFtcIn7Q54qSg&usqp=CAU"
             ]
         });
-        server.createList("animation", 10);
+        server.createList(ANIMATION_MODEL, 10);
 
         // dragon bones
-        server.create("dragonBone");
-        server.create("dragonBone");
-        server.create("dragonBone");
-        server.create("dragonBone", {
+        server.create(DRAGON_BONE_MODEL);
+        server.create(DRAGON_BONE_MODEL);
+        server.create(DRAGON_BONE_MODEL);
+        server.create(DRAGON_BONE_MODEL, {
             texture: "https://www.w3schools.com/images/colorpicker.gif",
             textureJson: "https://raw.githubusercontent.com/DragonBones/DragonBonesJS/master/Pixi/Demos/resource/bullet_01/bullet_01_ske.json",
             skeleton: "https://raw.githubusercontent.com/DragonBones/DragonBonesJS/master/Pixi/Demos/resource/bullet_01/bullet_01_ske.json"
         });
-        server.createList("dragonBone", 10);
+        server.createList(DRAGON_BONE_MODEL, 10);
 
         // audios
-        server.create("audio");
-        server.create("audio");
-        server.create("audio");
-        server.create("audio", {
+        server.create(AUDIO_MODEL);
+        server.create(AUDIO_MODEL);
+        server.create(AUDIO_MODEL);
+        server.create(AUDIO_MODEL, {
             name: "Tuesday",
             url: "https://static.muzlo.cc/download/31095/Burak-Yeter-Danelle-Sandoval_-_Tuesday-TPaul-Sax-Remix.mp3"
         });
-        server.create("audio", {
+        server.create(AUDIO_MODEL, {
             name: "Gorit",
             url: "http://uzmuzon.net/files/zarubezhnye-pesni/dorofeeva-gorit-diflex-remix.mp3"
         });
-        server.createList("audio", 10);
+        server.createList(AUDIO_MODEL, 10);
 
         // rules
-        server.create("rule");
-        server.create("rule");
-        server.create("rule");
-        server.create("rule", {
+        server.create(RULE_MODEL);
+        server.create(RULE_MODEL);
+        server.create(RULE_MODEL);
+        server.create(RULE_MODEL, {
             name: "One after one",
             cost: 10,
             conditions: [
@@ -210,7 +226,7 @@ createServer({
                 }
             ]
         });
-        server.create("rule", {
+        server.create(RULE_MODEL, {
             name: "Five in a row",
             cost: 15,
             conditions: [
@@ -236,13 +252,13 @@ createServer({
                 }
             ]
         });
-        server.createList("rule", 10);
+        server.createList(RULE_MODEL, 10);
 
         // layers
-        server.create("layer");
-        server.create("layer");
-        server.create("layer");
-        server.create("layer", {
+        server.create(LAYER_MODEL);
+        server.create(LAYER_MODEL);
+        server.create(LAYER_MODEL);
+        server.create(LAYER_MODEL, {
             name: "Main Layer",
             elements: [
                 {
@@ -273,7 +289,7 @@ createServer({
                 }
             ]
         });
-        server.create("layer", {
+        server.create(LAYER_MODEL, {
             name: "Layer",
             elements: [
                 {
@@ -304,19 +320,19 @@ createServer({
                 }
             ]
         });
-        server.createList("layer", 10);
+        server.createList(LAYER_MODEL, 10);
     },
     routes() {
         this.namespace = "api";
         this.timing = 0;
 
-        this.resource("movies");
-        this.resource("images");
-        this.resource("animations");
-        this.resource("dragonBones");
-        this.resource("audios");
-        this.resource("rules");
-        this.resource("layers");
+        this.resource(MOVIES_KEY);
+        this.resource(IMAGES_KEY);
+        this.resource(ANIMATIONS_KEY);
+        this.resource(DRAGON_BONES_KEY);
+        this.resource(AUDIOS_KEY);
+        this.resource(RULES_KEY);
+        this.resource(LAYERS_KEY);
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
     }

@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Images from "../../pages/images";
 import { clearImageForm, isOpenImageModal } from "../../actions/imageResourceForm";
 import { getImageByIdSaga, getImagesSaga, removeImageSaga } from "../../actions/imagesSaga";
+import { IMAGES_KEY } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
@@ -25,11 +26,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getImages: () => dispatch(getImagesSaga()),
         removeImage: (id) => dispatch(removeImageSaga(id)),
-        onChangePage: (page) => dispatch(changeTablePage("images", page)),
-        onChangeLimit: (limit) => dispatch(changeTableLimit("images", limit)),
-        onChangeSort: (field) => dispatch(changeTableSort("images", field)),
-        onChangeView: (view) => dispatch(changeDataView("images", view)),
-        onChangeFilters: (filters) => dispatch(changeTableFilters("images", filters)),
+        onChangePage: (page) => dispatch(changeTablePage(IMAGES_KEY, page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit(IMAGES_KEY, limit)),
+        onChangeSort: (field) => dispatch(changeTableSort(IMAGES_KEY, field)),
+        onChangeView: (view) => dispatch(changeDataView(IMAGES_KEY, view)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters(IMAGES_KEY, filters)),
         onPutDataToForm: (id) => dispatch(getImageByIdSaga(id)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearImageForm());

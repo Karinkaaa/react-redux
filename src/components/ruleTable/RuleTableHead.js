@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, InputBase, TableSortLabel } from "@material-ui/core";
 import { FilterList } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import { ASCENDING_SORT, DESCENDING_SORT } from "../../utils/constants";
 
 const useStyles = makeStyles(theme => ({
     head: {
@@ -145,7 +146,7 @@ const RuleTableHead = ({ sorting, filters, onChangeSort, onChangeFilters }) => {
 RuleTableHead.propTypes = {
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

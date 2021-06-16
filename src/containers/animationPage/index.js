@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Animations from "../../pages/animations";
 import { clearResourceForm } from "../../actions/form";
 import { getAnimationByIdSaga, getAnimationsSaga, removeAnimationSaga } from "../../actions/animationsSaga";
+import { ANIMATIONS_KEY } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
@@ -26,12 +27,12 @@ const mapDispatchToProps = (dispatch) => {
         getAnimations: () => dispatch(getAnimationsSaga()),
         onPutDataToForm: (id) => dispatch(getAnimationByIdSaga(id)),
         onRemoveAnimation: (id) => dispatch(removeAnimationSaga(id)),
-        onAdd: () => dispatch(clearResourceForm("animations")),
-        onChangePage: (page) => dispatch(changeTablePage("animations", page)),
-        onChangeLimit: (limit) => dispatch(changeTableLimit("animations", limit)),
-        onChangeSort: (field) => dispatch(changeTableSort("animations", field)),
-        onChangeView: (view) => dispatch(changeDataView("animations", view)),
-        onChangeFilters: (filters) => dispatch(changeTableFilters("animations", filters))
+        onAdd: () => dispatch(clearResourceForm(ANIMATIONS_KEY)),
+        onChangePage: (page) => dispatch(changeTablePage(ANIMATIONS_KEY, page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit(ANIMATIONS_KEY, limit)),
+        onChangeSort: (field) => dispatch(changeTableSort(ANIMATIONS_KEY, field)),
+        onChangeView: (view) => dispatch(changeDataView(ANIMATIONS_KEY, view)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters(ANIMATIONS_KEY, filters))
     };
 };
 

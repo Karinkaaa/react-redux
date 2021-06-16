@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { REMOVE_AUDIO_SAGA } from "../../utils/actionSagaConstants";
 import { AUDIOS_API } from "../../utils/apiLinks";
+import { AUDIOS_KEY } from "../../utils/constants";
+import { REMOVE_AUDIO_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { getAudiosSaga } from "../../actions/audiosSaga";
 import { stopAudio } from "../../actions/audioPlayer";
@@ -16,7 +17,7 @@ export function* removeAudioSaga(action) {
     yield call(axios.delete, AUDIOS_API + "/" + id);
 
     yield put(stopAudio(audios.find(item => item.id === id).url));
-    yield put(changeTablePage("audios", pageNumber));
+    yield put(changeTablePage(AUDIOS_KEY, pageNumber));
     yield put(getAudiosSaga());
 }
 

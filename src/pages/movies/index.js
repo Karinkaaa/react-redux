@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/core";
 import MovieTable from "../../components/movieTable";
 import { LINK_TO_MOVIE_CREATE_FORM } from "../../utils/links";
+import { ASCENDING_SORT, DESCENDING_SORT } from "../../utils/constants";
 
 const Movie = ({
                    movies, count, pagination, sorting, filters, getMovies, onAdd, removeMovie,
@@ -82,7 +83,7 @@ Movie.propTypes = {
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

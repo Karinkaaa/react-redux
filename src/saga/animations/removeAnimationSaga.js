@@ -1,6 +1,7 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { ANIMATIONS_API } from "../../utils/apiLinks";
+import { ANIMATIONS_KEY } from "../../utils/constants";
 import { REMOVE_ANIMATION_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { getAnimationsSaga } from "../../actions/animationsSaga";
@@ -14,7 +15,7 @@ export function* removeAnimationSaga(action) {
 
     yield call(axios.delete, ANIMATIONS_API + "/" + id);
 
-    yield put(changeTablePage("animations", pageNumber));
+    yield put(changeTablePage(ANIMATIONS_KEY, pageNumber));
     yield put(getAnimationsSaga());
 }
 

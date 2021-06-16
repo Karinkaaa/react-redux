@@ -1,4 +1,15 @@
-import { TABLE } from "../../utils/constants";
+import {
+    ANIMATIONS_KEY,
+    ASCENDING_SORT,
+    AUDIOS_KEY,
+    DESCENDING_SORT,
+    DRAGON_BONES_KEY,
+    IMAGES_KEY,
+    LAYERS_KEY,
+    MOVIES_KEY,
+    RULES_KEY,
+    TABLE
+} from "../../utils/constants";
 import {
     CHANGE_DATA_VIEW,
     CHANGE_TABLE_FILTERS,
@@ -19,19 +30,19 @@ const initialTable = {
     },
     sorting: {
         field: "",
-        direction: "desc"
+        direction: DESCENDING_SORT
     },
     filters: {}
 };
 
 export const initialState = {
-    "images": { ...initialTable },
-    "animations": { ...initialTable },
-    "dragonBones": { ...initialTable },
-    "audios": { ...initialTable },
-    "rules": { ...initialTable },
-    "layers": { ...initialTable },
-    "movies": { ...initialTable }
+    [IMAGES_KEY]: { ...initialTable },
+    [ANIMATIONS_KEY]: { ...initialTable },
+    [DRAGON_BONES_KEY]: { ...initialTable },
+    [AUDIOS_KEY]: { ...initialTable },
+    [RULES_KEY]: { ...initialTable },
+    [LAYERS_KEY]: { ...initialTable },
+    [MOVIES_KEY]: { ...initialTable }
 };
 
 const ResourcePage = (state = initialState, action) => {
@@ -107,7 +118,7 @@ const ResourcePage = (state = initialState, action) => {
                     sorting: {
                         ...state[tableKey].sorting,
                         field,
-                        direction: (state[tableKey].sorting.direction === "asc") ? "desc" : "asc"
+                        direction: (state[tableKey].sorting.direction === ASCENDING_SORT) ? DESCENDING_SORT : ASCENDING_SORT
                     }
                 }
             };

@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Rules from "../../pages/rules";
 import { clearRuleForm, isOpenRuleModal } from "../../actions/ruleForm";
 import { getRuleByIdSaga, getRulesSaga, removeRuleSaga } from "../../actions/rulesSaga";
+import { RULES_KEY } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
@@ -26,11 +27,11 @@ const mapDispatchToProps = (dispatch) => {
         getRules: () => dispatch(getRulesSaga()),
         removeRule: (id) => dispatch(removeRuleSaga(id)),
         onPutDataToForm: (id) => dispatch(getRuleByIdSaga(id)),
-        onChangePage: (page) => dispatch(changeTablePage("rules", page)),
-        onChangeLimit: (limit) => dispatch(changeTableLimit("rules", limit)),
-        onChangeSort: (field) => dispatch(changeTableSort("rules", field)),
-        onChangeView: (view) => dispatch(changeDataView("rules", view)),
-        onChangeFilters: (filters) => dispatch(changeTableFilters("rules", filters)),
+        onChangePage: (page) => dispatch(changeTablePage(RULES_KEY, page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit(RULES_KEY, limit)),
+        onChangeSort: (field) => dispatch(changeTableSort(RULES_KEY, field)),
+        onChangeView: (view) => dispatch(changeDataView(RULES_KEY, view)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters(RULES_KEY, filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearRuleForm());
             dispatch(isOpenRuleModal(isOpen));

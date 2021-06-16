@@ -6,7 +6,7 @@ import SvgComponent from "../../components/svgComponent";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
 import ImageResourceForm from "../../containers/imageResourceForm";
-import { GRID, TABLE } from "../../utils/constants";
+import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
 
 const Images = ({
                     images, count, view, onChangeView, pagination, filters, sorting, getImages, removeImage,
@@ -131,7 +131,7 @@ Images.propTypes = {
     onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

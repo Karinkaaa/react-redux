@@ -6,7 +6,7 @@ import { Add, List, ViewModule } from "@material-ui/icons";
 import SvgComponent from "../../components/svgComponent";
 import AnimationResourceTable from "../../components/animationResourceTable";
 import AnimationResourceCards from "../../components/animationResourceCards";
-import { GRID, TABLE } from "../../utils/constants";
+import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
 import { LINK_TO_ANIMATION_FORM } from "../../utils/links";
 
 const Animations = ({
@@ -136,7 +136,7 @@ Animations.propTypes = {
     onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

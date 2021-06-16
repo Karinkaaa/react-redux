@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_IMAGES_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
+import { IMAGES_KEY } from "../../utils/constants";
+import { GET_IMAGES_SAGA } from "../../utils/actionSagaConstants";
 import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getImagesSaga() {
@@ -17,8 +18,8 @@ export function* getImagesSaga() {
         }
     });
 
-    yield put(setTableData("images", result.data.images));
-    yield put(setTotalTableDataCount("images", result.data.count));
+    yield put(setTableData(IMAGES_KEY, result.data.images));
+    yield put(setTotalTableDataCount(IMAGES_KEY, result.data.count));
 }
 
 export function* watchGetImagesSaga() {

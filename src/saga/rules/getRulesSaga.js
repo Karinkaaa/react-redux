@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_RULES_SAGA } from "../../utils/actionSagaConstants";
 import { RULES_API } from "../../utils/apiLinks";
+import { RULES_KEY } from "../../utils/constants";
+import { GET_RULES_SAGA } from "../../utils/actionSagaConstants";
 import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getRulesSaga() {
@@ -17,8 +18,8 @@ export function* getRulesSaga() {
         }
     });
 
-    yield put(setTableData("rules", result.data.rules));
-    yield put(setTotalTableDataCount("rules", result.data.count));
+    yield put(setTableData(RULES_KEY, result.data.rules));
+    yield put(setTotalTableDataCount(RULES_KEY, result.data.count));
 }
 
 export function* watchGetRulesSaga() {

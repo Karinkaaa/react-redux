@@ -1,6 +1,7 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { MOVIES_API } from "../../utils/apiLinks";
+import { MOVIES_KEY } from "../../utils/constants";
 import { GET_MOVIES_SAGA } from "../../utils/actionSagaConstants";
 import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
@@ -17,8 +18,8 @@ export function* getMoviesSaga() {
         }
     });
 
-    yield put(setTableData("movies", result.data.movies));
-    yield put(setTotalTableDataCount("movies", result.data.count));
+    yield put(setTableData(MOVIES_KEY, result.data.movies));
+    yield put(setTotalTableDataCount(MOVIES_KEY, result.data.count));
 }
 
 export function* watchGetMoviesSaga() {

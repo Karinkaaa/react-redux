@@ -6,7 +6,7 @@ import SvgComponent from "../../components/svgComponent";
 import RuleTable from "../../components/ruleTable";
 import RuleCards from "../../components/ruleCards";
 import RuleForm from "../../containers/ruleForm";
-import { GRID, TABLE } from "../../utils/constants";
+import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
                    rules, count, view, pagination, sorting, filters, getRules, onPutDataToForm, removeRule,
@@ -140,7 +140,7 @@ Rules.propTypes = {
     onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ import SvgComponent from "../../components/svgComponent";
 import AudioResourceCards from "../../components/audioResourceCards";
 import AudioResourceTable from "../../components/audioResourceTable";
 import AudioResourceForm from "../../containers/audioResourceForm";
-import { GRID, TABLE } from "../../utils/constants";
+import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
                     audios, count, view, pagination, sorting, filters, getAudios, onPutDataToForm, removeAudio,
@@ -134,7 +134,7 @@ Audio.propTypes = {
     onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_ANIMATIONS_SAGA } from "../../utils/actionSagaConstants";
 import { ANIMATIONS_API } from "../../utils/apiLinks";
+import { ANIMATIONS_KEY } from "../../utils/constants";
+import { GET_ANIMATIONS_SAGA } from "../../utils/actionSagaConstants";
 import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getAnimationsSaga() {
@@ -17,8 +18,8 @@ export function* getAnimationsSaga() {
         }
     });
 
-    yield put(setTableData("animations", result.data.animations));
-    yield put(setTotalTableDataCount("animations", result.data.count));
+    yield put(setTableData(ANIMATIONS_KEY, result.data.animations));
+    yield put(setTotalTableDataCount(ANIMATIONS_KEY, result.data.count));
 }
 
 export function* watchGetAnimationsSaga() {

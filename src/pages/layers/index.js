@@ -5,6 +5,7 @@ import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/
 import { Add } from "@material-ui/icons";
 import LayersTable from "../../components/layersTable";
 import { LINK_TO_LAYER_FORM } from "../../utils/links";
+import { ASCENDING_SORT, DESCENDING_SORT } from "../../utils/constants";
 
 const Layers = ({
                     layers, count, pagination, sorting, filters, getLayers, onAdd, onPutDataToForm, removeLayer,
@@ -105,7 +106,7 @@ Layers.propTypes = {
     onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     onChangeSort: PropTypes.func.isRequired,

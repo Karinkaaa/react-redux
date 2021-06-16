@@ -1,7 +1,7 @@
 import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { GET_IMAGE_BY_ID_SAGA } from "../../utils/actionSagaConstants";
 import { IMAGES_API } from "../../utils/apiLinks";
+import { GET_IMAGE_BY_ID_SAGA } from "../../utils/actionSagaConstants";
 import { isOpenImageModal, setImageForm } from "../../actions/imageResourceForm";
 
 export function* getImageByIdSaga(action) {

@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MoviesHead from "./MoviesHead";
 import MoviesBody from "./MoviesBody";
+import { ASCENDING_SORT, DESCENDING_SORT } from "../../utils/constants";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -43,7 +44,7 @@ MovieTable.propTypes = {
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

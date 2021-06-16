@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ImageTableHead from "./imageTableHead";
 import ImageTableBody from "./ImageTableBody";
 import ConfirmMenu from "../confirmMenu";
+import { ASCENDING_SORT, DESCENDING_SORT } from "../../utils/constants";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -53,7 +54,7 @@ ImageResourceTable.propTypes = {
     ).isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
-            direction: PropTypes.oneOf(["asc", "desc"]).isRequired
+            direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,

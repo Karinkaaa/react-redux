@@ -1,6 +1,7 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
 import { MOVIES_API } from "../../utils/apiLinks";
+import { MOVIES_KEY } from "../../utils/constants";
 import { REMOVE_MOVIE_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { getMoviesSaga } from "../../actions/moviesSaga";
@@ -14,7 +15,7 @@ export function* removeMovieSaga(action) {
 
     yield call(axios.delete, MOVIES_API + "/" + id);
 
-    yield put(changeTablePage("movies", pageNumber));
+    yield put(changeTablePage(MOVIES_KEY, pageNumber));
     yield put(getMoviesSaga());
 }
 

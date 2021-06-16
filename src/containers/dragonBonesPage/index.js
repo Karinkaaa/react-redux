@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import DragonBones from "../../pages/dragonBones";
 import { clearDragonBoneForm, isOpenDragonBoneModal } from "../../actions/dragonBonesResourceForm";
 import { getDragonBoneByIdSaga, getDragonBonesSaga, removeDragonBoneSaga } from "../../actions/dragonBonesSaga";
+import { DRAGON_BONES_KEY } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
@@ -26,11 +27,11 @@ const mapDispatchToProps = (dispatch) => {
         getDragonBones: () => dispatch(getDragonBonesSaga()),
         onPutDataToForm: (id) => dispatch(getDragonBoneByIdSaga(id)),
         removeDragonBone: (id) => dispatch(removeDragonBoneSaga(id)),
-        onChangePage: (page) => dispatch(changeTablePage("dragonBones", page)),
-        onChangeLimit: (limit) => dispatch(changeTableLimit("dragonBones", limit)),
-        onChangeSort: (field) => dispatch(changeTableSort("dragonBones", field)),
-        onChangeView: (view) => dispatch(changeDataView("dragonBones", view)),
-        onChangeFilters: (filters) => dispatch(changeTableFilters("dragonBones", filters)),
+        onChangePage: (page) => dispatch(changeTablePage(DRAGON_BONES_KEY, page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit(DRAGON_BONES_KEY, limit)),
+        onChangeSort: (field) => dispatch(changeTableSort(DRAGON_BONES_KEY, field)),
+        onChangeView: (view) => dispatch(changeDataView(DRAGON_BONES_KEY, view)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters(DRAGON_BONES_KEY, filters)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearDragonBoneForm());
             dispatch(isOpenDragonBoneModal(isOpen));

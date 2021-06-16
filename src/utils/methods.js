@@ -1,3 +1,5 @@
+import { ASCENDING_SORT } from "./constants";
+
 export const reorderItems = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -73,7 +75,7 @@ export function filteringSortingPagingOfArray(arr, {
     let result = [...arr];
 
     // sorting
-    const directionMultiplier = direction === "asc" ? 1 : -1;
+    const directionMultiplier = direction === ASCENDING_SORT ? 1 : -1;
 
     result.sort(function (a, b) {
         if (a[field] > b[field]) return directionMultiplier;

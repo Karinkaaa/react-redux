@@ -3,6 +3,7 @@ import Movie from "../../pages/movies";
 import { clearMovieForm } from "../../actions/movieForm";
 import { getMoviesSaga, removeMovieSaga } from "../../actions/moviesSaga";
 import { changeTableFilters, changeTableLimit, changeTablePage, changeTableSort } from "../../actions/table";
+import { MOVIES_KEY } from "../../utils/constants";
 
 const mapStateToProps = (state) => {
     return {
@@ -19,10 +20,10 @@ const mapDispatchToProps = (dispatch) => {
         onAdd: () => dispatch(clearMovieForm()),
         getMovies: () => dispatch(getMoviesSaga()),
         removeMovie: (id) => dispatch(removeMovieSaga(id)),
-        onChangePage: (page) => dispatch(changeTablePage("movies", page)),
-        onChangeLimit: (limit) => dispatch(changeTableLimit("movies", limit)),
-        onChangeSort: (field) => dispatch(changeTableSort("movies", field)),
-        onChangeFilters: (filters) => dispatch(changeTableFilters("movies", filters))
+        onChangePage: (page) => dispatch(changeTablePage(MOVIES_KEY, page)),
+        onChangeLimit: (limit) => dispatch(changeTableLimit(MOVIES_KEY, limit)),
+        onChangeSort: (field) => dispatch(changeTableSort(MOVIES_KEY, field)),
+        onChangeFilters: (filters) => dispatch(changeTableFilters(MOVIES_KEY, filters))
     };
 };
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { GET_DRAGON_BONES_SAGA } from "../../utils/actionSagaConstants";
 import { DRAGON_BONES_API } from "../../utils/apiLinks";
+import { DRAGON_BONES_KEY } from "../../utils/constants";
+import { GET_DRAGON_BONES_SAGA } from "../../utils/actionSagaConstants";
 import { setTableData, setTotalTableDataCount } from "../../actions/table";
 
 export function* getDragonBonesSaga() {
@@ -17,8 +18,8 @@ export function* getDragonBonesSaga() {
         }
     });
 
-    yield put(setTableData("dragonBones", result.data.dragonBones));
-    yield put(setTotalTableDataCount("dragonBones", result.data.count));
+    yield put(setTableData(DRAGON_BONES_KEY, result.data.dragonBones));
+    yield put(setTotalTableDataCount(DRAGON_BONES_KEY, result.data.count));
 }
 
 export function* watchGetDragonBonesSaga() {

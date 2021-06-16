@@ -1,7 +1,8 @@
 import axios from "axios";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { REMOVE_LAYER_SAGA } from "../../utils/actionSagaConstants";
 import { LAYERS_API } from "../../utils/apiLinks";
+import { LAYERS_KEY } from "../../utils/constants";
+import { REMOVE_LAYER_SAGA } from "../../utils/actionSagaConstants";
 import { getAvailableCurrentPage } from "../../utils/methods";
 import { getLayersSaga } from "../../actions/layersSaga";
 import { changeTablePage } from "../../actions/table";
@@ -14,7 +15,7 @@ export function* removeLayerSaga(action) {
 
     yield call(axios.delete, LAYERS_API + "/" + id);
 
-    yield put(changeTablePage("layers", pageNumber));
+    yield put(changeTablePage(LAYERS_KEY, pageNumber));
     yield put(getLayersSaga());
 }
 
