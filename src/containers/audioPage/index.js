@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAudios: () => dispatch(getAudiosSaga()),
-        onPutData: (id) => dispatch(getAudioByIdSaga(id)),
+        onPutDataToForm: (id) => dispatch(getAudioByIdSaga(id)),
         removeAudio: (id) => dispatch(removeAudioSaga(id)),
         onChangeView: (view) => dispatch(changeDataView("audios", view)),
         onChangePage: (page) => dispatch(changeTablePage("audios", page)),

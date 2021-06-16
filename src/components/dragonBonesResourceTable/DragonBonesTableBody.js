@@ -10,19 +10,18 @@ const DragonBonesTableBody = ({ dragonBones, setAnchorEl, onPutDataToForm }) => 
     return (
         <Grid item xs={12}>
             {
-                dragonBones
-                    .map(({ id, name, texture, textureJson, skeleton }) =>
-                        <DragonBonesTableRow
-                            key={id}
-                            id={id}
-                            name={name}
-                            texture={texture}
-                            textureJson={textureJson}
-                            skeleton={skeleton}
-                            handleOpen={handleOpen}
-                            handleToggle={handleToggle}
-                        />
-                    )}
+                dragonBones.map(({ id, name, texture, textureJson, skeleton }) =>
+                    <DragonBonesTableRow
+                        key={id}
+                        id={id}
+                        name={name}
+                        texture={texture}
+                        textureJson={textureJson}
+                        skeleton={skeleton}
+                        handleOpen={handleOpen}
+                        handleToggle={handleToggle}
+                    />
+                )}
         </Grid>
     );
 };

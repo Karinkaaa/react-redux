@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
+import SvgComponent from "../../components/svgComponent";
 import RuleTable from "../../components/ruleTable";
 import RuleCards from "../../components/ruleCards";
 import RuleForm from "../../containers/ruleForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Rules = ({
-                   rules, count, view, pagination, sorting, filters, getRules, onPutData, removeRule,
+                   rules, count, view, pagination, sorting, filters, getRules, onPutDataToForm, removeRule,
                    onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen
                }) => {
     const { page, limit } = pagination;
@@ -18,22 +19,6 @@ const Rules = ({
 
     const handleChangeRulesPage = (event, newPage) => onChangePage(newPage);
     const handleChangeRulesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
-
-    const svgComponent = (svgProps) => (
-        <svg {...svgProps}>
-            <defs>
-                <linearGradient id={"gradient1"}>
-                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
-                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
-                </linearGradient>
-            </defs>
-            {
-                React.cloneElement(svgProps.children[0], {
-                    fill: "url(#gradient1)"
-                })
-            }
-        </svg>
-    );
 
     useEffect(() => {
         getRules();
@@ -81,7 +66,7 @@ const Rules = ({
                                         <List
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -91,7 +76,7 @@ const Rules = ({
                                 <RuleCards
                                     rules={rules}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                             :
@@ -101,7 +86,7 @@ const Rules = ({
                                         <ViewModule
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -115,7 +100,7 @@ const Rules = ({
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                     }
@@ -143,7 +128,7 @@ Rules.propTypes = {
     count: PropTypes.number.isRequired,
     getRules: PropTypes.func.isRequired,
     removeRule: PropTypes.func.isRequired,
-    onPutData: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({

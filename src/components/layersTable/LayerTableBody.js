@@ -9,16 +9,15 @@ const LayerTableBody = ({ layers, setAnchorEl, onPutDataToForm }) => {
     return (
         <Grid item xs={12}>
             {
-                layers
-                    .map(({ id, name }) =>
-                        <LayerTableRow
-                            key={id}
-                            id={id}
-                            name={name}
-                            handleToggle={handleToggle}
-                            onPutDataToForm={onPutDataToForm}
-                        />
-                    )}
+                layers.map(({ id, name }) =>
+                    <LayerTableRow
+                        key={id}
+                        id={id}
+                        name={name}
+                        handleToggle={handleToggle}
+                        onPutDataToForm={onPutDataToForm}
+                    />
+                )}
         </Grid>
     );
 };

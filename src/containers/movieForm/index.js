@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         saveMovie: (movie) => dispatch(saveMovieSaga(movie)),
         updateMovie: (id, movie) => dispatch(updateMovieSaga(id, movie)),
-        onPutData: (id) => dispatch(getMovieByIdSaga(id)),
+        onPutDataToForm: (id) => dispatch(getMovieByIdSaga(id)),
         onChangeMovie: (movie) => dispatch(setMovieForm(movie))
     };
 };

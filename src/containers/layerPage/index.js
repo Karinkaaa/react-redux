@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getLayers: () => dispatch(getLayersSaga()),
-        onPutData: (id) => dispatch(getLayerByIdSaga(id)),
+        onPutDataToForm: (id) => dispatch(getLayerByIdSaga(id)),
         removeLayer: (id) => dispatch(removeLayerSaga(id)),
         onAdd: () => dispatch(clearLayerForm()),
         onChangePage: (page) => dispatch(changeTablePage("layers", page)),

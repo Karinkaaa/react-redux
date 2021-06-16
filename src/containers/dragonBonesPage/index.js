@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getDragonBones: () => dispatch(getDragonBonesSaga()),
-        onPutData: (id) => dispatch(getDragonBoneByIdSaga(id)),
+        onPutDataToForm: (id) => dispatch(getDragonBoneByIdSaga(id)),
         removeDragonBone: (id) => dispatch(removeDragonBoneSaga(id)),
         onChangePage: (page) => dispatch(changeTablePage("dragonBones", page)),
         onChangeLimit: (limit) => dispatch(changeTableLimit("dragonBones", limit)),

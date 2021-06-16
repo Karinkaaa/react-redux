@@ -11,18 +11,17 @@ const DragonBonesResourceCards = ({ dragonBones, onDelete, onPutDataToForm }) =>
     return (
         <Grid container spacing={5} style={{ marginTop: 50 }}>
             {
-                dragonBones
-                    .map(({ id, name, texture }) =>
-                        <Grid key={id} item sm={3}>
-                            <DragonBonesCard
-                                id={id}
-                                name={name}
-                                texture={texture}
-                                setAnchorEl={setAnchorEl}
-                                onPutDataToForm={onPutDataToForm}
-                            />
-                        </Grid>
-                    )
+                dragonBones.map(({ id, name, texture }) =>
+                    <Grid key={id} item sm={3}>
+                        <DragonBonesCard
+                            id={id}
+                            name={name}
+                            texture={texture}
+                            setAnchorEl={setAnchorEl}
+                            onPutDataToForm={onPutDataToForm}
+                        />
+                    </Grid>
+                )
             }
             <ConfirmMenu
                 anchorEl={anchorEl}

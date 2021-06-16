@@ -17,17 +17,16 @@ const RuleItemElement = ({ ruleItems, y, conditions, onChangeCondition }) => {
     return (
         <Grid container item spacing={2} className={classes.gridContainerItem}>
             {
-                ruleItems
-                    .map((ruleItem, x) =>
-                        <RuleItem
-                            key={ruleItem.id}
-                            ruleItem={ruleItem}
-                            x={x}
-                            y={y}
-                            conditions={conditions}
-                            onChangeCondition={onChangeCondition}
-                        />
-                    )
+                ruleItems.map((ruleItem, x) =>
+                    <RuleItem
+                        key={ruleItem.id}
+                        ruleItem={ruleItem}
+                        x={x}
+                        y={y}
+                        conditions={conditions}
+                        onChangeCondition={onChangeCondition}
+                    />
+                )
             }
         </Grid>
     );

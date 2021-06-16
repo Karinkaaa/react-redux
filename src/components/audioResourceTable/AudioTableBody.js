@@ -10,17 +10,16 @@ const AudioTableBody = ({ audios, setAnchorEl, onPutDataToForm }) => {
     return (
         <Grid item xs={12}>
             {
-                audios
-                    .map(({ id, name, url }) =>
-                        <AudioTableRow
-                            key={id}
-                            id={id}
-                            name={name}
-                            url={url}
-                            handleOpen={handleOpen}
-                            handleToggle={handleToggle}
-                        />
-                    )}
+                audios.map(({ id, name, url }) =>
+                    <AudioTableRow
+                        key={id}
+                        id={id}
+                        name={name}
+                        url={url}
+                        handleOpen={handleOpen}
+                        handleToggle={handleToggle}
+                    />
+                )}
         </Grid>
     );
 };

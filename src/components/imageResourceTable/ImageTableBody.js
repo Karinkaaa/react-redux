@@ -10,18 +10,17 @@ const ImageTableBody = ({ images, setAnchorEl, onPutDataToForm }) => {
     return (
         <Grid item xs={12}>
             {
-                images
-                    .map(({ id, name, url }) =>
-                        <ImageTableRow
-                            key={id}
-                            id={id}
-                            name={name}
-                            url={url}
-                            handleOpen={handleOpen}
-                            handleToggle={handleToggle}
+                images.map(({ id, name, url }) =>
+                    <ImageTableRow
+                        key={id}
+                        id={id}
+                        name={name}
+                        url={url}
+                        handleOpen={handleOpen}
+                        handleToggle={handleToggle}
 
-                        />
-                    )}
+                    />
+                )}
         </Grid>
     );
 };

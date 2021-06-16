@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
+import SvgComponent from "../../components/svgComponent";
 import ImageResourceCards from "../../components/imageResourceCards";
 import ImageResourceTable from "../../components/imageResourceTable";
 import ImageResourceForm from "../../containers/imageResourceForm";
@@ -9,7 +10,7 @@ import { GRID, TABLE } from "../../utils/constants";
 
 const Images = ({
                     images, count, view, onChangeView, pagination, filters, sorting, getImages, removeImage,
-                    onPutData, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen
+                    onPutDataToForm, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen
                 }) => {
     const { page, limit } = pagination;
 
@@ -22,22 +23,6 @@ const Images = ({
     useEffect(() => {
         getImages();
     }, [pagination, sorting, filters]);
-
-    const svgComponent = (svgProps) => (
-        <svg {...svgProps}>
-            <defs>
-                <linearGradient id={"gradient1"}>
-                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
-                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
-                </linearGradient>
-            </defs>
-            {
-                React.cloneElement(svgProps.children[0], {
-                    fill: "url(#gradient1)"
-                })
-            }
-        </svg>
-    );
 
     return (
         <div>
@@ -81,7 +66,7 @@ const Images = ({
                                         <List
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -91,7 +76,7 @@ const Images = ({
                                 <ImageResourceCards
                                     images={images}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                             :
@@ -101,7 +86,7 @@ const Images = ({
                                         <ViewModule
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -115,7 +100,7 @@ const Images = ({
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                     }
@@ -152,7 +137,7 @@ Images.propTypes = {
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired,
-    onPutData: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired
 };
 

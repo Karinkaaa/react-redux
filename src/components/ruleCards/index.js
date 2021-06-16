@@ -11,19 +11,18 @@ const RuleCards = ({ rules, onDelete, onPutDataToForm }) => {
     return (
         <Grid container spacing={5} style={{ marginTop: 50 }}>
             {
-                rules
-                    .map(({ id, name, cost, conditions }) =>
-                        <Grid key={id} item sm={3}>
-                            <RuleCard
-                                id={id}
-                                name={name}
-                                cost={cost}
-                                conditions={conditions}
-                                setAnchorEl={setAnchorEl}
-                                onPutDataToForm={onPutDataToForm}
-                            />
-                        </Grid>
-                    )
+                rules.map(({ id, name, cost, conditions }) =>
+                    <Grid key={id} item sm={3}>
+                        <RuleCard
+                            id={id}
+                            name={name}
+                            cost={cost}
+                            conditions={conditions}
+                            setAnchorEl={setAnchorEl}
+                            onPutDataToForm={onPutDataToForm}
+                        />
+                    </Grid>
+                )
             }
             <ConfirmMenu
                 anchorEl={anchorEl}

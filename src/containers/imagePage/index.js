@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
         onChangeSort: (field) => dispatch(changeTableSort("images", field)),
         onChangeView: (view) => dispatch(changeDataView("images", view)),
         onChangeFilters: (filters) => dispatch(changeTableFilters("images", filters)),
-        onPutData: (id) => dispatch(getImageByIdSaga(id)),
+        onPutDataToForm: (id) => dispatch(getImageByIdSaga(id)),
         onChangeIsOpen: (isOpen) => {
             dispatch(clearImageForm());
             dispatch(isOpenImageModal(isOpen));

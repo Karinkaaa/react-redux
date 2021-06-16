@@ -11,18 +11,17 @@ const AudioResourceCards = ({ audios, onDelete, onPutDataToForm }) => {
     return (
         <Grid container spacing={5} style={{ marginTop: 50 }}>
             {
-                audios
-                    .map(({ id, name, url }) =>
-                        <Grid key={id} item sm={3}>
-                            <AudioCard
-                                id={id}
-                                name={name}
-                                url={url}
-                                setAnchorEl={setAnchorEl}
-                                onPutDataToForm={onPutDataToForm}
-                            />
-                        </Grid>
-                    )
+                audios.map(({ id, name, url }) =>
+                    <Grid key={id} item sm={3}>
+                        <AudioCard
+                            id={id}
+                            name={name}
+                            url={url}
+                            setAnchorEl={setAnchorEl}
+                            onPutDataToForm={onPutDataToForm}
+                        />
+                    </Grid>
+                )
             }
             <ConfirmMenu
                 anchorEl={anchorEl}

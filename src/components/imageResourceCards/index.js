@@ -11,18 +11,17 @@ const ImageResourceCards = ({ images, onDelete, onPutDataToForm }) => {
     return (
         <Grid container spacing={5} style={{ marginTop: 50 }}>
             {
-                images
-                    .map(({ id, name, url }) =>
-                        <Grid key={id} item sm={3}>
-                            <ImageCard
-                                id={id}
-                                name={name}
-                                url={url}
-                                setAnchorEl={setAnchorEl}
-                                onPutDataToForm={onPutDataToForm}
-                            />
-                        </Grid>
-                    )
+                images.map(({ id, name, url }) =>
+                    <Grid key={id} item sm={3}>
+                        <ImageCard
+                            id={id}
+                            name={name}
+                            url={url}
+                            setAnchorEl={setAnchorEl}
+                            onPutDataToForm={onPutDataToForm}
+                        />
+                    </Grid>
+                )
             }
             <ConfirmMenu
                 anchorEl={anchorEl}

@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
+import SvgComponent from "../../components/svgComponent";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
 import DragonBonesResourceCards from "../../components/dragonBonesResourceCards";
 import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const DragonBones = ({
-                         dragonBones, count, view, pagination, sorting, filters, onPutData, onChangeView, onChangePage,
+                         dragonBones, count, view, pagination, sorting, filters, onPutDataToForm, onChangeView, onChangePage,
                          onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen, getDragonBones, removeDragonBone
                      }) => {
     const { page, limit } = pagination;
@@ -22,22 +23,6 @@ const DragonBones = ({
     useEffect(() => {
         getDragonBones();
     }, [pagination, sorting, filters]);
-
-    const svgComponent = (svgProps) => (
-        <svg {...svgProps}>
-            <defs>
-                <linearGradient id={"gradient1"}>
-                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
-                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
-                </linearGradient>
-            </defs>
-            {
-                React.cloneElement(svgProps.children[0], {
-                    fill: "url(#gradient1)"
-                })
-            }
-        </svg>
-    );
 
     return (
         <div>
@@ -81,7 +66,7 @@ const DragonBones = ({
                                         <List
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -91,7 +76,7 @@ const DragonBones = ({
                                 <DragonBonesResourceCards
                                     dragonBones={dragonBones}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                             :
@@ -101,7 +86,7 @@ const DragonBones = ({
                                         <ViewModule
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -115,7 +100,7 @@ const DragonBones = ({
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                     }
@@ -156,7 +141,7 @@ DragonBones.propTypes = {
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onPutData: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default DragonBones;

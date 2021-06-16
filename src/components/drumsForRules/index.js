@@ -26,16 +26,15 @@ const DrumsForRules = ({ ruleItems, conditions, onChangeCondition }) => {
         <Container maxWidth={"xs"} className={classes.container}>
             <Grid container spacing={2} className={classes.gridContainer}>
                 {
-                    ruleItems
-                        .map((ruleItem, y) =>
-                            <RuleItemElement
-                                key={uuid()}
-                                ruleItems={ruleItem}
-                                y={y}
-                                conditions={conditions}
-                                onChangeCondition={onChangeCondition}
-                            />
-                        )
+                    ruleItems.map((ruleItem, y) =>
+                        <RuleItemElement
+                            key={uuid()}
+                            ruleItems={ruleItem}
+                            y={y}
+                            conditions={conditions}
+                            onChangeCondition={onChangeCondition}
+                        />
+                    )
                 }
             </Grid>
         </Container>

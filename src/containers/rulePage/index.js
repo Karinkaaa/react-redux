@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getRules: () => dispatch(getRulesSaga()),
         removeRule: (id) => dispatch(removeRuleSaga(id)),
-        onPutData: (id) => dispatch(getRuleByIdSaga(id)),
+        onPutDataToForm: (id) => dispatch(getRuleByIdSaga(id)),
         onChangePage: (page) => dispatch(changeTablePage("rules", page)),
         onChangeLimit: (limit) => dispatch(changeTableLimit("rules", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("rules", field)),

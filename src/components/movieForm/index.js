@@ -5,14 +5,14 @@ import { Button, Grid, TextField } from "@material-ui/core";
 import { Save, UpdateRounded } from "@material-ui/icons";
 import { MOVIES } from "../../utils/links";
 
-const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, onPutData }) => {
+const MovieForm = ({ movie, onChangeMovie, saveMovie, updateMovie, onPutDataToForm }) => {
     const { id } = useParams();
 
     const onSave = ({ id, ...movie }) => saveMovie(movie);
     const onUpdate = ({ id, ...movie }) => updateMovie(id, movie);
 
     useEffect(() => {
-        if (id) onPutData(id);
+        if (id) onPutDataToForm(id);
     }, []);
 
     return (
@@ -83,7 +83,7 @@ MovieForm.propTypes = {
     onChangeMovie: PropTypes.func.isRequired,
     saveMovie: PropTypes.func.isRequired,
     updateMovie: PropTypes.func.isRequired,
-    onPutData: PropTypes.func.isRequired
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default MovieForm;

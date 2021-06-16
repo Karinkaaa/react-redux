@@ -7,7 +7,7 @@ import LayersTable from "../../components/layersTable";
 import { LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
-                    layers, count, pagination, sorting, filters, getLayers, onAdd, onPutData, removeLayer,
+                    layers, count, pagination, sorting, filters, getLayers, onAdd, onPutDataToForm, removeLayer,
                     onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                 }) => {
     const { page, limit } = pagination;
@@ -61,7 +61,7 @@ const Layers = ({
                         onChangeSort={onChangeSort}
                         onChangeFilters={onChangeFilters}
                         onDelete={onRemove}
-                        onPutDataToForm={onPutData}
+                        onPutDataToForm={onPutDataToForm}
                     />
                 </Grid>
             </Container>
@@ -96,7 +96,7 @@ Layers.propTypes = {
     getLayers: PropTypes.func.isRequired,
     onAdd: PropTypes.func.isRequired,
     removeLayer: PropTypes.func.isRequired,
-    onPutData: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
         page: PropTypes.number.isRequired,
         limit: PropTypes.number.isRequired

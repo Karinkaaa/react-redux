@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
+import SvgComponent from "../../components/svgComponent";
 import AudioResourceCards from "../../components/audioResourceCards";
 import AudioResourceTable from "../../components/audioResourceTable";
 import AudioResourceForm from "../../containers/audioResourceForm";
 import { GRID, TABLE } from "../../utils/constants";
 
 const Audios = ({
-                    audios, count, view, pagination, sorting, filters, getAudios, onPutData, removeAudio,
+                    audios, count, view, pagination, sorting, filters, getAudios, onPutDataToForm, removeAudio,
                     onChangeIsOpen, onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                 }) => {
     const { page, limit } = pagination;
@@ -18,22 +19,6 @@ const Audios = ({
 
     const handleChangeAudioPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAudioLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
-
-    const svgComponent = (svgProps) => (
-        <svg {...svgProps}>
-            <defs>
-                <linearGradient id={"gradient1"}>
-                    <stop offset={"20%"} stopColor={"cornflowerblue"}/>
-                    <stop offset={"80%"} stopColor={"deepskyblue"}/>
-                </linearGradient>
-            </defs>
-            {
-                React.cloneElement(svgProps.children[0], {
-                    fill: "url(#gradient1)"
-                })
-            }
-        </svg>
-    );
 
     useEffect(() => {
         getAudios();
@@ -81,7 +66,7 @@ const Audios = ({
                                         <List
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -91,7 +76,7 @@ const Audios = ({
                                 <AudioResourceCards
                                     audios={audios}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                             :
@@ -101,7 +86,7 @@ const Audios = ({
                                         <ViewModule
                                             color={"primary"}
                                             fontSize={"large"}
-                                            component={svgComponent}
+                                            component={SvgComponent}
                                         />
                                     </IconButton>
                                 </Grid>
@@ -115,7 +100,7 @@ const Audios = ({
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
                                     onDelete={onRemove}
-                                    onPutDataToForm={onPutData}
+                                    onPutDataToForm={onPutDataToForm}
                                 />
                             </>
                     }
@@ -137,7 +122,7 @@ Audio.propTypes = {
     getAudios: PropTypes.func.isRequired,
     removeAudio: PropTypes.func.isRequired,
     onChangeIsOpen: PropTypes.func.isRequired,
-    onPutData: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
     onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({

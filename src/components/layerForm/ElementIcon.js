@@ -73,7 +73,7 @@ ElementIcon.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            urls: PropTypes.arrayOf(PropTypes.string).isRequired
+            urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
         }).isRequired
     ).isRequired,
     dragonBones: PropTypes.arrayOf(

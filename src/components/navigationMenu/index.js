@@ -6,13 +6,12 @@ import NavigationMenuElement from "./NavigationMenuElement";
 const NavigationMenu = ({ items }) => (
     <List>
         {
-            items
-                .map(item =>
-                    <NavigationMenuElement
-                        key={item.name}
-                        {...item}
-                    />
-                )
+            items.map(item =>
+                <NavigationMenuElement
+                    key={item.name}
+                    {...item}
+                />
+            )
         }
     </List>
 );
