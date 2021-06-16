@@ -78,7 +78,7 @@ const CardStepper = ({ urls }) => {
 };
 
 CardStepper.propTypes = {
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired
+    urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
 export default CardStepper;

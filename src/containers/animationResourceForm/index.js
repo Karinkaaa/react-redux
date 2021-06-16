@@ -1,37 +1,22 @@
 import { connect } from "react-redux";
 import AnimationResourceForm from "../../components/animationResourceForm";
-import {
-    addImageResourceToAnimation,
-    deleteImageFromAnimationForm,
-    dragAndDropInAnimationForm,
-    saveAnimationSaga,
-    updateAnimationName,
-    updateAnimationSaga,
-    updateAnimationSpeed,
-    updateAnimationUrl
-} from "../../actions/animationResourceForm";
+import { changeFormData } from "../../actions/form";
+import { saveAnimationSaga, updateAnimationSaga } from "../../actions/animationsSaga";
 
 const mapStateToProps = (state) => {
     return {
-        id: state.animationForm.id,
-        speed: state.animationForm.speed,
-        name: state.animationForm.name,
-        isValidName: state.animationForm.isValidName,
-        urls: state.animationForm.urls,
-        isValidUrls: state.animationForm.isValidUrls
+        id: state.form.animations.id,
+        name: state.form.animations.name,
+        speed: state.form.animations.speed,
+        urls: state.form.animations.urls
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveAnimation: (animation) => dispatch(saveAnimationSaga(animation)),
-        updateAnimation: (id, animation) => dispatch(updateAnimationSaga(id, animation)),
-        onChangeSpeed: (speed) => dispatch(updateAnimationSpeed(speed)),
-        onChangeName: (name) => dispatch(updateAnimationName(name)),
-        onChangeUrl: (index, url) => dispatch(updateAnimationUrl(index, url)),
-        onDeleteImage: (index) => dispatch(deleteImageFromAnimationForm(index)),
-        onAddImage: (url) => dispatch(addImageResourceToAnimation(url)),
-        onDragAndDrop: (result) => dispatch(dragAndDropInAnimationForm(result))
+        onSaveAnimation: (animation) => dispatch(saveAnimationSaga(animation)),
+        onUpdateAnimation: (id, animation) => dispatch(updateAnimationSaga(id, animation)),
+        onChangeFormData: (key, value) => dispatch(changeFormData("animations", key, value))
     };
 };
 

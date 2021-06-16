@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     }
 });
 
-const GridUrls = ({ urls, isValidUrls, onChangeUrl, onDeleteImage, onDragAndDrop }) => {
+const GridUrls = ({ urls, onChangeUrl, onRemoveImage, onDragAndDrop }) => {
     const classes = useStyles();
 
     return (
@@ -25,9 +25,8 @@ const GridUrls = ({ urls, isValidUrls, onChangeUrl, onDeleteImage, onDragAndDrop
                         key={uuid()}
                         url={url}
                         index={index}
-                        isValidUrls={isValidUrls}
                         onChangeUrl={onChangeUrl}
-                        onDeleteImage={onDeleteImage}
+                        onRemoveImage={onRemoveImage}
                     />
                 )}
                 onDragAndDrop={(e) => onDragAndDrop(e.map(item => item.url))}
@@ -37,10 +36,9 @@ const GridUrls = ({ urls, isValidUrls, onChangeUrl, onDeleteImage, onDragAndDrop
 };
 
 GridUrls.propTypes = {
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    isValidUrls: PropTypes.arrayOf(PropTypes.bool).isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     onChangeUrl: PropTypes.func.isRequired,
-    onDeleteImage: PropTypes.func.isRequired,
+    onRemoveImage: PropTypes.func.isRequired,
     onDragAndDrop: PropTypes.func.isRequired
 };
 

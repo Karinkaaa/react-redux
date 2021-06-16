@@ -85,7 +85,7 @@ const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onPutDataToFor
 AnimationTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     speed: PropTypes.number.isRequired,
     handleToggle: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired

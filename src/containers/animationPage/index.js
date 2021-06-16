@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Animations from "../../pages/animations";
-import { clearAnimationForm } from "../../actions/animationResourceForm";
+import { clearResourceForm } from "../../actions/form";
 import { getAnimationByIdSaga, getAnimationsSaga, removeAnimationSaga } from "../../actions/animationsSaga";
 import {
     changeDataView,
@@ -24,9 +24,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAnimations: () => dispatch(getAnimationsSaga()),
-        onPutData: (id) => dispatch(getAnimationByIdSaga(id)),
-        removeAnimation: (id) => dispatch(removeAnimationSaga(id)),
-        onAdd: () => dispatch(clearAnimationForm()),
+        onPutDataToForm: (id) => dispatch(getAnimationByIdSaga(id)),
+        onRemoveAnimation: (id) => dispatch(removeAnimationSaga(id)),
+        onAdd: () => dispatch(clearResourceForm("animations")),
         onChangePage: (page) => dispatch(changeTablePage("animations", page)),
         onChangeLimit: (limit) => dispatch(changeTableLimit("animations", limit)),
         onChangeSort: (field) => dispatch(changeTableSort("animations", field)),

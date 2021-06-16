@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 const AnimationResourceTable = ({
                                     animations, sorting, filters, onChangeSort, onChangeFilters,
-                                    onDelete, onPutDataToForm
+                                    onRemoveAnimation, onPutDataToForm
                                 }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
@@ -40,7 +40,7 @@ const AnimationResourceTable = ({
             <ConfirmMenu
                 anchorEl={anchorEl}
                 handleClose={handleClose}
-                onAccept={onDelete}
+                onAccept={onRemoveAnimation}
             />
         </Grid>
     );
@@ -51,7 +51,7 @@ AnimationResourceTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            urls: PropTypes.arrayOf(PropTypes.string).isRequired
+            urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
         }).isRequired
     ).isRequired,
     sorting: PropTypes.shape({
@@ -61,7 +61,7 @@ AnimationResourceTable.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onRemoveAnimation: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired
 };

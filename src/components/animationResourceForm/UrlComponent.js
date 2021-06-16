@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     }
 });
 
-const UrlComponent = ({ url, index, isValidUrls, onChangeUrl, onDeleteImage }) => {
+const UrlComponent = ({ url, index, onChangeUrl, onRemoveImage }) => {
     const classes = useStyles();
 
     return (
@@ -36,7 +36,6 @@ const UrlComponent = ({ url, index, isValidUrls, onChangeUrl, onDeleteImage }) =
                     value={url}
                     required
                     fullWidth
-                    error={!isValidUrls[index]}
                     onChange={e => onChangeUrl(e.target.value)}
                 />
             </Grid>
@@ -44,7 +43,7 @@ const UrlComponent = ({ url, index, isValidUrls, onChangeUrl, onDeleteImage }) =
             <Grid item xs={1}>
                 <IconButton
                     className={classes.iconBtn}
-                    onClick={() => onDeleteImage(index)}
+                    onClick={() => onRemoveImage(index)}
                 >
                     <Remove color={"secondary"}/>
                 </IconButton>
@@ -56,9 +55,8 @@ const UrlComponent = ({ url, index, isValidUrls, onChangeUrl, onDeleteImage }) =
 UrlComponent.propTypes = {
     url: PropTypes.string.isRequired,
     index: PropTypes.number,
-    isValidUrls: PropTypes.arrayOf(PropTypes.bool).isRequired,
     onChangeUrl: PropTypes.func.isRequired,
-    onDeleteImage: PropTypes.func.isRequired
+    onRemoveImage: PropTypes.func.isRequired
 };
 
 export default UrlComponent;

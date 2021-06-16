@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Avatar, Grid, IconButton, TextField } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import { isValidImageUrl } from "../../utils/validation";
 
 const useStyles = makeStyles({
     grid: {
@@ -23,9 +22,7 @@ const useStyles = makeStyles({
 
 const BlankUrlComponent = ({ onAddImage }) => {
     const classes = useStyles();
-
     const [url, setUrl] = useState("");
-    const isValidUrl = isValidImageUrl(url);
 
     const handleClickAdd = () => {
         onAddImage(url);
@@ -46,7 +43,6 @@ const BlankUrlComponent = ({ onAddImage }) => {
                     value={url}
                     required
                     fullWidth
-                    error={!isValidUrl}
                     onChange={e => setUrl(e.target.value)}
                 />
             </Grid>
@@ -55,7 +51,6 @@ const BlankUrlComponent = ({ onAddImage }) => {
                 <IconButton
                     className={classes.iconBtn}
                     onClick={handleClickAdd}
-                    disabled={!isValidUrl}
                 >
                     <Add color={"primary"}/>
                 </IconButton>

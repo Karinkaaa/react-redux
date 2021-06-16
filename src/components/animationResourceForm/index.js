@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { removeItemByIndex, saveItemTo } from "../../utils/methods";
+import BlankUrlComponent from "./BlankUrlComponent";
 import AnimationSpeed from "./AnimationSpeed";
 import GridUrls from "./GridUrls";
-import BlankUrlComponent from "./BlankUrlComponent";
 import { ANIMATIONS } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,24 +20,17 @@ const useStyles = makeStyles((theme) => ({
     },
     speed: {
         marginLeft: 50
-    },
-    link: {
-        pointerEvents: ({ isDisabledButtonSave }) => isDisabledButtonSave() ? "none" : "auto"
     }
 }));
 
-const AnimationResourceForm = ({
-                                   id, name, speed, urls, isValidName, isValidUrls,
-                                   onChangeName, onChangeSpeed, onChangeUrl, onAddImage, onDeleteImage,
-                                   saveAnimation, updateAnimation, onDragAndDrop
-                               }) => {
-    const iValidAllTheUrls = isValidUrls.every((isValid) => isValid === true);
-    const isDisabledButtonSave = () => !iValidAllTheUrls || !isValidName || urls.length === 0 || speed === 0;
+const AnimationResourceForm = ({ id, name, speed, urls, onChangeFormData, onSaveAnimation, onUpdateAnimation }) => {
+    const classes = useStyles();
 
-    const classes = useStyles({ isDisabledButtonSave });
-
-    const onSave = (animation) => saveAnimation(animation);
-    const onUpdate = ({ id, ...animation }) => updateAnimation(id, animation);
+    const onChangeSpeed = (value) => onChangeFormData("speed", value);
+    const onChangeUrl = (value) => onChangeFormData("urls", saveItemTo(urls, value));
+    const onAddImage = (value) => onChangeFormData("urls", saveItemTo(urls, value));
+    const onRemoveImage = (index) => onChangeFormData("urls", removeItemByIndex(urls, index));
+    const onDragAndDrop = (result) => onChangeFormData("urls", result);
 
     return (
         <div>
@@ -66,8 +60,7 @@ const AnimationResourceForm = ({
                             value={name}
                             required
                             fullWidth
-                            error={!isValidName}
-                            onChange={e => onChangeName(e.target.value)}
+                            onChange={e => onChangeFormData("name", e.target.value)}
                         />
                     </Grid>
 
@@ -89,9 +82,8 @@ const AnimationResourceForm = ({
                     <GridUrls
                         id={id}
                         urls={urls}
-                        isValidUrls={isValidUrls}
                         onChangeUrl={onChangeUrl}
-                        onDeleteImage={onDeleteImage}
+                        onRemoveImage={onRemoveImage}
                         onDragAndDrop={onDragAndDrop}
                     />
 
@@ -110,16 +102,15 @@ const AnimationResourceForm = ({
                     </Grid>
 
                     <Grid item xs={2} className={classes.btn}>
-                        <Link to={ANIMATIONS} className={classes.link}>
+                        <Link to={ANIMATIONS}>
                             <Button
                                 fullWidth
-                                onClick={() => {
-                                    id ? onUpdate({ id, name, urls, speed })
-                                        : onSave({ name, urls, speed });
-                                }}
-                                disabled={isDisabledButtonSave()}
                                 color={"primary"}
                                 variant={"contained"}
+                                onClick={() => {
+                                    id ? onUpdateAnimation(id, { name, urls, speed })
+                                        : onSaveAnimation({ name, urls, speed });
+                                }}
                             >
                                 {id ? "Update" : "Save"}
                             </Button>
@@ -132,20 +123,13 @@ const AnimationResourceForm = ({
 };
 
 AnimationResourceForm.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     speed: PropTypes.number.isRequired,
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    isValidName: PropTypes.bool.isRequired,
-    isValidUrls: PropTypes.arrayOf(PropTypes.bool).isRequired,
-    onChangeName: PropTypes.func.isRequired,
-    onChangeSpeed: PropTypes.func.isRequired,
-    onChangeUrl: PropTypes.func.isRequired,
-    saveAnimation: PropTypes.func.isRequired,
-    updateAnimation: PropTypes.func.isRequired,
-    onAddImage: PropTypes.func.isRequired,
-    onDeleteImage: PropTypes.func.isRequired,
-    onDragAndDrop: PropTypes.func.isRequired
+    urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    onChangeFormData: PropTypes.func.isRequired,
+    onSaveAnimation: PropTypes.func.isRequired,
+    onUpdateAnimation: PropTypes.func.isRequired
 };
 
 export default AnimationResourceForm;

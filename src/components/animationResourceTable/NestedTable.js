@@ -19,7 +19,7 @@ const NestedTable = ({ urls, open }) => (
 );
 
 NestedTable.propTypes = {
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     open: PropTypes.bool.isRequired
 };
 

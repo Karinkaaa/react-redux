@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AnimationCard = ({ id, name, urls, speed, setAnchorEl, onPutDataToForm }) => {
+const AnimationCard = ({ id, name, urls, setAnchorEl, onPutDataToForm }) => {
     const classes = useStyles();
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
@@ -47,7 +47,7 @@ const AnimationCard = ({ id, name, urls, speed, setAnchorEl, onPutDataToForm }) 
                 <Link to={ANIMATION_FORM}>
                     <IconButton
                         data-id={id}
-                        onClick={() => onPutDataToForm({ id, name, urls, speed })}
+                        onClick={() => onPutDataToForm(id)}
                     >
                         <Update className={classes.updateIcon}/>
                     </IconButton>
@@ -67,8 +67,7 @@ const AnimationCard = ({ id, name, urls, speed, setAnchorEl, onPutDataToForm }) 
 AnimationCard.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    urls: PropTypes.arrayOf(PropTypes.string).isRequired,
-    speed: PropTypes.number.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     setAnchorEl: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired
 };
