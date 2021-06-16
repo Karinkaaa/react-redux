@@ -1,5 +1,5 @@
 import reducer, { initialState } from "./index";
-import { GRID, IMAGES_KEY, TABLE } from "../../utils/constants";
+import { ASCENDING_SORT, DESCENDING_SORT, GRID, IMAGES_KEY, TABLE } from "../../utils/constants";
 import {
     changeDataView,
     changeTableFilters,
