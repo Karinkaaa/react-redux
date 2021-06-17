@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { removeItemByIndex, saveItemTo } from "../../utils/methods";
@@ -23,14 +23,22 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AnimationResourceForm = ({ id, name, speed, urls, onChangeFormData, onSaveAnimation, onUpdateAnimation }) => {
+const AnimationResourceForm = ({
+                                   name, speed, urls, onSaveAnimation, onUpdateAnimation,
+                                   onPutDataToForm, onChangeFormData
+                               }) => {
     const classes = useStyles();
+    const { id } = useParams();
 
     const onChangeSpeed = (value) => onChangeFormData("speed", value);
     const onChangeUrl = (value, index) => onChangeFormData("urls", saveItemTo(urls, value, index));
     const onAddImage = (value) => onChangeFormData("urls", saveItemTo(urls, value, -1));
     const onRemoveImage = (index) => onChangeFormData("urls", removeItemByIndex(urls, index));
     const onDragAndDrop = (result) => onChangeFormData("urls", result);
+
+    useEffect(() => {
+        if (id) onPutDataToForm(id);
+    }, []);
 
     return (
         <div>
@@ -123,11 +131,11 @@ const AnimationResourceForm = ({ id, name, speed, urls, onChangeFormData, onSave
 };
 
 AnimationResourceForm.propTypes = {
-    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     speed: PropTypes.number.isRequired,
     urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     onChangeFormData: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     onSaveAnimation: PropTypes.func.isRequired,
     onUpdateAnimation: PropTypes.func.isRequired
 };

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { LINK_TO_DRAGON_BONES } from "../../utils/links";
@@ -17,10 +17,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ImageResourceForm = ({
-                               id, name, texture, textureJson, skeleton,
-                               onSaveDragonBone, onUpdateDragonBone, onChangeFormData
+                               name, texture, textureJson, skeleton, onSaveDragonBone, onUpdateDragonBone,
+                               onPutDataToForm, onChangeFormData
                            }) => {
     const classes = useStyles();
+    const { id } = useParams();
+
+    useEffect(() => {
+        if (id) onPutDataToForm(id);
+    }, []);
 
     return (
         <div>
@@ -124,13 +129,13 @@ const ImageResourceForm = ({
 };
 
 ImageResourceForm.propTypes = {
-    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     texture: PropTypes.string.isRequired,
     textureJson: PropTypes.string.isRequired,
     skeleton: PropTypes.string.isRequired,
     onSaveDragonBone: PropTypes.func.isRequired,
     onUpdateDragonBone: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     onChangeFormData: PropTypes.func.isRequired
 };
 

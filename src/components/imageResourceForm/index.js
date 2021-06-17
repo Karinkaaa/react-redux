@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { LINK_TO_IMAGES } from "../../utils/links";
@@ -16,8 +16,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ImageResourceForm = ({ id, name, url, onSaveImage, onUpdateImage, onChangeFormData }) => {
+const ImageResourceForm = ({ name, url, onSaveImage, onUpdateImage, onPutDataToForm, onChangeFormData }) => {
     const classes = useStyles();
+    const { id } = useParams();
+
+    useEffect(() => {
+        if (id) onPutDataToForm(id);
+    }, []);
 
     return (
         <div>
@@ -97,11 +102,11 @@ const ImageResourceForm = ({ id, name, url, onSaveImage, onUpdateImage, onChange
 };
 
 ImageResourceForm.propTypes = {
-    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     onSaveImage: PropTypes.func.isRequired,
     onUpdateImage: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     onChangeFormData: PropTypes.func.isRequired
 };
 
