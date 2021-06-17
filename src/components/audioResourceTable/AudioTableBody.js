@@ -4,7 +4,6 @@ import { Grid } from "@material-ui/core";
 import AudioTableRow from "./AudioTableRow";
 
 const AudioTableBody = ({ audios, setAnchorEl, onPutDataToForm }) => {
-    const handleOpen = (id) => onPutDataToForm(id);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -16,8 +15,8 @@ const AudioTableBody = ({ audios, setAnchorEl, onPutDataToForm }) => {
                         id={id}
                         name={name}
                         url={url}
-                        handleOpen={handleOpen}
                         handleToggle={handleToggle}
+                        onPutDataToForm={onPutDataToForm}
                     />
                 )}
         </Grid>

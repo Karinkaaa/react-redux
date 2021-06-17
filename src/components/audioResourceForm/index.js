@@ -1,48 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Backdrop, Button, Fade, Grid, Modal, TextField } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { LINK_TO_AUDIOS } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
     paper: {
-        position: "absolute",
-        width: 500,
         background: "lightblue",
-        border: "3px solid #1e88e5",
-        boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 8),
-        borderRadius: "3px"
+        borderRadius: "5px"
+    },
+    btn: {
+        marginInlineStart: "auto"
     }
 }));
 
-const AudioResourceForm = ({
-                               id, name, isValidName, url, isValidUrl, isOpen,
-                               saveAudio, updateAudio, onChangeName, onChangeUrl, onChangeIsOpen
-                           }) => {
+const AudioResourceForm = ({ id, name, url, onSaveAudio, onUpdateAudio, onChangeFormData }) => {
     const classes = useStyles();
 
-    const onSave = (audio) => saveAudio(audio);
-    const onUpdate = ({ id, ...audio }) => updateAudio(id, audio);
-
-    const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !isValidUrl || !isValidName;
-
     return (
-        <Modal
-            className={classes.modal}
-            open={isOpen}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{ timeout: 500 }}
-        >
-            <Fade in={isOpen}>
-                <Grid container spacing={3} className={classes.paper}>
+        <div>
+            <Toolbar/>
+            <Container className={classes.paper}>
+                <Grid container spacing={3}>
                     {
                         id && (
                             <Grid item xs={12}>
@@ -66,8 +47,7 @@ const AudioResourceForm = ({
                             value={name}
                             required
                             fullWidth
-                            error={!isValidName}
-                            onChange={e => onChangeName(e.target.value)}
+                            onChange={e => onChangeFormData("name", e.target.value)}
                         />
                     </Grid>
 
@@ -79,54 +59,50 @@ const AudioResourceForm = ({
                             value={url}
                             required
                             fullWidth
-                            error={!isValidUrl}
-                            onChange={e => onChangeUrl(e.target.value)}
+                            onChange={e => onChangeFormData("url", e.target.value)}
                         />
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <Button
-                            fullWidth
-                            onClick={handleClose}
-                            color={"secondary"}
-                            variant={"contained"}
-                        >
-                            Cancel
-                        </Button>
+                    <Grid item xs={2}>
+                        <Link to={LINK_TO_AUDIOS}>
+                            <Button
+                                fullWidth
+                                color={"secondary"}
+                                variant={"contained"}
+                            >
+                                Cancel
+                            </Button>
+                        </Link>
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <Button
-                            fullWidth
-                            onClick={() => {
-                                id ? onUpdate({ id, name, url }) : onSave({ name, url });
-                                handleClose();
-                            }}
-                            disabled={isDisabledButtonSave()}
-                            color={"primary"}
-                            variant={"contained"}
-                        >
-                            {id ? "Update" : "Save"}
-                        </Button>
+                    <Grid item xs={2} className={classes.btn}>
+                        <Link to={LINK_TO_AUDIOS}>
+                            <Button
+                                fullWidth
+                                color={"primary"}
+                                variant={"contained"}
+                                onClick={() => {
+                                    id ? onUpdateAudio(id, { name, url })
+                                        : onSaveAudio({ name, url });
+                                }}
+                            >
+                                {id ? "Update" : "Save"}
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
-            </Fade>
-        </Modal>
+            </Container>
+        </div>
     );
 };
 
 AudioResourceForm.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     name: PropTypes.string.isRequired,
-    isValidName: PropTypes.bool.isRequired,
     url: PropTypes.string.isRequired,
-    isValidUrl: PropTypes.bool.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    saveAudio: PropTypes.func.isRequired,
-    updateAudio: PropTypes.func.isRequired,
-    onChangeName: PropTypes.func.isRequired,
-    onChangeUrl: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired
+    onSaveAudio: PropTypes.func.isRequired,
+    onUpdateAudio: PropTypes.func.isRequired,
+    onChangeFormData: PropTypes.func.isRequired
 };
 
 export default AudioResourceForm;

@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
 import SvgComponent from "../../components/svgComponent";
 import AudioResourceCards from "../../components/audioResourceCards";
 import AudioResourceTable from "../../components/audioResourceTable";
-import AudioResourceForm from "../../containers/audioResourceForm";
 import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
+import { LINK_TO_AUDIOS_CREATE_FORM } from "../../utils/links";
 
 const Audios = ({
-                    audios, count, view, pagination, sorting, filters, getAudios, onPutDataToForm, removeAudio,
-                    onChangeIsOpen, onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters
+                    audios, count, view, pagination, sorting, filters, getAudios, onPutDataToForm, onRemoveAudio, onAdd,
+                    onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                 }) => {
     const { page, limit } = pagination;
 
-    const onRemove = (id) => removeAudio(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
-
     const handleChangeAudioPage = (event, newPage) => onChangePage(newPage);
     const handleChangeAudioLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -30,15 +29,17 @@ const Audios = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Button
-                            variant={"contained"}
-                            color={"primary"}
-                            size={"large"}
-                            startIcon={<Add/>}
-                            onClick={() => onChangeIsOpen(true)}
-                        >
-                            Add audio resource
-                        </Button>
+                        <Link to={LINK_TO_AUDIOS_CREATE_FORM}>
+                            <Button
+                                variant={"contained"}
+                                color={"primary"}
+                                size={"large"}
+                                startIcon={<Add/>}
+                                onClick={onAdd}
+                            >
+                                Add audio resource
+                            </Button>
+                        </Link>
                     </Grid>
 
                     <Grid item xs={5}>
@@ -71,11 +72,9 @@ const Audios = ({
                                     </IconButton>
                                 </Grid>
 
-                                <AudioResourceForm/>
-
                                 <AudioResourceCards
                                     audios={audios}
-                                    onDelete={onRemove}
+                                    onRemoveAudio={onRemoveAudio}
                                     onPutDataToForm={onPutDataToForm}
                                 />
                             </>
@@ -91,15 +90,13 @@ const Audios = ({
                                     </IconButton>
                                 </Grid>
 
-                                <AudioResourceForm/>
-
                                 <AudioResourceTable
                                     audios={audios}
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
-                                    onDelete={onRemove}
+                                    onRemoveAudio={onRemoveAudio}
                                     onPutDataToForm={onPutDataToForm}
                                 />
                             </>
@@ -119,24 +116,25 @@ Audio.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
-    getAudios: PropTypes.func.isRequired,
-    removeAudio: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
-    onPutDataToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
+    filters: PropTypes.func.isRequired,
+    getAudios: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onRemoveAudio: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired
 };

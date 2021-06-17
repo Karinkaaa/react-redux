@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Card, CardActionArea, CardActions, CardContent, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import AudioPlayButton from "../audioPlayer";
+import { LINK_TO_AUDIOS_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 
 const AudioCard = ({ id, name, url, setAnchorEl, onPutDataToForm }) => {
     const classes = useStyles();
-    const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
         <Card className={classes.root}>
@@ -38,16 +39,18 @@ const AudioCard = ({ id, name, url, setAnchorEl, onPutDataToForm }) => {
             <CardActions className={classes.action}>
                 <AudioPlayButton url={url}/>
 
-                <IconButton
-                    data-id={id}
-                    onClick={() => onPutDataToForm(id)}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={LINK_TO_AUDIOS_UPDATE_FORM.replace(":id", id)}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onPutDataToForm(id)}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
 
                 <IconButton
                     data-id={id}
-                    onClick={handleToggle}
+                    onClick={(e) => setAnchorEl(e.currentTarget)}
                 >
                     <Delete className={classes.deleteIcon}/>
                 </IconButton>

@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AudioResourceTable = ({ audios, sorting, filters, onChangeSort, onChangeFilters, onDelete, onPutDataToForm }) => {
+const AudioResourceTable = ({
+                                audios, sorting, filters, onChangeSort, onChangeFilters, onRemoveAudio, onPutDataToForm
+                            }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -38,7 +40,7 @@ const AudioResourceTable = ({ audios, sorting, filters, onChangeSort, onChangeFi
             <ConfirmMenu
                 anchorEl={anchorEl}
                 handleClose={handleClose}
-                onAccept={onDelete}
+                onAccept={onRemoveAudio}
             />
         </Grid>
     );
@@ -60,7 +62,7 @@ AudioResourceTable.propTypes = {
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onRemoveAudio: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired
 };
 

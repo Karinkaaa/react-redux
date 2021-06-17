@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Grid, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import AudioPlayButton from "../audioPlayer";
+import { LINK_TO_AUDIOS_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -34,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AudioTableRow = ({ id, name, url, handleOpen, handleToggle }) => {
+const AudioTableRow = ({ id, name, url, handleToggle, onPutDataToForm }) => {
     const classes = useStyles();
 
     return (
@@ -62,12 +64,14 @@ const AudioTableRow = ({ id, name, url, handleOpen, handleToggle }) => {
             </Grid>
 
             <Grid item xs={1}>
-                <IconButton
-                    data-id={id}
-                    onClick={() => handleOpen(id)}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={LINK_TO_AUDIOS_UPDATE_FORM.replace(":id", id)}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onPutDataToForm(id)}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
             </Grid>
 
             <Grid item xs={1}>
@@ -87,8 +91,8 @@ AudioTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    handleOpen: PropTypes.func.isRequired,
-    handleToggle: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default AudioTableRow;

@@ -8,6 +8,7 @@ import AnimationForm from "../../containers/animationResourceForm";
 import DragonBones from "../../containers/dragonBonesPage";
 import DragonBoneForm from "../../containers/dragonBoneResourceForm";
 import Audio from "../../containers/audioPage";
+import AudioForm from "../../containers/audioResourceForm";
 import Drums from "../../pages/drums";
 import Rules from "../../containers/rulePage";
 import LayerForm from "../../containers/layerForm";
@@ -19,6 +20,8 @@ import {
     LINK_TO_ANIMATION_UPDATE_FORM,
     LINK_TO_ANIMATIONS,
     LINK_TO_AUDIOS,
+    LINK_TO_AUDIOS_CREATE_FORM,
+    LINK_TO_AUDIOS_UPDATE_FORM,
     LINK_TO_DRAGON_BONE_CREATE_FORM,
     LINK_TO_DRAGON_BONE_UPDATE_FORM,
     LINK_TO_DRAGON_BONES,
@@ -49,6 +52,8 @@ const Routers = () => (
             <Route exact path={LINK_TO_DRAGON_BONE_CREATE_FORM} component={DragonBoneForm}/>
             <Route exact path={LINK_TO_DRAGON_BONE_UPDATE_FORM} component={DragonBoneForm}/>
             <Route exact path={LINK_TO_AUDIOS} component={Audio}/>
+            <Route exact path={LINK_TO_AUDIOS_CREATE_FORM} component={AudioForm}/>
+            <Route exact path={LINK_TO_AUDIOS_UPDATE_FORM} component={AudioForm}/>
             <Route exact path={LINK_TO_DRUMS} component={Drums}/>
             <Route exact path={LINK_TO_RULES} component={Rules}/>
             <Route exact path={LINK_TO_LAYERS} component={Layers}/>

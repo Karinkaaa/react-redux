@@ -1,31 +1,22 @@
 import { connect } from "react-redux";
 import AudioResourceForm from "../../components/audioResourceForm";
-import {
-    isOpenAudioModal,
-    saveAudioSaga,
-    updateAudioName,
-    updateAudioSaga,
-    updateAudioUrl
-} from "../../actions/audioResourceForm";
+import { saveAudioSaga, updateAudioSaga } from "../../actions/audiosSaga";
+import { changeFormData } from "../../actions/form";
+import { AUDIOS_KEY } from "../../utils/constants";
 
 const mapStateToProps = (state) => {
     return {
-        id: state.audioForm.id,
-        name: state.audioForm.name,
-        isValidName: state.audioForm.isValidName,
-        url: state.audioForm.url,
-        isValidUrl: state.audioForm.isValidUrl,
-        isOpen: state.audioForm.isOpen
+        id: state.form.audios.id,
+        name: state.form.audios.name,
+        url: state.form.audios.url
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveAudio: (audio) => dispatch(saveAudioSaga(audio)),
-        updateAudio: (id, audio) => dispatch(updateAudioSaga(id, audio)),
-        onChangeName: (name) => dispatch(updateAudioName(name)),
-        onChangeUrl: (url) => dispatch(updateAudioUrl(url)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenAudioModal(isOpen))
+        onSaveAudio: (audio) => dispatch(saveAudioSaga(audio)),
+        onUpdateAudio: (id, audio) => dispatch(updateAudioSaga(id, audio)),
+        onChangeFormData: (key, value) => dispatch(changeFormData(AUDIOS_KEY, key, value))
     };
 };
 
