@@ -11,6 +11,7 @@ import Audio from "../../containers/audioPage";
 import AudioForm from "../../containers/audioResourceForm";
 import Drums from "../../pages/drums";
 import Rules from "../../containers/rulePage";
+import RuleForm from "../../containers/ruleForm";
 import LayerForm from "../../containers/layerForm";
 import Layers from "../../containers/layerPage";
 import Movies from "../../containers/moviesPage";
@@ -35,7 +36,9 @@ import {
     LINK_TO_MOVIE_CREATE_FORM,
     LINK_TO_MOVIE_UPDATE_FORM,
     LINK_TO_MOVIES,
-    LINK_TO_RULES
+    LINK_TO_RULES,
+    LINK_TO_RULES_CREATE_FORM,
+    LINK_TO_RULES_UPDATE_FORM
 } from "../../utils/links";
 
 const Routers = () => (
@@ -56,6 +59,8 @@ const Routers = () => (
             <Route exact path={LINK_TO_AUDIOS_UPDATE_FORM} component={AudioForm}/>
             <Route exact path={LINK_TO_DRUMS} component={Drums}/>
             <Route exact path={LINK_TO_RULES} component={Rules}/>
+            <Route exact path={LINK_TO_RULES_CREATE_FORM} component={RuleForm}/>
+            <Route exact path={LINK_TO_RULES_UPDATE_FORM} component={RuleForm}/>
             <Route exact path={LINK_TO_LAYERS} component={Layers}/>
             <Route exact path={LINK_TO_LAYER_FORM} component={LayerForm}/>
             <Route exact path={LINK_TO_MOVIES} component={Movies}/>

@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const RuleTable = ({ rules, sorting, filters, onChangeSort, onChangeFilters, onDelete, onPutDataToForm }) => {
+const RuleTable = ({ rules, sorting, filters, onChangeSort, onChangeFilters, onRemoveRule, onPutDataToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -38,7 +38,7 @@ const RuleTable = ({ rules, sorting, filters, onChangeSort, onChangeFilters, onD
             <ConfirmMenu
                 anchorEl={anchorEl}
                 handleClose={handleClose}
-                onAccept={onDelete}
+                onAccept={onRemoveRule}
             />
         </Grid>
     );
@@ -66,7 +66,7 @@ RuleTable.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onRemoveRule: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired
 };

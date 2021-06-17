@@ -4,7 +4,6 @@ import { Grid } from "@material-ui/core";
 import RuleTableRow from "./RuleTableRow";
 
 const RuleTableBody = ({ rules, setAnchorEl, onPutDataToForm }) => {
-    const handleOpen = (id) => onPutDataToForm(id);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -17,8 +16,8 @@ const RuleTableBody = ({ rules, setAnchorEl, onPutDataToForm }) => {
                         name={name}
                         cost={cost}
                         conditions={conditions}
-                        handleOpen={handleOpen}
                         handleToggle={handleToggle}
+                        onPutDataToForm={onPutDataToForm}
                     />
                 )
             }

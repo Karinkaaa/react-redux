@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
 import SvgComponent from "../../components/svgComponent";
 import RuleTable from "../../components/ruleTable";
 import RuleCards from "../../components/ruleCards";
-import RuleForm from "../../containers/ruleForm";
 import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
+import { LINK_TO_RULES_CREATE_FORM } from "../../utils/links";
 
 const Rules = ({
-                   rules, count, view, pagination, sorting, filters, getRules, onPutDataToForm, removeRule,
-                   onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters, onChangeIsOpen
+                   rules, count, view, pagination, sorting, filters, getRules, onPutDataToForm, onRemoveRule, onAdd,
+                   onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                }) => {
     const { page, limit } = pagination;
 
-    const onRemove = (id) => removeRule(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
-
     const handleChangeRulesPage = (event, newPage) => onChangePage(newPage);
     const handleChangeRulesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -30,15 +29,17 @@ const Rules = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Button
-                            variant={"contained"}
-                            color={"primary"}
-                            size={"large"}
-                            startIcon={<Add/>}
-                            onClick={() => onChangeIsOpen(true)}
-                        >
-                            Add rule
-                        </Button>
+                        <Link to={LINK_TO_RULES_CREATE_FORM}>
+                            <Button
+                                variant={"contained"}
+                                color={"primary"}
+                                size={"large"}
+                                startIcon={<Add/>}
+                                onClick={onAdd}
+                            >
+                                Add rule
+                            </Button>
+                        </Link>
                     </Grid>
 
                     <Grid item xs={5}>
@@ -71,11 +72,9 @@ const Rules = ({
                                     </IconButton>
                                 </Grid>
 
-                                <RuleForm/>
-
                                 <RuleCards
                                     rules={rules}
-                                    onDelete={onRemove}
+                                    onRemoveRule={onRemoveRule}
                                     onPutDataToForm={onPutDataToForm}
                                 />
                             </>
@@ -91,15 +90,13 @@ const Rules = ({
                                     </IconButton>
                                 </Grid>
 
-                                <RuleForm/>
-
                                 <RuleTable
                                     rules={rules}
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
-                                    onDelete={onRemove}
+                                    onRemoveRule={onRemoveRule}
                                     onPutDataToForm={onPutDataToForm}
                                 />
                             </>
@@ -126,27 +123,27 @@ Rules.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
-    getRules: PropTypes.func.isRequired,
-    removeRule: PropTypes.func.isRequired,
-    onPutDataToForm: PropTypes.func.isRequired,
     view: PropTypes.string.isRequired,
-    onChangeView: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
             page: PropTypes.number.isRequired,
             limit: PropTypes.number.isRequired
         }
     ).isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
-    onChangeSort: PropTypes.func.isRequired,
     filters: PropTypes.object.isRequired,
-    onChangeFilters: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired
+    getRules: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onRemoveRule: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default Rules;

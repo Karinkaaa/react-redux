@@ -1,49 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Backdrop, Button, Fade, Grid, Modal, TextField } from "@material-ui/core";
+import { Link, useParams } from "react-router-dom";
+import { Button, Container, Grid, TextField, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DrumsForRules from "../drumsForRules";
+import { saveItemTo } from "../../utils/methods";
+import { LINK_TO_RULES } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
     paper: {
-        position: "absolute",
-        width: 600,
         background: "lightblue",
-        border: "3px solid #1e88e5",
-        boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 8),
-        borderRadius: "3px"
+        borderRadius: "5px"
+    },
+    btn: {
+        marginInlineStart: "auto"
     }
 }));
 
-const RuleForm = ({
-                      id, name, isValidName, cost, isValidCost, conditions, isOpen,
-                      onChangeName, onChangeCost, onChangeCondition, onChangeIsOpen, saveRule, updateRule
-                  }) => {
+const RuleForm = ({ name, cost, conditions, onSaveRule, onUpdateRule, onPutDataToForm, onChangeFormData }) => {
     const classes = useStyles();
+    const { id } = useParams();
 
-    const onSave = (rule) => saveRule(rule);
-    const onUpdate = ({ id, ...rule }) => updateRule(id, rule);
+    const onChangeCondition = (value, index) => {
+        onChangeFormData("conditions", saveItemTo(conditions, value, index));
+    };
 
-    const handleClose = () => onChangeIsOpen(false);
-    const isDisabledButtonSave = () => !isValidName || !isValidCost || conditions.length === 0;
+    useEffect(() => {
+        if (id) onPutDataToForm(id);
+    }, []);
 
     return (
-        <Modal
-            className={classes.modal}
-            open={isOpen}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{ timeout: 500 }}
-        >
-            <Fade in={isOpen}>
-                <Grid container spacing={3} className={classes.paper}>
+        <div>
+            <Toolbar/>
+            <Container className={classes.paper}>
+                <Grid container spacing={3}>
                     {
                         id && (
                             <Grid item xs={12}>
@@ -67,8 +58,7 @@ const RuleForm = ({
                             value={name}
                             required
                             fullWidth
-                            error={!isValidName}
-                            onChange={e => onChangeName(e.target.value)}
+                            onChange={e => onChangeFormData("name", e.target.value)}
                         />
                     </Grid>
 
@@ -81,8 +71,7 @@ const RuleForm = ({
                             type={"number"}
                             required
                             fullWidth
-                            error={!isValidCost}
-                            onChange={e => onChangeCost(e.target.value)}
+                            onChange={e => onChangeFormData("cost", parseInt(e.target.value))}
                         />
                     </Grid>
 
@@ -95,57 +84,52 @@ const RuleForm = ({
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <Button
-                            fullWidth
-                            onClick={handleClose}
-                            color={"secondary"}
-                            variant={"contained"}
-                        >
-                            Cancel
-                        </Button>
+
+                    <Grid item xs={2}>
+                        <Link to={LINK_TO_RULES}>
+                            <Button
+                                fullWidth
+                                color={"secondary"}
+                                variant={"contained"}
+                            >
+                                Cancel
+                            </Button>
+                        </Link>
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <Button
-                            fullWidth
-                            color={"primary"}
-                            variant={"contained"}
-                            disabled={isDisabledButtonSave()}
-                            onClick={() => {
-                                id ?
-                                    onUpdate({ id, name, cost, conditions }) :
-                                    onSave({ name, cost, conditions });
-                                handleClose();
-                            }}
-                        >
-                            {id ? "Update" : "Save"}
-                        </Button>
+                    <Grid item xs={2} className={classes.btn}>
+                        <Link to={LINK_TO_RULES}>
+                            <Button
+                                fullWidth
+                                color={"primary"}
+                                variant={"contained"}
+                                onClick={() => {
+                                    id ? onUpdateRule(id, { name, cost, conditions })
+                                        : onSaveRule({ name, cost, conditions });
+                                }}
+                            >
+                                {id ? "Update" : "Save"}
+                            </Button>
+                        </Link>
                     </Grid>
                 </Grid>
-            </Fade>
-        </Modal>
+            </Container>
+        </div>
     );
 };
 
 RuleForm.propTypes = {
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    isValidName: PropTypes.bool.isRequired,
-    onChangeName: PropTypes.func.isRequired,
-    cost: PropTypes.oneOfType([PropTypes.number.isRequired, PropTypes.string]),
-    isValidCost: PropTypes.bool.isRequired,
-    onChangeCost: PropTypes.func.isRequired,
+    cost: PropTypes.number.isRequired,
     conditions: PropTypes.arrayOf(PropTypes.shape({
             x: PropTypes.number.isRequired,
             y: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    onChangeCondition: PropTypes.func.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
-    saveRule: PropTypes.func.isRequired,
-    updateRule: PropTypes.func.isRequired
+    onSaveRule: PropTypes.func.isRequired,
+    onUpdateRule: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onChangeFormData: PropTypes.func.isRequired
 };
 
 export default RuleForm;

@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
+import { Link } from "react-router-dom";
+import { Grid, IconButton } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import RulesGrid from "./RulesGrid";
+import { LINK_TO_RULES_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const RuleTableRow = ({ id, name, cost, conditions, handleOpen, handleToggle }) => {
+const RuleTableRow = ({ id, name, cost, conditions, onPutDataToForm, handleToggle }) => {
     const classes = useStyles();
 
     return (
@@ -40,12 +41,14 @@ const RuleTableRow = ({ id, name, cost, conditions, handleOpen, handleToggle }) 
             <Grid item xs={2} className={classes.gridItem}>{cost}</Grid>
 
             <Grid item xs={1}>
-                <IconButton
-                    data-id={id}
-                    onClick={() => handleOpen(id)}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={LINK_TO_RULES_UPDATE_FORM.replace(":id", id)}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onPutDataToForm(id)}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
             </Grid>
 
             <Grid item xs={1}>
@@ -65,8 +68,8 @@ RuleTableRow.propTypes = {
     name: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
     conditions: PropTypes.arrayOf(PropTypes.object).isRequired,
-    handleOpen: PropTypes.func.isRequired,
-    handleToggle: PropTypes.func.isRequired
+    handleToggle: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired
 };
 
 export default RuleTableRow;
