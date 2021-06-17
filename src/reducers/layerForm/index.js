@@ -1,5 +1,5 @@
 import uuid from "react-uuid";
-import { removeItemById, saveItemTo } from "../../utils/methods";
+import { removeItemById, saveObjectItemTo } from "../../utils/methods";
 import { isValidName } from "../../utils/validation";
 import {
     ADD_LAYER_ELEMENT,
@@ -34,7 +34,7 @@ const LayerForm = (state = initialState, action) => {
         case ADD_LAYER_ELEMENT: {
             return {
                 ...state,
-                elements: saveItemTo(state.elements, {
+                elements: saveObjectItemTo(state.elements, {
                     id: uuid()
                 })
             };
@@ -54,7 +54,7 @@ const LayerForm = (state = initialState, action) => {
 
             return {
                 ...state,
-                elements: saveItemTo(elements, element)
+                elements: saveObjectItemTo(elements, element)
             };
         }
         case DELETE_LAYER_ELEMENT: {

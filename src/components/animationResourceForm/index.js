@@ -27,8 +27,8 @@ const AnimationResourceForm = ({ id, name, speed, urls, onChangeFormData, onSave
     const classes = useStyles();
 
     const onChangeSpeed = (value) => onChangeFormData("speed", value);
-    const onChangeUrl = (value) => onChangeFormData("urls", saveItemTo(urls, value));
-    const onAddImage = (value) => onChangeFormData("urls", saveItemTo(urls, value));
+    const onChangeUrl = (value, index) => onChangeFormData("urls", saveItemTo(urls, value, index));
+    const onAddImage = (value) => onChangeFormData("urls", saveItemTo(urls, value, -1));
     const onRemoveImage = (index) => onChangeFormData("urls", removeItemByIndex(urls, index));
     const onDragAndDrop = (result) => onChangeFormData("urls", result);
 
