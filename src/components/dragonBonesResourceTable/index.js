@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 const DragonBonesResourceTable = ({
                                       dragonBones, sorting, filters, onChangeSort, onChangeFilters,
-                                      onDelete, onPutDataToForm
+                                      onRemoveDragonBone, onPutDataToForm
                                   }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -41,7 +41,7 @@ const DragonBonesResourceTable = ({
             <ConfirmMenu
                 anchorEl={anchorEl}
                 handleClose={handleClose}
-                onAccept={onDelete}
+                onAccept={onRemoveDragonBone}
             />
         </Grid>
     );
@@ -65,7 +65,7 @@ DragonBonesResourceTable.propTypes = {
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onRemoveDragonBone: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired
 };
 

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import { LINK_TO_DRAGON_BONE_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,12 +42,14 @@ const DragonBonesCard = ({ id, name, texture, setAnchorEl, onPutDataToForm }) =>
             </CardActionArea>
 
             <CardActions>
-                <IconButton
-                    data-id={id}
-                    onClick={() => onPutDataToForm(id)}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={LINK_TO_DRAGON_BONE_UPDATE_FORM.replace(":id", id)}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onPutDataToForm(id)}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
 
                 <IconButton
                     data-id={id}

@@ -1,23 +1,21 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Button, Container, Grid, IconButton, TablePagination, Toolbar } from "@material-ui/core";
 import { Add, List, ViewModule } from "@material-ui/icons";
 import SvgComponent from "../../components/svgComponent";
 import DragonBonesResourceTable from "../../components/dragonBonesResourceTable";
 import DragonBonesResourceCards from "../../components/dragonBonesResourceCards";
-import DragonBonesResourceForm from "../../containers/dragonBonesResourceForm";
 import { ASCENDING_SORT, DESCENDING_SORT, GRID, TABLE } from "../../utils/constants";
+import { LINK_TO_DRAGON_BONE_CREATE_FORM } from "../../utils/links";
 
 const DragonBones = ({
-                         dragonBones, count, view, pagination, sorting, filters, onPutDataToForm,
-                         onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters,
-                         onChangeIsOpen, getDragonBones, removeDragonBone
+                         dragonBones, count, view, pagination, sorting, filters, getDragonBones, onPutDataToForm, onAdd,
+                         onRemoveDragonBone, onChangeView, onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                      }) => {
     const { page, limit } = pagination;
 
-    const onRemove = (id) => removeDragonBone(id);
     const handleView = () => view === TABLE ? onChangeView(GRID) : onChangeView(TABLE);
-
     const handleChangeDragonBonesPage = (event, newPage) => onChangePage(newPage);
     const handleChangeDragonBonesLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -31,15 +29,17 @@ const DragonBones = ({
             <Container>
                 <Grid container>
                     <Grid item xs={5}>
-                        <Button
-                            variant={"contained"}
-                            color={"primary"}
-                            size={"large"}
-                            startIcon={<Add/>}
-                            onClick={() => onChangeIsOpen(true)}
-                        >
-                            Add dragon bones resource
-                        </Button>
+                        <Link to={LINK_TO_DRAGON_BONE_CREATE_FORM}>
+                            <Button
+                                variant={"contained"}
+                                color={"primary"}
+                                size={"large"}
+                                startIcon={<Add/>}
+                                onClick={onAdd}
+                            >
+                                Add dragon bones resource
+                            </Button>
+                        </Link>
                     </Grid>
 
                     <Grid item xs={5}>
@@ -72,12 +72,10 @@ const DragonBones = ({
                                     </IconButton>
                                 </Grid>
 
-                                <DragonBonesResourceForm/>
-
                                 <DragonBonesResourceCards
                                     dragonBones={dragonBones}
-                                    onDelete={onRemove}
                                     onPutDataToForm={onPutDataToForm}
+                                    onRemoveDragonBone={onRemoveDragonBone}
                                 />
                             </>
                             :
@@ -92,16 +90,14 @@ const DragonBones = ({
                                     </IconButton>
                                 </Grid>
 
-                                <DragonBonesResourceForm/>
-
                                 <DragonBonesResourceTable
                                     dragonBones={dragonBones}
                                     sorting={sorting}
                                     filters={filters}
                                     onChangeSort={onChangeSort}
                                     onChangeFilters={onChangeFilters}
-                                    onDelete={onRemove}
                                     onPutDataToForm={onPutDataToForm}
+                                    onRemoveDragonBone={onRemoveDragonBone}
                                 />
                             </>
                     }
@@ -135,14 +131,14 @@ DragonBones.propTypes = {
     ).isRequired,
     filters: PropTypes.object.isRequired,
     getDragonBones: PropTypes.func.isRequired,
-    removeDragonBone: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onRemoveDragonBone: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
     onChangeView: PropTypes.func.isRequired,
     onChangePage: PropTypes.func.isRequired,
     onChangeLimit: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilters: PropTypes.func.isRequired,
-    onChangeIsOpen: PropTypes.func.isRequired,
-    onPutDataToForm: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default DragonBones;

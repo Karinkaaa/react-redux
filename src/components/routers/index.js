@@ -6,6 +6,7 @@ import ImageForm from "../../containers/imageResourceForm";
 import Animations from "../../containers/animationPage";
 import AnimationForm from "../../containers/animationResourceForm";
 import DragonBones from "../../containers/dragonBonesPage";
+import DragonBoneForm from "../../containers/dragonBoneResourceForm";
 import Audio from "../../containers/audioPage";
 import Drums from "../../pages/drums";
 import Rules from "../../containers/rulePage";
@@ -18,6 +19,8 @@ import {
     LINK_TO_ANIMATION_UPDATE_FORM,
     LINK_TO_ANIMATIONS,
     LINK_TO_AUDIOS,
+    LINK_TO_DRAGON_BONE_CREATE_FORM,
+    LINK_TO_DRAGON_BONE_UPDATE_FORM,
     LINK_TO_DRAGON_BONES,
     LINK_TO_DRUMS,
     LINK_TO_IMAGE_CREATE_FORM,
@@ -43,6 +46,8 @@ const Routers = () => (
             <Route exact path={LINK_TO_ANIMATION_CREATE_FORM} component={AnimationForm}/>
             <Route exact path={LINK_TO_ANIMATION_UPDATE_FORM} component={AnimationForm}/>
             <Route exact path={LINK_TO_DRAGON_BONES} component={DragonBones}/>
+            <Route exact path={LINK_TO_DRAGON_BONE_CREATE_FORM} component={DragonBoneForm}/>
+            <Route exact path={LINK_TO_DRAGON_BONE_UPDATE_FORM} component={DragonBoneForm}/>
             <Route exact path={LINK_TO_AUDIOS} component={Audio}/>
             <Route exact path={LINK_TO_DRUMS} component={Drums}/>
             <Route exact path={LINK_TO_RULES} component={Rules}/>
