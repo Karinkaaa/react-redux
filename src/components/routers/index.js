@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import MainPage from "../mainPage";
 import Images from "../../containers/imagePage";
+import ImageForm from "../../containers/imageResourceForm";
 import Animations from "../../containers/animationPage";
 import AnimationForm from "../../containers/animationResourceForm";
 import DragonBones from "../../containers/dragonBonesPage";
@@ -19,6 +20,8 @@ import {
     LINK_TO_AUDIOS,
     LINK_TO_DRAGON_BONES,
     LINK_TO_DRUMS,
+    LINK_TO_IMAGE_CREATE_FORM,
+    LINK_TO_IMAGE_UPDATE_FORM,
     LINK_TO_IMAGES,
     LINK_TO_LAYER_FORM,
     LINK_TO_LAYERS,
@@ -34,6 +37,8 @@ const Routers = () => (
         <Switch>
             <Route exact path={LINK_TO_MAIN_PAGE} component={MainPage}/>
             <Route exact path={LINK_TO_IMAGES} component={Images}/>
+            <Route exact path={LINK_TO_IMAGE_CREATE_FORM} component={ImageForm}/>
+            <Route exact path={LINK_TO_IMAGE_UPDATE_FORM} component={ImageForm}/>
             <Route exact path={LINK_TO_ANIMATIONS} component={Animations}/>
             <Route exact path={LINK_TO_ANIMATION_CREATE_FORM} component={AnimationForm}/>
             <Route exact path={LINK_TO_ANIMATION_UPDATE_FORM} component={AnimationForm}/>

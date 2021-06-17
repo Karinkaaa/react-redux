@@ -1,5 +1,7 @@
 export const LINK_TO_MAIN_PAGE = "/";
 export const LINK_TO_IMAGES = "/resources/images";
+export const LINK_TO_IMAGE_CREATE_FORM = "/resources/images/form";
+export const LINK_TO_IMAGE_UPDATE_FORM = "/resources/images/form/:id";
 export const LINK_TO_ANIMATIONS = "/resources/animations";
 export const LINK_TO_ANIMATION_CREATE_FORM = "/resources/animations/form";
 export const LINK_TO_ANIMATION_UPDATE_FORM = "/resources/animations/form/:id";

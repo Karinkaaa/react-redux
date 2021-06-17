@@ -14,7 +14,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageResourceTable = ({ images, sorting, filters, onChangeSort, onChangeFilters, onDelete, onPutDataToForm }) => {
+const ImageResourceTable = ({
+                                images, sorting, filters, onChangeSort, onChangeFilters, onRemoveImage, onPutDataToForm
+                            }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -38,7 +40,7 @@ const ImageResourceTable = ({ images, sorting, filters, onChangeSort, onChangeFi
             <ConfirmMenu
                 anchorEl={anchorEl}
                 handleClose={handleClose}
-                onAccept={onDelete}
+                onAccept={onRemoveImage}
             />
         </Grid>
     );
@@ -60,7 +62,7 @@ ImageResourceTable.propTypes = {
     filters: PropTypes.object.isRequired,
     onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    onRemoveImage: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired
 };
 

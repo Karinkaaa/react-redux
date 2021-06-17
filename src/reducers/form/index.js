@@ -12,8 +12,7 @@ import {
 const initialState = {
     [IMAGES_KEY]: {
         name: "",
-        url: "",
-        isOpen: false
+        url: ""
     },
     [ANIMATIONS_KEY]: {
         name: "",
@@ -24,19 +23,16 @@ const initialState = {
         name: "",
         texture: "",
         textureJson: "",
-        skeleton: "",
-        isOpen: false
+        skeleton: ""
     },
     [AUDIOS_KEY]: {
         name: "",
-        url: "",
-        isOpen: false
+        url: ""
     },
     [RULES_KEY]: {
         name: "",
         conditions: [],
-        cost: 0,
-        isOpen: false
+        cost: 0
     },
     [LAYERS_KEY]: {
         name: "",

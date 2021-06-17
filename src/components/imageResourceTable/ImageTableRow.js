@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Avatar, Grid, IconButton, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import { LINK_TO_IMAGE_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -33,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ImageTableRow = ({ id, name, url, handleOpen, handleToggle }) => {
+const ImageTableRow = ({ id, name, url, onPutDataToForm, handleToggle }) => {
     const classes = useStyles();
 
     return (
@@ -61,12 +63,14 @@ const ImageTableRow = ({ id, name, url, handleOpen, handleToggle }) => {
             </Grid>
 
             <Grid item xs={1}>
-                <IconButton
-                    data-id={id}
-                    onClick={() => handleOpen(id)}
-                >
-                    <Update className={classes.updateIcon}/>
-                </IconButton>
+                <Link to={LINK_TO_IMAGE_UPDATE_FORM.replace(":id", id)}>
+                    <IconButton
+                        data-id={id}
+                        onClick={() => onPutDataToForm(id)}
+                    >
+                        <Update className={classes.updateIcon}/>
+                    </IconButton>
+                </Link>
             </Grid>
 
             <Grid item xs={1}>
@@ -85,7 +89,7 @@ ImageTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    handleOpen: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
     handleToggle: PropTypes.func.isRequired
 };
 

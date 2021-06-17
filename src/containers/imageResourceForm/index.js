@@ -1,33 +1,22 @@
 import { connect } from "react-redux";
 import ImageResourceForm from "../../components/imageResourceForm";
-import { getImageByIdSaga } from "../../actions/imagesSaga";
-import {
-    isOpenImageModal,
-    saveImageSaga,
-    updateImageName,
-    updateImageSaga,
-    updateImageUrl
-} from "../../actions/imageResourceForm";
+import { saveImageSaga, updateImageSaga } from "../../actions/imagesSaga";
+import { changeFormData } from "../../actions/form";
+import { IMAGES_KEY } from "../../utils/constants";
 
 const mapStateToProps = (state) => {
     return {
-        id: state.imageForm.id,
-        name: state.imageForm.name,
-        isValidName: state.imageForm.isValidName,
-        url: state.imageForm.url,
-        isValidUrl: state.imageForm.isValidUrl,
-        isOpen: state.imageForm.isOpen
+        id: state.form.images.id,
+        name: state.form.images.name,
+        url: state.form.images.url
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveImage: (image) => dispatch(saveImageSaga(image)),
-        updateImage: (id, image) => dispatch(updateImageSaga(id, image)),
-        putDataToForm: (id) => dispatch(getImageByIdSaga(id)),
-        onChangeName: (name) => dispatch(updateImageName(name)),
-        onChangeUrl: (url) => dispatch(updateImageUrl(url)),
-        onChangeIsOpen: (isOpen) => dispatch(isOpenImageModal(isOpen))
+        onSaveImage: (image) => dispatch(saveImageSaga(image)),
+        onUpdateImage: (id, image) => dispatch(updateImageSaga(id, image)),
+        onChangeFormData: (key, value) => dispatch(changeFormData(IMAGES_KEY, key, value))
     };
 };
 

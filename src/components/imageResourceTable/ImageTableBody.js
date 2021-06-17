@@ -4,7 +4,6 @@ import { Grid } from "@material-ui/core";
 import ImageTableRow from "./ImageTableRow";
 
 const ImageTableBody = ({ images, setAnchorEl, onPutDataToForm }) => {
-    const handleOpen = (id) => onPutDataToForm(id);
     const handleToggle = (e) => setAnchorEl(e.currentTarget);
 
     return (
@@ -16,7 +15,7 @@ const ImageTableBody = ({ images, setAnchorEl, onPutDataToForm }) => {
                         id={id}
                         name={name}
                         url={url}
-                        handleOpen={handleOpen}
+                        onPutDataToForm={onPutDataToForm}
                         handleToggle={handleToggle}
 
                     />
