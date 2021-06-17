@@ -13,7 +13,8 @@ import Layers from "../../containers/layerPage";
 import Movies from "../../containers/moviesPage";
 import MovieForm from "../../containers/movieForm";
 import {
-    LINK_TO_ANIMATION_FORM,
+    LINK_TO_ANIMATION_CREATE_FORM,
+    LINK_TO_ANIMATION_UPDATE_FORM,
     LINK_TO_ANIMATIONS,
     LINK_TO_AUDIOS,
     LINK_TO_DRAGON_BONES,
@@ -34,7 +35,8 @@ const Routers = () => (
             <Route exact path={LINK_TO_MAIN_PAGE} component={MainPage}/>
             <Route exact path={LINK_TO_IMAGES} component={Images}/>
             <Route exact path={LINK_TO_ANIMATIONS} component={Animations}/>
-            <Route exact path={LINK_TO_ANIMATION_FORM} component={AnimationForm}/>
+            <Route exact path={LINK_TO_ANIMATION_CREATE_FORM} component={AnimationForm}/>
+            <Route exact path={LINK_TO_ANIMATION_UPDATE_FORM} component={AnimationForm}/>
             <Route exact path={LINK_TO_DRAGON_BONES} component={DragonBones}/>
             <Route exact path={LINK_TO_AUDIOS} component={Audio}/>
             <Route exact path={LINK_TO_DRUMS} component={Drums}/>

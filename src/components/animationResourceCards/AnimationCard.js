@@ -5,7 +5,7 @@ import { Card, CardActions, CardContent, IconButton, Typography } from "@materia
 import { Delete, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import CardStepper from "./CardStepper";
-import { LINK_TO_ANIMATION_FORM } from "../../utils/links";
+import { LINK_TO_ANIMATION_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +44,7 @@ const AnimationCard = ({ id, name, urls, setAnchorEl, onPutDataToForm }) => {
             </CardContent>
 
             <CardActions>
-                <Link to={LINK_TO_ANIMATION_FORM}>
+                <Link to={LINK_TO_ANIMATION_UPDATE_FORM.replace(":id", id)}>
                     <IconButton
                         data-id={id}
                         onClick={() => onPutDataToForm(id)}

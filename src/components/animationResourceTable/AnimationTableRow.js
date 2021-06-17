@@ -6,7 +6,7 @@ import AvatarGroup from "@material-ui/lab/AvatarGroup";
 import { Delete, ExpandLess, ExpandMore, Update } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import NestedTable from "./NestedTable";
-import { LINK_TO_ANIMATION_FORM } from "../../utils/links";
+import { LINK_TO_ANIMATION_UPDATE_FORM } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -55,7 +55,7 @@ const AnimationTableRow = ({ id, name, urls, speed, handleToggle, onPutDataToFor
             <Grid item xs={2} className={classes.gridItem}>{speed}</Grid>
 
             <Grid item xs={1}>
-                <Link to={LINK_TO_ANIMATION_FORM}>
+                <Link to={LINK_TO_ANIMATION_UPDATE_FORM.replace(":id", id)}>
                     <IconButton
                         data-id={id}
                         onClick={() => onPutDataToForm(id)}

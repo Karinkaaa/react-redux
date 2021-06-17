@@ -1,7 +1,8 @@
 export const LINK_TO_MAIN_PAGE = "/";
 export const LINK_TO_IMAGES = "/resources/images";
 export const LINK_TO_ANIMATIONS = "/resources/animations";
-export const LINK_TO_ANIMATION_FORM = "/resources/animations/form";
+export const LINK_TO_ANIMATION_CREATE_FORM = "/resources/animations/form";
+export const LINK_TO_ANIMATION_UPDATE_FORM = "/resources/animations/form/:id";
 export const LINK_TO_DRAGON_BONES = "/resources/dragonBones";
 export const LINK_TO_AUDIOS = "/resources/audios";
 export const LINK_TO_DRUMS = "/drums";
