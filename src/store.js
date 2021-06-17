@@ -3,7 +3,6 @@ import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
 import mainSaga from "./saga";
 import imageForm from "./reducers/imageResourceForm";
-import animationForm from "./reducers/animationResourceForm";
 import dragonBonesForm from "./reducers/dragonBonesResourceForm";
 import audioForm from "./reducers/audioResourceForm";
 import audioPlayer from "./reducers/audioPlayer";
@@ -15,7 +14,6 @@ import form from "./reducers/form";
 
 const reducers = combineReducers({
     imageForm,
-    animationForm,
     dragonBonesForm,
     audioForm,
     audioPlayer,

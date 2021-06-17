@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Avatar, Grid, IconButton, TextField } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { Avatar, Button, Grid, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -12,11 +11,12 @@ const useStyles = makeStyles({
         padding: 12,
         marginRight: 25
     },
-    iconBtn: {
-        marginLeft: 10
+    btn: {
+        margin: "10px 0 0 99px",
+        width: 100
     },
     clearUrl: {
-        maxWidth: "77.7%"
+        maxWidth: "69%"
     }
 });
 
@@ -35,7 +35,7 @@ const BlankUrlComponent = ({ onAddImage }) => {
                 <Avatar src={url}/>
             </Grid>
 
-            <Grid item xs={10} className={classes.clearUrl}>
+            <Grid item xs={9} className={classes.clearUrl}>
                 <TextField
                     label={"URL"}
                     placeholder={"Enter the URL of image resource"}
@@ -48,12 +48,14 @@ const BlankUrlComponent = ({ onAddImage }) => {
             </Grid>
 
             <Grid item xs={1}>
-                <IconButton
-                    className={classes.iconBtn}
+                <Button
+                    className={classes.btn}
+                    color={"primary"}
+                    variant={"contained"}
                     onClick={handleClickAdd}
                 >
-                    <Add color={"primary"}/>
-                </IconButton>
+                    ADD
+                </Button>
             </Grid>
         </Grid>
     );
