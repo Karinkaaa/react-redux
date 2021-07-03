@@ -20,7 +20,7 @@ const Drums = () => {
 
     return (
         <Grid container spacing={3} className={classes.paper}>
-            U busihi krasiva zhirna zhopa
+            Drums
         </Grid>
     );
 };
