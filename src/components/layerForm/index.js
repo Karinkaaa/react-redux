@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import uuid from "react-uuid";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Container, Grid, InputAdornment, TextField, Toolbar } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import ResizableDraggableLayerElement from "../resizableDraggableLayerElement";
 import SettingsMenu from "./SettingsMenu";
 import ElementsList from "./ElementsList";
+import { removeItemById, saveObjectItemTo } from "../../utils/methods";
 import { LINK_TO_LAYERS } from "../../utils/links";
 
 const useStyles = makeStyles(theme => ({
@@ -21,21 +23,28 @@ const useStyles = makeStyles(theme => ({
     },
     id: {
         marginRight: 50
-    },
-    link: {
-        pointerEvents: ({ isValidName }) => !isValidName ? "none" : "auto"
     }
 }));
 
 const LayerForm = ({
-                       id, name, elements, selectedId, selectedElement, images, animations, dragonBones,
-                       isValidName, onChangeLayerName, setSelectedId, onAddElement, onDeleteElement,
-                       onChangeElement, saveLayer, updateLayer
+                       name, elements, selectedId, selectedElement, images, animations, dragonBones,
+                       onSaveLayer, onUpdateLayer, onPutDataToForm, onChangeFormData
                    }) => {
-    const classes = useStyles({ isValidName });
+    const classes = useStyles();
+    const { id } = useParams();
 
-    const onSave = (layer) => saveLayer(layer);
-    const onUpdate = ({ id, ...layer }) => updateLayer(id, layer);
+    useEffect(() => {
+        if (id) onPutDataToForm(id);
+    }, []);
+
+    const setSelectedId = (id) => onChangeFormData("selectedId", id);
+    const onAddElement = () => onChangeFormData("elements", saveObjectItemTo(elements, { id: uuid() }));
+    const onChangeElement = (element) => onChangeFormData("elements", saveObjectItemTo(elements, element));
+
+    const onDeleteElement = (id) => {
+        onChangeFormData("selectedId", null);
+        onChangeFormData("elements", removeItemById(elements, id));
+    };
 
     return (
         <div>
@@ -82,22 +91,20 @@ const LayerForm = ({
                         <TextField
                             fullWidth
                             value={name}
-                            error={!isValidName}
                             InputProps={{ startAdornment: <InputAdornment position={"start"}>Name: </InputAdornment> }}
-                            onChange={e => onChangeLayerName(e.target.value)}
+                            onChange={e => onChangeFormData("name", e.target.value)}
                         />
                     </Grid>
 
                     <Grid item xs={1} className={classes.btn}>
-                        <Link to={LINK_TO_LAYERS} className={classes.link}>
+                        <Link to={LINK_TO_LAYERS}>
                             <Button
                                 fullWidth
                                 size={"large"}
                                 color={"primary"}
                                 variant={"contained"}
-                                disabled={!isValidName}
-                                onClick={() => id ? onUpdate({ id, name, elements }) :
-                                    onSave({ name, elements })
+                                onClick={() => id ? onUpdateLayer({ id, name, elements }) :
+                                    onSaveLayer({ name, elements })
                                 }
                             >
                                 {id ? "Update" : "Save"}
@@ -122,7 +129,7 @@ const LayerForm = ({
                         id={"container"}
                         item xs={12}
                         className={classes.container}
-                        onClick={(e) => e.target.id === "container" && setSelectedId(null)}
+                        onClick={(e) => e.target.id === "container" && onChangeFormData("selectedId", null)}
                     >
                         {
                             elements.map(el =>
@@ -159,9 +166,7 @@ const LayerForm = ({
 };
 
 LayerForm.propTypes = {
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    isValidName: PropTypes.bool.isRequired,
     elements: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -214,13 +219,10 @@ LayerForm.propTypes = {
             skeleton: PropTypes.string.isRequired
         })
     ).isRequired,
-    setSelectedId: PropTypes.func.isRequired,
-    onChangeLayerName: PropTypes.func.isRequired,
-    onAddElement: PropTypes.func.isRequired,
-    onDeleteElement: PropTypes.func.isRequired,
-    onChangeElement: PropTypes.func.isRequired,
-    saveLayer: PropTypes.func.isRequired,
-    updateLayer: PropTypes.func.isRequired
+    onSaveLayer: PropTypes.func.isRequired,
+    onUpdateLayer: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onChangeFormData: PropTypes.func.isRequired
 };
 
 export default LayerForm;

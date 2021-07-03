@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Layers from "../../pages/layers";
-import { clearLayerForm } from "../../actions/layerForm";
+import { clearResourceForm } from "../../actions/form";
 import { getLayerByIdSaga, getLayersSaga, removeLayerSaga } from "../../actions/layersSaga";
 import { changeTableFilters, changeTableLimit, changeTablePage, changeTableSort } from "../../actions/table";
 import { LAYERS_KEY } from "../../utils/constants";
@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getLayers: () => dispatch(getLayersSaga()),
         onPutDataToForm: (id) => dispatch(getLayerByIdSaga(id)),
-        removeLayer: (id) => dispatch(removeLayerSaga(id)),
-        onAdd: () => dispatch(clearLayerForm()),
+        onRemoveLayer: (id) => dispatch(removeLayerSaga(id)),
+        onAdd: () => dispatch(clearResourceForm(LAYERS_KEY)),
         onChangePage: (page) => dispatch(changeTablePage(LAYERS_KEY, page)),
         onChangeLimit: (limit) => dispatch(changeTableLimit(LAYERS_KEY, limit)),
         onChangeSort: (field) => dispatch(changeTableSort(LAYERS_KEY, field)),
