@@ -5,12 +5,14 @@ import { Autocomplete } from "@material-ui/lab";
 import { ANIMATIONS_GROUP, DRAGON_BONES_GROUP, IMAGES_GROUP } from "../../utils/constants";
 
 const GroupedResources = ({ images, animations, dragonBones, selectedElement, onChangeElement }) => {
-    const sortResourcesByName = (resources) =>
-        resources.sort((a, b) => -b.name.localeCompare(a.name));
+    const sortResourcesByName = (resources) => resources.sort((a, b) => -b.name.localeCompare(a.name));
 
     const resources = sortResourcesByName(images).map((image) => ({ ...image, groupName: IMAGES_GROUP }))
         .concat(sortResourcesByName(animations).map((animation) => ({ ...animation, groupName: ANIMATIONS_GROUP })))
-        .concat(sortResourcesByName(dragonBones).map((dragonBone) => ({ ...dragonBone, groupName: DRAGON_BONES_GROUP})));
+        .concat(sortResourcesByName(dragonBones).map((dragonBone) => ({
+            ...dragonBone,
+            groupName: DRAGON_BONES_GROUP
+        })));
 
     const options = resources.map((option) => option);
     const selectedOption = options.find((option) => option.id === selectedElement.ref) || null;

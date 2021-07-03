@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, onDelete, onPutDataToForm }) => {
+const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, onRemoveLayer, onPutDataToForm }) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(false);
 
@@ -38,7 +38,7 @@ const LayersTable = ({ layers, sorting, filters, onChangeSort, onChangeFilters, 
             <ConfirmMenu
                 anchorEl={anchorEl}
                 handleClose={handleClose}
-                onAccept={onDelete}
+                onAccept={onRemoveLayer}
             />
         </Grid>
     );
@@ -73,10 +73,10 @@ LayersTable.propTypes = {
         }
     ).isRequired,
     filters: PropTypes.object.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onRemoveLayer: PropTypes.func.isRequired,
     onChangeSort: PropTypes.func.isRequired,
-    onChangeFilters: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onPutDataToForm: PropTypes.func.isRequired
+    onChangeFilters: PropTypes.func.isRequired
 };
 
 export default LayersTable;

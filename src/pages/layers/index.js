@@ -4,16 +4,15 @@ import { Link } from "react-router-dom";
 import { Button, Container, Grid, TablePagination, Toolbar } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import LayersTable from "../../components/layersTable";
-import { LINK_TO_LAYER_FORM } from "../../utils/links";
 import { ASCENDING_SORT, DESCENDING_SORT } from "../../utils/constants";
+import { LINK_TO_LAYER_FORM } from "../../utils/links";
 
 const Layers = ({
-                    layers, count, pagination, sorting, filters, getLayers, onAdd, onPutDataToForm, removeLayer,
+                    layers, count, pagination, sorting, filters, getLayers, onPutDataToForm, onRemoveLayer, onAdd,
                     onChangePage, onChangeLimit, onChangeSort, onChangeFilters
                 }) => {
     const { page, limit } = pagination;
 
-    const onRemove = (id) => removeLayer(id);
     const handleChangeLayerPage = (event, newPage) => onChangePage(newPage);
     const handleChangeLayerLimit = (event) => onChangeLimit(parseInt(event.target.value, 10));
 
@@ -61,7 +60,7 @@ const Layers = ({
                         filters={filters}
                         onChangeSort={onChangeSort}
                         onChangeFilters={onChangeFilters}
-                        onDelete={onRemove}
+                        onRemoveLayer={onRemoveLayer}
                         onPutDataToForm={onPutDataToForm}
                     />
                 </Grid>
@@ -94,23 +93,23 @@ Layers.propTypes = {
         }).isRequired
     ).isRequired,
     count: PropTypes.number.isRequired,
-    getLayers: PropTypes.func.isRequired,
-    onAdd: PropTypes.func.isRequired,
-    removeLayer: PropTypes.func.isRequired,
-    onPutDataToForm: PropTypes.func.isRequired,
     pagination: PropTypes.shape({
         page: PropTypes.number.isRequired,
         limit: PropTypes.number.isRequired
     }).isRequired,
-    onChangePage: PropTypes.func.isRequired,
-    onChangeLimit: PropTypes.func.isRequired,
     sorting: PropTypes.shape({
             field: PropTypes.string.isRequired,
             direction: PropTypes.oneOf([ASCENDING_SORT, DESCENDING_SORT]).isRequired
         }
     ).isRequired,
-    onChangeSort: PropTypes.func.isRequired,
     filters: PropTypes.object.isRequired,
+    getLayers: PropTypes.func.isRequired,
+    onPutDataToForm: PropTypes.func.isRequired,
+    onRemoveLayer: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
+    onChangePage: PropTypes.func.isRequired,
+    onChangeLimit: PropTypes.func.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
     onChangeFilters: PropTypes.func.isRequired
 };
 

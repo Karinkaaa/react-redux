@@ -1,23 +1,15 @@
 import { connect } from "react-redux";
 import LayerForm from "../../components/layerForm";
-import {
-    addLayerElement,
-    deleteLayerElement,
-    saveLayerSaga,
-    setSelectedId,
-    updateLayerElement,
-    updateLayerName,
-    updateLayerSaga
-} from "../../actions/layerForm";
+import { changeFormData } from "../../actions/form";
+import { getLayerByIdSaga, saveLayerSaga, updateLayerSaga } from "../../actions/layersSaga";
+import { LAYERS_KEY } from "../../utils/constants";
 
 const mapStateToProps = (state) => {
     return {
-        id: state.layerForm.id,
-        name: state.layerForm.name,
-        isValidName: state.layerForm.isValidName,
-        elements: state.layerForm.elements,
-        selectedElement: state.layerForm.elements.find(el => el.id === state.layerForm.selectedId),
-        selectedId: state.layerForm.selectedId,
+        name: state.form.layers.name,
+        elements: state.form.layers.elements,
+        selectedElement: state.form.layers.elements.find(el => el.id === state.form.layers.selectedId),
+        selectedId: state.form.layers.selectedId,
         images: state.table.images.list,
         animations: state.table.animations.list,
         dragonBones: state.table.dragonBones.list
@@ -26,16 +18,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        saveLayer: (layer) => dispatch(saveLayerSaga(layer)),
-        updateLayer: (id, layer) => dispatch(updateLayerSaga(id, layer)),
-        onAddElement: () => dispatch(addLayerElement()),
-        onChangeElement: (element) => dispatch(updateLayerElement(element)),
-        onDeleteElement: (id) => {
-            dispatch(setSelectedId(null));
-            dispatch(deleteLayerElement(id));
-        },
-        setSelectedId: (id) => dispatch(setSelectedId(id)),
-        onChangeLayerName: (name) => dispatch(updateLayerName(name))
+        onSaveLayer: (layer) => dispatch(saveLayerSaga(layer)),
+        onUpdateLayer: (id, layer) => dispatch(updateLayerSaga(id, layer)),
+        onPutDataToForm: (id) => dispatch(getLayerByIdSaga(id)),
+        onChangeFormData: (key, value) => dispatch(changeFormData(LAYERS_KEY, key, value))
     };
 };
 
