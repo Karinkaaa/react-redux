@@ -28,13 +28,14 @@ const useStyles = makeStyles(theme => ({
 
 const LayerForm = ({
                        name, elements, selectedId, selectedElement, images, animations, dragonBones,
-                       onSaveLayer, onUpdateLayer, onPutDataToForm, onChangeFormData
+                       onSaveLayer, onUpdateLayer, onPutDataToForm, onChangeFormData, getResources
                    }) => {
     const classes = useStyles();
     const { id } = useParams();
 
     useEffect(() => {
         if (id) onPutDataToForm(id);
+        getResources();
     }, []);
 
     const setSelectedId = (id) => onChangeFormData("selectedId", id);
@@ -214,15 +215,14 @@ LayerForm.propTypes = {
         PropTypes.shape({
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
-            texture: PropTypes.string.isRequired,
-            textureJson: PropTypes.string.isRequired,
-            skeleton: PropTypes.string.isRequired
+            texture: PropTypes.string.isRequired
         })
     ).isRequired,
     onSaveLayer: PropTypes.func.isRequired,
     onUpdateLayer: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired,
-    onChangeFormData: PropTypes.func.isRequired
+    onChangeFormData: PropTypes.func.isRequired,
+    getResources: PropTypes.func.isRequired
 };
 
 export default LayerForm;

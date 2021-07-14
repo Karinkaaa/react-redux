@@ -1,8 +1,11 @@
 import { connect } from "react-redux";
 import LayerForm from "../../components/layerForm";
 import { changeFormData } from "../../actions/form";
+import { getDropdownSaga } from "../../actions/dictionary";
 import { getLayerByIdSaga, saveLayerSaga, updateLayerSaga } from "../../actions/layersSaga";
-import { LAYERS_KEY } from "../../utils/constants";
+import { ANIMATIONS_KEY, DRAGON_BONES_KEY, IMAGES_KEY, LAYERS_KEY } from "../../utils/constants";
+
+const getDropdown = (state, key) => state.dictionary[key] || [];
 
 const mapStateToProps = (state) => {
     return {
@@ -10,14 +13,19 @@ const mapStateToProps = (state) => {
         elements: state.form.layers.elements,
         selectedElement: state.form.layers.elements.find(el => el.id === state.form.layers.selectedId),
         selectedId: state.form.layers.selectedId,
-        images: state.table.images.list,
-        animations: state.table.animations.list,
-        dragonBones: state.table.dragonBones.list
+        images: getDropdown(state, IMAGES_KEY),
+        animations: getDropdown(state, ANIMATIONS_KEY),
+        dragonBones: getDropdown(state, DRAGON_BONES_KEY)
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getResources: () => {
+            dispatch(getDropdownSaga(IMAGES_KEY));
+            dispatch(getDropdownSaga(ANIMATIONS_KEY));
+            dispatch(getDropdownSaga(DRAGON_BONES_KEY));
+        },
         onSaveLayer: (layer) => dispatch(saveLayerSaga(layer)),
         onUpdateLayer: (id, layer) => dispatch(updateLayerSaga(id, layer)),
         onPutDataToForm: (id) => dispatch(getLayerByIdSaga(id)),

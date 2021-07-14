@@ -8,6 +8,7 @@ import {
     AUDIOS_KEY,
     DRAGON_BONE_MODEL,
     DRAGON_BONES_KEY,
+    DROPDOWNS_KEY,
     IMAGE_MODEL,
     IMAGES_KEY,
     LAYER_MODEL,
@@ -271,7 +272,7 @@ createServer({
                         width: 100,
                         height: 100
                     },
-                    ref: "",
+                    ref: "1",
                     zIndex: 0
                 },
                 {
@@ -333,6 +334,11 @@ createServer({
         this.resource(AUDIOS_KEY);
         this.resource(RULES_KEY);
         this.resource(LAYERS_KEY);
+
+        this.get(DROPDOWNS_KEY, (schema, request) => {
+            const key = request.queryParams.key;
+            return schema[key].all().models;
+        });
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
     }

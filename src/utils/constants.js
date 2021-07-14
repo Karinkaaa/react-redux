@@ -22,6 +22,7 @@ export const AUDIOS_KEY = "audios";
 export const RULES_KEY = "rules";
 export const LAYERS_KEY = "layers";
 export const MOVIES_KEY = "movies";
+export const DROPDOWNS_KEY = "dropdowns";
 
 // server models
 export const IMAGE_MODEL = "image";

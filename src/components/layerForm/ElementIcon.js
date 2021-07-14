@@ -80,9 +80,7 @@ ElementIcon.propTypes = {
         PropTypes.shape({
             id: PropTypes.string,
             name: PropTypes.string.isRequired,
-            texture: PropTypes.string.isRequired,
-            textureJson: PropTypes.string.isRequired,
-            skeleton: PropTypes.string.isRequired
+            texture: PropTypes.string.isRequired
         }).isRequired
     ).isRequired
 };

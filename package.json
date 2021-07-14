@@ -10,7 +10,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run clean && npm run build",
     "deploy": "gh-pages --repo https://github.com/Karinkaaa/spin-admin-deploy.git -d build",
-    "clean" : "gh-pages-clean",
+    "clean": "gh-pages-clean",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
