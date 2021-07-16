@@ -28,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChangeElement, onDeleteElement }) => {
+const SettingsMenu = ({
+                          selectedElement, images, animations, dragonBones,
+                          onChangeElement, onDeleteElement, setFilterName
+                      }) => {
     const classes = useStyles();
     const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "", zIndex = 0 } = selectedElement;
 
@@ -117,6 +120,8 @@ const SettingsMenu = ({ selectedElement, images, animations, dragonBones, onChan
                 dragonBones={dragonBones}
                 selectedElement={selectedElement}
                 onChangeElement={onChangeElement}
+                filterName={filterName}
+                setFilterName={setFilterName}
             />
 
             <TextField
@@ -184,7 +189,8 @@ SettingsMenu.propTypes = {
         }).isRequired
     ).isRequired,
     onChangeElement: PropTypes.func.isRequired,
-    onDeleteElement: PropTypes.func.isRequired
+    onDeleteElement: PropTypes.func.isRequired,
+    setFilterName: PropTypes.func.isRequired
 };
 
 export default SettingsMenu;

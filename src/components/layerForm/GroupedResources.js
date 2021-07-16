@@ -4,7 +4,7 @@ import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { ANIMATIONS_GROUP, DRAGON_BONES_GROUP, IMAGES_GROUP } from "../../utils/constants";
 
-const GroupedResources = ({ images, animations, dragonBones, selectedElement, onChangeElement }) => {
+const GroupedResources = ({ images, animations, dragonBones, selectedElement, onChangeElement, setFilterName }) => {
     const sortResourcesByName = (resources) => resources.sort((a, b) => -b.name.localeCompare(a.name));
 
     const resources = sortResourcesByName(images).map((image) => ({ ...image, groupName: IMAGES_GROUP }))
@@ -30,6 +30,7 @@ const GroupedResources = ({ images, animations, dragonBones, selectedElement, on
                 ...selectedElement,
                 ref: value ? value.id : ""
             })}
+            onInputChange={(event, value) => setFilterName(value)}
             renderInput={(params) => <TextField {...params} label={"Resources"}/>}
         />
     );
@@ -70,7 +71,8 @@ GroupedResources.propTypes = {
         ref: PropTypes.string,
         zIndex: PropTypes.number
     }).isRequired,
-    onChangeElement: PropTypes.func.isRequired
+    onChangeElement: PropTypes.func.isRequired,
+    setFilterName: PropTypes.func.isRequired
 };
 
 export default GroupedResources;

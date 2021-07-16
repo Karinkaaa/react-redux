@@ -21,10 +21,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getResources: () => {
-            dispatch(getDropdownSaga(IMAGES_KEY));
-            dispatch(getDropdownSaga(ANIMATIONS_KEY));
-            dispatch(getDropdownSaga(DRAGON_BONES_KEY));
+        getResources: (filterName) => {
+            dispatch(getDropdownSaga(IMAGES_KEY, filterName));
+            dispatch(getDropdownSaga(ANIMATIONS_KEY, filterName));
+            dispatch(getDropdownSaga(DRAGON_BONES_KEY, filterName));
         },
         onSaveLayer: (layer) => dispatch(saveLayerSaga(layer)),
         onUpdateLayer: (id, layer) => dispatch(updateLayerSaga(id, layer)),

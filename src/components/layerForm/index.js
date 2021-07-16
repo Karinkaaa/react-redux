@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import uuid from "react-uuid";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
@@ -32,11 +32,12 @@ const LayerForm = ({
                    }) => {
     const classes = useStyles();
     const { id } = useParams();
+    const [filterName, setFilterName] = useState("");
 
     useEffect(() => {
         if (id) onPutDataToForm(id);
-        getResources();
-    }, []);
+        getResources(filterName);
+    }, [filterName]);
 
     const setSelectedId = (id) => onChangeFormData("selectedId", id);
     const onAddElement = () => onChangeFormData("elements", saveObjectItemTo(elements, { id: uuid() }));
@@ -159,6 +160,7 @@ const LayerForm = ({
                         dragonBones={dragonBones}
                         onChangeElement={onChangeElement}
                         onDeleteElement={onDeleteElement}
+                        setFilterName={setFilterName}
                     />
                 )
             }

@@ -5,8 +5,13 @@ import { DROPDOWNS_API } from "../../utils/apiLinks";
 import { GET_DROPDOWN_SAGA } from "../../utils/actionConstants";
 
 export function* getDropdownSaga(action) {
-    const { key } = action;
-    const result = yield call(axios.get, DROPDOWNS_API, { params: { key } });
+    const { key, filterName } = action;
+    const result = yield call(axios.get, DROPDOWNS_API, {
+        params: {
+            key,
+            filterName
+        }
+    });
 
     yield put(setDropdown(key, result.data));
 }

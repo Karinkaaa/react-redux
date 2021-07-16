@@ -337,7 +337,10 @@ createServer({
 
         this.get(DROPDOWNS_KEY, (schema, request) => {
             const key = request.queryParams.key;
-            return schema[key].all().models;
+            const filterName = request.queryParams.filterName;
+
+            if (filterName === "") return schema[key].all().models;
+            return schema[key].all().models.filter(({ attrs }) => attrs.name.includes(filterName));
         });
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");
