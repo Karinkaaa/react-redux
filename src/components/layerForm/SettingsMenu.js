@@ -120,7 +120,6 @@ const SettingsMenu = ({
                 dragonBones={dragonBones}
                 selectedElement={selectedElement}
                 onChangeElement={onChangeElement}
-                filterName={filterName}
                 setFilterName={setFilterName}
             />
 
