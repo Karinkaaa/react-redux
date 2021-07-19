@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Rnd } from "react-rnd";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 const ResizableDraggableLayerElement = ({
                                             element, onChangeElement, isSelected, setSelectedId,
-                                            images, animations, dragonBones
+                                            background, getBackground
                                         }) => {
     const classes = useStyles();
     const { position = { x: 0, y: 0 }, size = { height: 100, width: 100 }, ref = "", zIndex = 0 } = element;
@@ -45,19 +45,9 @@ const ResizableDraggableLayerElement = ({
         });
     };
 
-    const backgroundImage = () => {
-        let result = "";
-
-        if ((result = images.find((item) => item.id === ref))) {
-            return result.url;
-        } else if ((result = animations.find((item) => item.id === ref))) {
-            return result.urls[0];
-        } else if ((result = dragonBones.find((item) => item.id === ref))) {
-            return result.texture;
-        }
-
-        return result;
-    };
+    useEffect(() => {
+        getBackground(ref);
+    }, [ref]);
 
     return (
         <Rnd
@@ -71,7 +61,7 @@ const ResizableDraggableLayerElement = ({
                 zIndex: isSelected ? 999 : zIndex,
                 border: isSelected && "solid 1px white",
                 boxShadow: isSelected && "0 0 25px white, 0 5px 15px cyan",
-                backgroundImage: `url('${backgroundImage()}')`
+                backgroundImage: `url('${background}')`
             }}
         >
             <div>
@@ -99,27 +89,8 @@ ResizableDraggableLayerElement.propTypes = {
     onChangeElement: PropTypes.func.isRequired,
     isSelected: PropTypes.bool.isRequired,
     setSelectedId: PropTypes.func.isRequired,
-    images: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
-    animations: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
-        }).isRequired
-    ).isRequired,
-    dragonBones: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            texture: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired
+    background: PropTypes.string,
+    getBackground: PropTypes.func.isRequired
 };
 
 export default ResizableDraggableLayerElement;

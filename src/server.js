@@ -6,6 +6,7 @@ import {
     ANIMATIONS_KEY,
     AUDIO_MODEL,
     AUDIOS_KEY,
+    BACKGROUND_KEY,
     DRAGON_BONE_MODEL,
     DRAGON_BONES_KEY,
     DROPDOWNS_KEY,
@@ -339,8 +340,25 @@ createServer({
             const key = request.queryParams.key;
             const filterName = request.queryParams.filterName;
 
-            if (filterName === "") return schema[key].all().models;
-            return schema[key].all().models.filter(({ attrs }) => attrs.name.includes(filterName));
+            if (filterName === "") return schema[key].all().models.slice(0, 5);
+
+            const result = schema[key].all().models.filter(({ attrs }) => attrs.name.includes(filterName));
+            return result.slice(0, 5);
+        });
+
+        this.get(BACKGROUND_KEY, (schema, request) => {
+            const ref = request.queryParams.ref;
+            let result = "";
+
+            if ((result = schema.images.all().models.find((item) => item.id === ref))) {
+                return result.url;
+            } else if ((result = schema.animations.all().models.find((item) => item.id === ref))) {
+                return result.urls[0];
+            } else if ((result = schema.dragonBones.all().models.find((item) => item.id === ref))) {
+                return result.texture;
+            }
+
+            return result;
         });
 
         this.passthrough("https://murmuring-retreat-06793.herokuapp.com/**");

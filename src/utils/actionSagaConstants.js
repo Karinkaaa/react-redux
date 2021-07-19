@@ -1,4 +1,6 @@
 // images
+import { BACKGROUND_KEY } from "./constants";
+
 export const GET_IMAGES_SAGA = "GET_IMAGES_SAGA";
 export const GET_IMAGE_BY_ID_SAGA = "GET_IMAGE_BY_ID_SAGA";
 export const SAVE_IMAGE_SAGA = "SAVE_IMAGE_SAGA";
@@ -46,3 +48,9 @@ export const GET_MOVIE_BY_ID_SAGA = "GET_MOVIE_BY_ID_SAGA";
 export const SAVE_MOVIE_SAGA = "SAVE_MOVIE_SAGA";
 export const UPDATE_MOVIE_SAGA = "UPDATE_MOVIE_SAGA";
 export const REMOVE_MOVIE_SAGA = "REMOVE_MOVIE_SAGA";
+
+// dictionary
+export const GET_DROPDOWN_SAGA = "GET_DROPDOWN_SAGA";
+
+// background
+export const GET_IMAGE_BACKGROUND_SAGA = "GET_IMAGE_BACKGROUND_SAGA";

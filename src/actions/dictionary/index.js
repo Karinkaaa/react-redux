@@ -1,4 +1,5 @@
-import { GET_DROPDOWN_SAGA, SET_DROPDOWN } from "../../utils/actionConstants";
+import { GET_DROPDOWN_SAGA } from "../../utils/actionSagaConstants";
+import { SET_DROPDOWN } from "../../utils/actionConstants";
 
 export const getDropdownSaga = (key, filterName) => ({
     type: GET_DROPDOWN_SAGA,

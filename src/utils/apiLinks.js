@@ -6,4 +6,5 @@ export const RULES_API = "/api/rules";
 export const LAYERS_API = "/api/layers";
 export const MOVIES_API = "/api/movies";
 export const DROPDOWNS_API = "/api/dropdowns";
+export const BACKGROUND_API = "/api/background";
 

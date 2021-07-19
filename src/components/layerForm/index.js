@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const LayerForm = ({
-                       name, elements, selectedId, selectedElement, images, animations, dragonBones,
-                       onSaveLayer, onUpdateLayer, onPutDataToForm, onChangeFormData, getResources
+                       name, elements, selectedId, selectedElement, images, animations, dragonBones, backgrounds,
+                       onSaveLayer, onUpdateLayer, onPutDataToForm, onChangeFormData, getResources, getBackground
                    }) => {
     const classes = useStyles();
     const { id } = useParams();
@@ -55,9 +55,7 @@ const LayerForm = ({
                 <ElementsList
                     elements={elements}
                     selectedId={selectedId}
-                    images={images}
-                    animations={animations}
-                    dragonBones={dragonBones}
+                    backgrounds={backgrounds}
                     setSelectedId={setSelectedId}
                     onChangeElement={onChangeElement}
                 />
@@ -141,9 +139,8 @@ const LayerForm = ({
                                     setSelectedId={setSelectedId}
                                     element={el}
                                     onChangeElement={onChangeElement}
-                                    images={images}
-                                    animations={animations}
-                                    dragonBones={dragonBones}
+                                    background={backgrounds[el.ref]}
+                                    getBackground={getBackground}
                                 />
                             )
                         }
@@ -220,11 +217,13 @@ LayerForm.propTypes = {
             texture: PropTypes.string.isRequired
         })
     ).isRequired,
+    backgrounds: PropTypes.object.isRequired,
     onSaveLayer: PropTypes.func.isRequired,
     onUpdateLayer: PropTypes.func.isRequired,
     onPutDataToForm: PropTypes.func.isRequired,
     onChangeFormData: PropTypes.func.isRequired,
-    getResources: PropTypes.func.isRequired
+    getResources: PropTypes.func.isRequired,
+    getBackground: PropTypes.func.isRequired
 };
 
 export default LayerForm;

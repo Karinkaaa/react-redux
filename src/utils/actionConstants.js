@@ -21,5 +21,7 @@ export const CHANGE_FORM_DATA = "CHANGE_FORM_DATA";
 export const CLEAR_FORM = "CLEAR_FORM";
 
 // dictionary
-export const GET_DROPDOWN_SAGA = "GET_DROPDOWN_SAGA";
 export const SET_DROPDOWN = "SET_DROPDOWN";
+
+// background
+export const SET_IMAGE_BACKGROUND = "SET_IMAGE_BACKGROUND";

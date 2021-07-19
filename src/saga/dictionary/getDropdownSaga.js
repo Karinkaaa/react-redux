@@ -2,7 +2,7 @@ import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { setDropdown } from "../../actions/dictionary";
 import { DROPDOWNS_API } from "../../utils/apiLinks";
-import { GET_DROPDOWN_SAGA } from "../../utils/actionConstants";
+import { GET_DROPDOWN_SAGA } from "../../utils/actionSagaConstants";
 
 export function* getDropdownSaga(action) {
     const { key, filterName } = action;

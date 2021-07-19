@@ -30,7 +30,7 @@ const GroupedResources = ({ images, animations, dragonBones, selectedElement, on
                 ...selectedElement,
                 ref: value ? value.id : ""
             })}
-            onInputChange={(event, value) => setFilterName(value)}
+            onInputChange={(event, value, reason) => reason === "input" && setFilterName(value)}
             renderInput={(params) => <TextField {...params} label={"Resources"}/>}
         />
     );
@@ -71,8 +71,7 @@ GroupedResources.propTypes = {
         ref: PropTypes.string,
         zIndex: PropTypes.number
     }).isRequired,
-    onChangeElement: PropTypes.func.isRequired,
-    setFilterName: PropTypes.func.isRequired
+    onChangeElement: PropTypes.func.isRequired
 };
 
 export default GroupedResources;

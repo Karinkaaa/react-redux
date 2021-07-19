@@ -7,13 +7,15 @@ import movieForm from "./reducers/movieForm";
 import table from "./reducers/table";
 import form from "./reducers/form";
 import dictionary from "./reducers/dictionary";
+import background from "./reducers/background";
 
 const reducers = combineReducers({
     audioPlayer,
     movieForm,
     table,
     form,
-    dictionary
+    dictionary,
+    background
 });
 
 const sagaMiddleware = createSagaMiddleware();

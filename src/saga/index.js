@@ -35,6 +35,7 @@ import { watchUpdateLayerSaga } from "./layers/updateLayerSaga";
 import { watchSaveLayerSaga } from "./layers/saveLayerSaga";
 import { watchRemoveLayerSaga } from "./layers/removeLayerSaga";
 import { watchGetDropdownSaga } from "./dictionary/getDropdownSaga";
+import { watchGetImageBackgroundSaga } from "./background/getImageBackgroundSaga";
 
 export default function* mainSaga() {
     yield all([
@@ -73,6 +74,7 @@ export default function* mainSaga() {
         watchUpdateMovieSaga(),
         watchSaveMovieSaga(),
         watchRemoveMovieSaga(),
-        watchGetDropdownSaga()
+        watchGetDropdownSaga(),
+        watchGetImageBackgroundSaga()
     ]);
 }

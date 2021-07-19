@@ -23,6 +23,7 @@ export const RULES_KEY = "rules";
 export const LAYERS_KEY = "layers";
 export const MOVIES_KEY = "movies";
 export const DROPDOWNS_KEY = "dropdowns";
+export const BACKGROUND_KEY = "background";
 
 // server models
 export const IMAGE_MODEL = "image";

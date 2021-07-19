@@ -14,23 +14,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ElementIcon = ({ element, isSelected, setSelectedId, images, animations, dragonBones }) => {
+const ElementIcon = ({ element, isSelected, background, setSelectedId }) => {
     const classes = useStyles();
-    const { id, ref = "", zIndex = 0 } = element;
-
-    const background = () => {
-        let result = "";
-
-        if ((result = images.find((item) => item.id === ref))) {
-            return result.url;
-        } else if ((result = animations.find((item) => item.id === ref))) {
-            return result.urls[0];
-        } else if ((result = dragonBones.find((item) => item.id === ref))) {
-            return result.texture;
-        }
-
-        return result;
-    };
+    const { id, zIndex = 0 } = element;
 
     return (
         <Button
@@ -39,7 +25,7 @@ const ElementIcon = ({ element, isSelected, setSelectedId, images, animations, d
                 zIndex: zIndex || 9999,
                 border: isSelected && "solid 1px white",
                 boxShadow: isSelected && "0 0 5px white, 0 5px 10px darkkhaki",
-                backgroundImage: `url('${background()}')`
+                backgroundImage: `url('${background}')`
             }}
             onClick={() => setSelectedId(id)}
         />
@@ -61,28 +47,8 @@ ElementIcon.propTypes = {
         zIndex: PropTypes.number
     }).isRequired,
     isSelected: PropTypes.bool.isRequired,
-    setSelectedId: PropTypes.func.isRequired,
-    images: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
-    animations: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
-        }).isRequired
-    ).isRequired,
-    dragonBones: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            texture: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired
+    background: PropTypes.string,
+    setSelectedId: PropTypes.func.isRequired
 };
 
 export default ElementIcon;

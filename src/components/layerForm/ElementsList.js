@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     }
 });
 
-const ElementsList = ({ elements, selectedId, images, animations, dragonBones, setSelectedId, onChangeElement }) => {
+const ElementsList = ({ elements, selectedId, backgrounds, setSelectedId, onChangeElement }) => {
     const classes = useStyles();
 
     return (
@@ -34,9 +34,7 @@ const ElementsList = ({ elements, selectedId, images, animations, dragonBones, s
                         setSelectedId={setSelectedId}
                         element={el}
                         onChangeElement={onChangeElement}
-                        images={images}
-                        animations={animations}
-                        dragonBones={dragonBones}
+                        background={backgrounds[el.ref]}
                     />
                 )
             }
@@ -62,29 +60,7 @@ ElementsList.propTypes = {
         }).isRequired
     ).isRequired,
     selectedId: PropTypes.string,
-    images: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
-    animations: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            urls: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
-        }).isRequired
-    ).isRequired,
-    dragonBones: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string.isRequired,
-            texture: PropTypes.string.isRequired,
-            textureJson: PropTypes.string.isRequired,
-            skeleton: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
+    backgrounds: PropTypes.object.isRequired,
     setSelectedId: PropTypes.func.isRequired,
     onChangeElement: PropTypes.func.isRequired
 };
