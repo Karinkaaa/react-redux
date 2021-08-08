@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    LINK_TO_ABOUT,
     LINK_TO_ANIMATIONS,
     LINK_TO_AUDIOS,
     LINK_TO_DRAGON_BONES,
@@ -14,6 +15,7 @@ import {
     BurstMode,
     Error,
     GroupWork,
+    Info,
     Layers,
     Movie,
     PhotoLibrary,
@@ -74,5 +76,10 @@ export const MenuElements = [
         name: "Movies",
         Icon: () => <Movie/>,
         link: LINK_TO_MOVIES
+    },
+    {
+        name: "About",
+        Icon: () => <Info/>,
+        link: LINK_TO_ABOUT
     }
 ];

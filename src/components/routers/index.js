@@ -16,7 +16,9 @@ import LayerForm from "../../containers/layerForm";
 import Layers from "../../containers/layerPage";
 import Movies from "../../containers/moviesPage";
 import MovieForm from "../../containers/movieForm";
+import About from "../../pages/about";
 import {
+    LINK_TO_ABOUT,
     LINK_TO_ANIMATION_CREATE_FORM,
     LINK_TO_ANIMATION_UPDATE_FORM,
     LINK_TO_ANIMATIONS,
@@ -66,6 +68,7 @@ const Routers = () => (
             <Route exact path={LINK_TO_MOVIES} component={Movies}/>
             <Route exact path={LINK_TO_MOVIE_UPDATE_FORM} component={MovieForm}/>
             <Route exact path={LINK_TO_MOVIE_CREATE_FORM} component={MovieForm}/>
+            <Route exact path={LINK_TO_ABOUT} component={About}/>
         </Switch>
     </main>
 );

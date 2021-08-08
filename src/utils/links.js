@@ -20,3 +20,4 @@ export const LINK_TO_LAYER_FORM = "/ui/layer/form";
 export const LINK_TO_MOVIES = "/movie";
 export const LINK_TO_MOVIE_CREATE_FORM = "/movie/form";
 export const LINK_TO_MOVIE_UPDATE_FORM = "/movie/form/:id";
+export const LINK_TO_ABOUT = "/about";
